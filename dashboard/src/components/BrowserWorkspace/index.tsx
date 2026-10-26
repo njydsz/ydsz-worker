@@ -39,7 +39,7 @@ import styles from "./index.module.less";
 
 export type PanelMode = "hidden" | "bottom" | "right" | "popup";
 
-const DEFAULT_URL = "https://cloud.tencent.com";
+const DEFAULT_URL = "https://njydsz.com";
 
 interface BrowserWorkspaceProps {
   /** Harness profile for the current user. Server enforces the same mapping. */

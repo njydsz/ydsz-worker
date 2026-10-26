@@ -121,7 +121,7 @@ const LEGACY_SESSION_STORAGE_KEY = "云顶数字工作台:remote-browser:session
 /** Whether the user left the remote-browser stream open last time. */
 const STREAM_ACTIVE_KEY = "云顶数字工作台:remote-browser:stream-active";
 const DEFAULT_REFRESH_INTERVAL = 500;
-const DEFAULT_START_URL = "https://cloud.tencent.com";
+const DEFAULT_START_URL = "https://njydsz.com";
 const BROWSER_AI_PANEL_KEY = "云顶数字工作台:remote-browser:ai-panel-open";
 const BROWSER_AI_PANEL_WIDTH_KEY =
   "云顶数字工作台:remote-browser:ai-panel-width";
