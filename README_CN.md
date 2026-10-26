@@ -471,6 +471,20 @@ make build-frontend   # 生产构建
 | LangChain | LLM 应用开发框架 |
 | FastAPI | Web 框架 |
 
+## 🐙 与 Octop 的关系
+
+云顶数字工作台（Ydsz Worker）基于 [Octop](https://github.com/TencentCloud/Octop) 开源生态构建。Octop 是上游发行版——一个更智能的自托管 AI 助手，支持多用户与多 Agent。Ydsz Worker 在 Octop 核心之上扩展了企业场景所需的功能、集成和中英文双语打磨。
+
+| 组件 | 仓库 | 描述 |
+|------|------|------|
+| **Octop** *（上游）* | [TencentCloud/Octop](https://github.com/TencentCloud/Octop) | 自托管 AI 助手平台——核心发行版 |
+| **Octop Harness** | [TencentCloud/octop-harness](https://github.com/TencentCloud/octop-harness) | 生产级 Agent 运行时——模型路由、工具、技能、对话检查点 |
+| **Octop Gateway** | [TencentCloud/octop-gateway](https://github.com/TencentCloud/octop-gateway) | 多平台 IM 通道桥接，提供统一消息抽象 |
+| **Octop Memory** | [TencentCloud/octop-memory](https://github.com/TencentCloud/octop-memory) | 分层 Agent 召回与全文搜索——记忆随工作区迁移 |
+| **Octop Browser** | [TencentCloud/octop-browser](https://github.com/TencentCloud/octop-browser) | 面向 Agent 的轻量级浏览器自动化，直连 CDP |
+
+> **版本同步承诺：** Octop 及其子组件（Harness / Gateway / Memory / Browser）每次发布正式版，云顶数字工作台都将跟进对齐，确保能力与 Octop 官方发行版保持同步。我们将持续在 Octop 基础上构建企业特性，而非脱离上游独立分叉。
+
 ## 📄 许可证
 
 本项目采用 [MIT License](LICENSE)。

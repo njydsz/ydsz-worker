@@ -507,6 +507,20 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 | [LangChain](https://github.com/langchain-ai/langchain) | LLM application development framework |
 | [FastAPI](https://github.com/fastapi/fastapi) | Modern, high-performance web framework for building APIs |
 
+## 🐙 Relationship with Octop
+
+Ydsz Worker (云顶数字工作台) is built on top of the [Octop](https://github.com/TencentCloud/Octop) open-source ecosystem. Octop is the upstream distribution — a smarter, self-hosted AI assistant with multi-user and multi-agent capabilities. Ydsz Worker extends the Octop core with enterprise-focused features, integrations, and the bilingual (zh/en) polish.
+
+| Component | Repository | Description |
+|-----------|------------|-------------|
+| **Octop** *(upstream)* | [TencentCloud/Octop](https://github.com/TencentCloud/Octop) | Self-hosted AI assistant platform — the core distribution |
+| **Octop Harness** | [TencentCloud/octop-harness](https://github.com/TencentCloud/octop-harness) | Production-grade agent runtime — model routing, tools, skills, conversation checkpointing |
+| **Octop Gateway** | [TencentCloud/octop-gateway](https://github.com/TencentCloud/octop-gateway) | Multi-platform IM channel bridge with unified message abstraction |
+| **Octop Memory** | [TencentCloud/octop-memory](https://github.com/TencentCloud/octop-memory) | Hierarchical agent recall with full-text search — memory travels with the workspace |
+| **Octop Browser** | [TencentCloud/octop-browser](https://github.com/TencentCloud/octop-browser) | Agent-first lightweight browser automation via direct CDP |
+
+> **Version sync commitment:** When a new official release of Octop or its sub-components (Harness / Gateway / Memory / Browser) is published, Ydsz Worker will track that release so its capabilities stay in sync with the official Octop distribution. We will continue building enterprise features on top of the Octop foundation rather than forking away from it.
+
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
