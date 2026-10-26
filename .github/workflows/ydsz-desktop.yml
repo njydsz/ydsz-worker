@@ -5,10 +5,10 @@ name: Ydsz Worker Desktop Package
 # attach_from_run 只挂已有 artifact、不重打。
 #
 # 产物：
-#   - YdszWorker-portable-<plat>-<version>.zip （6 平台绿色版）
-#   - YdszWorker-desktop-darwin-<arch>-<version>.dmg
-#   - YdszWorker-desktop-linux-<arch>-<version>.tar.gz
-#   - YdszWorker-desktop-windows-<arch>-<version>.exe （NSIS 安装包）
+#   - ydzs-worker-portable-<plat>-<version>.zip （6 平台绿色版）
+#   - ydzs-worker-desktop-darwin-<arch>-<version>.dmg
+#   - ydzs-worker-desktop-linux-<arch>-<version>.tar.gz
+#   - ydzs-worker-desktop-windows-<arch>-<version>.exe （NSIS 安装包）
 
 on:
   push:
@@ -285,13 +285,13 @@ jobs:
           wails3 task package
           ARCH=${{ matrix.arch }}
           VERSION=${{ env.YDSZ_VERSION }}
-          PORTABLE_ZIP=../portable/release/ydsz-portable-${{ matrix.plat }}-${{ env.YDSZ_VERSION }}.zip
+          PORTABLE_ZIP=../portable/release/ydsz-worker-portable-${{ matrix.plat }}-${{ env.YDSZ_VERSION }}.zip
 
       - name: Upload portable zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ydsz-portable-${{ matrix.plat }}
-          path: desktop/portable/release/ydsz-portable-${{ matrix.plat }}-${{ env.YDSZ_VERSION }}.zip
+          name: ydzs-worker-portable-${{ matrix.plat }}
+          path: desktop/portable/release/ydsz-worker-portable-${{ matrix.plat }}-${{ env.YDSZ_VERSION }}.zip
           if-no-files-found: error
           retention-days: 14
 
@@ -299,7 +299,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ydsz-desktop-${{ matrix.plat }}
-          path: desktop/src/bin/YdszWorker-desktop-${{ matrix.plat }}-${{ env.YDSZ_VERSION }}.*
+          path: desktop/src/bin/ydsz-worker-desktop-${{ matrix.plat }}-${{ env.YDSZ_VERSION }}.*
           if-no-files-found: error
           retention-days: 14
 
@@ -357,6 +357,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.rel.outputs.tag }}
-          files: release-assets/YdszWorker-*
+          files: release-assets/ydsz-worker-*
           fail_on_unmatched_files: true
           generate_release_notes: false

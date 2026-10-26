@@ -38,7 +38,7 @@ the final native package:
 
 ```bash
 desktop/package-release.sh
-# Reuse an existing desktop/portable/release/ydsz-portable-<plat>-<version>.zip:
+# Reuse an existing desktop/portable/release/ydsz-worker-portable-<plat>-<version>.zip:
 desktop/package-release.sh darwin-arm64 --reuse-portable
 ```
 
@@ -59,7 +59,7 @@ cd desktop/src
 go mod tidy
 wails3 build            # development binary under desktop/src/bin/
 wails3 task package ARCH=arm64 VERSION=<version> \
-  PORTABLE_ZIP=../portable/release/ydsz-portable-darwin-arm64-<version>.zip
+  PORTABLE_ZIP=../portable/release/ydsz-worker-portable-darwin-arm64-<version>.zip
 ```
 
 Dev against an already-running Ydsz Worker (skips the bundled green zip):
@@ -73,20 +73,20 @@ Without `YDSZ_DESKTOP_URL`, first launch uses `~/.ydsz-worker/portable/` if vali
 otherwise extracts the matching zip shipped with the desktop package (embedded
 in the Windows and Linux binaries, under `Contents/Resources` on macOS). The
 Wails shell never downloads Ydsz. For local runtime debugging, set
-`YDSZ_DESKTOP_PORTABLE_ZIP=/absolute/path/ydsz-portable-<plat>-<version>.zip`.
+`YDSZ_DESKTOP_PORTABLE_ZIP=/absolute/path/ydsz-worker-portable-<plat>-<version>.zip`.
 On later launches, a newer bundled portable version replaces the extracted
 runtime after creating a consistent SQLite backup under `~/.ydsz-worker/backups/`.
 The upgraded Ydsz Worker process then applies the normal database migrations during
 startup. Newer extracted runtimes are never downgraded; PostgreSQL remains
 externally managed and is not copied by the desktop shell.
 
-GitHub Release names follow `Ydsz-<kind>-<os>-<arch>-<version>.<ext>`:
+GitHub Release names follow `ydsz-worker-<kind>-<os>-<arch>-<version>.<ext>`:
 
-- Desktop GUI: `ydsz-desktop-<plat>-<version>.dmg` (macOS; open and drag
+- Desktop GUI: `ydsz-worker-desktop-<plat>-<version>.dmg` (macOS; open and drag
   `Ydsz.app` into Applications), `.exe` (Windows NSIS installer — copies
   into `Program Files\Ydsz Worker` and creates Start Menu + desktop shortcuts),
   `.tar.gz` (Linux)
-- Green runtime zip: `ydsz-portable-<plat>-<version>.zip`
+- Green runtime zip: `ydsz-worker-portable-<plat>-<version>.zip`
 - PyPI wheels stay `ydsz-worker-<version>-py3-none-any.whl` (PEP 427)
 
 The Linux tar.gz contains only the GUI binary; it has no separate portable zip or

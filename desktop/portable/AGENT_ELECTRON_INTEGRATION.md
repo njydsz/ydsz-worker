@@ -9,7 +9,7 @@ path (no system Python, no `PYTHONPATH=packages`).
 CI / `make -f desktop/portable/Makefile green` produces:
 
 ```
-desktop/portable/release/YdszWorker-portable-<plat>-<version>.zip
+desktop/portable/release/ydsz-worker-portable-<plat>-<version>.zip
 ```
 
 Platforms: `darwin-arm64` `darwin-amd64` `linux-amd64` `linux-arm64`

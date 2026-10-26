@@ -2,7 +2,7 @@
 
 package main
 
-// Development builds look for YdszWorker-<plat>.zip or YdszWorker-portable-<plat>-*.zip
+// Development builds look for ydzs-worker-<plat>.zip or ydzs-worker-portable-<plat>-*.zip
 // beside the executable. macOS production copies the zip into Resources as
-// YdszWorker-<plat>.zip.
+// ydzs-worker-<plat>.zip.
 var embeddedPortable []byte

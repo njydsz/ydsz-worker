@@ -22,7 +22,7 @@ Platforms:
   windows-arm64 windows-amd64
 
 The platform defaults to the current native host. --reuse-portable skips
-rebuilding desktop/portable/release/YdszWorker-portable-<platform>-<version>.zip when it already exists.
+rebuilding desktop/portable/release/ydsz-worker-portable-<platform>-<version>.zip when it already exists.
 EOF
 }
 

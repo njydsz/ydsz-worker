@@ -34,11 +34,11 @@ def md_link(label: str, tag: str, filename: str) -> str:
 
 
 def desktop_name(os_name: str, arch: str, version: str, ext: str) -> str:
-    return f"YdszWorker-desktop-{os_name}-{arch}-{version}.{ext}"
+    return f"ydsz-worker-desktop-{os_name}-{arch}-{version}.{ext}"
 
 
 def portable_name(os_name: str, arch: str, version: str) -> str:
-    return f"YdszWorker-portable-{os_name}-{arch}-{version}.zip"
+    return f"ydsz-worker-portable-{os_name}-{arch}-{version}.zip"
 
 
 def render_download_section(raw_version: str) -> str:

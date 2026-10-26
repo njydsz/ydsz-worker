@@ -25,8 +25,8 @@ ALL_PLATS=(
   windows-arm64
 )
 
-# Public GitHub Release names: YdszWorker-<kind>-<os>-<arch>-<version>.<ext>
-# Zip payload directory stays ydsz-<plat>/ (the desktop unzip strips the first
+# Public GitHub Release names: ydzs-worker-<kind>-<os>-<arch>-<version>.<ext>
+# Zip payload directory stays ydzs-<plat>/ (the desktop unzip strips the first
 # path component). PyPI wheels keep the PEP 427 name and are not renamed here.
 ydsz_version() {
   sed -nE 's/^version[[:space:]]*=[[:space:]]*"([^"]+)".*/\1/p' \
@@ -34,7 +34,7 @@ ydsz_version() {
 }
 
 portable_zip_basename() {
-  echo "ydsz-portable-${1}-$(ydsz_version).zip"
+  echo "ydsz-worker-portable-${1}-$(ydsz_version).zip"
 }
 
 desktop_pkg_basename() {
@@ -42,9 +42,9 @@ desktop_pkg_basename() {
   local ver
   ver="$(ydsz_version)"
   case "$plat" in
-    darwin-*) echo "ydsz-desktop-${plat}-${ver}.dmg" ;;
-    windows-*) echo "ydsz-desktop-${plat}-${ver}.exe" ;;
-    linux-*) echo "ydsz-desktop-${plat}-${ver}.tar.gz" ;;
+    darwin-*) echo "ydsz-worker-desktop-${plat}-${ver}.dmg" ;;
+    windows-*) echo "ydsz-worker-desktop-${plat}-${ver}.exe" ;;
+    linux-*) echo "ydsz-worker-desktop-${plat}-${ver}.tar.gz" ;;
     *)
       echo "unknown platform: ${plat}" >&2
       return 1

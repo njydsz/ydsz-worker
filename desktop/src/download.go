@@ -245,7 +245,7 @@ func bundledPortableZip() (string, error) {
 	}
 	dir := filepath.Dir(exe)
 	plat := greenPlat()
-	legacy := fmt.Sprintf("YdszWorker-%s.zip", plat)
+	legacy := fmt.Sprintf("ydsz-worker-%s.zip", plat)
 	searchDirs := []string{
 		dir,
 		filepath.Join(dir, "..", "Resources"),
@@ -256,7 +256,7 @@ func bundledPortableZip() (string, error) {
 		if _, err := os.Stat(legacyPath); err == nil {
 			return legacyPath, nil
 		}
-		matches, _ := filepath.Glob(filepath.Join(search, "YdszWorker-portable-"+plat+"-*.zip"))
+		matches, _ := filepath.Glob(filepath.Join(search, "ydsz-worker-portable-"+plat+"-*.zip"))
 		if len(matches) > 0 {
 			sort.Strings(matches)
 			return matches[len(matches)-1], nil
