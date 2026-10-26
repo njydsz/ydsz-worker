@@ -72,42 +72,6 @@
   }
 }
 
-// Mascot image shown above the greeting title
-.welcomeMascot {
-  width: 132px;
-  aspect-ratio: 352 / 320;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: -12px;
-  cursor: pointer;
-  background: transparent;
-  transition: transform 0.18s ease;
-
-  &:hover {
-    transform: scale(1.04) translateY(-2px);
-  }
-
-  &:active {
-    transform: scale(0.94);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--fn-color-brand);
-    outline-offset: 4px;
-    border-radius: 12px;
-  }
-
-  @media (max-width: 767px) {
-    width: 110px;
-    margin-bottom: -10px;
-  }
-
-  @media (min-width: 1200px) {
-    width: 172px;
-    margin-bottom: -16px;
-  }
-}
-
 .welcomeHeading {
   display: flex;
   flex-direction: column;
