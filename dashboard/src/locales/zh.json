@@ -5369,7 +5369,6 @@
     "downloadFailed": "下载失败"
   },
   "wizard": {
-    "title": "初始化设置",
     "back": "上一步",
     "sessionExpired": "向导会话已过期，请重新验证启动密码。",
     "stepDatabase": "选择数据库",

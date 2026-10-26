@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Segmented, Steps, Typography } from "antd";
+import { Segmented, Steps } from "antd";
 import { Lock, UserCog, Cpu, CheckCircle, Database } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ensureLocaleBundle } from "../../i18n";
@@ -26,8 +26,6 @@ import {
   STEP_FINISH,
 } from "./wizardClient";
 import styles from "./setup.module.less";
-
-const { Text } = Typography;
 
 export default function SetupPage() {
   const { t, i18n } = useTranslation();
@@ -200,7 +198,7 @@ export default function SetupPage() {
           background: "var(--fn-bg-layout)",
         }}
       >
-        <Text type="secondary">Checking setup status…</Text>
+        <span style={{ color: "var(--fn-text-secondary)" }}>Checking setup status…</span>
       </div>
     );
   }
@@ -254,14 +252,9 @@ export default function SetupPage() {
         <div className={styles.wizardHeader}>
           <div className={styles.wizardHeaderTop}>
             <div className={styles.wizardHeaderBrand}>
-              <div className={styles.wizardHeaderBrandText}>
-                <span className={styles.wizardHeaderTitle}>
-                  {t("app.brandName")}
-                </span>
-                <Text type="secondary" className={styles.wizardHeaderSubtitle}>
-                  {t("wizard.title")}
-                </Text>
-              </div>
+              <span className={styles.wizardHeaderTitle}>
+                {t("app.brandName")}
+              </span>
             </div>
             <Segmented
               className={styles.wizardHeaderLang}

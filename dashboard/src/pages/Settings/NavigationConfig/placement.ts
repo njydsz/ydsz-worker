@@ -21,15 +21,16 @@ export interface NavPlacementItem {
  * Master list of all nav items surfaced in the Navigation Configuration panel.
  *
  * The sidebar zone renders **every** item whose current `nav_zones` value is
- * `sidebar` — fixed items (chat / experts / tasks) are locked there and never
- * appear in the settings zone.
+ * `sidebar` — the lone fixed item (chat) is locked there and never appears in
+ * the settings zone.
  *
  * The settings zone groups items by `defaultGroup` on first load. Users can
  * reorder groups and items freely.
  */
 export const ALL_NAV_ITEMS: NavPlacementItem[] = [
-  // ── Fixed sidebar presence items ──────────────────────────────────────────
-  // These always live in the main sidebar and cannot be moved to settings.
+  // ── Locked sidebar item ───────────────────────────────────────────────────
+  // 对话 (chat) is the only locked item: it always stays in the sidebar at
+  // position 1 and cannot be moved to settings.
   {
     key: "chat",
     labelKey: "nav.chat",
@@ -37,22 +38,16 @@ export const ALL_NAV_ITEMS: NavPlacementItem[] = [
     defaultGroup: null,
     fixed: true,
   },
+
+  // ── Movable items (default to sidebar) ───────────────────────────────────
+  // These five items live in the sidebar by default and are user-sortable.
+  // They can also be dragged into the settings page.
   {
     key: "experts",
     labelKey: "nav.experts",
     defaultZone: "sidebar",
     defaultGroup: null,
-    fixed: true,
   },
-  {
-    key: "tasks",
-    labelKey: "nav.tasks",
-    defaultZone: "sidebar",
-    defaultGroup: null,
-    fixed: true,
-  },
-
-  // ── Movable items (default to sidebar) ───────────────────────────────────
   {
     key: "skill-packages",
     labelKey: "nav.skillPackages",
@@ -68,6 +63,12 @@ export const ALL_NAV_ITEMS: NavPlacementItem[] = [
   {
     key: "knowledge-bases",
     labelKey: "nav.knowledgeBases",
+    defaultZone: "sidebar",
+    defaultGroup: null,
+  },
+  {
+    key: "tasks",
+    labelKey: "nav.tasks",
     defaultZone: "sidebar",
     defaultGroup: null,
   },

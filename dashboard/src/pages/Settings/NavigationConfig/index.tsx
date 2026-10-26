@@ -271,8 +271,8 @@ export default function NavigationConfigPage() {
   }, []);
 
   // ── Sidebar / settings item sets ───────────────────────────────────────
-  // The sidebar zone includes fixed items (chat/experts/tasks) plus every
-  // movable item whose current zone is "sidebar".
+  // The sidebar zone includes the locked item (chat) plus every movable item
+  // whose current zone is "sidebar".
   const sidebarMovable = useMemo(
     () =>
       MOVABLE_PLACEMENT_ITEMS.filter(

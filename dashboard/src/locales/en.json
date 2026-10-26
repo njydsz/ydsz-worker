@@ -5369,7 +5369,6 @@
     }
   },
   "wizard": {
-    "title": "Initial setup",
     "back": "Back",
     "sessionExpired": "Wizard session expired. Please verify the bootstrap password again.",
     "stepDatabase": "Choose database",

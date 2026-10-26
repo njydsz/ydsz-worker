@@ -25,11 +25,12 @@ ZONE_SETTINGS = "settings"
 VALID_ZONES = frozenset({ZONE_SIDEBAR, ZONE_SETTINGS})
 
 # Nav item keys the user may move between the main sidebar and the settings page.
-# Primary-only items (chat, experts, tasks) and settings-only items (updates,
-# environments) are fixed and not listed here — see `buildNavSections` /
-# `buildSettingsNavGroups` for the fixed lists.
+# Only "chat" is permanently locked to the sidebar (it always renders first).
+# "updates" / "environments" are settings-only zones and not listed here.
 MOVABLE_NAV_KEYS = frozenset(
     {
+        "experts",
+        "tasks",
         "token-usage",
         "personalization",
         "channels",
@@ -50,10 +51,11 @@ MOVABLE_NAV_KEYS = frozenset(
 )
 
 # Where each movable item lands when the user has never configured zones.
-# Defaults match the out-of-the-box UI: the main sidebar keeps the handful of
-# items visible on first launch (Figure 1); everything else lives on the
-# settings page (Figure 2).
+# Sidebar defaults: 专家团 / 技能包 / 连接器 / 知识库 / 自动化 (chat is always
+# sidebar via the fixed flag in placement.ts and is not listed here).
 DEFAULT_NAV_ZONES: dict[str, str] = {
+    "experts": ZONE_SIDEBAR,
+    "tasks": ZONE_SIDEBAR,
     "token-usage": ZONE_SETTINGS,
     "personalization": ZONE_SETTINGS,
     "channels": ZONE_SETTINGS,
