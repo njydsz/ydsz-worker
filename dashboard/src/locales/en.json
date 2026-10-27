@@ -6980,7 +6980,9 @@
     "retry": "Retry",
     "offlineTitle": "Cannot reach the Ydsz Worker server",
     "offlineSubtitle": "The network may be offline or the backend is not running. Check connectivity and try again.",
-    "backHome": "Back to Home"
+    "backHome": "Back to Home",
+    "pageCrashed": "This page crashed",
+    "pageCrashedSubtitle": "You can go back or try again. Other pages are unaffected."
   },
   "adminProviders": {
     "title": "Providers",

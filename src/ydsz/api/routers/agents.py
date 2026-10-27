@@ -232,12 +232,10 @@ async def list_agents(
     registry = server.app_runtime.agent_registry
     if scope == "all":
         rows = registry.list_rows()
-        user_ids = {r.user_id for r in rows if r.user_id is not None}
-        username_by_id: dict[int, str] = {}
-        for uid in user_ids:
-            owner = server.services.user_repo.get(uid)
-            if owner is not None:
-                username_by_id[uid] = owner.username
+        user_ids = [r.user_id for r in rows if r.user_id is not None]
+        # Batch lookup — one query instead of N (one per distinct owner).
+        owners = server.services.user_repo.mget(list(set(user_ids)))
+        username_by_id = {uid: o.username for uid, o in owners.items()}
         payloads = [
             _row_dict(
                 r,
@@ -253,13 +251,10 @@ async def list_agents(
     owned = registry.list_agents(user.id)
     shared = server.services.agent_repo.list_shared(exclude_user_id=user.id)
     rows = list({row.agent_id: row for row in [*shared, *owned]}.values())
-    shared_owner_username_by_id: dict[int, str] = {}
-    for row in shared:
-        if row.user_id is None or row.user_id in shared_owner_username_by_id:
-            continue
-        owner = server.services.user_repo.get(row.user_id)
-        if owner is not None:
-            shared_owner_username_by_id[row.user_id] = owner.username
+    # Batch lookup — one query instead of N.
+    shared_user_ids = list({row.user_id for row in shared if row.user_id is not None})
+    shared_owners = server.services.user_repo.mget(shared_user_ids)
+    shared_owner_username_by_id = {uid: o.username for uid, o in shared_owners.items()}
     return _attach_unread_counts(
         server,
         user.id,

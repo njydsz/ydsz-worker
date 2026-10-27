@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import builtins
 import json
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 
 from ydsz.infra.db.pool import DatabasePool
@@ -138,6 +139,18 @@ class UserRepo:
         with self._db.connect() as conn:
             r = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
         return UserRow.from_row(r) if r else None
+
+    def mget(self, user_ids: Sequence[int]) -> dict[int, UserRow]:
+        """Batch-fetch users by id. Returns {user_id: UserRow} for found rows."""
+        if not user_ids:
+            return {}
+        unique_ids = list(set(user_ids))
+        placeholders = ",".join("?" * len(unique_ids))
+        with self._db.connect() as conn:
+            rows = conn.execute(
+                f"SELECT * FROM users WHERE id IN ({placeholders})", unique_ids
+            ).fetchall()
+        return {r["id"]: UserRow.from_row(r) for r in rows}
 
     def get_by_username(self, username: str) -> UserRow | None:
         with self._db.connect() as conn:

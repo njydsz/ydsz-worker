@@ -105,13 +105,6 @@ WORKDIR /app
 
 # 先安装锁定依赖，仅改源码时可复用此层缓存
 COPY pyproject.toml uv.lock README.md LICENSE ./
-RUN --mount=type=cache,target=/root/.cache/uv \
-    if [ -n "$PIP_INDEX_URL" ]; then \
-        export UV_INDEX_URL="$PIP_INDEX_URL"; \
-        if [ -n "$PIP_TRUSTED_HOST" ]; then export UV_INSECURE_HOST="$PIP_TRUSTED_HOST"; fi; \
-    fi \
-    && uv sync --frozen --no-install-project --no-dev \
-        --extra browser --extra local-embedding --extra knowledge-ocr
 
 ENV PATH="/app/.venv/bin:$PATH" \
     PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright
@@ -123,6 +116,8 @@ COPY .env.example ./
 COPY docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
+# Single uv sync: deps + project in one pass (was doing deps in an earlier
+# stage + again here, doubling pip work). --no-dev intentionally.
 RUN --mount=type=cache,target=/root/.cache/uv \
     if [ -n "$PIP_INDEX_URL" ]; then \
         export UV_INDEX_URL="$PIP_INDEX_URL"; \
@@ -131,6 +126,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     && uv sync --frozen --no-dev \
         --extra browser --extra local-embedding --extra knowledge-ocr \
     && .venv/bin/python -c "import cv2, fastembed, huggingface_hub, rapidocr, onnxruntime, pymupdf" \
+    && .venv/bin/playwright install chromium \
     && apt-get update && apt-get install -y --no-install-recommends fonts-noto-cjk \
     && apt-get purge -y --auto-remove build-essential \
     && rm -rf /var/lib/apt/lists/* /tmp/*

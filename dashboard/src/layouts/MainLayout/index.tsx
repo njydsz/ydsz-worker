@@ -13,6 +13,7 @@ import { ServiceRestartProvider } from "../../context/ServiceRestartContext";
 import { BackupOperationProvider } from "../../context/BackupOperationContext";
 import PwaUpdatePrompt from "../../components/PwaUpdatePrompt";
 import { PwaAutoPrompt } from "../../components/PwaInstallPrompt";
+import PageErrorBoundary from "../../components/PageErrorBoundary";
 import {
   routeConfigs,
   resolveSelectedKey,
@@ -189,7 +190,14 @@ export default function MainLayout() {
           if (!rc.useWrapper && routeNeedsPermission(rc.path)) {
             el = <RequirePermission>{el}</RequirePermission>;
           }
-          return <Route key={rc.path} path={rc.path} element={el} />;
+          // Isolate each route: a crash in one page won't nuke the whole shell.
+          return (
+            <Route
+              key={rc.path}
+              path={rc.path}
+              element={<PageErrorBoundary pageName={rc.path}>{el}</PageErrorBoundary>}
+            />
+          );
         })}
       </Routes>
     </Suspense>

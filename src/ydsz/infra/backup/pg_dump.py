@@ -9,6 +9,10 @@ from pathlib import Path
 
 from ydsz.infra.errors import ErrorCode, YdszError
 
+# Default 30-minute timeout for pg_dump/pg_restore; large DBs may need longer but
+# an unbounded run typically indicates a hung network or locked table.
+_PG_DUMP_TIMEOUT = 30 * 60  # seconds
+
 
 def _require_tool(name: str) -> str:
     path = shutil.which(name)
@@ -31,12 +35,19 @@ def dump_postgres(
     cmd = [pg_dump, "-Fc", "-f", str(dest), "--dbname", conninfo]
     for table in exclude_table_data:
         cmd.extend(["--exclude-table-data", table])
-    proc = subprocess.run(
-        cmd,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
+    try:
+        proc = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=_PG_DUMP_TIMEOUT,
+        )
+    except subprocess.TimeoutExpired:
+        raise YdszError(
+            ErrorCode.INTERNAL_ERROR,
+            f"pg_dump timed out after {_PG_DUMP_TIMEOUT}s (large DB or network hang)",
+        ) from None
     if proc.returncode != 0:
         raise YdszError(
             ErrorCode.INTERNAL_ERROR,
@@ -46,20 +57,27 @@ def dump_postgres(
 
 def restore_postgres(conninfo: str, dump_file: Path) -> None:
     pg_restore = _require_tool("pg_restore")
-    proc = subprocess.run(
-        [
-            pg_restore,
-            "--clean",
-            "--if-exists",
-            "--no-owner",
-            "--dbname",
-            conninfo,
-            str(dump_file),
-        ],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
+    try:
+        proc = subprocess.run(
+            [
+                pg_restore,
+                "--clean",
+                "--if-exists",
+                "--no-owner",
+                "--dbname",
+                conninfo,
+                str(dump_file),
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=_PG_DUMP_TIMEOUT,
+        )
+    except subprocess.TimeoutExpired:
+        raise YdszError(
+            ErrorCode.INTERNAL_ERROR,
+            f"pg_restore timed out after {_PG_DUMP_TIMEOUT}s (large DB or network hang)",
+        ) from None
     # pg_restore may return 1 with warnings; treat only >=2 as hard fail.
     if proc.returncode >= 2:
         raise YdszError(

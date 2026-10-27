@@ -1,47 +1,46 @@
-# Git and IDE
+# Git
 .git
 .gitignore
-.idea
+.githooks
+
+# Python
+.venv
+__pycache__
+*.pyc
+*.pyo
+.mypy_cache
+.ruff_cache
+.pytest_cache
+*.egg-info
+dist
+build
+
+# Node / frontend
+node_modules
+dashboard/node_modules
+dashboard/dist
+*.tsbuildinfo
+
+# IDE / OS
 .vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Docker
+docker/docker-compose*.yml
+.docker
+
+# Docs
+docs
 *.md
 !README.md
 
-# Python dev and cache
-__pycache__
-*.py[cod]
-*$py.class
-.venv
-venv
-.pytest_cache
-.coverage
-htmlcov
-.tox
-.mypy_cache
-.ruff_cache
-dist
-build
-*.egg-info
+# CI
+.github
 
-# Tests (not needed in runtime image)
-tests
-.pre-commit-config.yaml
-
-# Frontend: stage 1 builds dashboard in-image; exclude host dev deps and pre-built output
-dashboard/node_modules
-dashboard/.vite
-dashboard/dist
-src/octop/dashboard
-node_modules
-**/node_modules
-**/.vite
-
-# Example and local config (mount at runtime instead)
+# Dev
 .env
 .env.*
 !.env.example
-
-# Misc
-.DS_Store
-*.log
-logs
-agent-transcripts
+*.local

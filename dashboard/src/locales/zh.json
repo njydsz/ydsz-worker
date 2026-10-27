@@ -6980,7 +6980,9 @@
     "retry": "重试",
     "offlineTitle": "无法连接 云顶数字工作台 服务",
     "offlineSubtitle": "网络不可用或后端未启动。请检查网络与服务状态后重试。",
-    "backHome": "返回首页"
+    "backHome": "返回首页",
+    "pageCrashed": "此页面出现错误",
+    "pageCrashedSubtitle": "当前页面加载出错，返回其他页面即可继续使用。"
   },
   "adminProviders": {
     "title": "Providers",

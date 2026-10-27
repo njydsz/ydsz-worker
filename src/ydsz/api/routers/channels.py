@@ -802,6 +802,8 @@ async def weixin_qrcode_poll(
 # ─── Feishu Bot Creator ──────────────────────────────────────────────────────
 
 # Per-agent-id creator state: agent_id -> {proc, lines, lock}
+_FEISHU_STATE_TTL = 30 * 60  # 30 minutes; creator session rarely lasts longer
+
 _feishu_creator_states: dict[str, dict[str, Any]] = {}
 
 
@@ -811,8 +813,29 @@ def _get_feishu_state(agent_id: str) -> dict[str, Any]:
             "proc": None,
             "lines": [],
             "lock": asyncio.Lock(),
+            "last_used": time.time(),
         }
+    else:
+        _feishu_creator_states[agent_id]["last_used"] = time.time()
+    _prune_feishu_states()
     return _feishu_creator_states[agent_id]
+
+
+def _cleanup_feishu_state(agent_id: str) -> None:
+    """Remove feishu creator state for an agent (called on stop or agent delete)."""
+    _feishu_creator_states.pop(agent_id, None)
+
+
+def _prune_feishu_states() -> None:
+    """Evict states idle longer than TTL (defensive leak prevention)."""
+    now = time.time()
+    expired = [
+        aid
+        for aid, s in _feishu_creator_states.items()
+        if now - s.get("last_used", 0) > _FEISHU_STATE_TTL
+    ]
+    for aid in expired:
+        _feishu_creator_states.pop(aid, None)
 
 
 @router.post("/agents/{agent_id}/channels/feishu/bot-creator/start")
@@ -945,6 +968,8 @@ async def feishu_bot_creator_stop(
             await asyncio.to_thread(proc.wait, 5)
         state["proc"] = None
         state["lines"] = []
+    # Clean up state so the dict doesn't grow unbounded across agent lifecycles
+    _cleanup_feishu_state(agent_id)
     return {"status": "stopped"}
 
 
@@ -959,8 +984,29 @@ def _get_yuanbao_state(agent_id: str) -> dict[str, Any]:
             "proc": None,
             "lines": [],
             "lock": asyncio.Lock(),
+            "last_used": time.time(),
         }
+    else:
+        _yuanbao_creator_states[agent_id]["last_used"] = time.time()
+    _prune_yuanbao_states()
     return _yuanbao_creator_states[agent_id]
+
+
+def _cleanup_yuanbao_state(agent_id: str) -> None:
+    """Remove yuanbao creator state for an agent (called on stop or agent delete)."""
+    _yuanbao_creator_states.pop(agent_id, None)
+
+
+def _prune_yuanbao_states() -> None:
+    """Evict states idle longer than TTL (defensive leak prevention)."""
+    now = time.time()
+    expired = [
+        aid
+        for aid, s in _yuanbao_creator_states.items()
+        if now - s.get("last_used", 0) > _FEISHU_STATE_TTL
+    ]
+    for aid in expired:
+        _yuanbao_creator_states.pop(aid, None)
 
 
 @router.post("/agents/{agent_id}/channels/yuanbao/bot-creator/start")
@@ -1105,4 +1151,6 @@ async def yuanbao_bot_creator_stop(
             await asyncio.to_thread(proc.wait, 5)
         state["proc"] = None
         state["lines"] = []
+    # Clean up state so the dict doesn't grow unbounded across agent lifecycles
+    _cleanup_yuanbao_state(agent_id)
     return {"status": "stopped"}

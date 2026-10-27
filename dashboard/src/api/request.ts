@@ -26,6 +26,24 @@ export class SetupRequiredError extends Error {
   }
 }
 
+/** Retry configuration for idempotent GET requests. */
+const RETRYABLE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
+const MAX_RETRIES = 2;
+const RETRY_BASE_DELAY_MS = 500;
+const RETRY_MAX_DELAY_MS = 4_000;
+
+/** Determines if a failed request should be retried (transient network errors). */
+function isRetryable(error: unknown, method: string, attempt: number): boolean {
+  if (attempt >= MAX_RETRIES) return false;
+  if (!RETRYABLE_METHODS.has(method.toUpperCase())) return false;
+  // AbortError = network drop or user nav; TypeError = fetch failed (offline)
+  return error instanceof TypeError || error instanceof DOMException;
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 /** Session flag: backend reported no admin yet (setup lockdown active). */
 let _setupRequiredKnown = false;
 
@@ -381,11 +399,39 @@ export async function request<T = unknown>(
 
   const headers = buildHeaders(path, options.headers);
 
-  const response = await fetch(url, {
-    ...options,
-    headers,
-  });
+  // Retry transient network failures (TypeError / DOMException) for safe methods.
+  // Mutating requests (POST/PUT/DELETE) are NOT retried — caller must decide.
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers,
+      });
+      // Success (or non-retryable HTTP error) — jump to response handling.
+      return await handleResponse<T>(path, response, options);
+    } catch (err) {
+      lastError = err;
+      if (!isRetryable(err, options.method ?? "GET", attempt)) break;
+      // Exponential backoff: 500ms → 1s → 2s (capped at 4s)
+      const wait = Math.min(
+        RETRY_BASE_DELAY_MS * 2 ** attempt,
+        RETRY_MAX_DELAY_MS,
+      );
+      await delay(wait);
+    }
+  }
+  // If we got here with an HTTP response (not a throw), handleResponse was called.
+  // Only reachable on un-retryable or exhausted retries.
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
+}
 
+/** Handle the HTTP response: auth renewal, error mapping, body parse. */
+async function handleResponse<T>(
+  path: string,
+  response: Response,
+  _options: RequestInit,
+): Promise<T> {
   if (await check503ForSetupRequired(path, response)) {
     throw new SetupRequiredError();
   }
