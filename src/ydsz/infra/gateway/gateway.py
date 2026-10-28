@@ -509,6 +509,8 @@ class Gateway:
         session: SessionRow,
         agent_id: str,
         text: str,
+        *,
+        thread_id: str | None = None,
     ) -> None:
         """Fan out a toast payload to the owner's dashboard notification sockets.
 
@@ -517,21 +519,28 @@ class Gateway:
         keeps a proactive notification for agent B from popping up in the live
         chat view of agent A. Falls back to ``push_to_user`` for threads the
         user is not currently watching.
+
+        When ``thread_id`` is given, the payload is flagged as a
+        ``thread_created`` event (vs a plain toast) so the dashboard can refresh
+        the sidebar in addition to showing the notice.
         """
         if not text.strip():
             return
         row = self._agent_manager.get_row(agent_id)
         name = getattr(row, "name", None) if row is not None else None
         agent_name = str(name).strip() if isinstance(name, str) and name.strip() else agent_id
+        effective_thread = thread_id or session.thread_id
         payload = {
             "type": "dashboard_push",
             "agent_id": agent_id,
-            "thread_id": session.thread_id,
+            "thread_id": effective_thread,
             "text": text,
             "agent_name": agent_name,
         }
-        if self._ws_hub.has_subscribers(session.thread_id):
-            await self._ws_hub.push_to_thread(session.thread_id, payload)
+        if thread_id:
+            payload["created"] = True
+        if self._ws_hub.has_subscribers(effective_thread):
+            await self._ws_hub.push_to_thread(effective_thread, payload)
         else:
             await self._ws_hub.push_to_user(session.user_id, payload)
 

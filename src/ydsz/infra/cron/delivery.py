@@ -68,9 +68,14 @@ class CronDeliveryService:
     async def deliver(self, command: CronDeliveryCommand) -> None:
         """Run one delivery under the target channel session lock."""
 
+        created_thread_id: str | None = None
+
         async def _locked() -> None:
+            nonlocal created_thread_id
             if command.fresh_thread:
-                await self._gateway.thread_registry.reset_by_session_key(command.session_key)
+                created_thread_id = await self._gateway.thread_registry.reset_by_session_key(
+                    command.session_key
+                )
             session = self._gateway.require_session(command.agent_id, command.session_key)
             if session.user_id != command.user_id:
                 raise ValueError(
@@ -86,6 +91,11 @@ class CronDeliveryService:
             command.session_key,
             _locked,
         )
+        # After a fresh-thread cron run, the dashboard won't show the new
+        # conversation until the user manually refreshes. Broadcast a
+        # thread-created hint so the sidebar can update live.
+        if created_thread_id:
+            await self._broadcast_thread_created(command, created_thread_id)
 
     async def _deliver_text(
         self,
@@ -319,6 +329,34 @@ class CronDeliveryService:
                 thread_id,
                 exc_info=True,
             )
+
+    async def _broadcast_thread_created(
+        self,
+        command: CronDeliveryCommand,
+        thread_id: str,
+    ) -> None:
+        """Send a ``thread_created`` SSE event so dashboards refresh the sidebar."""
+        try:
+            await self._gateway.notify_dashboard_push(
+                await self._session_row(command.session_key),
+                command.agent_id,
+                command.cron_name,
+                thread_id=thread_id,
+            )
+        except Exception:
+            logger.warning(
+                "failed to broadcast new cron thread thread=%s agent=%s",
+                thread_id,
+                command.agent_id,
+                exc_info=True,
+            )
+
+    async def _session_row(self, session_key: str) -> Any:
+        """Resolve the ``SessionRow`` for ``session_key``."""
+        session = self._gateway.thread_registry.get_session(session_key)
+        if session is None:
+            raise ValueError(f"session {session_key!r} not found")
+        return session
 
     async def _notify_best_effort(
         self,
