@@ -19,7 +19,10 @@ _QUOTES: dict[str, list[tuple[str, str]]] = {
         ("路漫漫其修远兮，吾将上下而求索。", "屈原"),
         ("宝剑锋从磨砺出，梅花香自苦寒来。", "古训"),
         ("Where there is a will, there is a way.", "Thomas Fuller"),
-        ("Success is not final, failure is not fatal: it is the courage to continue that counts.", "Winston Churchill"),
+        (
+            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            "Winston Churchill",
+        ),
     ],
     "wisdom": [
         ("知者不惑，仁者不忧，勇者不惧。", "孔子"),
@@ -35,7 +38,10 @@ _QUOTES: dict[str, list[tuple[str, str]]] = {
         ("代码能跑就别动，这不是偷懒，这是工程智慧。", "程序员谚语"),
         ("早起的鸟儿有虫吃，早起的虫儿被鸟吃。", "佚名"),
         ("我不是懒，我只是在节能模式。", "佚名"),
-        ("Life is like a sewer — what you get out of it depends on what you put into it.", "Tom Lehrer"),
+        (
+            "Life is like a sewer — what you get out of it depends on what you put into it.",
+            "Tom Lehrer",
+        ),
         ("I'm not arguing, I'm just explaining why I'm right.", "佚名"),
         ("工作只是赚钱的方式，生活才是花钱的艺术。", "佚名"),
     ],
@@ -71,7 +77,7 @@ def _pick_index(theme: str, seed: str) -> int:
     quotes = _QUOTES.get(theme, [])
     if not quotes:
         return 0
-    digest = hashlib.sha256(f"{theme}:{seed}".encode("utf-8")).hexdigest()
+    digest = hashlib.sha256(f"{theme}:{seed}".encode()).hexdigest()
     return int(digest[:8], 16) % len(quotes)
 
 

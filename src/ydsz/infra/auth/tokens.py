@@ -21,6 +21,7 @@ def sign_token(
     uname: str,
     role: str,
     ttl_seconds: int = 86400,
+    lat: int | None = None,
 ) -> str:
     now = int(time.time())
     payload = {
@@ -30,6 +31,10 @@ def sign_token(
         "iat": now,
         "exp": now + ttl_seconds,
     }
+    if lat is None:
+        payload["lat"] = now
+    else:
+        payload["lat"] = lat
     return jwt.encode(payload, secret, algorithm="HS256")
 
 
@@ -43,3 +48,12 @@ def decode_token(secret: bytes, token: str) -> dict[str, Any]:
         raise TokenExpired() from exc
     except jwt.InvalidTokenError as exc:
         raise InvalidToken(str(exc)) from exc
+
+
+def token_last_activity(payload: dict[str, Any]) -> int:
+    """Return the last-activity timestamp from a decoded token payload.
+
+    Falls back to ``iat`` (issued-at) when the ``lat`` field is absent,
+    which keeps pre-change tokens working with the idle-timeout feature.
+    """
+    return int(payload.get("lat") or payload.get("iat") or 0)

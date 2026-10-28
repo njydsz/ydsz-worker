@@ -127,6 +127,7 @@ class YdszConfig:
     port: int = 8088
     log_level: str = "info"
     access_token_ttl_seconds: int = 86400
+    idle_timeout_minutes: int = 0
     login_max_attempts: int = 5
     login_lockout_seconds: int = 900
     cors_origins: list[str] = field(default_factory=list)
@@ -469,6 +470,10 @@ def load_config(path: Path) -> YdszConfig:
         merged["access_token_ttl_seconds"] = _coerce_int(
             "YDSZ_ACCESS_TOKEN_TTL", v, merged["access_token_ttl_seconds"]
         )
+    if v := os.environ.get("YDSZ_IDLE_TIMEOUT_MINUTES"):
+        merged["idle_timeout_minutes"] = _coerce_int(
+            "YDSZ_IDLE_TIMEOUT_MINUTES", v, merged.get("idle_timeout_minutes", 0)
+        )
     if v := os.environ.get("YDSZ_LOGIN_MAX_ATTEMPTS"):
         merged["login_max_attempts"] = _coerce_int(
             "YDSZ_LOGIN_MAX_ATTEMPTS", v, merged.get("login_max_attempts", 5)
@@ -601,6 +606,7 @@ def load_config(path: Path) -> YdszConfig:
         port=int(merged["port"]),
         log_level=merged["log_level"],
         access_token_ttl_seconds=int(merged["access_token_ttl_seconds"]),
+        idle_timeout_minutes=int(merged.get("idle_timeout_minutes", 0)),
         login_max_attempts=int(merged.get("login_max_attempts", 5)),
         login_lockout_seconds=int(merged.get("login_lockout_seconds", 900)),
         cors_origins=list(merged.get("cors_origins") or []),

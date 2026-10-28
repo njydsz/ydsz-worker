@@ -8,7 +8,6 @@ from typing import Any
 import httpx
 from ydsz_harness.plugins import PluginContext
 
-
 _SEARCH_URL = "https://api.duckduckgo.com/"
 
 

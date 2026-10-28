@@ -7,7 +7,6 @@ from typing import Any
 
 from ydsz_harness.plugins import PluginContext
 
-
 _HABIT_LIBRARY: dict[str, list[dict[str, str]]] = {
     "健康": [
         {

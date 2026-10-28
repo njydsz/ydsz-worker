@@ -122,6 +122,8 @@ def maybe_sliding_renew_token(server: YdszServer, token: str, user: User) -> str
 
     Threshold is one-third of ``access_token_ttl_seconds`` remaining. Active clients
     that pick up ``ACCESS_TOKEN_RESPONSE_HEADER`` stay signed in without re-login.
+    The renewed token carries an updated ``lat`` (last-activity) field, which the
+    idle-timeout middleware uses to decide whether the session has gone stale.
     """
     assert server.services is not None
     payload = _decode(server, token)
@@ -139,6 +141,7 @@ def maybe_sliding_renew_token(server: YdszServer, token: str, user: User) -> str
         uname=user.username,
         role=user.role,
         ttl_seconds=ttl,
+        lat=int(time.time()),
     )
 
 

@@ -59,7 +59,7 @@ _SNIPPETS: dict[str, list[dict[str, str]]] = {
         },
         {
             "title": " Dataclass 定义",
-            "code": 'from dataclasses import dataclass, field\n\n@dataclass\nclass User:\n    name: str\n    age: int = 0\n    tags: list[str] = field(default_factory=list)',
+            "code": "from dataclasses import dataclass, field\n\n@dataclass\nclass User:\n    name: str\n    age: int = 0\n    tags: list[str] = field(default_factory=list)",
             "tags": ["dataclass", "class", "model"],
         },
     ],
@@ -130,12 +130,12 @@ _SNIPPETS: dict[str, list[dict[str, str]]] = {
         },
         {
             "title": "暂存当前改动",
-            "code": "git stash push -m \"wip: feature xyz\"\n# 恢复\ngit stash pop",
+            "code": 'git stash push -m "wip: feature xyz"\n# 恢复\ngit stash pop',
             "tags": ["stash", "save", "branch"],
         },
         {
             "title": "查看某文件历史",
-            "code": 'git log --oneline -- path/to/file\ngit show HEAD~2:path/to/file',
+            "code": "git log --oneline -- path/to/file\ngit show HEAD~2:path/to/file",
             "tags": ["log", "history", "file"],
         },
         {

@@ -55,7 +55,9 @@ async def analyze_expenses(expenses_json: str) -> str:
 
     highlights: list[str] = []
     top_cat, top_amt = sorted_cats[0]
-    highlights.append(f"最大支出分类为「{top_cat}」，共消费 {top_amt:.2f} 元，占总支出 {top_amt / total * 100:.1f}%。")
+    highlights.append(
+        f"最大支出分类为「{top_cat}」，共消费 {top_amt:.2f} 元，占总支出 {top_amt / total * 100:.1f}%。"
+    )
 
     high_value = sorted(
         [e for e in expenses if isinstance(e, dict)],

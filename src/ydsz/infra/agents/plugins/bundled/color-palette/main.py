@@ -133,7 +133,10 @@ async def hex_to_rgb(hex: str) -> str:
         return _payload("color_convert", {"error": str(exc)}, str(exc))
     return _payload(
         "color_convert",
-        {"hex": f"#{hex.lstrip('#')}" if hex.startswith("#") else f"#{hex}", "rgb": {"r": r, "g": g, "b": b}},
+        {
+            "hex": f"#{hex.lstrip('#')}" if hex.startswith("#") else f"#{hex}",
+            "rgb": {"r": r, "g": g, "b": b},
+        },
         f"rgb({r}, {g}, {b})",
     )
 
