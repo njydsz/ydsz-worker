@@ -50,9 +50,9 @@ def build_probe_chat_model(row: Any, *, model_id: str | None = None) -> Any:
     protocol = KIND_TO_PROTOCOL.get(row.kind, row.kind)
     base_url = row.base_url or "https://api.openai.com/v1"
     headers = ensure_opencode_session_header(row.name, provider_headers(row), base_url=base_url)
+    mid = model_id or _probe_model_id(row, None)
     models = row.get_models() if hasattr(row, "get_models") else []
-    mid = model_id or (models[0]["id"] if models else "gpt-4o-mini")
-    entry = next((m for m in models if m.get("id") == mid), None)
+    entry = next((m for m in models if isinstance(m, dict) and m.get("id") == mid), None)
     display_name = (entry or {}).get("name") or mid
     model = ModelConfig(id=mid, name=display_name)
 
@@ -112,12 +112,20 @@ def make_probe_provider_row(
 
 
 def _probe_model_id(row: Any, model_id: str | None) -> str:
-    models = row.get_models() if hasattr(row, "get_models") else []
+    """Resolve the model id to probe.
+
+    An explicit request wins, then the first *enabled* model, then the first
+    entry as a last resort. Skipping disabled entries avoids the failure mode
+    where the probe targets a turned-off model and the test always errors out.
+    """
     if model_id:
         return model_id
-    if models:
-        return str(models[0].get("id") or "gpt-4o-mini")
-    return "gpt-4o-mini"
+    models = row.get_models() if hasattr(row, "get_models") else []
+    entries = [m for m in models if isinstance(m, dict) and str(m.get("id") or "").strip()]
+    if not entries:
+        return "gpt-4o-mini"
+    chosen = next((m for m in entries if m.get("enabled", True)), None) or entries[0]
+    return str(chosen.get("id") or "gpt-4o-mini")
 
 
 def _onnx_probe_model_id(row: Any, model_id: str | None) -> str:

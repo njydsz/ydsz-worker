@@ -1,0 +1,11 @@
+id: unit-converter-pro
+version: 0.1.0
+name: 高级单位转换
+description: 长度、重量、温度、面积、体积、时间、数据单位的高精度转换
+icon: icon.svg
+group: tools
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

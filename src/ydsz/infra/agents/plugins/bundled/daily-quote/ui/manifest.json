@@ -1,0 +1,3 @@
+{
+  "renderers": [{ "id": "daily_quote", "tools": ["get_daily_quote"] }]
+}

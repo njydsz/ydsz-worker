@@ -1,0 +1,11 @@
+id: stock-watch
+version: 0.1.0
+name: 自选股
+description: 自选股管理与价格告警设置（模拟数据+行情概览）
+icon: icon.svg
+group: finance
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

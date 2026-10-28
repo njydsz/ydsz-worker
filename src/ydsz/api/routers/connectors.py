@@ -463,6 +463,12 @@ def _schedule_connector_reload(
 
     async def _run() -> None:
         try:
+            # Any connector add/edit/delete may have changed the live tool set.
+            # Drop the fingerprint cache so agents pick up new tools on next run.
+            try:
+                server.app_runtime.agent_registry.invalidate_mcp_tool_cache(user_id)
+            except Exception:
+                logger.debug("mcp tool cache invalidation skipped for user %s", user_id)
             if mail_instance_id:
                 await server.app_runtime.cron_manager.sync_mail_watch(mail_instance_id)
             if all_users:
@@ -1338,6 +1344,35 @@ async def refresh_instance(
     svc = _connector_service(server)
     creds = await svc.ensure_fresh_credentials(instance_id, inst.kind)
     return {"ok": True, "expires_at": creds.get("expires_at")}
+
+
+@router.post(
+    "/connector-instances/{instance_id}/refresh-tools",
+    summary="Invalidate cached MCP tools for a connector",
+)
+async def refresh_instance_tools(
+    instance_id: str,
+    user: Any = Depends(current_user),
+    server: Any = Depends(get_server),
+) -> dict[str, Any]:
+    """Drop cached MCP tools so the next agent run / probe reloads them.
+
+    Solves the case where a connector's backend adds, removes or renames tools
+    while its connection parameters (URL, headers, command…) stay the same — the
+    fingerprint-based cache would otherwise keep serving stale tool metadata
+    until the process restarts.
+    """
+    repo = server.services.repos.connector_repo
+    inst = repo.get(instance_id)
+    if inst is None:
+        raise YdszError(ErrorCode.CONNECTOR_NOT_FOUND, f"instance {instance_id!r} not found")
+    if inst.user_id != user.id:
+        raise YdszError(ErrorCode.FORBIDDEN, "not your connector instance")
+    server.services.agent_registry.invalidate_mcp_tool_cache(inst.user_id)
+    logger.info(
+        "connector tools cache invalidated: instance=%s user=%s", instance_id, inst.user_id
+    )
+    return {"ok": True, "invalidated": True}
 
 
 @router.get("/connectors/auth/{kind}/info", summary="Connector auth info")

@@ -88,7 +88,7 @@ def read_file_block_reason(path: str) -> str | None:
             f"read_file blocked for binary file `{path}`. "
             "Use execute_shell_command or the matching skill instead."
         )
-    if _is_inbound_attachment(path) and ext and ext not in _TEXT_EXTENSIONS:
+    if _is_inbound_attachment(path) and (not ext or ext not in _TEXT_EXTENSIONS):
         return (
             f"read_file blocked for inbound attachment `{path}`. "
             "Use execute_shell_command or the matching skill instead."

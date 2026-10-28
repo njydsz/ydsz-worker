@@ -1,0 +1,3 @@
+{
+  "renderers": [{ "id": "expense_analysis", "tools": ["analyze_expenses"] }]
+}

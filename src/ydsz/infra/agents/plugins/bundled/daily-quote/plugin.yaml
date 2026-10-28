@@ -1,0 +1,11 @@
+id: daily-quote
+version: 0.1.0
+name: 每日一言
+description: 每日励志与哲思精选，支持按主题筛选
+icon: icon.svg
+group: lifestyle
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

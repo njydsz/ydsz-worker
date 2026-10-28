@@ -1,0 +1,11 @@
+id: expense-tracker
+version: 0.1.0
+name: 记账本
+description: 记录日常收支、分类统计与月度消费概览
+icon: icon.svg
+group: lifestyle
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

@@ -12,6 +12,7 @@ Templates are discovered at server start by :class:`ExpertCatalog`.
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 from dataclasses import dataclass, field
@@ -101,6 +102,37 @@ def discover_bundled_avatar_ids(avatars_dir: Path | None = None) -> frozenset[st
 
 
 _BUNDLED_AVATAR_IDS = discover_bundled_avatar_ids()
+
+
+# ---------------------------------------------------------------------------
+# Defaults applied at agent *creation* time so CLI-created agents are never
+# left with a NULL ``icon_url`` / ``color`` — which would hide them from the
+# team dispatch layer (issue #2467 analogue in Octop).
+# ---------------------------------------------------------------------------
+# Stable pastel palette; picks are keyed off ``agent_id`` so the same agent
+# always lands on the same colour across restarts.
+_DEFAULT_AGENT_PALETTE = (
+    "#6366F1",  # indigo
+    "#EC4899",  # pink
+    "#14B8A6",  # teal
+    "#F59E0B",  # amber
+    "#8B5CF6",  # violet
+    "#10B981",  # emerald
+    "#F43F5E",  # rose
+    "#0EA5E9",  # sky
+    "#84CC16",  # lime
+    "#D946EF",  # fuchsia
+)
+_DEFAULT_AGENT_COLOR = "#6366F1"
+
+
+def _pick_default_avatar_url(agent_id: str) -> str:
+    """Pick a bundled portrait URL in a stable way derived from ``agent_id``."""
+    ids = sorted(_BUNDLED_AVATAR_IDS)
+    if not ids:
+        return builtin_expert_avatar_url("default")
+    idx = hash(agent_id) % len(ids)
+    return builtin_expert_avatar_url(ids[idx])
 
 
 @dataclass(frozen=True)
@@ -226,15 +258,20 @@ async def seed_expert_directory(
     present (chat welcome source of truth).
     """
     paths = seed_paths if seed_paths is not None else discover_seed_paths(expert_dir)
-    pairs: list[tuple[str, bytes]] = []
-    for rel in paths:
-        fpath = expert_dir / rel
-        if not fpath.is_file():
-            continue
-        pairs.append((rel.lstrip("/"), fpath.read_bytes()))
-    manifest_path = expert_dir / MANIFEST_FILENAME
-    if manifest_path.is_file():
-        pairs.append((WORKSPACE_MANIFEST_PATH, manifest_path.read_bytes()))
+
+    def _read_seed_files() -> list[tuple[str, bytes]]:
+        result: list[tuple[str, bytes]] = []
+        for rel in paths:
+            fpath = expert_dir / rel
+            if not fpath.is_file():
+                continue
+            result.append((rel.lstrip("/"), fpath.read_bytes()))
+        m_path = expert_dir / MANIFEST_FILENAME
+        if m_path.is_file():
+            result.append((WORKSPACE_MANIFEST_PATH, m_path.read_bytes()))
+        return result
+
+    pairs = await asyncio.to_thread(_read_seed_files)
     if not pairs:
         return 0
     await workspace.aupload_many(pairs)

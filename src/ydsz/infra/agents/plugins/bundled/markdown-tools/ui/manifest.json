@@ -1,0 +1,6 @@
+{
+  "renderers": [
+    { "id": "md_table", "tools": ["md_generate_table"] },
+    { "id": "md_titles", "tools": ["md_extract_titles"] }
+  ]
+}

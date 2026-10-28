@@ -50,7 +50,11 @@ def install(app: Any, server: Any) -> None:
         try:
             request.state.ydsz_user = authenticate_request(request, server)
         except YdszError as exc:
-            # Middleware returns directly (skips FastAPI exception handlers).
+            # Middleware returns directly (skips FastAPI exception handlers),
+            # so resolve the locale here to match the global error handler.
+            from ydsz.infra.utils.locale import resolve_request_locale
+
+            locale = resolve_request_locale(request)
             if exc.status >= 500:
                 logger.error(
                     "YdszError %s in %s: %s",
@@ -59,7 +63,10 @@ def install(app: Any, server: Any) -> None:
                     exc.message,
                     exc_info=exc,
                 )
-            return JSONResponse(status_code=exc.status, content=exc.to_envelope())
+            return JSONResponse(
+                status_code=exc.status,
+                content=exc.to_envelope(locale=locale),
+            )
 
         response = await call_next(request)
         if raw is not None:

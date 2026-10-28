@@ -579,6 +579,16 @@ class AgentManager:
             else:
                 raw_mcp = profile.get("mcp_servers")
                 mcp_servers_json = raw_mcp if isinstance(raw_mcp, str) else None
+            # Ensure every agent is born with an icon_url + color so the team
+            # dispatch layer can see it. CLI-created agents (``ydsz-worker
+            # agent create``) skip the Dashboard profile path, leaving both
+            # NULL — which silently hides the agent from ``agent_list``.
+            from ydsz.infra.agents.experts.catalog import (
+                _DEFAULT_AGENT_COLOR,
+                _pick_default_avatar_url,
+            )
+
+            default_icon_url = _pick_default_avatar_url(agent_id)
             self._repos.agent_repo.create(
                 agent_id=agent_id,
                 user_id=spec.user_id,
@@ -590,9 +600,9 @@ class AgentManager:
                 config_json=json.dumps(config) if config else None,
                 icon=spec.icon,
                 template_name=spec.template_name or profile.get("template_name"),
-                color=spec.color or profile.get("color"),
+                color=spec.color or profile.get("color") or _DEFAULT_AGENT_COLOR,
                 icon_name=spec.icon_name or profile.get("icon_name"),
-                icon_url=spec.icon_url or profile.get("icon_url"),
+                icon_url=spec.icon_url or profile.get("icon_url") or default_icon_url,
                 skill_package_ids=package_ids_json,
                 published_expert_id=spec.published_expert_id or profile.get("published_expert_id"),
                 welcome_message=(

@@ -403,7 +403,9 @@ async def patch_agent(
         }
     }
     if body.config is not None:
-        updates["config_json"] = json.dumps(body.config)
+        existing_config = parse_config_json(row.config_json)
+        existing_config.update(body.config)
+        updates["config_json"] = json.dumps(existing_config)
     if body.welcome_message is not None:
         updates["welcome_message"] = body.welcome_message
     if updates:

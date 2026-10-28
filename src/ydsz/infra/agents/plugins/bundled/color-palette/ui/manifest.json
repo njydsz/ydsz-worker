@@ -1,0 +1,6 @@
+{
+  "renderers": [
+    { "id": "color_palette", "tools": ["generate_palette"] },
+    { "id": "color_convert", "tools": ["hex_to_rgb"] }
+  ]
+}

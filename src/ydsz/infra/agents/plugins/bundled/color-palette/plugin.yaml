@@ -1,0 +1,11 @@
+id: color-palette
+version: 0.1.0
+name: 配色方案
+description: 生成协调的主题配色、渐变色和色彩转换
+icon: icon.svg
+group: tools
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

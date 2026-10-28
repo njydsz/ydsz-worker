@@ -1,0 +1,11 @@
+id: code-snippet
+version: 0.1.0
+name: 代码片段
+description: 常用代码片段速查，覆盖 Python/JavaScript/Shell/Git/SQL/Docker/React
+icon: icon.svg
+group: tools
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

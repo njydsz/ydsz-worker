@@ -1,0 +1,11 @@
+id: markdown-tools
+version: 0.1.0
+name: Markdown 工具
+description: Markdown 常用转换：表格生成、目录提取、文本格式化
+icon: icon.svg
+group: tools
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

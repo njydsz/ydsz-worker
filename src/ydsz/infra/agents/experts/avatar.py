@@ -156,8 +156,8 @@ async def copy_workspace_avatar_to_dir(workspace: WorkspaceAvatarIO, dest: Path)
     data, media_type = found
     rel = avatar_relpath_for_media(media_type)
     target = dest.joinpath(*PurePosixPath(rel).parts)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_bytes(data)
+    await asyncio.to_thread(lambda: target.parent.mkdir(parents=True, exist_ok=True))
+    await asyncio.to_thread(target.write_bytes, data)
     return rel
 
 

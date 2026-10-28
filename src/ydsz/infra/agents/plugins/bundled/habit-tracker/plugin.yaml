@@ -1,0 +1,11 @@
+id: habit-tracker
+version: 0.1.0
+name: 习惯打卡
+description: 科学习惯建议与追踪模板生成，覆盖健康、效率、学习、财务维度
+icon: icon.svg
+group: lifestyle
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

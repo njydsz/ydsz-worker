@@ -1,0 +1,11 @@
+id: weekly-report
+version: 0.1.0
+name: 周报助手
+description: 生成结构化周报模板，支持本周总结、下周计划、风险与进展
+icon: icon.svg
+group: tools
+kind: tool
+entry: main.py
+ui:
+  entry: ui/index.js
+  manifest: ui/manifest.json

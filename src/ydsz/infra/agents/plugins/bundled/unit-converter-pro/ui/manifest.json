@@ -1,0 +1,3 @@
+{
+  "renderers": [{ "id": "unit_converter", "tools": ["convert_units"] }]
+}

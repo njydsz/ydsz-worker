@@ -1,0 +1,5 @@
+{
+  "renderers": [
+    { "id": "stock_watch", "tools": ["watch_list"] }
+  ]
+}

@@ -510,22 +510,30 @@ class Gateway:
         agent_id: str,
         text: str,
     ) -> None:
-        """Fan out a toast payload to the owner's dashboard notification sockets."""
+        """Fan out a toast payload to the owner's dashboard notification sockets.
+
+        Delivery preference: when the target thread has active subscribers
+        (Dashboard sockets bound via ``subscribe``), push only to them — this
+        keeps a proactive notification for agent B from popping up in the live
+        chat view of agent A. Falls back to ``push_to_user`` for threads the
+        user is not currently watching.
+        """
         if not text.strip():
             return
         row = self._agent_manager.get_row(agent_id)
         name = getattr(row, "name", None) if row is not None else None
         agent_name = str(name).strip() if isinstance(name, str) and name.strip() else agent_id
-        await self._ws_hub.push_to_user(
-            session.user_id,
-            {
-                "type": "dashboard_push",
-                "agent_id": agent_id,
-                "thread_id": session.thread_id,
-                "text": text,
-                "agent_name": agent_name,
-            },
-        )
+        payload = {
+            "type": "dashboard_push",
+            "agent_id": agent_id,
+            "thread_id": session.thread_id,
+            "text": text,
+            "agent_name": agent_name,
+        }
+        if self._ws_hub.has_subscribers(session.thread_id):
+            await self._ws_hub.push_to_thread(session.thread_id, payload)
+        else:
+            await self._ws_hub.push_to_user(session.user_id, payload)
 
     def _require_channel_manager(self) -> ChannelManager:
         if self._channel_manager is None:

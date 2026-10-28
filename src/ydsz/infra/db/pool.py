@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
+import contextlib
+import logging
 import os
 import re
+import shutil
 import sqlite3
 import threading
+import time
 from collections.abc import Iterator, Mapping, Sequence
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Protocol, runtime_checkable
+
+logger = logging.getLogger(__name__)
 
 
 def qmark_to_pyformat(sql: str) -> str:
@@ -39,6 +45,8 @@ class SqlitePool:
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         first_create = not self.path.exists()
+        if not first_create:
+            self._ensure_integrity()
         self._conn = sqlite3.connect(
             str(self.path),
             check_same_thread=False,
@@ -48,9 +56,59 @@ class SqlitePool:
         self._conn.execute("PRAGMA foreign_keys = ON")
         self._conn.execute("PRAGMA journal_mode = WAL")
         self._conn.execute("PRAGMA busy_timeout = 5000")
+        self._conn.execute("PRAGMA synchronous = NORMAL")
         self._lock = threading.RLock()
         if first_create and os.name == "posix":
             os.chmod(self.path, 0o600)
+
+    def _ensure_integrity(self) -> None:
+        """Verify the SQLite file is not corrupt before opening the pool.
+
+        Runs ``PRAGMA integrity_check`` on a throwaway connection — the pool's
+        own connection does not exist yet. On failure the corrupt file is
+        archived (``.corrupt.<ts>``) so the pool can start with a clean slate
+        instead of crashing mid-flight with ``database disk image is malformed``.
+        """
+        try:
+            probe = sqlite3.connect(
+                f"file:{self.path}?mode=ro",
+                uri=True,
+                check_same_thread=False,
+            )
+            try:
+                row = probe.execute("PRAGMA integrity_check").fetchone()
+            finally:
+                probe.close()
+        except sqlite3.DatabaseError as exc:
+            logger.warning(
+                "SQLite integrity check failed (open): %s — archiving %s", exc, self.path
+            )
+            self._archive_corrupt()
+            return
+        result = (row[0] if row else "") or ""
+        if result != "ok":
+            logger.warning(
+                "SQLite integrity check returned %r — archiving %s",
+                result,
+                self.path,
+            )
+            self._archive_corrupt()
+
+    def _archive_corrupt(self) -> None:
+        """Move the corrupt database aside so a fresh one can be created."""
+        ts = int(time.time())
+        target = self.path.with_name(f"{self.path.name}.corrupt.{ts}")
+        try:
+            shutil.move(str(self.path), str(target))
+        except OSError as exc:
+            logger.error("Failed to archive corrupt DB %s → %s: %s", self.path, target, exc)
+            return
+        for suffix in ("-wal", "-shm"):
+            src = self.path.with_name(f"{self.path.name}{suffix}")
+            if src.exists():
+                with contextlib.suppress(OSError):
+                    shutil.move(str(src), str(target.with_suffix(f".{src.name}")))
+        logger.warning("Archived corrupt DB to %s", target)
 
     @contextmanager
     def connect(self) -> Iterator[sqlite3.Connection]:
