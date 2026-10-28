@@ -280,7 +280,7 @@ async def create_agent(
     server: Any = Depends(get_server),
 ) -> dict[str, Any]:
     """Create a new agent from a template or custom config for the current user."""
-    from ydsz.infra.agents.manager import AgentCreateSpec  # noqa: PLC0415
+    from ydsz.infra.agents.spec import AgentCreateSpec  # noqa: PLC0415
 
     assert server.app_runtime is not None
     if isinstance(body.config, dict):

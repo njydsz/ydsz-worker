@@ -35,7 +35,7 @@ def create(
 
     from ydsz.cli.repl.embedded_session import embedded_runtime
     from ydsz.cli.support.acting import resolve_cli_acting_user_id
-    from ydsz.infra.agents.manager import AgentCreateSpec
+    from ydsz.infra.agents.spec import AgentCreateSpec
 
     try:
         uid = resolve_cli_acting_user_id(None, as_user)

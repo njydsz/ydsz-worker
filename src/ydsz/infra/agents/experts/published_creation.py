@@ -34,7 +34,7 @@ from ydsz.infra.agents.experts.publish import (
     export_agent_workspace_to_dir,
     resolve_published_expert_slug,
 )
-from ydsz.infra.agents.manager import AgentCreateSpec
+from ydsz.infra.agents.spec import AgentCreateSpec
 from ydsz.infra.db.repos.published_experts import PublishedExpertRow
 from ydsz.infra.errors import ErrorCode, YdszError
 from ydsz.infra.history.trajectory.settings import apply_enable_trajectory

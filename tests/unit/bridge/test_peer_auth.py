@@ -4,16 +4,13 @@ from __future__ import annotations
 
 import pytest
 
-from ydsz.infra.bridge.manager import (
-    _annotate_bridge_dial_error,
-    _should_refresh_peer_token,
-)
 from ydsz.infra.bridge.peer_auth import (
     is_self_peer_url,
     normalize_peer_base_url,
     peer_identity_key,
     peer_ws_url,
 )
+from ydsz.infra.bridge.utils import _annotate_bridge_dial_error, _should_refresh_peer_token
 from ydsz.infra.errors import ErrorCode, YdszError
 
 

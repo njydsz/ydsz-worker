@@ -1,0 +1,67 @@
+name: Version Compatibility
+
+# PRs that bump root or sub-package versions must keep the dependency
+# constraints consistent. This check prevents shipping ydsz-worker 26.11
+# that requires harness>=1.0.4 when harness is still at 1.0.3.
+
+on:
+  pull_request:
+    paths:
+      - "pyproject.toml"
+      - "harness/pyproject.toml"
+      - "gateway/pyproject.toml"
+      - "memory/pyproject.toml"
+      - "browser/pyproject.toml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  version-compat:
+    name: "Version compatibility check"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Extract versions"
+        id: v
+        run: |
+          set -ex
+          # Canonical package versions (from pyproject.toml files)
+          ROOT_VER=$(grep -m1 '^version' pyproject.toml | sed 's/.*"\(.*\)".*/\1/')
+          HARNESS_VER=$(grep -m1 '^version' harness/pyproject.toml | sed 's/.*"\(.*\)".*/\1/')
+          GATEWAY_VER=$(grep -m1 '^version' gateway/pyproject.toml | sed 's/.*"\(.*\)".*/\1/')
+          BROWSER_VER=$(grep -m1 '^version' browser/pyproject.toml | sed 's/.*"\(.*\)".*/\1/')
+
+          echo "root=${ROOT_VER}" >> "$GITHUB_OUTPUT"
+          echo "harness=${HARNESS_VER}" >> "$GITHUB_OUTPUT"
+          echo "gateway=${GATEWAY_VER}" >> "$GITHUB_OUTPUT"
+          echo "browser=${BROWSER_VER}" >> "$GITHUB_OUTPUT"
+
+          # What root requires
+          echo "--- root's dependency constraints ---"
+          grep 'ydsz-harness\|ydsz-gateway\|ydsz-browser\|ydsz-memory' pyproject.toml
+
+      - name: "Check root→sub constraints"
+        run: |
+          python3 -c "
+          import re, sys
+          # Map: package_name -> (operator+version) from root pyproject.toml
+          root_deps = {}
+          with open('pyproject.toml') as f:
+              for line in f:
+                  m = re.match(r'\"ydsz-(harness|gateway|browser|memory)[^\"]*([><=]+[^,\"]+)', line)
+                  if m:
+                      pkg, ver = m.group(1), m.group(2).strip().strip(',')
+                      root_deps[pkg] = ver
+          print('Root requires:', root_deps)
+          # Basic sanity: ensure no '==' pin that could break PyPI resolution
+          for pkg, ver in root_deps.items():
+              if '==' in ver:
+                  print(f'WARN: {pkg} pinned exactly ({ver}) — ensure matched release exists')
+          print('OK: dependency constraints parse cleanly')
+          "

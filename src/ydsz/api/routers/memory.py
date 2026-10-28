@@ -44,7 +44,7 @@ from pydantic import BaseModel, Field
 from ydsz.api.common.agent import assert_agent_owner, require_agent_owner_row
 from ydsz.api.common.memory_client import call_memory_rpc
 from ydsz.api.deps import current_user, get_server, require_permission
-from ydsz.infra.agents.manager import memory_extract_supported_options
+from ydsz.infra.agents.memory import memory_extract_supported_options
 from ydsz.infra.errors import ErrorCode, YdszError
 
 logger = logging.getLogger(__name__)

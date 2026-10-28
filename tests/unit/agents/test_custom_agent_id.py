@@ -7,7 +7,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from ydsz.infra.agents.manager import AgentCreateSpec, validate_custom_agent_id
+from ydsz.infra.agents.spec import AgentCreateSpec, validate_custom_agent_id
 from ydsz.infra.errors import ErrorCode, YdszError
 
 

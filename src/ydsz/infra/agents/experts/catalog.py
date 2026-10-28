@@ -20,7 +20,7 @@ from typing import Any, cast
 
 from ydsz_harness.backends.workspace import BackendWorkspace
 
-from ydsz.infra.agents.manager import AgentCreateSpec
+from ydsz.infra.agents.spec import AgentCreateSpec
 from ydsz.infra.agents.workspace.dir import DEFAULT_SYSTEM_FILES_PATH
 from ydsz.infra.errors import ErrorCode, YdszError
 

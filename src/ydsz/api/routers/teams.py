@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field
 
 from ydsz.api.common.agent import assert_agent_owner
 from ydsz.api.deps import current_user, get_server
-from ydsz.infra.agents.manager import AgentCreateSpec
+from ydsz.infra.agents.spec import AgentCreateSpec
 from ydsz.infra.agents.teams import (
     TEAM_KIND,
     TEAM_TEMPLATE_NAME,

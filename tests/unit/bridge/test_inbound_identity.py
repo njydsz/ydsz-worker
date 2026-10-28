@@ -10,7 +10,8 @@ from types import SimpleNamespace
 import pytest
 
 from ydsz.infra.bridge.ids import PROTOCOL_VERSION
-from ydsz.infra.bridge.manager import BridgeManager, observe_ws_client_host
+from ydsz.infra.bridge.manager import BridgeManager
+from ydsz.infra.bridge.utils import observe_ws_client_host
 from ydsz.infra.db.migrate import run_migrations
 from ydsz.infra.db.pool import SqlitePool
 from ydsz.infra.db.repos.bridge_connections import BridgeConnectionRepo

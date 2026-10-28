@@ -737,6 +737,27 @@ class YdszServer:
                 wizard_home / WIZARD_FILE_NAME,
             )
 
+    async def _shutdown_all_tasks(self) -> None:
+        """Cancel all still-running asyncio tasks (except us) and wait briefly.
+
+        Fire-and-forget tasks created via asyncio.create_task get no cleanup —
+        on Windows in particular the process can hang waiting for them. This
+        cancels everything and lets them process CancelledError.
+        """
+        current = asyncio.current_task()
+        pending = [t for t in asyncio.all_tasks() if t is not current and not t.done()]
+        if not pending:
+            return
+        for t in pending:
+            t.cancel()
+        results = await asyncio.gather(*pending, return_exceptions=True)
+        for t, result in zip(pending, results, strict=True):
+            if isinstance(result, (asyncio.CancelledError, BaseExceptionGroup)):
+                continue
+            if isinstance(result, Exception):
+                logger.warning("task %s raised during shutdown: %s", t.get_name(), result)
+        logger.info("cancelled %d pending task(s) during shutdown", len(pending))
+
     async def stop(self) -> None:
         if not self._started:
             return
@@ -746,6 +767,8 @@ class YdszServer:
             await agently_auth.close()
             if self.app_runtime is not None:
                 rt = self.app_runtime
+
+                # Stop accepting new work first.
                 await rt.proactive_scheduler.shutdown()
                 await rt.cron_manager.shutdown()
                 await rt.gateway.shutdown()
@@ -756,6 +779,9 @@ class YdszServer:
             from ydsz.infra.backend.browse import dispose_all_browse_sessions
 
             dispose_all_browse_sessions()
+
+            # Drain or cancel any lingering background tasks (fire-and-forget).
+            await self._shutdown_all_tasks()
         finally:
             if self.services is not None:
                 self.services.db.close()

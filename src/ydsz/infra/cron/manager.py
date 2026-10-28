@@ -251,7 +251,8 @@ class CronManager:
         if wait:
             await self._run_user_job(cron_id, raise_on_error=True, force=True)
         else:
-            asyncio.ensure_future(self._run_user_job(cron_id, force=True))
+            # noqa: E501 — fire-and-forget; lifecycle handled by _shutdown_all_tasks on server stop.
+            asyncio.create_task(self._run_user_job(cron_id, force=True))
 
     async def _run_user_job(
         self,

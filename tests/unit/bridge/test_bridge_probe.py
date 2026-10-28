@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from ydsz.infra.bridge.manager import _absolute_peer_url, _probe_agent_summary
+from ydsz.infra.bridge.utils import _absolute_peer_url, _probe_agent_summary
 
 
 def test_absolute_peer_url_joins_relative_icon() -> None:
