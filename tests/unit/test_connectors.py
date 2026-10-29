@@ -970,15 +970,17 @@ def test_catalog_entry_dict_has_no_tools():
 
 
 def test_every_catalog_entry_has_category():
-    from typing import get_args
+    from ydsz.infra.connectors.catalog import get_catalog_entry, list_catalog
 
-    from ydsz.infra.connectors.catalog import (
-        ConnectorCategory,
-        get_catalog_entry,
-        list_catalog,
-    )
-
-    allowed = set(get_args(ConnectorCategory))
+    allowed = {
+        "office",
+        "knowledge",
+        "travel",
+        "productivity",
+        "media",
+        "professional",
+        "self_hosted",
+    }
     expected = {
         "tencent-docs": "office",
         "didi": "travel",

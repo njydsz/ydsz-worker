@@ -63,24 +63,6 @@ are updating `catalog.json` in the same change.
 | `agently-cli` | Agent Mail | Agent Mail | office | custom_fields | gateway |
 | `obsidian-cli` | Obsidian | Obsidian | knowledge | custom_fields | gateway |
 | `yuque-mcp` | Yuque (official MCP) | 语雀（官方 MCP） | knowledge | personal_token | stdio |
-| `google-workspace` | Google Workspace | Google 工作台 | productivity | oauth2 | internal |
-| `microsoft-365` | Microsoft 365 | Microsoft 365 | productivity | oauth2 | internal |
-| `github` | GitHub | GitHub | development | personal_token | internal |
-| `slack` | Slack | Slack | collaboration | oauth2 | internal |
-| `jira` | Jira Cloud | Jira Cloud | project | api_token | internal |
-| `google-calendar` | Google Calendar | Google 日历 | productivity | oauth2 | internal |
-| `notion-deep` | Notion (Deep) | Notion (深度版) | knowledge | internal_token | internal |
-| `figma` | Figma | Figma | design | oauth2 | internal |
-| `google-sheets` | Google Sheets | Google Sheets | productivity | oauth2 | internal |
-| `zapier` | Zapier / Make | Zapier / Make | automation | api_key | internal |
-| `rss-feed` | RSS / Atom Feed | RSS / Atom 订阅 | media | none | internal |
-| `linear` | Linear | Linear | project | api_key | internal |
-| `tyc-mcp` | Tianyancha | 天眼查 | professional | api_key | remote |
-| `kdocs` | Kingsoft Docs (WPS) | 金山文档 | office | personal_token | remote |
-| `tapd` | TAPD | TAPD | project | api_token | remote |
-| `tencent-survey` | Tencent Survey | 腾讯问卷 | productivity | personal_token | remote |
-| `pkulaw` | PKULaw | 北大法宝 | professional | api_key | remote |
-| `tushare` | Tushare | Tushare | professional | api_token | remote |
 | `weknora` | WeKnora | WeKnora | knowledge | custom_fields | gateway |
 | `dify` | Dify | Dify | self_hosted | custom_fields | remote |
 
