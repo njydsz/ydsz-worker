@@ -15,7 +15,6 @@ import {
   skillHubRankingsPath,
   skillHubSearchPath,
   skillListPath,
-  type SkillHubSource,
   type SkillInstallTarget,
 } from "./skillInstallTarget";
 import styles from "../index.module.less";
@@ -108,17 +107,14 @@ export default function SkillHubTab({
   pickedSlugs,
 }: SkillHubTabProps) {
   const { t } = useTranslation();
-  // Start on the bundled snapshot: it renders instantly with no upstream call,
-  // which matters most on the very first open.
-  const [hubSource, setHubSource] = useState<SkillHubSource>("seed");
   const [hubSkills, setHubSkills] = useState<SkillHubSkill[]>([]);
   const [rankings, setRankings] = useState<Record<string, SkillHubSkill[]>>(
-    () => loadRankingsCache(hubSource) ?? {},
+    () => loadRankingsCache() ?? {},
   );
   const [activeRanking, setActiveRanking] =
     useState<RankingType>("recommended");
   const [loading, setLoading] = useState(
-    () => Object.keys(loadRankingsCache(hubSource) ?? {}).length === 0,
+    () => Object.keys(loadRankingsCache() ?? {}).length === 0,
   );
   const [searching, setSearching] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -158,7 +154,7 @@ export default function SkillHubTab({
   const fetchRankings = useCallback(
     async (force = false) => {
       if (!force) {
-        const cached = loadRankingsCache(hubSource);
+        const cached = loadRankingsCache();
         if (cached && Object.keys(cached).length > 0) {
           setRankings(cached);
           setLoading(false);
@@ -172,7 +168,7 @@ export default function SkillHubTab({
       setLoadError(null);
       try {
         const resp = await request<RankingsResponse>(
-          skillHubRankingsPath(browseTarget, hubSource),
+          skillHubRankingsPath(browseTarget),
           { signal: controller.signal },
         );
         if (!controller.signal.aborted) {
@@ -185,7 +181,7 @@ export default function SkillHubTab({
           }
           setRankings(map);
           if (Object.keys(resp?.errors ?? {}).length === 0) {
-            saveRankingsCache(map, hubSource);
+            saveRankingsCache(map);
           }
         }
       } catch (err) {
@@ -200,7 +196,7 @@ export default function SkillHubTab({
         if (!controller.signal.aborted) setLoading(false);
       }
     },
-    [browseTarget, hubSource],
+    [browseTarget],
   );
 
   const fetchHubSkills = useCallback(
@@ -212,7 +208,7 @@ export default function SkillHubTab({
       setLoadError(null);
       try {
         const results = await request<Record<string, unknown>[]>(
-          skillHubSearchPath(browseTarget, query, 50, hubSource),
+          skillHubSearchPath(browseTarget, query),
           { signal: controller.signal },
         );
         if (!controller.signal.aborted) {
@@ -228,7 +224,7 @@ export default function SkillHubTab({
         if (!controller.signal.aborted) setSearching(false);
       }
     },
-    [browseTarget, hubSource],
+    [browseTarget],
   );
 
   useEffect(() => {
@@ -288,7 +284,6 @@ export default function SkillHubTab({
           label: presentation.label,
           summary: presentation.summary,
           overwrite: true,
-          source: hubSource,
         };
         if (installTarget.type === "agent") {
           body.enable = true;
@@ -313,7 +308,7 @@ export default function SkillHubTab({
         setInstallingSlug(null);
       }
     },
-    [installTarget, installingSlug, hubSource, onInstalled, onPick, t],
+    [installTarget, installingSlug, onInstalled, onPick, t],
   );
 
   const displaySkills = useMemo(() => {
@@ -373,16 +368,6 @@ export default function SkillHubTab({
   return (
     <div className={styles.skillHubContainer}>
       <div className={styles.skillHubToolbar}>
-        <Segmented
-          size="small"
-          value={hubSource}
-          onChange={(v) => setHubSource(v as SkillHubSource)}
-          options={[
-            { value: "seed", label: t("skills.seedTab") },
-            { value: "skillhub", label: "SkillHub" },
-            { value: "qoder", label: "Qoder" },
-          ]}
-        />
         <Input
           className={styles.skillHubSearch}
           placeholder={t("skills.searchSkillHub")}
@@ -393,17 +378,13 @@ export default function SkillHubTab({
         />
         <Button
           icon={<Link size={14} />}
-          href={
-            hubSource === "skillhub"
-              ? "https://skillhub.tencent.com/"
-              : "https://qoder.com/zh/marketplace"
-          }
+          href="https://skillhub.tencent.com/"
           target="_blank"
           type="text"
           size="small"
           style={{ color: "var(--fn-text-tertiary)" }}
         >
-          {hubSource === "skillhub" ? t("skills.skillHub") : "Qoder"}
+          {t("skills.skillHub")}
         </Button>
         <Button
           icon={<RefreshCw size={14} />}

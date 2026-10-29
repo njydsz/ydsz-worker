@@ -67,18 +67,12 @@ class PreToolTextFilter:
         kind = chunk.get("type")
         if kind in ("token", "delta"):
             self._pending.append(str(chunk.get("content") or chunk.get("text") or ""))
-        elif kind == "tool_result":
-            names = {
-                str(getattr(m, "name", "") or "")
-                for m in chunk.get("messages") or []
-            }
-            if self.ASK_AGENT_TOOL in names:
-                self._committed.extend(self._pending)
+        elif kind == "tool_result" and self.ASK_AGENT_TOOL in {
+            str(getattr(m, "name", "") or "")
+            for m in chunk.get("messages") or []
+        } or kind == "tool_call_chunk" and str(chunk.get("name") or "") == self.ASK_AGENT_TOOL:
+            self._committed.extend(self._pending)
             self._pending.clear()
-        elif kind == "tool_call_chunk":
-            if str(chunk.get("name") or "") == self.ASK_AGENT_TOOL:
-                self._committed.extend(self._pending)
-                self._pending.clear()
 
     def result(self) -> str:
         self._committed.extend(self._pending)

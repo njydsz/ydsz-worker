@@ -12,14 +12,14 @@
         <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 32 }}>
             {/* 巨型数字 */}
             <Box style={{ width: 380, background: '#12275A', borderRadius: 12, padding: 22 }}>
-                <Text style={{ fontSize: 96, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.05 }}>41</Text>
+                <Text style={{ fontSize: 96, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.05 }}>47</Text>
                 <Text style={{ fontSize: 21, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3, marginTop: 4 }}>个企业系统连接器</Text>
                 <Box style={{ height: 1, background: '#2D4A85', marginTop: 16 }} />
                 <Text style={{ fontSize: 15, color: '#A9C2E8', lineHeight: 1.5, marginTop: 14 }}>
-                    16 个走 MCP 网关、13 个内建实现、11 个远程接入，认证方式覆盖 API Key、OAuth2、个人令牌与自定义字段。
+                    43 个已可用、4 个即将上线；接入模式为远程 17、网关 16、内建 13、stdio 1。
                 </Text>
                 <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.5, marginTop: 12 }}>
-                    OAuth 授权流程内建，无需为每个系统单独开发授权页面。
+                    认证覆盖 API Key、OAuth2、个人令牌与自定义字段，授权流程内建。
                 </Text>
             </Box>
 
@@ -27,16 +27,16 @@
             <Box style={{ width: 748 }}>
                 <Box style={{ flexDirection: 'row', gap: 12 }}>
                     <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>办公文档 · 9</Text>
-                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯文档 / 腾讯会议 / Notion / M365</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>办公文档 · 10</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯文档 / 会议 / 微云 / 有道 / Notion</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
                         <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>知识沉淀 · 8</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯 IMA / 乐享 / 语雀 / Obsidian</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>效率协作 · 6</Text>
-                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>滴答清单 / 钉钉飞书企微 CLI / 邮箱</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>效率协作 · 7</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>邮箱 / 滴答清单 / 办公套件 / 腾讯问卷</Text>
                     </Box>
                 </Box>
                 <Box style={{ flexDirection: 'row', gap: 12, marginTop: 12 }}>
@@ -45,18 +45,18 @@
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>飞猪 / 携程 / 美团 / 滴滴 / 百度地图</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>媒体与设计 · 5</Text>
-                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯新闻 / QQ 音乐 / Ardot / Figma</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>媒体内容 · 4</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯新闻 / 微信读书 / QQ 音乐 / RSS</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
                         <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>研发与项目 · 4</Text>
-                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>GitHub / Jira / Linear / Zapier</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>GitHub / Jira / Linear / TAPD</Text>
                     </Box>
                 </Box>
                 <Box style={{ flexDirection: 'row', gap: 12, marginTop: 12 }}>
                     <Box style={{ flex: 1, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>专业数据 · 2</Text>
-                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>企查查 / 元典</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>专业数据 · 5</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>企查查 / 天眼查 / 元典 / 法规 / 金融数据</Text>
                     </Box>
                     <Box style={{ flex: 2, background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
                         <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>自定义 MCP 与内部系统</Text>

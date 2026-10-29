@@ -1,0 +1,55 @@
+<Slide style={{ padding: 60, background: '#12275A' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#7EA3D6', letterSpacing: 2 }}>05 · DEPLOYMENT</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#F59E0B' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF', marginTop: 16, lineHeight: 1.2 }}>
+            选择一套平台，本质是选择它能被维护多久
+        </Text>
+        <Box style={{ height: 1, background: '#1E3C82', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 24, flexDirection: 'row', gap: 24 }}>
+            <Box style={{ width: 460 }}>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>自研代码总量</Text>
+                <Text style={{ fontSize: 92, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.05 }}>341,291</Text>
+                <Text style={{ fontSize: 17, color: '#CBD9F0', lineHeight: 1.5, marginTop: 8 }}>
+                    行 Python 代码：主包 162,502 行，运行时 75,936 行，记忆引擎 59,110 行，网关 29,092 行，浏览器 14,651 行。
+                </Text>
+                <Box style={{ height: 1, background: '#2D4A85', marginTop: 18 }} />
+                <Text style={{ fontSize: 16, color: '#A9C2E8', lineHeight: 1.5, marginTop: 14 }}>
+                    这个体量意味着功能不是贴上去的壳：每一层都有独立演进的历史与测试覆盖。
+                </Text>
+            </Box>
+            <Box style={{ width: 320 }}>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>质量门槛</Text>
+                <Text style={{ fontSize: 92, fontWeight: 'bold', color: '#06B6D4', lineHeight: 1.05 }}>797</Text>
+                <Text style={{ fontSize: 17, color: '#CBD9F0', lineHeight: 1.5, marginTop: 8 }}>
+                    个测试文件，覆盖后端、运行时、网关、浏览器与记忆引擎。
+                </Text>
+                <Box style={{ height: 1, background: '#2D4A85', marginTop: 18 }} />
+                <Text style={{ fontSize: 16, color: '#A9C2E8', lineHeight: 1.5, marginTop: 14 }}>
+                    格式、静态检查、类型检查与测试构成提交前的统一门槛。
+                </Text>
+            </Box>
+            <Box style={{ width: 332 }}>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>许可与上游</Text>
+                <Text style={{ fontSize: 72, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.05 }}>MIT</Text>
+                <Text style={{ fontSize: 17, color: '#CBD9F0', lineHeight: 1.5, marginTop: 8 }}>
+                    开源许可，无传染性约束；基于 Octop 生态，承诺与上游子组件版本同步。
+                </Text>
+                <Box style={{ height: 1, background: '#2D4A85', marginTop: 18 }} />
+                <Text style={{ fontSize: 16, color: '#A9C2E8', lineHeight: 1.5, marginTop: 14 }}>
+                    企业可自行审计、二次开发与私有化分发，不受授权条款掣肘。
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#1E3C82', borderRadius: 8, padding: 14, gap: 16 }}>
+            <Box style={{ width: 4, height: 44, borderRadius: 2, background: '#F59E0B' }} />
+            <Text style={{ flex: 1, fontSize: 18, color: '#E6EEFA', lineHeight: 1.5 }}>
+                可审计的代码体量、可核验的测试密度、明确的开源协议——这三项决定了这套平台三年后还能不能继续演进。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

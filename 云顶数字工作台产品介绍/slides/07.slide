@@ -19,14 +19,14 @@
 
             <Box style={{ flexDirection: 'row', gap: 26, marginTop: 26 }}>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 20 }}>
-                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.1 }}>339,921</Text>
+                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.1 }}>341,291</Text>
                     <Text style={{ fontSize: 18, color: '#12275A', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>行自研代码</Text>
                     <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         Python 主包与四个自研子组件合计，工程体量决定可持续演进能力。
                     </Text>
                 </Box>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 20 }}>
-                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#1D4ED8', lineHeight: 1.1 }}>832</Text>
+                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#1D4ED8', lineHeight: 1.1 }}>797</Text>
                     <Text style={{ fontSize: 18, color: '#12275A', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>个测试文件</Text>
                     <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         覆盖后端、运行时、网关、浏览器与记忆引擎，不是只测主流程。

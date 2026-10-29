@@ -138,7 +138,6 @@ class HubInstallPackageSkillBody(BaseModel):
     label: LocalizedSkillCopy | None = None
     summary: LocalizedSkillCopy | None = None
     overwrite: bool = False
-    source: str = "skillhub"
 
 
 def _store(server: YdszServer) -> SkillPackageStore:
@@ -282,55 +281,19 @@ async def list_skill_packages(
     ]
 
 
-_HUB_SOURCES = {"skillhub", "qoder", "seed"}
-
-
-def _hub_source(value: str) -> str:
-    """Normalize a marketplace selector, defaulting to SkillHub."""
-    return value if value in _HUB_SOURCES else "skillhub"
-
-
-@router.get("/hub/search", summary="Search a skill marketplace for installing into packages")
+@router.get("/hub/search", summary="Search SkillHub for installing into packages")
 async def package_hub_search(
     q: str = "",
     limit: int = 50,
-    source: str = "skillhub",
     _user: User = Depends(require_permission("skill_packages")),
 ) -> list[dict[str, Any]]:
-    raw_query = q.strip()
-    effective_limit = max(1, min(limit, 100))
-    resolved_source = _hub_source(source)
-    if resolved_source == "seed":
-        from ydsz.infra.skills.seed_catalog import (  # noqa: PLC0415
-            SeedCatalogError,
-            search_seed_skills,
-        )
-
-        try:
-            # Empty query = hottest head, not a literal "a" search.
-            return search_seed_skills(raw_query, limit=effective_limit)
-        except SeedCatalogError:
-            return []
-
-    query = raw_query or "a"
-    if resolved_source == "qoder":
-        from ydsz.infra.skills.qoder_market import (  # noqa: PLC0415
-            QoderMarketError,
-            search_qoder_skills,
-        )
-
-        try:
-            return await search_qoder_skills(query, limit=effective_limit)
-        except QoderMarketError:
-            # Upstream unreachable (network / timeout / SSL) — fall back to an
-            # empty result set so the UI stays usable.
-            return []
-
     from ydsz.infra.skills.skillhub_market import (  # noqa: PLC0415
         SkillHubMarketError,
         search_skillhub,
     )
 
+    query = q.strip() or "a"
+    effective_limit = max(1, min(limit, 100))
     try:
         return await search_skillhub(query, limit=effective_limit)
     except SkillHubMarketError:
@@ -339,44 +302,19 @@ async def package_hub_search(
         return []
 
 
-@router.get("/hub/rankings", summary="Skill marketplace rankings for installing into packages")
+@router.get("/hub/rankings", summary="SkillHub rankings for installing into packages")
 async def package_hub_rankings(
     type: str = "all",
-    source: str = "skillhub",
     _user: User = Depends(require_permission("skill_packages")),
 ) -> dict[str, Any]:
-    ranking_types = {"all", "hot", "featured", "newest", "recommended", "trending", "paid"}
-    rtype = type if type in ranking_types else "all"
-    resolved_source = _hub_source(source)
-    if resolved_source == "seed":
-        from ydsz.infra.skills.seed_catalog import (  # noqa: PLC0415
-            SeedCatalogError,
-            seed_rankings,
-        )
-
-        try:
-            return seed_rankings(rtype)
-        except SeedCatalogError:
-            return {"rankings": {}}
-
-    if resolved_source == "qoder":
-        from ydsz.infra.skills.qoder_market import (  # noqa: PLC0415
-            QoderMarketError,
-            QoderMarketTimeout,
-            fetch_qoder_rankings,
-        )
-
-        try:
-            return await fetch_qoder_rankings(rtype)
-        except (QoderMarketTimeout, QoderMarketError):
-            return {"rankings": {}}
-
     from ydsz.infra.skills.skillhub_market import (  # noqa: PLC0415
         SkillHubMarketError,
         SkillHubMarketTimeout,
         fetch_skillhub_rankings,
     )
 
+    ranking_types = {"all", "hot", "featured", "newest", "recommended", "trending", "paid"}
+    rtype = type if type in ranking_types else "all"
     try:
         return await fetch_skillhub_rankings(rtype)
     except (SkillHubMarketTimeout, SkillHubMarketError):
@@ -800,7 +738,6 @@ async def hub_install_package_skill(
 
     from ydsz.infra.skills.install import (  # noqa: PLC0415
         SkillAlreadyExistsError,
-        install_skill_from_qoder,
         install_skill_from_skillhub,
         valid_skillhub_icon_url,
     )
@@ -852,63 +789,27 @@ async def hub_install_package_skill(
 
     target = _PackageInstallTarget(store=store, package_id=package_id, server=server)
     transport = "http"
-    resolved_source = _hub_source(body.source)
-    if resolved_source in {"qoder", "seed"}:
-        if resolved_source == "seed":
-            # Seeded entries are a metadata snapshot of Qoder, so the package
-            # still comes from Qoder — but only for slugs we advertise.
-            from ydsz.infra.skills.seed_catalog import get_seed_skill  # noqa: PLC0415
-
-            if get_seed_skill(skill_name) is None:
-                raise HTTPException(
-                    status_code=404,
-                    detail=f"skill {skill_name!r} is not in the bundled catalog",
-                )
-        from ydsz.infra.skills.qoder_market import (  # noqa: PLC0415
-            QoderMarketError,
-            QoderMarketTimeout,
-            QoderPackageError,
-            QoderPackageTooLarge,
-            QoderSkillNotFound,
-            download_qoder_skill,
+    try:
+        files = await download_skillhub_package(skill_name)
+    except SkillHubPackageTooLarge as exc:
+        raise HTTPException(status_code=413, detail=str(exc)) from exc
+    except SkillHubPackageError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    except SkillHubMarketError:
+        transport = "cli"
+        from ydsz.api.routers.skills import (  # noqa: PLC0415
+            _download_skillhub_package_via_cli,
         )
 
         try:
-            files = await download_qoder_skill(skill_name)
-        except QoderPackageTooLarge as exc:
-            raise HTTPException(status_code=413, detail=str(exc)) from exc
-        except QoderPackageError as exc:
-            raise HTTPException(status_code=502, detail=str(exc)) from exc
-        except QoderSkillNotFound as exc:
-            raise HTTPException(status_code=404, detail=str(exc)) from exc
-        except QoderMarketTimeout as exc:
-            raise HTTPException(status_code=504, detail=str(exc)) from exc
-        except QoderMarketError as exc:
-            raise HTTPException(status_code=502, detail=str(exc)) from exc
-        install_hub_skill = install_skill_from_qoder
-    else:
-        try:
-            files = await download_skillhub_package(skill_name)
-        except SkillHubPackageTooLarge as exc:
-            raise HTTPException(status_code=413, detail=str(exc)) from exc
-        except SkillHubPackageError as exc:
-            raise HTTPException(status_code=502, detail=str(exc)) from exc
-        except SkillHubMarketError:
-            transport = "cli"
-            from ydsz.api.routers.skills import (  # noqa: PLC0415
-                _download_skillhub_package_via_cli,
-            )
-
-            try:
-                files = await _download_skillhub_package_via_cli(skill_name)
-            except (SkillHubPackageTooLarge, SkillPackageTooLarge) as package_exc:
-                raise HTTPException(status_code=413, detail=str(package_exc)) from package_exc
-            except (SkillHubPackageError, SkillPackageError) as package_exc:
-                raise HTTPException(status_code=502, detail=str(package_exc)) from package_exc
-        install_hub_skill = install_skill_from_skillhub
+            files = await _download_skillhub_package_via_cli(skill_name)
+        except (SkillHubPackageTooLarge, SkillPackageTooLarge) as package_exc:
+            raise HTTPException(status_code=413, detail=str(package_exc)) from package_exc
+        except (SkillHubPackageError, SkillPackageError) as package_exc:
+            raise HTTPException(status_code=502, detail=str(package_exc)) from package_exc
 
     try:
-        await install_hub_skill(
+        await install_skill_from_skillhub(
             target,
             skill_name=skill_name,
             files=files,

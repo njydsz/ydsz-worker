@@ -1,0 +1,51 @@
+<Slide style={{ padding: 0, position: 'relative', background: 'linear-gradient(115deg, #12275A 0%, #101F45 50%, #0A2A6E 100%)' }}>
+    {/* 背景光束 */}
+    <Box style={{ position: 'absolute', right: 40, top: 90, width: 640, height: 540 }}>
+        <svg width={640} height={540} viewBox='0 0 640 540'>
+            <g stroke='#2F4C86' strokeWidth='1' opacity='0.5'>
+                <line x1='80' y1='60' x2='240' y2='180' />
+                <line x1='240' y1='180' x2='420' y2='120' />
+                <line x1='240' y1='180' x2='400' y2='330' />
+                <line x1='400' y1='330' x2='560' y2='260' />
+                <line x1='400' y1='330' x2='300' y2='470' />
+                <line x1='300' y1='470' x2='520' y2='440' />
+                <line x1='420' y1='120' x2='560' y2='260' />
+            </g>
+            <circle cx='80' cy='60' r='7' fill='#06B6D4' />
+            <circle cx='240' cy='180' r='12' fill='#2563EB' />
+            <circle cx='420' cy='120' r='7' fill='#06B6D4' />
+            <circle cx='400' cy='330' r='16' fill='#F59E0B' />
+            <circle cx='560' cy='260' r='8' fill='#5B7FC7' />
+            <circle cx='300' cy='470' r='9' fill='#06B6D4' />
+            <circle cx='520' cy='440' r='7' fill='#5B7FC7' />
+        </svg>
+    </Box>
+
+    <Box style={{ position: 'absolute', left: 92, top: 150, width: 700 }}>
+        <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#F59E0B' }} />
+        <Text style={{ fontSize: 66, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.15, marginTop: 30 }}>
+            从一条命令开始
+        </Text>
+        <Text style={{ fontSize: 22, color: '#9AB4DB', lineHeight: 1.5, marginTop: 20 }}>
+            先在一台机器上跑通一个场景，再决定要不要扩大到全公司。
+        </Text>
+    </Box>
+
+    <Box style={{ position: 'absolute', left: 92, bottom: 120, width: 700 }}>
+        <Box style={{ height: 1, background: '#2D4A85' }} />
+        <Box style={{ flexDirection: 'row', gap: 26, marginTop: 22 }}>
+            <Box style={{ width: 200 }}>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>第一步</Text>
+                <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.4, marginTop: 4 }}>ydsz-worker init</Text>
+            </Box>
+            <Box style={{ width: 200 }}>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>第二步</Text>
+                <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.4, marginTop: 4 }}>ydsz-worker run</Text>
+            </Box>
+            <Box style={{ width: 250 }}>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>第三步</Text>
+                <Text style={{ fontSize: 19, fontWeight: '600', color: '#F59E0B', lineHeight: 1.4, marginTop: 4 }}>打开 127.0.0.1:8088</Text>
+            </Box>
+        </Box>
+    </Box>
+</Slide>

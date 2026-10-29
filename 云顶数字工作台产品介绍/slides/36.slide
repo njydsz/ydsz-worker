@@ -1,0 +1,65 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>05 · DEPLOYMENT</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            场景三｜自动化运营：重复的事交给定时任务
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22 }}>
+            <Box style={{ flexDirection: 'row', gap: 20 }}>
+                <Box style={{ width: 390, background: '#12275A', borderRadius: 12, padding: 16 }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>日报与周报自动出稿</Text>
+                    <Text style={{ fontSize: 15, color: '#A9C2E8', lineHeight: 1.5, marginTop: 9 }}>
+                        按 cron / 间隔 / 指定时间触发，读数据、生成摘要并推送到指定会话或邮箱，无需人工值守。
+                    </Text>
+                </Box>
+                <Box style={{ width: 372, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 12, padding: 16 }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>数据看板与预警</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 9 }}>
+                        定时拉取业务数据生成图表，指标异常时主动推送提醒，把事后发现变成提前预警。
+                    </Text>
+                </Box>
+                <Box style={{ width: 352, background: '#E6F7F9', borderWidth: 1, borderColor: '#B6E3EA', borderStyle: 'solid', borderRadius: 12, padding: 16 }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>网页操作录成技能</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 9 }}>
+                        一次浏览器操作可录制为可复用技能，之后按关键词触发回放，批量后台操作不再重复手工。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ flexDirection: 'row', gap: 20, marginTop: 18 }}>
+                <Box style={{ width: 352, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 12, padding: 16 }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>主动关怀推送</Text>
+                    <Text style={{ fontSize: 15, color: '#92400E', lineHeight: 1.5, marginTop: 9 }}>
+                        读取记忆生成提醒内容并主动推送，适用于续约、回款、保修到期等时间点驱动的场景。
+                    </Text>
+                </Box>
+                <Box style={{ width: 372, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 16 }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>团队知识沉淀</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 9 }}>
+                        文档入库后统一检索与共享，经验不再散落在个人电脑里，新人提问即可得到带出处的回答。
+                    </Text>
+                </Box>
+                <Box style={{ width: 390, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 16 }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>远程运维与巡检</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 9 }}>
+                        终端、浏览器与远程桌面组合，完成服务排障、设备巡检与无人值守环境下的异常处理。
+                    </Text>
+                </Box>
+            </Box>
+            <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 16 }}>
+                以上六类场景共用同一套组件：定时任务触发 → 同一条消息管线 → 同一套工具与审批 → 同一份轨迹留痕。
+            </Text>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 36, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                自动化的真正收益不是省几次点击，而是让「该做但没人做」的事稳定发生——巡检、提醒、复盘从此不再依赖人的记性。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

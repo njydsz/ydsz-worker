@@ -5,39 +5,29 @@ export type SkillInstallTarget =
   | { type: "package"; packageId: string }
   | { type: "browse" };
 
-/**
- * Marketplaces the hub tab can browse; all speak the same card shape.
- * ``seed`` is the bundled offline snapshot, installed from Qoder on demand.
- */
-export type SkillHubSource = "skillhub" | "qoder" | "seed";
-
-export function skillHubRankingsPath(
-  target: SkillInstallTarget,
-  source: SkillHubSource = "skillhub",
-): string {
+export function skillHubRankingsPath(target: SkillInstallTarget): string {
   if (target.type === "browse") {
-    return `/skills/hub/rankings?type=all&source=${source}`;
+    return `/skills/hub/rankings?type=all`;
   }
   if (target.type === "agent") {
-    return `/agents/${target.agentId}/skills/hub/rankings?type=all&source=${source}`;
+    return `/agents/${target.agentId}/skills/hub/rankings?type=all`;
   }
-  return `/skill-packages/hub/rankings?type=all&source=${source}`;
+  return `/skill-packages/hub/rankings?type=all`;
 }
 
 export function skillHubSearchPath(
   target: SkillInstallTarget,
   query: string,
   limit = 50,
-  source: SkillHubSource = "skillhub",
 ): string {
   const q = encodeURIComponent(query);
   if (target.type === "browse") {
-    return `/skills/hub/search?q=${q}&limit=${limit}&source=${source}`;
+    return `/skills/hub/search?q=${q}&limit=${limit}`;
   }
   if (target.type === "agent") {
-    return `/agents/${target.agentId}/skills/hub/search?q=${q}&limit=${limit}&source=${source}`;
+    return `/agents/${target.agentId}/skills/hub/search?q=${q}&limit=${limit}`;
   }
-  return `/skill-packages/hub/search?q=${q}&limit=${limit}&source=${source}`;
+  return `/skill-packages/hub/search?q=${q}&limit=${limit}`;
 }
 
 export function skillHubInstallPath(target: SkillInstallTarget): string {

@@ -26,7 +26,7 @@
             <Box style={{ width: 828, justifyContent: 'center' }}>
                 <Box style={{ alignItems: 'center' }}>
                     <Box style={{ width: 560, background: '#12275A', borderRadius: 10, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-                        <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.1 }}>23</Text>
+                        <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.1 }}>24</Text>
                         <Box>
                             <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>内置技能包（中英双语）</Text>
                             <Text style={{ fontSize: 15, color: '#A9C2E8', lineHeight: 1.4 }}>plan、powerpoint、nano-pdf、ocr-and-documents 等</Text>
@@ -35,7 +35,7 @@
                 </Box>
                 <Box style={{ alignItems: 'center', marginTop: 10 }}>
                     <Box style={{ width: 700, background: '#1D4ED8', borderRadius: 10, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-                        <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.1 }}>37</Text>
+                        <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.1 }}>38</Text>
                         <Box>
                             <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>内置插件，随安装注入</Text>
                             <Text style={{ fontSize: 15, color: '#CBD9F0', lineHeight: 1.4 }}>market-quotes、hot-topics、expense-tracker、qrcode 等</Text>
