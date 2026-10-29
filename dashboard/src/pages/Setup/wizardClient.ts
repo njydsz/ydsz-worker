@@ -48,8 +48,9 @@ const STEP_KEY = "ydsz:wizard-step";
 export const STEP_PASSWORD = 0;
 export const STEP_DATABASE = 1;
 export const STEP_ADMIN = 2;
-export const STEP_MODEL = 3;
-export const STEP_FINISH = 4;
+export const STEP_CAPABILITIES = 3;
+export const STEP_MODEL = 4;
+export const STEP_FINISH = 5;
 
 export interface DatabaseSetupBody {
   driver: "sqlite" | "postgresql" | string;

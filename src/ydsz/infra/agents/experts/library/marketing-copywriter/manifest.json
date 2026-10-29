@@ -1,0 +1,82 @@
+{
+  "id": "marketing-copywriter",
+  "label": {
+    "zh": "营销文案专家",
+    "en": "Marketing Copywriter"
+  },
+  "description": {
+    "zh": "融合 AIDA/PAS/StoryBrand 框架——为品牌推文、着陆页、EDM、短视频脚本、小红书种草/朋友圈文案提供\u201C说人话+带行动号召\u201D的分渠道文案；附 SEO 元信息和 A/B 候选。",
+    "en": "Blends AIDA/PAS/StoryBrand frameworks — produces channel-ready copy with clear CTAs for landing pages, EDM, short video scripts, Xiaohongshu/WeChat posts, plus SEO meta and A/B variants."
+  },
+  "welcome_message": {
+    "zh": "告诉我你的产品、受众和渠道（微信/小红书/EDM/短视频），我来出文案和 A/B 候选",
+    "en": "Tell me your product, audience, and channel (WeChat / Xiaohongshu / EDM / short video) — I'll draft copy with A/B variants"
+  },
+  "icon_name": "sparkles",
+  "color": "#EC4899",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "着陆页文案",
+        "en": "Landing page copy"
+      },
+      "description": {
+        "zh": "为产品着陆页出主标题+副标题+CTA+SEO meta",
+        "en": "Headline + subhead + CTA + SEO meta for a product landing page"
+      },
+      "prompt": {
+        "zh": "请为我的产品写一套着陆页文案，包含主标题、副标题、3 个卖点要点、CTA 按钮文案，以及 SEO meta title/description；附 2 个 A/B 候选标题。",
+        "en": "Draft a landing page bundle for my product: main headline, subhead, 3 selling points, CTA button text, SEO meta title/description, plus 2 A/B headline variants."
+      },
+      "color": "#fce7f3",
+      "icon_name": "layout"
+    },
+    {
+      "title": {
+        "zh": "小红书种草",
+        "en": "Xiaohongshu post"
+      },
+      "description": {
+        "zh": "小红书笔记：标题/封面文案/正文/话题标签",
+        "en": "Xiaohongshu note: title / cover copy / body / hashtags"
+      },
+      "prompt": {
+        "zh": "请为我的产品写一篇小红书种草笔记，包含爆款标题（3 选 1）、封面文案、300 字左右正文（真实体验感）、5 个话题标签和互动引导语。",
+        "en": "Draft a Xiaohongshu seeding post for my product: pick-best-of-3 click-worthy titles, cover copy, ~300 char body in authentic voice, 5 hashtags, and a comment hook."
+      },
+      "color": "#fef3c7",
+      "icon_name": "megaphone"
+    },
+    {
+      "title": {
+        "zh": "短视频脚本",
+        "en": "Short video script"
+      },
+      "description": {
+        "zh": "15-60 秒短视频分镜脚本，含画面/字幕/BGM 建议",
+        "en": "15-60s short-video storyboard with visual / caption / BGM notes"
+      },
+      "prompt": {
+        "zh": "请为我的产品写一个 30 秒短视频脚本，按时间轴给出画面描述、字幕文案、BGM/音效建议，并在前 3 秒设计强 hook。",
+        "en": "Write a 30-second short-video script for my product: timeline with visual description, on-screen caption, BGM/sFX suggestions, and a strong opening hook in the first 3 seconds."
+      },
+      "color": "#e0e7ff",
+      "icon_name": "zap"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "新品上线前 3 天自动出 3 套不同卖点的着陆页文案+SEO meta 并排 A/B",
+      "每周输出 4 篇小红书种草笔记（含标题/封面文案/话题标签）",
+      "节日营销节点（春节/618/双 11）提前 2 周自动输出系列文案日历"
+    ],
+    "en": [
+      "3 days before a new launch, auto-generate 3 landing-page variants with different selling points + SEO meta for A/B",
+      "Output 4 Xiaohongshu seeding notes per week (title / cover copy / hashtags)",
+      "2 weeks before key holidays (Spring Festival / 618 / Double 11), auto-generate a series copy calendar"
+    ]
+  }
+}

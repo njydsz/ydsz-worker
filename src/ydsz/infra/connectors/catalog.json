@@ -760,6 +760,240 @@
         }
       ],
       "remote_transport": "streamable_http"
+    },
+    {
+      "kind": "google-workspace",
+      "name": { "en": "Google Workspace", "zh": "Google 工作台" },
+      "description": {
+        "en": "Gmail, Calendar, Drive, Sheets, Docs — unified Google account OAuth for email scheduling file ops",
+        "zh": "Gmail 邮件、日历、Drive 网盘、Sheets 表格、Docs 文档 — Google 账号统一 OAuth"
+      },
+      "auth_kind": "oauth2",
+      "doc_url": "https://workspace.google.com/",
+      "icon": "google",
+      "color": "#4285F4",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "productivity",
+      "oauth_scopes": "openid email profile https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/drive",
+      "auth_hint": {
+        "en": "Click 'Connect' then sign in via Google OAuth popup",
+        "zh": "点击「连接」后通过 Google OAuth 登录"
+      }
+    },
+    {
+      "kind": "microsoft-365",
+      "name": { "en": "Microsoft 365", "zh": "Microsoft 365" },
+      "description": {
+        "en": "Outlook mail + Calendar + OneDrive + Teams — enterprise Microsoft account integration",
+        "zh": "Outlook 邮件 + 日历 + OneDrive 网盘 + Teams — 企业级 Microsoft 账号集成"
+      },
+      "auth_kind": "oauth2",
+      "doc_url": "https://www.microsoft.com/microsoft-365",
+      "icon": "microsoft",
+      "color": "#0078D4",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "productivity",
+      "oauth_scopes": "openid email profile offline_access User.Read Mail.ReadWrite Calendars.ReadWrite Files.ReadWrite",
+      "auth_hint": {
+        "en": "Click 'Connect' then sign in via Microsoft OAuth popup",
+        "zh": "点击「连接」后通过 Microsoft OAuth 登录"
+      }
+    },
+    {
+      "kind": "github",
+      "name": { "en": "GitHub", "zh": "GitHub" },
+      "description": {
+        "en": "Pull requests, issues, CI runs, code review — full GitHub API via Personal Access Token",
+        "zh": "PR / Issue / CI 运行 / Code Review — 通过 PAT 完整接入 GitHub API"
+      },
+      "auth_kind": "personal_token",
+      "doc_url": "https://github.com/settings/tokens",
+      "icon": "github",
+      "color": "#24292F",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "development",
+      "auth_hint": {
+        "en": "Generate a Personal Access Token at GitHub Settings → Developer settings → Personal access tokens → Tokens (classic). Required scopes: repo, read:user, read:org",
+        "zh": "在 GitHub 设置 → Developer settings → Personal access tokens → Tokens (classic) 中生成 PAT。必需 scopes: repo, read:user, read:org"
+      }
+    },
+    {
+      "kind": "slack",
+      "name": { "en": "Slack", "zh": "Slack" },
+      "description": {
+        "en": "Channels, messages, users, files — team collaboration via Bot Token OAuth",
+        "zh": "频道、消息、用户、文件 — Bot Token 接入团队沟通"
+      },
+      "auth_kind": "oauth2",
+      "doc_url": "https://api.slack.com/apps",
+      "icon": "slack",
+      "color": "#4A154B",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "collaboration",
+      "oauth_scopes": "channels:read channels:history chat:write users:read files:read",
+      "auth_hint": {
+        "en": "Create a Slack App at api.slack.com/apps, install to workspace, copy Bot User OAuth Token",
+        "zh": "在 api.slack.com/apps 中创建 App 并安装到工作区，复制 Bot User OAuth Token"
+      }
+    },
+    {
+      "kind": "jira",
+      "name": { "en": "Jira Cloud", "zh": "Jira Cloud" },
+      "description": {
+        "en": "Issues, sprints, boards, time tracking — project management via API Token (Atlassian account)",
+        "zh": "任务、Sprint 面板、工时统计 — 通过 API Token 接入 Atlassian 账号的项目管理"
+      },
+      "auth_kind": "api_token",
+      "doc_url": "https://id.atlassian.com/manage-profile/security/api-tokens",
+      "icon": "jira",
+      "color": "#0052CC",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "project",
+      "auth_hint": {
+        "en": "Generate an API Token at id.atlassian.com/manage-profile/security/api-tokens. Provide your email + token + instance URL (https://your-domain.atlassian.net)",
+        "zh": "在 id.atlassian.com/manage-profile-security/api-tokens 生成 API Token。需要 email + token + 实例 URL (https://your-domain.atlassian.net)"
+      }
+    },
+    {
+      "kind": "google-calendar",
+      "name": { "en": "Google Calendar", "zh": "Google 日历" },
+      "description": {
+        "en": "Read, create, update calendar events — dedicated calendar OAuth with busy-free queries",
+        "zh": "读取/创建/更新日历事件 — 独立日历 OAuth，支持忙闲状态查询"
+      },
+      "auth_kind": "oauth2",
+      "doc_url": "https://calendar.google.com/",
+      "icon": "google-calendar",
+      "color": "#34A853",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "productivity",
+      "oauth_scopes": "openid email profile https://www.googleapis.com/auth/calendar",
+      "auth_hint": {
+        "en": "Click 'Connect' then sign in via Google OAuth popup (calendar-only scopes)",
+        "zh": "点击「连接」后通过 Google OAuth 登录（仅限日历 scopes）"
+      }
+    },
+    {
+      "kind": "notion-deep",
+      "name": { "en": "Notion (Deep)", "zh": "Notion (深度版)" },
+      "description": {
+        "en": "Full Notion API — databases, pages, comments, relations, rollups with structured query support",
+        "zh": "完整 Notion API — 数据库、页面、评论、关联、汇总字段，支持结构化查询"
+      },
+      "auth_kind": "internal_token",
+      "doc_url": "https://developers.notion.com/docs/create-a-notion-integration",
+      "icon": "notion",
+      "color": "#191919",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "knowledge",
+      "auth_hint": {
+        "en": "Create an integration at notion.so/my-integrations and copy the Internal Integration Token",
+        "zh": "在 notion.so/my-integration 创建集成，复制 Internal Integration Token"
+      }
+    },
+    {
+      "kind": "figma",
+      "name": { "en": "Figma", "zh": "Figma" },
+      "description": {
+        "en": "Design files, components, styles, comments — read-only design handoff via OAuth",
+        "zh": "设计文件、组件、样式、评论 — 通过 OAuth 只读接入设计交付"
+      },
+      "auth_kind": "oauth2",
+      "doc_url": "https://www.figma.com/developers/api",
+      "icon": "figma",
+      "color": "#F24E1E",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "design",
+      "oauth_scopes": "file_read",
+      "auth_hint": {
+        "en": "Click 'Connect' then sign in via Figma OAuth popup",
+        "zh": "点击「连接」后通过 Figma OAuth 登录"
+      }
+    },
+    {
+      "kind": "google-sheets",
+      "name": { "en": "Google Sheets", "zh": "Google Sheets" },
+      "description": {
+        "en": "Read/write spreadsheet data, charts, formulas — dedicated Sheets OAuth integration",
+        "zh": "读写表格数据、图表、公式 — 独立 Sheets OAuth 深度集成"
+      },
+      "auth_kind": "oauth2",
+      "doc_url": "https://sheets.google.com/",
+      "icon": "google-sheets",
+      "color": "#0F9D58",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "productivity",
+      "oauth_scopes": "openid email profile https://www.googleapis.com/auth/spreadsheets",
+      "auth_hint": {
+        "en": "Click 'Connect' then sign in via Google OAuth popup (Sheets-only scopes)",
+        "zh": "点击「连接」后通过 Google OAuth 登录（仅限 Sheets scopes）"
+      }
+    },
+    {
+      "kind": "zapier",
+      "name": { "en": "Zapier / Make", "zh": "Zapier / Make" },
+      "description": {
+        "en": "Connect 6000+ apps via Zapier webhooks or Make (Integromat) API — trigger actions across your SaaS stack",
+        "zh": "通过 Zapier Webhook 或 Make (Integromat) API 连接 6000+ 应用 — 跨 SaaS 栈触发动作"
+      },
+      "auth_kind": "api_key",
+      "doc_url": "https://zapier.com/app/developer",
+      "icon": "zapier",
+      "color": "#FF4A00",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "automation",
+      "auth_hint": {
+        "en": "Get your Zapier webhook URL (https://hooks.zapier.com/hooks/catch/...) or Make scenario API key",
+        "zh": "获取 Zapier Webhook URL (https://hooks.zapier.com/hooks/catch/...) 或 Make 场景 API Key"
+      }
+    },
+    {
+      "kind": "rss-feed",
+      "name": { "en": "RSS / Atom Feed", "zh": "RSS / Atom 订阅" },
+      "description": {
+        "en": "Subscribe to RSS/Atom feeds and extract headlines, summaries, publish dates — generic feed reader",
+        "zh": "订阅 RSS/Atom 源，自动提取标题、摘要、发布时间 — 通用 Feed 阅读器"
+      },
+      "auth_kind": "none",
+      "doc_url": "https://en.wikipedia.org/wiki/RSS",
+      "icon": "rss",
+      "color": "#FF6600",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "media",
+      "auth_hint": {
+        "en": "Paste any RSS/Atom feed URL (e.g. https://example.com/feed.xml). No authentication needed.",
+        "zh": "粘贴任意 RSS/Atom Feed URL (如 https://example.com/feed.xml)。无需认证。"
+      }
+    },
+    {
+      "kind": "linear",
+      "name": { "en": "Linear", "zh": "Linear" },
+      "description": {
+        "en": "Issues, cycles (sprints), roadmaps — developer-focused project management via GraphQL API",
+        "zh": "任务、循环 (Sprint)、路线图 — 面向开发者的项目管理，GraphQL API"
+      },
+      "auth_kind": "api_key",
+      "doc_url": "https://linear.app/api",
+      "icon": "linear",
+      "color": "#5E6AD2",
+      "phase": "available",
+      "mcp_mode": "internal",
+      "category": "project",
+      "auth_hint": {
+        "en": "Generate API key at linear.app → Settings → API → Personal API keys",
+        "zh": "在 linear.app → 设置 → API → Personal API keys 生成 API Key"
+      }
     }
   ]
 }

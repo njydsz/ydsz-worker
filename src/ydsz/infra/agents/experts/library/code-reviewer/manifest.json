@@ -1,0 +1,82 @@
+{
+  "id": "code-reviewer",
+  "label": {
+    "zh": "代码评审官",
+    "en": "Code Reviewer"
+  },
+  "description": {
+    "zh": "你的代码会审专家——用 Google/Meta/Google-style review standards 审 Python/Go/TS/Rust 代码，从安全、性能、可维护性和测试覆盖四个维度给出分级（P0-P3）评审意见，并附修复方案与学习引导。",
+    "en": "Your code review expert — reviews Python/Go/TS/Rust code against Google/Meta-style standards, delivering graded (P0-P3) feedback across security, performance, maintainability, and test coverage, with fix suggestions and learning guidance."
+  },
+  "welcome_message": {
+    "zh": "把你的代码或 diff 贴过来，我会逐文件、逐风险等级给出评审意见",
+    "en": "Paste your code or diff and I'll review it file by file, risk level by risk level"
+  },
+  "icon_name": "git-branch",
+  "color": "#3B82F6",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "安全审查",
+        "en": "Security Review"
+      },
+      "description": {
+        "zh": "检查注入、认证绕过、密钥泄露等 OWASP Top 10 安全风险",
+        "en": "Scan for injection, auth bypass, credential leakage and other OWASP Top 10 risks"
+      },
+      "prompt": {
+        "zh": "请对以下代码进行安全审查，重点关注 OWASP Top 10 漏洞（注入、认证、密钥泄露、XSS 等），给出 P0-P3 分级问题列表和修复建议：\n\n```\n[粘贴你的代码]\n```",
+        "en": "Please review the following code for security issues, focusing on OWASP Top 10 vulnerabilities (injection, auth, credential leakage, XSS, etc.), and provide a P0-P3 graded issue list with fix suggestions:\n\n```\n[paste your code]\n```"
+      },
+      "color": "#fee2e2",
+      "icon_name": "shield"
+    },
+    {
+      "title": {
+        "zh": "性能扫描",
+        "en": "Performance Scan"
+      },
+      "description": {
+        "zh": "分析 N+1 查询、内存泄漏、时间复杂度、并发瓶颈等性能热点",
+        "en": "Analyze N+1 queries, memory leaks, time complexity, concurrency bottlenecks and other hotspots"
+      },
+      "prompt": {
+        "zh": "请对以下代码进行性能扫描，找出 N+1 查询、内存泄漏、不合理的时间复杂度、并发瓶颈等问题，按 P0-P3 分级并给出优化方案：\n\n```\n[粘贴你的代码]\n```",
+        "en": "Please scan the following code for performance issues — N+1 queries, memory leaks, suboptimal time complexity, concurrency bottlenecks — grade them P0-P3 and suggest optimizations:\n\n```\n[paste your code]\n```"
+      },
+      "color": "#fef3c7",
+      "icon_name": "zap"
+    },
+    {
+      "title": {
+        "zh": "可维护性意见",
+        "en": "Maintainability Feedback"
+      },
+      "description": {
+        "zh": "评审命名、结构、注释、耦合度、API 设计等可维护性维度",
+        "en": "Review naming, structure, comments, coupling, API design and other maintainability dimensions"
+      },
+      "prompt": {
+        "zh": "请从可维护性角度评审以下代码：命名规范、函数结构、注释质量、模块耦合、API 设计、是否符合 SOLID 原则，给出改进建议：\n\n```\n[粘贴你的代码]\n```",
+        "en": "Please review the following code for maintainability — naming conventions, function structure, comment quality, module coupling, API design, SOLID compliance — and suggest improvements:\n\n```\n[paste your code]\n```"
+      },
+      "color": "#dbeafe",
+      "icon_name": "code"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每天「10:00」扫描指定 git 仓库新 PR，自动输出评审报告",
+      "每周五「17:00」整理本周团队代码中的高频反模式并给出培训建议",
+      "每次 PR 提交前自动运行 AI 审查标记 P0/P1 问题"
+    ],
+    "en": [
+      "Every day at 10:00, scan new PRs in the target git repo and auto-generate a review report",
+      "Every Friday at 17:00, summarize recurring anti-patterns in the team's code this week and suggest training topics",
+      "Auto-run AI review before each PR submission and flag P0/P1 issues"
+    ]
+  }
+}

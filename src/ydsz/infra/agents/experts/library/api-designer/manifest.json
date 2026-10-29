@@ -1,0 +1,82 @@
+{
+  "id": "api-designer",
+  "label": {
+    "zh": "API 设计师",
+    "en": "API Designer"
+  },
+  "description": {
+    "zh": "RESTful & GraphQL API 设计专家——站在消费者视角设计端点，输出 OpenAPI 3.1 + 错误码 + 分页 + 版本控制 + 限流策略的一体化规范文档；帮你从\u201c能调用\u201d进到\u201c好用、好维护、好扩展\u201d。",
+    "en": "RESTful & GraphQL API design expert — design endpoints from the consumer perspective, producing unified spec documents with OpenAPI 3.1 + error codes + pagination + versioning + rate limiting; taking your APIs from 'working' to 'great to use, maintain, and extend'."
+  },
+  "welcome_message": {
+    "zh": "告诉我你的业务场景和使用者，我来设计一套规范的 API",
+    "en": "Tell me your business scenario and consumers, and I'll design a clean API spec for you"
+  },
+  "icon_name": "globe",
+  "color": "#8B5CF6",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "RESTful 设计",
+        "en": "RESTful design"
+      },
+      "description": {
+        "zh": "从资源建模到端点规范，输出完整 RESTful API",
+        "en": "From resource modeling to endpoint specs, produce a complete RESTful API"
+      },
+      "prompt": {
+        "zh": "请帮我设计一套 RESTful API：先梳理资源与关系，再定义端点、HTTP 动词与状态码，最后输出含示例的 OpenAPI 3.1 YAML。",
+        "en": "Design a RESTful API: model resources and relationships, define endpoints + HTTP verbs + status codes, then output OpenAPI 3.1 YAML with examples."
+      },
+      "color": "#ede9fe",
+      "icon_name": "globe"
+    },
+    {
+      "title": {
+        "zh": "GraphQL Schema",
+        "en": "GraphQL schema"
+      },
+      "description": {
+        "zh": "类型、Resolver、批处理与 N+1 防护的 Schema 设计",
+        "en": "Design types, resolvers, batching, and N+1 protection in GraphQL"
+      },
+      "prompt": {
+        "zh": "请帮我设计一套 GraphQL Schema：包括类型定义、Query/Mutation、Resolver 批处理策略（DataLoader）、以及 N+1 防护方案。",
+        "en": "Design a GraphQL schema: type definitions, queries/mutations, resolver batching (DataLoader), and N+1 prevention."
+      },
+      "color": "#ede9fe",
+      "icon_name": "git-branch"
+    },
+    {
+      "title": {
+        "zh": "错误码与版本策略",
+        "en": "Error codes & versioning"
+      },
+      "description": {
+        "zh": "统一错误码规范与向后兼容的版本控制方案",
+        "en": "Unified error code conventions and backward-compatible versioning"
+      },
+      "prompt": {
+        "zh": "请帮我设计一套统一的错误码规范（含请求 ID、错误链路、i18n）和版本控制策略（URI / Header / 语义化版本），并给出向后兼容的迁移路径。",
+        "en": "Design unified error codes (request ID, error chain, i18n) and a versioning strategy (URI / Header / semver) with a backward-compatible migration path."
+      },
+      "color": "#f3e8ff",
+      "icon_name": "shield-check"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "设计一个用户管理模块的 RESTful API（用户 CRUD + 角色权限 + 多端接入），输出 OpenAPI YAML",
+      "把现有分散的接口重新整理并统一错误码体系和分页约定",
+      "每周三10:00检查团队新接口是否符合 RESTful Level 3 Richardson Maturity Model"
+    ],
+    "en": [
+      "Design a RESTful API for a user management module (CRUD + role-based access + multi-platform), output OpenAPI YAML",
+      "Consolidate scattered existing endpoints and unify error codes and pagination conventions",
+      "Every Wednesday at 10:00, check whether team's new endpoints meet RESTful Level 3 Richardson Maturity Model"
+    ]
+  }
+}

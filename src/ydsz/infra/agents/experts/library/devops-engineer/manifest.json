@@ -1,0 +1,82 @@
+{
+  "id": "devops-engineer",
+  "label": {
+    "zh": "DevOps 工程师",
+    "en": "DevOps Engineer"
+  },
+  "description": {
+    "zh": "端到端 DevOps 顾问——从 Git-ops 流水线、多环境治理、容器策略到 SRE 可靠性体系（SLO/SLI/Chaos/On-Call），给出可直接落地的 YAML/配置模板；不只给命令，更给取舍。",
+    "en": "End-to-end DevOps consultant — from Git-ops pipelines, multi-environment management, container strategy, to SRE reliability systems (SLO/SLI/Chaos/On-Call), delivering actionable YAML/config templates; not just commands, but trade-offs."
+  },
+  "welcome_message": {
+    "zh": "描述你要部署/要改进的服务或当前痛点（部署慢/环境漂移/稳定性差），我来出方案和模板",
+    "en": "Describe the service you want to deploy or improve, or your current pain points (slow deployment/environment drift/poor stability), and I'll deliver a plan and templates"
+  },
+  "icon_name": "server",
+  "color": "#2563EB",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "CI/CD 流水线设计",
+        "en": "CI/CD Pipeline Design"
+      },
+      "description": {
+        "zh": "为你的项目设计完整的 CI/CD 流水线",
+        "en": "Design a complete CI/CD pipeline for your project"
+      },
+      "prompt": {
+        "zh": "请为我当前的代码仓库设计一套完整的 CI/CD 流水线方案，包括分支策略、构建步骤、测试关卡、部署策略、制品管理和回滚机制。给出 GitHub Actions 或 GitLab CI 的模板片段。",
+        "en": "Design a complete CI/CD pipeline for my current repo, including branching strategy, build steps, test gates, deployment strategy, artifact management, and rollback. Provide GitHub Actions or GitLab CI template snippets."
+      },
+      "color": "#dbeafe",
+      "icon_name": "git-branch"
+    },
+    {
+      "title": {
+        "zh": "SLO/SLI 制定",
+        "en": "SLO/SLI Design"
+      },
+      "description": {
+        "zh": "为服务设计可落地的 SLO 和 SLI",
+        "en": "Design actionable SLOs and SLIs for a service"
+      },
+      "prompt": {
+        "zh": "请帮我为一个 {服务类型} 服务定义 SLI 指标和 SLO 目标值，包括可用性、延迟、吞吐量和错误率的合理阈值，并说明错误预算的消耗策略与告警升级机制。",
+        "en": "Define SLI metrics and SLO targets for a service type, covering availability, latency, throughput, and error rate thresholds, plus error budget burn rate policies and alert escalation."
+      },
+      "color": "#e0f2fe",
+      "icon_name": "bar-chart-3"
+    },
+    {
+      "title": {
+        "zh": "K8s 多环境治理",
+        "en": "K8s Multi-Environment"
+      },
+      "description": {
+        "zh": "Kubernetes 多环境配置与发布策略",
+        "en": "Kubernetes multi-environment config and release strategy"
+      },
+      "prompt": {
+        "zh": "请帮我规划 Kubernetes 多环境（staging / canary / production）的配置管理方案，包括 Helm 或 Kustomize 的目录结构、ConfigMap/Secret 管理、环境差异的维护方式，以及命名空间和资源配额策略。",
+        "en": "Plan a Kubernetes multi-environment (staging/canary/production) config management approach, including Helm or Kustomize directory structure, ConfigMap/Secret management, environment diffs, namespace and resource quota strategy."
+      },
+      "color": "#e8f4ff",
+      "icon_name": "server"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每次 repo 首次接入时自动推荐适合的 CI/CD 流水线模板（含版本号策略与制品管理）",
+      "每月生成 SLO 健康度报告（含 Error Budget 消耗与当月的 Toil 清单）",
+      "服务发生 P0 事件后自动输出 Incident Review 纪要并提取可执行的 Action Item"
+    ],
+    "en": [
+      "Auto-recommend a CI/CD pipeline template (with versioning strategy & artifact management) when a repo is onboarded for the first time",
+      "Monthly SLO health report (Error Budget burn + monthly toil list) generated automatically",
+      "After a P0 incident, auto-output an Incident Review summary and extract actionable follow-ups"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "legal-assistant",
+  "label": {
+    "zh": "法务助手",
+    "en": "Legal Assistant"
+  },
+  "description": {
+    "zh": "把你的合同“翻译”成风险清单——聚焦中国法律框架下的劳动合同、采购合同、NDA、数据保护条款（PIPL/数据安全法），做条款风险标记（红黄绿）+简短通俗解释 +替代条款建议，特别提醒：不是律师，结论需执业律师复核。",
+    "en": "\"Translates\" your contract into a risk checklist — focuses on Chinese labor contracts, procurement, NDAs, and data-protection clauses (PIPL / Data Security Law) with red/yellow/green risk tags, plain-language summaries, and alternative-clause suggestions. Not a lawyer — conclusions must be reviewed by a licensed attorney."
+  },
+  "welcome_message": {
+    "zh": "发 PDF 或文本合同过来，我帮你做条款风险扫描、通俗解释和替代条款建议",
+    "en": "Send me a PDF or text contract — I'll scan clause risks, give plain-language explanations, and suggest alternative wording"
+  },
+  "icon_name": "book-open",
+  "color": "#0F766E",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "劳动合同风险扫描",
+        "en": "Labor contract risk scan"
+      },
+      "description": {
+        "zh": "核对法定必备条款,标记风险点",
+        "en": "Check mandatory clauses, flag risks"
+      },
+      "prompt": {
+        "zh": "请扫描这份劳动合同，逐条按红/黄/绿标记风险。重点关注：试用期上限、工作地点、工时与加班、解约条件、竞业限制补偿。每条给出一句话通俗解释，并指明必须改/建议改/可选改。",
+        "en": "Scan this labor contract and tag each clause red/yellow/green. Focus on: probation cap, work location, working hours & overtime, termination conditions, non-compete compensation. Give a one-sentence plain-language explanation per clause, and mark mandatory / recommended / optional changes."
+      },
+      "color": "#fee2e2",
+      "icon_name": "shield-check"
+    },
+    {
+      "title": {
+        "zh": "NDA 合规检查",
+        "en": "NDA compliance check"
+      },
+      "description": {
+        "zh": "范围/期限/保密信息定义/返还与销毁",
+        "en": "Scope / duration / definition of confidential info / return & destruction"
+      },
+      "prompt": {
+        "zh": "请帮我检查这份 NDA/保密协议：1) 保密信息定义是否过于宽泛；2) 保密期限是否合理；3) 信息返还/销毁义务是否明确；4) 是否有单方义务不对等。按三色标记并给出替代条款建议。",
+        "en": "Review this NDA / confidentiality agreement: 1) Is the definition of confidential information overly broad? 2) Is the confidentiality period reasonable? 3) Are return / destruction obligations clear? 4) Is there one-sided imbalance? Tag by risk level and propose alternative clauses."
+      },
+      "color": "#fef9c3",
+      "icon_name": "lock"
+    },
+    {
+      "title": {
+        "zh": "PIPL 数据条款",
+        "en": "PIPL data clauses"
+      },
+      "description": {
+        "zh": "个人信息出境/告知同意/最小化/删除权",
+        "en": "Personal data cross-border / informed consent / minimization / right to deletion"
+      },
+      "prompt": {
+        "zh": "请检查这份涉及数据共享的合同/协议，按中国《个人信息保护法》(PIPL) 与《数据安全法》做合规要点扫描：告知同意机制、数据最小化、跨境传输条件、保存期限与删除义务、双方数据安全责任。列出缺失或风险条款并给出标准合同条款建议。",
+        "en": "Check this data-sharing contract against China's PIPL and Data Security Law: informed consent mechanism, data minimization, cross-border transfer conditions, retention period & deletion obligation, bilateral data-safety duties. List missing or risky clauses and propose model standard contract language."
+      },
+      "color": "#dcfce7",
+      "icon_name": "shield"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每次收到供应商合同时自动标记风险条款（赔偿/知识产权/数据保护）并生成外行读得懂的摘要",
+      "新员工入职前自动核对劳动合同条款是否覆盖法定必备项（试用期/工时/地点/解约）",
+      "涉及数据共享前自动列出 PIPL 合规检查项和必须包含的标准合同条款"
+    ],
+    "en": [
+      "Automatically flag risky clauses (indemnity / IP / data protection) on every vendor contract and generate a plain-language summary",
+      "Before a new hire starts, auto-check whether the labor contract covers all mandatory clauses (probation / hours / location / termination)",
+      "Before any data-sharing arrangement, auto-list PIPL compliance checkpoints and required standard contract clauses"
+    ]
+  }
+}

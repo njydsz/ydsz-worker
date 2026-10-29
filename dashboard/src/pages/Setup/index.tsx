@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Segmented, Steps } from "antd";
-import { Lock, UserCog, Cpu, CheckCircle, Database } from "lucide-react";
+import { Lock, UserCog, Cpu, CheckCircle, Database, Zap } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ensureLocaleBundle } from "../../i18n";
 import { storeUiLocale, type UiLocale } from "../../utils/locale";
@@ -13,6 +13,7 @@ import { isNetworkFetchError } from "../../utils/networkError";
 import DatabaseStep from "./steps/DatabaseStep";
 import PasswordStep from "./steps/PasswordStep";
 import AdminStep from "./steps/AdminStep";
+import CapabilitiesStep from "./steps/CapabilitiesStep";
 import ModelStep from "./steps/ModelStep";
 import FinishStep from "./steps/FinishStep";
 import type { ProviderDraft } from "./wizardClient";
@@ -22,6 +23,7 @@ import {
   STEP_DATABASE,
   STEP_PASSWORD,
   STEP_ADMIN,
+  STEP_CAPABILITIES,
   STEP_MODEL,
   STEP_FINISH,
 } from "./wizardClient";
@@ -223,23 +225,26 @@ export default function SetupPage() {
         { title: t("wizard.steps.password"), icon: <Lock size={22} /> },
         { title: t("wizard.steps.database"), icon: <Database size={22} /> },
         { title: t("wizard.steps.admin"), icon: <UserCog size={22} /> },
+        { title: t("wizard.steps.capabilities"), icon: <Zap size={22} /> },
         { title: t("wizard.steps.model"), icon: <Cpu size={22} /> },
         { title: t("common.done"), icon: <CheckCircle size={22} /> },
       ]
     : [
         { title: t("wizard.steps.database"), icon: <Database size={22} /> },
         { title: t("wizard.steps.admin"), icon: <UserCog size={22} /> },
+        { title: t("wizard.steps.capabilities"), icon: <Zap size={22} /> },
         { title: t("wizard.steps.model"), icon: <Cpu size={22} /> },
         { title: t("common.done"), icon: <CheckCircle size={22} /> },
       ];
 
   const stepIndex = (() => {
     if (passwordRequired) return current;
-    // Password step omitted visually: map DATABASE..FINISH → 0..3
+    // Password step omitted visually: map DATABASE..FINISH → 0..4
     if (current <= STEP_DATABASE) return 0;
     if (current === STEP_ADMIN) return 1;
-    if (current === STEP_MODEL) return 2;
-    return 3;
+    if (current === STEP_CAPABILITIES) return 2;
+    if (current === STEP_MODEL) return 3;
+    return 4;
   })();
 
   return (
@@ -299,13 +304,20 @@ export default function SetupPage() {
               onCreated={(creds) => {
                 setAdminCreds(creds);
                 wizardSession.saveDraft({ adminUsername: creds.username });
-                goToStep(STEP_MODEL);
+                goToStep(STEP_CAPABILITIES);
               }}
+            />
+          )}
+          {current === STEP_CAPABILITIES && (
+            <CapabilitiesStep
+              onBack={() => goToStep(STEP_ADMIN)}
+              onContinue={() => goToStep(STEP_MODEL)}
+              onSkip={() => goToStep(STEP_MODEL)}
             />
           )}
           {current === STEP_MODEL && (
             <ModelStep
-              onBack={() => goToStep(STEP_ADMIN)}
+              onBack={() => goToStep(STEP_CAPABILITIES)}
               onSkip={() => {
                 setProviderDraft(null);
                 wizardSession.saveDraft({});

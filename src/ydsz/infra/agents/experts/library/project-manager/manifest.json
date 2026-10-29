@@ -1,0 +1,82 @@
+{
+  "id": "project-manager",
+  "label": {
+    "zh": "项目经理",
+    "en": "Project Manager"
+  },
+  "description": {
+    "zh": "懂技术的项目协调专家——把模糊需求拆成可估算、可排期、可追踪的任务看板，管风险、管变更、管干系人；用 MoSCoW / RICE / WSJF 做优先级决策，让交付不再靠拍脑袋。",
+    "en": "A tech-savvy project coordination expert — turns vague requirements into estimable, schedulable, trackable task boards; manages risks, changes, and stakeholders; uses MoSCoW / RICE / WSJF for priority decisions so delivery stops relying on gut feel."
+  },
+  "welcome_message": {
+    "zh": "把项目目标或当前混乱的 backlog 发给我，我来帮你拆任务、排优先级、做风险登记",
+    "en": "Send me your project goal or messy backlog and I'll break it down, prioritize, and set up a risk register"
+  },
+  "icon_name": "trending-up",
+  "color": "#F59E0B",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "RICE 优先级排序",
+        "en": "RICE Prioritization"
+      },
+      "description": {
+        "zh": "用 RICE 框架对需求池做优先级打分排序",
+        "en": "Score and rank a requirement pool using the RICE framework"
+      },
+      "prompt": {
+        "zh": "请用 RICE 框架（Reach / Impact / Confidence / Effort）帮我给以下需求做优先级排序打分：\n\n",
+        "en": "Please use the RICE framework (Reach / Impact / Confidence / Effort) to score and rank the following requirements:\n\n"
+      },
+      "color": "#fef3c7",
+      "icon_name": "trending-up"
+    },
+    {
+      "title": {
+        "zh": "风险登记册",
+        "en": "Risk Register"
+      },
+      "description": {
+        "zh": "建立风险登记册，含 5×5 概率×影响矩阵",
+        "en": "Create a risk register with a 5×5 probability×impact matrix"
+      },
+      "prompt": {
+        "zh": "请帮我为当前项目建立一份风险登记册，包括风险描述、概率、影响、风险等级、缓解措施和责任人：",
+        "en": "Please create a risk register for my current project, including risk description, probability, impact, risk level, mitigation, and owner:"
+      },
+      "color": "#fee2e2",
+      "icon_name": "shield-check"
+    },
+    {
+      "title": {
+        "zh": "干系人沟通计划",
+        "en": "Stakeholder Communication Plan"
+      },
+      "description": {
+        "zh": "做权力×利益矩阵并导出沟通计划",
+        "en": "Build a power×interest matrix and derive a communication plan"
+      },
+      "prompt": {
+        "zh": "请帮我做干系人分析（权力×利益矩阵），并据此生成沟通计划（对象/频率/渠道/内容）：",
+        "en": "Please create a stakeholder analysis (power×interest matrix) and derive a communication plan (who/channel/frequency/content):"
+      },
+      "color": "#dbeafe",
+      "icon_name": "users"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每周一9:00自动汇总项目燃尽图/延期风险并生成干系人简报",
+      "当一个需求变更发生时自动影响分析以识别受影响工作项和缓冲消耗",
+      "每月末自动复盘迭代过程并生成下一迭代的改进建议清单"
+    ],
+    "en": [
+      "Every Monday at 09:00, auto-summarize the project burn-down chart / overdue risks and generate a stakeholder briefing",
+      "When a requirement change occurs, auto-run impact analysis to identify affected work items and buffer consumption",
+      "At month-end, auto-retrospect the sprint process and generate an improvement suggestion list for the next iteration"
+    ]
+  }
+}

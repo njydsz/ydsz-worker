@@ -1,0 +1,82 @@
+{
+  "id": "data-analyst",
+  "label": {
+    "zh": "数据分析师",
+    "en": "Data Analyst"
+  },
+  "description": {
+    "zh": "对话式数据分析师——读 CSV/Excel/SQL/JSON，自动描述统计、趋势检测、异常识别、因果假设，生成中文洞察与可视化 Markdown，让数据说人话。",
+    "en": "Conversational data analyst — reads CSV/Excel/SQL/JSON, performs descriptive statistics, trend detection, anomaly identification and causal hypothesis generation, producing insightful Markdown reports with visualizations."
+  },
+  "welcome_message": {
+    "zh": "把数据文件（CSV/Excel/JSON）贴上来或描述你关心的指标，我来帮你分析",
+    "en": "Paste your data file (CSV/Excel/JSON) or describe the metrics you care about, and I'll analyze it for you"
+  },
+  "icon_name": "bar-chart-3",
+  "color": "#10B981",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "描述性统计",
+        "en": "Descriptive Statistics"
+      },
+      "description": {
+        "zh": "上传数据集，自动生成字段分布、缺失率、分位数和统计摘要",
+        "en": "Upload a dataset to auto-generate field distributions, missing rates, quantiles and statistical summaries"
+      },
+      "prompt": {
+        "zh": "请对我的数据集做描述性统计分析：每列的数据类型、缺失率、唯一值数量、均值/中位数/标准差（数值列）、众数/频次（分类列），并用 Markdown 表格输出结果：\n\n[上传或描述你的数据]",
+        "en": "Perform descriptive statistical analysis on my dataset: data type, missing rate, unique count per column, mean/median/std (numeric), mode/frequency (categorical), and output as a Markdown table:\n\n[Upload or describe your data]"
+      },
+      "color": "#d1fae5",
+      "icon_name": "activity"
+    },
+    {
+      "title": {
+        "zh": "异常检测",
+        "en": "Anomaly Detection"
+      },
+      "description": {
+        "zh": "用 Z-score / IQR / Grubbs 等方法检测数据中的异常点和离群值",
+        "en": "Detect anomalies and outliers using Z-score / IQR / Grubbs and other methods"
+      },
+      "prompt": {
+        "zh": "请对以下数据做异常检测：使用 Z-score（|Z| > 3）和 IQR（1.5 倍）两种方法识别离群值，输出异常数据点的位置、数值和可能原因分析：\n\n[粘贴数据或字段描述]",
+        "en": "Perform anomaly detection on the following data: use Z-score (|Z| > 3) and IQR (1.5x) methods to identify outliers, and output their positions, values and possible cause analysis:\n\n[Paste data or field descriptions]"
+      },
+      "color": "#fef3c7",
+      "icon_name": "search"
+    },
+    {
+      "title": {
+        "zh": "趋势与因果假设",
+        "en": "Trend & Causal Hypothesis"
+      },
+      "description": {
+        "zh": "检测同比/环比趋势、突变点，并生成可验证的因果假设",
+        "en": "Detect YoY/MoM trends, change points, and generate verifiable causal hypotheses"
+      },
+      "prompt": {
+        "zh": "请分析以下数据的趋势和潜在因果关系：(1) 同比/环比变化率，(2) 突变点检测，(3) 相关变量间的关联分析，(4) 生成可验证的因果假设（注意区分相关性和因果性）：\n\n[粘贴数据或描述业务场景]",
+        "en": "Please analyze trends and potential causality in the following data: (1) YoY/MoM change rates, (2) change-point detection, (3) correlation analysis among related variables, (4) generate verifiable causal hypotheses (distinguishing correlation from causation):\n\n[Paste data or describe business context]"
+      },
+      "color": "#dbeafe",
+      "icon_name": "trending-up"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每周一「09:30」分析上周核心业务指标（留存率、GMV、转化率）并生成洞察周报",
+      "每月「5 号」分析用户行为数据的异常波动并给出假设与验证方向",
+      "每当收到新数据集自动执行描述性分析并输出 Markdown 报告"
+    ],
+    "en": [
+      "Every Monday at 09:30, analyze last week's core business metrics (retention, GMV, conversion) and generate an insight report",
+      "On the 5th of each month, analyze anomalous fluctuations in user behavior data and suggest hypotheses with verification directions",
+      "Whenever a new dataset arrives, auto-run descriptive analysis and output a Markdown report"
+    ]
+  }
+}

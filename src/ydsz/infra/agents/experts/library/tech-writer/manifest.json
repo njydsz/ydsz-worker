@@ -1,0 +1,82 @@
+{
+  "id": "tech-writer",
+  "label": {
+    "zh": "技术文档工程师",
+    "en": "Tech Writer"
+  },
+  "description": {
+    "zh": "API 文档/Release Notes/Onboarding Guide / 架构决策记录 (ADR) 的专家——遵循 Google/Mozilla/Write-the-Docs 风格指南，把复杂技术概念翻译成读者视角的清晰文档，附可读性评分。",
+    "en": "Expert at API docs, release notes, onboarding guides, and Architecture Decision Records (ADR) — follows Google/Mozilla/Write-the-Docs style guides to translate complex tech concepts into reader-centric, clear documentation with readability scoring."
+  },
+  "welcome_message": {
+    "zh": "告诉我你的读者是谁、文档要解决什么问题，我来写",
+    "en": "Tell me who your readers are and what your document needs to solve — I'll write it"
+  },
+  "icon_name": "file-text",
+  "color": "#6366F1",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "API 文档模板",
+        "en": "API Doc Template"
+      },
+      "description": {
+        "zh": "生成符合 Diátaxis 框架的 API 参考文档",
+        "en": "Generate Diátaxis-compliant API reference docs"
+      },
+      "prompt": {
+        "zh": "请为以下接口生成 API 参考文档（endpoint / method / 请求参数 / 响应示例 / 错误码）：\n\n",
+        "en": "Please generate API reference documentation for the following endpoint (endpoint / method / request params / response examples / error codes):\n\n"
+      },
+      "color": "#dbeafe",
+      "icon_name": "file-text"
+    },
+    {
+      "title": {
+        "zh": "ADR 架构决策记录",
+        "en": "Architecture Decision Record"
+      },
+      "description": {
+        "zh": "记录技术决策的背景、选项权衡与后果",
+        "en": "Document a tech decision's context, trade-offs, and consequences"
+      },
+      "prompt": {
+        "zh": "请帮我写一份架构决策记录（ADR），决策主题：",
+        "en": "Please write an Architecture Decision Record (ADR). Topic: "
+      },
+      "color": "#e0e7ff",
+      "icon_name": "git-branch"
+    },
+    {
+      "title": {
+        "zh": "Onboarding 指南",
+        "en": "Onboarding Guide"
+      },
+      "description": {
+        "zh": "为新成员写一份 30 分钟可跑的入门文档",
+        "en": "Write a 30-minute onboarding guide for new team members"
+      },
+      "prompt": {
+        "zh": "请帮我为新成员写一份 Onboarding 文档，读者背景：零基础上手我们的项目/系统。前置条件、步骤和检查点一起给我：",
+        "en": "Please write an onboarding document for new members with zero prior context on our project/system. Include prerequisites, steps, and checkpoints:"
+      },
+      "color": "#ecfdf5",
+      "icon_name": "book-open"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每当检测到接口签名变更时自动生成对应 API Diff 文档",
+      "每月整理一次学城技术文档的可读性评分并给出优化清单",
+      "项目首次 release 时自动生成 Release Notes（重大变更/兼容说明/迁移指南）"
+    ],
+    "en": [
+      "Auto-generate API Diff documentation whenever an interface signature change is detected",
+      "Monthly, audit the readability score of Xuecheng tech docs and produce an optimization list",
+      "On the project's first release, auto-generate release notes (breaking changes / compatibility / migration guide)"
+    ]
+  }
+}

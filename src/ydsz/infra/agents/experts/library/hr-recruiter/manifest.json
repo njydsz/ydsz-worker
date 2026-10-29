@@ -1,0 +1,82 @@
+{
+  "id": "hr-recruiter",
+  "label": {
+    "zh": "招聘专家",
+    "en": "HR Recruiter"
+  },
+  "description": {
+    "zh": "端到端招聘助手——从岗位画像、JD 撰写、简历筛选、结构化面试题（STAR/情境题）到薪酬对标与 Offer 谈判策略；把招聘从\u201c凭感觉\u201d升级到\u201c有框架、有数据、可复盘\u201d。",
+    "en": "End-to-end recruitment assistant — from job profiling, JD writing, resume screening, structured interview questions (STAR/scenario) to compensation benchmarking and offer negotiation strategies; elevate recruitment from gut-feelings to a framework-driven, data-backed, reviewable process."
+  },
+  "welcome_message": {
+    "zh": "告诉我你要招什么岗位、有什么候选人资料或简历，我来帮你",
+    "en": "Tell me what role you're hiring for and share any candidate resumes or profiles — I'll help you"
+  },
+  "icon_name": "users",
+  "color": "#0891B2",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "JD 撰写",
+        "en": "Write a Job Description"
+      },
+      "description": {
+        "zh": "生成一份专业、合规且有吸引力的 JD",
+        "en": "Generate a professional, compliant, and attractive JD"
+      },
+      "prompt": {
+        "zh": "请帮我撰写一份 {岗位名称} 的岗位描述（JD），包括岗位目标、核心职责、必备技能、加分技能、薪酬范围、团队介绍和公司福利。要求：结构清晰、吸引目标候选人、不含任何歧视性条款。",
+        "en": "Write a job description for the role, covering objectives, core responsibilities, must-have skills, nice-to-haves, compensation range, team intro, and company perks. Must be structured, compelling to target candidates, and free from discriminatory language."
+      },
+      "color": "#cffafe",
+      "icon_name": "file-text"
+    },
+    {
+      "title": {
+        "zh": "简历筛选",
+        "en": "Resume Screening"
+      },
+      "description": {
+        "zh": "按岗位维度自动打分并输出推荐排序",
+        "en": "Auto-score resumes by job criteria and rank candidates"
+      },
+      "prompt": {
+        "zh": "请帮我筛选一批 {岗位名称} 的简历，按以下维度打分（1-5）：学历与经验匹配度、硬技能匹配度、求职动机与稳定性、红旗风险。输出 Top N 推荐名单与每份简历的评分摘要。",
+        "en": "Screen resumes for the role using 1-5 scoring on: education/experience fit, hard-skill fit, motivation/stability, and red-flag risks. Output a Top-N shortlist with score summaries."
+      },
+      "color": "#e0f2fe",
+      "icon_name": "shield-check"
+    },
+    {
+      "title": {
+        "zh": "结构化面试题",
+        "en": "Structured Interview"
+      },
+      "description": {
+        "zh": "生成岗位核心能力面试题 + 评分 Rubric",
+        "en": "Generate interview questions + scoring rubric for core competencies"
+      },
+      "prompt": {
+        "zh": "请针对 {岗位名称} 的核心能力（领导力、协作、问题解决、冲突处理）设计 6 道结构化面试题，每题包含 STAR 追问框架和 1-5 分评分 Rubric。",
+        "en": "Design 6 structured interview questions for the role's core competencies (leadership, collaboration, problem-solving, conflict management). Each question must include a STAR follow-up framework and a 1-5 scoring rubric."
+      },
+      "color": "#e8f4ff",
+      "icon_name": "lightbulb"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每个新岗位空缺 24 小时内输出一份含市场薪酬范围与对标公司的 JD 模板",
+      "收到 50+ 份简历时按职位要求维度自动打分并输出 Top 10 推荐",
+      "候选人进入终面前自动针对岗位核心能力出 6 道结构化面试题+评分 Rubric"
+    ],
+    "en": [
+      "Within 24 hours of a new opening, output a JD template with market compensation range and benchmarking companies",
+      "When 50+ resumes arrive, auto-score by job criteria and output a Top 10 recommendation list",
+      "Before a final-round interview, auto-generate 6 structured interview questions + scoring rubric for the role's core competencies"
+    ]
+  }
+}

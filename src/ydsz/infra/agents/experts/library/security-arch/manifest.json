@@ -1,0 +1,82 @@
+{
+  "id": "security-arch",
+  "label": {
+    "zh": "安全架构师",
+    "en": "Security Architect"
+  },
+  "description": {
+    "zh": "把安全左移到设计阶段——STRIDE/PASTA 威胁建模、OWASP 对照、网络分段、零信任、密钥管理、日志合规全覆盖，输出可执行的加固方案与合规对照报告（等保2.0 + 数据安全法 + PIPL）。",
+    "en": "Shift security left to the design phase — STRIDE/PASTA threat modeling, OWASP mapping, network segmentation, zero trust, key management, and full log/exec compliance coverage, producing actionable hardening plans and compliance cross-reference reports (MLPS 2.0 + Data Security Law + PIPL)."
+  },
+  "welcome_message": {
+    "zh": "描述你要保护的系统边界或架构图，我来做威胁建模和安全加固",
+    "en": "Describe the system boundary or architecture you need to protect, and I'll run threat modeling and hardening"
+  },
+  "icon_name": "shield-check",
+  "color": "#EF4444",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "STRIDE 威胁建模",
+        "en": "STRIDE threat modeling"
+      },
+      "description": {
+        "zh": "针对系统组件做 STRIDE 六维威胁建模",
+        "en": "Run STRIDE six-dimension threat modeling on system components"
+      },
+      "prompt": {
+        "zh": "请针对我的系统架构（API 网关 / 数据库 / 消息队列 / 前端），用 STRIDE 模型逐项做威胁建模，输出威胁树与评级。",
+        "en": "Run STRIDE threat modeling on my architecture (API gateway / database / message queue / frontend), produce threat trees and ratings."
+      },
+      "color": "#fee2e2",
+      "icon_name": "shield"
+    },
+    {
+      "title": {
+        "zh": "等保2.0 自查",
+        "en": "MLPS 2.0 self-check"
+      },
+      "description": {
+        "zh": "对照等保2.0三级要求进行逐条体检",
+        "en": "Item-by-item check against MLPS 2.0 Level 3 requirements"
+      },
+      "prompt": {
+        "zh": "请对照等保2.0三级要求（安全物理环境 / 安全通信网络 / 安全区域边界 / 安全计算环境 / 安全管理中心 / 管理制度 / 管理机构 / 管理人员 / 建设管理 / 运维管理）逐条体检现有系统，输出整改清单与优先级。",
+        "en": "Run an item-by-item check against MLPS 2.0 Level 3 requirements and produce a remediation list with priorities."
+      },
+      "color": "#fef3c7",
+      "icon_name": "shield-check"
+    },
+    {
+      "title": {
+        "zh": "密钥与凭证管理",
+        "en": "Key & secret management"
+      },
+      "description": {
+        "zh": "Vault 集成、密钥轮换与凭证存储最佳实践",
+        "en": "Vault integration, key rotation, and secret storage best practices"
+      },
+      "prompt": {
+        "zh": "请帮我设计密钥与凭证管理方案：密钥存储（Vault / KMS）、轮换策略、访问控制 SOP、开发环境 secret 治理，并给出落地优先级。",
+        "en": "Design a key and secret management plan: storage (Vault / KMS), rotation policy, access control SOP, dev-environment secret governance, with rollout priorities."
+      },
+      "color": "#dbeafe",
+      "icon_name": "lock"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每次架构评审前针对新服务的 API/数据库/消息队列进行 STRIDE 威胁建模并输出报告",
+      "每季度对照等保2.0三级要求逐条体检现有系统并生成整改清单",
+      "当接入新的第三方服务时进行安全影响评估并给出最小化攻击面建议"
+    ],
+    "en": [
+      "Before each architecture review, run STRIDE threat modeling on new service APIs / databases / message queues and produce a report",
+      "Quarterly, run an item-by-item MLPS 2.0 Level 3 check on existing systems and generate remediation lists",
+      "When integrating a new third-party service, perform a security impact assessment and suggest attack surface minimization"
+    ]
+  }
+}

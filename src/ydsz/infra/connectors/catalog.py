@@ -14,10 +14,13 @@ AuthKind = Literal[
     "oauth2",
     "auth_code",
     "api_key",
+    "api_token",
+    "internal_token",
     "imap_app_password",
     "session_cookie",
     "api_credentials",
     "custom_fields",
+    "none",
 ]
 CredentialFieldType = Literal["text", "password", "url", "tags"]
 RemoteTransport = Literal["raw_http", "streamable_http", "sse"]
@@ -30,6 +33,11 @@ ConnectorCategory = Literal[
     "media",
     "professional",
     "self_hosted",
+    "development",
+    "collaboration",
+    "design",
+    "project",
+    "automation",
 ]
 ConnectorPhase = Literal["available", "coming_soon"]
 
