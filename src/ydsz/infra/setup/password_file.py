@@ -2,13 +2,48 @@
 
 from __future__ import annotations
 
+import logging
 import os
 import secrets
+import subprocess
+import sys
 from pathlib import Path
 
 WIZARD_FILE_NAME = "ydsz-login.txt"
 _TOKEN_BYTES = 16
 _PASSWORD_LABEL_PREFIX = "Password:"
+
+logger = logging.getLogger(__name__)
+
+
+def _restrict_windows_dacl(target: Path) -> None:
+    """Restrict the NTFS DACL to the current user + SYSTEM (issue #2370).
+
+    ``os.chmod(0o600)`` is a no-op on Windows — it only toggles the read-only
+    attribute, so the plaintext wizard password stayed readable by every
+    local user. Replace the inherited ACL with an explicit minimal grant.
+    """
+    user = os.environ.get("USERNAME", "")
+    domain = os.environ.get("USERDOMAIN", "")
+    account = f"{domain}\\{user}" if domain and user else user
+    if not account:
+        logger.warning("cannot restrict DACL on %s: no user account resolved", target)
+        return
+    try:
+        subprocess.run(
+            [
+                "icacls",
+                str(target),
+                "/inheritance:r",
+                "/grant:r",
+                f"{account}:F",
+                "SYSTEM:F",
+            ],
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.SubprocessError):
+        logger.warning("failed to restrict DACL on %s", target, exc_info=True)
 
 
 def _password_path(home: Path) -> Path:
@@ -32,7 +67,10 @@ def ensure_password(home: Path) -> str | None:
         os.write(fd, (pw + "\n").encode("utf-8"))
     finally:
         os.close(fd)
-    os.chmod(target, 0o600)
+    if sys.platform == "win32":
+        _restrict_windows_dacl(target)
+    else:
+        os.chmod(target, 0o600)
     return pw
 
 

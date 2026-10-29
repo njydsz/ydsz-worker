@@ -1,0 +1,72 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            区别不在于会不会说，而在于能不能亲手做完
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 28 }}>
+            {/* 左：执行面板 */}
+            <Box style={{ width: 640, background: '#0F2247', borderRadius: 12, padding: 18 }}>
+                <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                    <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#F43F5E' }} />
+                    <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#F59E0B' }} />
+                    <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#22C55E' }} />
+                    <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.3, marginLeft: 8 }}>agent @ workspace</Text>
+                </Box>
+                <Box style={{ height: 1, background: '#2D4A85', marginTop: 11 }} />
+                <Box style={{ marginTop: 11 }}>
+                    <Text style={{ fontSize: 16, color: '#6EE7B7', lineHeight: 1.6 }}>read_file　./季度报表.xlsx</Text>
+                    <Text style={{ fontSize: 16, color: '#CBD9F0', lineHeight: 1.6 }}>grep　　　　"逾期" ./contracts/</Text>
+                    <Text style={{ fontSize: 16, color: '#CBD9F0', lineHeight: 1.6 }}>execute　　 pytest -q</Text>
+                    <Text style={{ fontSize: 16, color: '#CBD9F0', lineHeight: 1.6 }}>browser_use https://intranet/hr</Text>
+                    <Text style={{ fontSize: 16, color: '#CBD9F0', lineHeight: 1.6 }}>search_knowledge "差旅报销标准"</Text>
+                    <Text style={{ fontSize: 16, color: '#CBD9F0', lineHeight: 1.6 }}>send_file_to_user ./报表汇总.pdf</Text>
+                </Box>
+                <Box style={{ height: 1, background: '#2D4A85', marginTop: 11 }} />
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.5, marginTop: 12 }}>
+                    每一行都是真实发生的动作：读文件、搜全文、跑命令、开浏览器、查知识库、生成素材、回传结果。
+                </Text>
+            </Box>
+
+            {/* 右：四组能力 */}
+            <Box style={{ width: 492 }}>
+                <Box style={{ paddingBottom: 10, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 21, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>文件与命令</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                        列目录、读写与增量编辑文件、全文检索、执行 Shell 命令——列目录、读写与增量编辑、全文检索、执行命令。
+                    </Text>
+                </Box>
+                <Box style={{ paddingTop: 13, paddingBottom: 10, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 21, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>联网与验证</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                        五个可选搜索后端、网页抓取与无头浏览器会话。
+                    </Text>
+                </Box>
+                <Box style={{ paddingTop: 13, paddingBottom: 10, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 21, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>记忆与知识</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                        记忆检索与保存、知识库检索由 Agent 自主调用。
+                    </Text>
+                </Box>
+                <Box style={{ paddingTop: 10 }}>
+                    <Text style={{ fontSize: 21, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>交付与排程</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                        文件回传、素材生成、定时任务增删改查与立即执行。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                正因为这些动作真实发生，才必须配套审批、命令守卫与调用留痕——执行能力与安全治理在本产品中是一套设计，不是两张皮。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

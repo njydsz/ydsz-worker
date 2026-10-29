@@ -1,0 +1,90 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            一个实例，全公司共用，彼此看不见对方
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 32 }}>
+            {/* 左标题色块 */}
+            <Box style={{ width: 300, background: '#12275A', borderRadius: 12, padding: 24 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.3 }}>多用户 · 多 Agent</Text>
+                <Box style={{ width: 48, height: 4, borderRadius: 2, background: '#F59E0B', marginTop: 16 }} />
+                <Text style={{ fontSize: 16, color: '#A9C2E8', lineHeight: 1.5, marginTop: 18 }}>
+                    隔离粒度落在数据库行：agents.user_id 逐级校验，管理员可跨用户运维，普通用户只能看到自己的资源。
+                </Text>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.5, marginTop: 16 }}>
+                    权限目录 + 角色模板 + 资源所有权三项，决定了谁能看谁的数据。
+                </Text>
+            </Box>
+
+            {/* 右侧三级关系图 */}
+            <Box style={{ width: 828 }}>
+                <Box style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Box style={{ width: 250 }}>
+                        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3, marginBottom: 10 }}>用户</Text>
+                        <Box style={{ background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, marginBottom: 8 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>管理员 · 拥有全局运维视角</Text>
+                        </Box>
+                        <Box style={{ background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, marginBottom: 8 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>普通成员 · 仅限自身资源</Text>
+                        </Box>
+                        <Box style={{ background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>外部协作 · 邀请码与角色</Text>
+                        </Box>
+                    </Box>
+                    <Box style={{ width: 38, alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width={38} height={22} viewBox='0 0 38 22'>
+                            <path d='M0 11 L26 11' stroke='#1D4ED8' strokeWidth='2' />
+                            <path d='M26 4 L38 11 L26 18 Z' fill='#1D4ED8' />
+                        </svg>
+                    </Box>
+                    <Box style={{ width: 250 }}>
+                        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3, marginBottom: 10 }}>Agent</Text>
+                        <Box style={{ background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 11, marginBottom: 8 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>专家 · 独立提示词与人格</Text>
+                        </Box>
+                        <Box style={{ background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 11, marginBottom: 8 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>团队 · 协调者调度成员</Text>
+                        </Box>
+                        <Box style={{ background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 11 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>线程 · 会话与上下文</Text>
+                        </Box>
+                    </Box>
+                    <Box style={{ width: 38, alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width={38} height={22} viewBox='0 0 38 22'>
+                            <path d='M0 11 L26 11' stroke='#06B6D4' strokeWidth='2' />
+                            <path d='M26 4 L38 11 L26 18 Z' fill='#06B6D4' />
+                        </svg>
+                    </Box>
+                    <Box style={{ width: 250 }}>
+                        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3, marginBottom: 10 }}>工作区与通道</Text>
+                        <Box style={{ background: '#E6F7F9', borderWidth: 1, borderColor: '#B6E3EA', borderStyle: 'solid', borderRadius: 8, padding: 11, marginBottom: 8 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>本地磁盘 / Docker 沙箱</Text>
+                        </Box>
+                        <Box style={{ background: '#E6F7F9', borderWidth: 1, borderColor: '#B6E3EA', borderStyle: 'solid', borderRadius: 8, padding: 11, marginBottom: 8 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>对象存储 COS / S3 / OSS</Text>
+                        </Box>
+                        <Box style={{ background: '#E6F7F9', borderWidth: 1, borderColor: '#B6E3EA', borderStyle: 'solid', borderRadius: 8, padding: 11 }}>
+                            <Text style={{ fontSize: 16, color: '#12275A', lineHeight: 1.4 }}>各自的 IM 通道与定时任务</Text>
+                        </Box>
+                    </Box>
+                </Box>
+                <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 18 }}>
+                    每位用户可以创建多个 Agent，每个 Agent 自带独立的模型配置、技能集合、通道绑定与定时策略——共用一台服务器，不共用一份上下文。
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 48, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                一人运维、全员使用：服务器是共享的成本项，数据与智能体资产是严格隔离的。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

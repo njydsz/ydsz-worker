@@ -68,6 +68,9 @@ def read_json_object(path: Path) -> dict[str, Any] | None:
         raw = path.read_text(encoding="utf-8")
     except UnicodeDecodeError as exc:
         raise JsonFileCorruptError(path, "not valid UTF-8") from exc
+    # Editors on Windows commonly save UTF-8 with a BOM; json.loads rejects
+    # the leading U+FEFF even though the rest is valid JSON (issue #1142).
+    raw = raw.lstrip("\ufeff")
     try:
         parsed = json.loads(raw)
     except json.JSONDecodeError as exc:

@@ -1252,6 +1252,7 @@ class HubInstallBody(BaseModel):
     icon_url: str | None = None
     label: LocalizedSkillCopy | None = None
     summary: LocalizedSkillCopy | None = None
+    source: str = "skillhub"
 
 
 async def _download_skillhub_package_via_cli(
@@ -1376,14 +1377,56 @@ def _parse_skillhub_search_output(text: str) -> list[dict[str, Any]]:
 
 
 _RANKING_TYPES = {"all", "hot", "featured", "newest", "recommended", "trending", "paid"}
+_HUB_SOURCES = {"skillhub", "qoder", "seed"}
 
 
-async def _hub_search(request: Request, *, q: str, limit: int) -> list[dict[str, Any]]:
+def _hub_source(value: str) -> str:
+    """Normalize a marketplace selector, defaulting to SkillHub."""
+    return value if value in _HUB_SOURCES else "skillhub"
+
+
+async def _hub_search(
+    request: Request,
+    *,
+    q: str,
+    limit: int,
+    source: str = "skillhub",
+) -> list[dict[str, Any]]:
     from fastapi import HTTPException  # noqa: PLC0415
 
     locale = resolve_request_locale(request)
-    query = q.strip() or "a"
+    raw_query = q.strip()
     effective_limit = max(1, min(limit, 100))
+    resolved_source = _hub_source(source)
+
+    if resolved_source == "seed":
+        from ydsz.infra.skills.seed_catalog import (  # noqa: PLC0415
+            SeedCatalogError,
+            search_seed_skills,
+        )
+
+        try:
+            # An empty query means "show me the hottest head", not "search for a".
+            return search_seed_skills(raw_query, limit=effective_limit)
+        except SeedCatalogError as exc:
+            logger.warning("bundled seed catalog unavailable: %s", exc)
+            return []
+
+    query = raw_query or "a"
+    if resolved_source == "qoder":
+        from ydsz.infra.skills.qoder_market import (  # noqa: PLC0415
+            QoderMarketError,
+            QoderMarketTimeout,
+            search_qoder_skills,
+        )
+
+        try:
+            return await search_qoder_skills(query, limit=effective_limit)
+        except QoderMarketTimeout as exc:
+            raise HTTPException(status_code=504, detail=str(exc)) from exc
+        except QoderMarketError as exc:
+            raise HTTPException(status_code=502, detail=str(exc)) from exc
+
     from ydsz.infra.skills.skillhub_market import (  # noqa: PLC0415
         SkillHubMarketError,
         search_skillhub,
@@ -1415,10 +1458,37 @@ async def _hub_search(request: Request, *, q: str, limit: int) -> list[dict[str,
     return _parse_skillhub_search_output(stdout)
 
 
-async def _hub_rankings(ranking_type: str) -> dict[str, Any]:
+async def _hub_rankings(ranking_type: str, *, source: str = "skillhub") -> dict[str, Any]:
     from fastapi import HTTPException  # noqa: PLC0415
 
     rtype = ranking_type if ranking_type in _RANKING_TYPES else "all"
+    resolved_source = _hub_source(source)
+
+    if resolved_source == "seed":
+        from ydsz.infra.skills.seed_catalog import (  # noqa: PLC0415
+            SeedCatalogError,
+            seed_rankings,
+        )
+
+        try:
+            return seed_rankings(rtype)
+        except SeedCatalogError as exc:
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    if resolved_source == "qoder":
+        from ydsz.infra.skills.qoder_market import (  # noqa: PLC0415
+            QoderMarketError,
+            QoderMarketTimeout,
+            fetch_qoder_rankings,
+        )
+
+        try:
+            return await fetch_qoder_rankings(rtype)
+        except QoderMarketTimeout as exc:
+            raise HTTPException(status_code=504, detail=str(exc)) from exc
+        except QoderMarketError as exc:
+            raise HTTPException(status_code=502, detail=str(exc)) from exc
+
     from ydsz.infra.skills.skillhub_market import (  # noqa: PLC0415
         SkillHubMarketError,
         SkillHubMarketTimeout,
@@ -1433,24 +1503,26 @@ async def _hub_rankings(ranking_type: str) -> dict[str, Any]:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
-@router.get("/skills/hub/search", summary="Search SkillHub without an agent")
+@router.get("/skills/hub/search", summary="Search a skill marketplace without an agent")
 async def hub_search_skills_global(
     request: Request,
     q: str = "",
     limit: int = 50,
+    source: str = "skillhub",
     _user: Any = Depends(current_user),
 ) -> list[dict[str, Any]]:
-    """Browse SkillHub while composing a new expert (no agent exists yet)."""
-    return await _hub_search(request, q=q, limit=limit)
+    """Browse a marketplace while composing a new expert (no agent exists yet)."""
+    return await _hub_search(request, q=q, limit=limit, source=source)
 
 
-@router.get("/skills/hub/rankings", summary="SkillHub rankings without an agent")
+@router.get("/skills/hub/rankings", summary="Skill marketplace rankings without an agent")
 async def hub_rankings_global(
     type: str = "all",
+    source: str = "skillhub",
     _user: Any = Depends(current_user),
 ) -> dict[str, Any]:
-    """Browse SkillHub rankings while composing a new expert."""
-    return await _hub_rankings(type)
+    """Browse marketplace rankings while composing a new expert."""
+    return await _hub_rankings(type, source=source)
 
 
 @router.get("/agents/{agent_id}/skills/hub/search")
@@ -1459,38 +1531,40 @@ async def hub_search_skills(
     request: Request,
     q: str = "",
     limit: int = 50,
+    source: str = "skillhub",
     as_user: int | None = None,
     user: Any = Depends(current_user),
     server: Any = Depends(get_server),
 ) -> list[dict[str, Any]]:
-    """Search Tencent SkillHub over HTTP, with CLI compatibility fallback.
+    """Search a skill marketplace over HTTP, with CLI compatibility fallback.
 
     The agent_id param is accepted for auth/routing symmetry with
     the install endpoint but is not used for the search itself.
     """
     require_agent_owner_row(agent_id, user=user, as_user=as_user, server=server)
-    return await _hub_search(request, q=q, limit=limit)
+    return await _hub_search(request, q=q, limit=limit, source=source)
 
 
 @router.get("/agents/{agent_id}/skills/hub/rankings")
 async def hub_rankings(
     agent_id: str,
     type: str = "all",
+    source: str = "skillhub",
     as_user: int | None = None,
     user: Any = Depends(current_user),
     server: Any = Depends(get_server),
 ) -> dict[str, Any]:
-    """Fetch Tencent SkillHub rankings directly over HTTP.
+    """Fetch skill marketplace rankings directly over HTTP.
 
     Returns the same payload shape previously produced by
     ``skillhub skill rankings`` (typically ``section``, ``skills``, ``total``).
     ``type`` selects a section (all / hot / recommended / trending / newest /
-    featured / paid). The host is resolved from the server-side ``SKILLHUB_HOST``
-    env var, else https://api.skillhub.cn. The agent_id is accepted for
-    auth/routing symmetry with search/install; rankings are global.
+    featured / paid). ``source`` selects SkillHub (default) or the Qoder
+    marketplace. The agent_id is accepted for auth/routing symmetry with
+    search/install; rankings are global.
     """
     require_agent_owner_row(agent_id, user=user, as_user=as_user, server=server)
-    return await _hub_rankings(type)
+    return await _hub_rankings(type, source=source)
 
 
 @router.post("/agents/{agent_id}/skills/hub/install", status_code=201)
@@ -1501,15 +1575,17 @@ async def hub_install_skill(
     user: Any = Depends(require_permission("skills")),
     server: Any = Depends(get_server),
 ) -> dict[str, Any]:
-    """Install a SkillHub skill into the specified agent's workspace.
+    """Install a marketplace skill into the specified agent's workspace.
 
     Public skills are downloaded and validated directly over HTTP. The CLI is
-    retained as a compatibility fallback for unsupported registry flows.
+    retained as a compatibility fallback for unsupported SkillHub registry
+    flows; the Qoder marketplace is HTTP-only.
     """
     from fastapi import HTTPException  # noqa: PLC0415
 
     from ydsz.infra.skills.install import (  # noqa: PLC0415
         SkillAlreadyExistsError,
+        install_skill_from_qoder,
         install_skill_from_skillhub,
         valid_skillhub_icon_url,
     )
@@ -1556,29 +1632,65 @@ async def hub_install_skill(
         agent_id=agent_id,
     )
     transport = "http"
-    try:
-        files = await download_skillhub_package(skill_name)
-    except SkillHubPackageTooLarge as exc:
-        raise HTTPException(status_code=413, detail=str(exc)) from exc
-    except SkillHubPackageError as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
-    except SkillHubMarketError as exc:
-        logger.warning(
-            "SkillHub HTTP install failed for %s; using CLI fallback: %s",
-            skill_name,
-            exc,
+    resolved_source = _hub_source(body.source)
+    if resolved_source in {"qoder", "seed"}:
+        if resolved_source == "seed":
+            # Seeded entries are a metadata snapshot of Qoder, so the package
+            # still comes from Qoder — but only for slugs we advertise.
+            from ydsz.infra.skills.seed_catalog import get_seed_skill  # noqa: PLC0415
+
+            if get_seed_skill(skill_name) is None:
+                raise HTTPException(
+                    status_code=404,
+                    detail=f"skill {skill_name!r} is not in the bundled catalog",
+                )
+        from ydsz.infra.skills.qoder_market import (  # noqa: PLC0415
+            QoderMarketError,
+            QoderMarketTimeout,
+            QoderPackageError,
+            QoderPackageTooLarge,
+            QoderSkillNotFound,
+            download_qoder_skill,
         )
-        transport = "cli"
+
         try:
-            files = await _download_skillhub_package_via_cli(skill_name)
-        except (SkillHubPackageTooLarge, SkillPackageTooLarge) as package_exc:
-            raise HTTPException(status_code=413, detail=str(package_exc)) from package_exc
-        except (SkillHubPackageError, SkillPackageError) as package_exc:
-            raise HTTPException(status_code=502, detail=str(package_exc)) from package_exc
+            files = await download_qoder_skill(skill_name)
+        except QoderPackageTooLarge as exc:
+            raise HTTPException(status_code=413, detail=str(exc)) from exc
+        except QoderPackageError as exc:
+            raise HTTPException(status_code=502, detail=str(exc)) from exc
+        except QoderSkillNotFound as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except QoderMarketTimeout as exc:
+            raise HTTPException(status_code=504, detail=str(exc)) from exc
+        except QoderMarketError as exc:
+            raise HTTPException(status_code=502, detail=str(exc)) from exc
+        install_hub_skill = install_skill_from_qoder
+    else:
+        try:
+            files = await download_skillhub_package(skill_name)
+        except SkillHubPackageTooLarge as exc:
+            raise HTTPException(status_code=413, detail=str(exc)) from exc
+        except SkillHubPackageError as exc:
+            raise HTTPException(status_code=502, detail=str(exc)) from exc
+        except SkillHubMarketError as exc:
+            logger.warning(
+                "SkillHub HTTP install failed for %s; using CLI fallback: %s",
+                skill_name,
+                exc,
+            )
+            transport = "cli"
+            try:
+                files = await _download_skillhub_package_via_cli(skill_name)
+            except (SkillHubPackageTooLarge, SkillPackageTooLarge) as package_exc:
+                raise HTTPException(status_code=413, detail=str(package_exc)) from package_exc
+            except (SkillHubPackageError, SkillPackageError) as package_exc:
+                raise HTTPException(status_code=502, detail=str(package_exc)) from package_exc
+        install_hub_skill = install_skill_from_skillhub
 
     await _guard_package_only_skill_write(ctx.workspace, ctx.config, server, skill_name, user)
     try:
-        await install_skill_from_skillhub(
+        await install_hub_skill(
             target,
             skill_name=skill_name,
             files=files,

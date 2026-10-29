@@ -1,0 +1,26 @@
+<Slide style={{ padding: 60, background: '#12275A', position: 'relative' }}>
+    {/* 右侧装饰 */}
+    <Box style={{ position: 'absolute', right: 60, top: 130, width: 420, height: 460 }}>
+        <svg width={420} height={460} viewBox='0 0 420 460'>
+            <path d='M210 40 L350 110 L350 250 L210 320 L70 250 L70 110 Z' fill='none' stroke='#1E3C82' strokeWidth='1' />
+            <path d='M210 110 L300 160 L300 260 L210 310 L120 260 L120 160 Z' fill='none' stroke='#2563EB' strokeWidth='2' />
+            <circle cx='210' cy='235' r='26' fill='#12275A' stroke='#F59E0B' strokeWidth='3' />
+            <circle cx='210' cy='235' r='8' fill='#F59E0B' />
+            <circle cx='350' cy='110' r='6' fill='#06B6D4' />
+            <circle cx='70' cy='250' r='6' fill='#06B6D4' />
+        </svg>
+    </Box>
+
+    <Box style={{ position: 'absolute', left: 92, top: 168, width: 680 }}>
+        <Text style={{ fontSize: 180, fontWeight: 'bold', color: '#1F3C7A', lineHeight: 1.05 }}>
+            03
+        </Text>
+        <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.15, marginTop: 12 }}>
+            安全与治理
+        </Text>
+        <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#F59E0B', marginTop: 30 }} />
+        <Text style={{ fontSize: 22, color: '#9AB4DB', lineHeight: 1.5, marginTop: 26 }}>
+            敢把 AI 放出去用，靠的是可验证的边界
+        </Text>
+    </Box>
+</Slide>

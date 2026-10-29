@@ -47,6 +47,45 @@ class CronDeliveryCommand:
     mcp_servers: tuple[str, ...]
 
 
+class PreToolTextFilter:
+    """Withhold narration emitted before ordinary tool calls (issue #2384).
+
+    Cron agent turns must only deliver the final answer to IM: text streamed
+    before a regular tool call is internal planning and gets dropped at the
+    tool boundary. Dispatch wording preceding an ``ask_agent`` call (team
+    host delegating to a member) is preserved, as are turns that never call
+    tools at all.
+    """
+
+    ASK_AGENT_TOOL = "ask_agent"
+
+    def __init__(self) -> None:
+        self._pending: list[str] = []
+        self._committed: list[str] = []
+
+    def observe(self, chunk: dict[str, Any]) -> None:
+        kind = chunk.get("type")
+        if kind in ("token", "delta"):
+            self._pending.append(str(chunk.get("content") or chunk.get("text") or ""))
+        elif kind == "tool_result":
+            names = {
+                str(getattr(m, "name", "") or "")
+                for m in chunk.get("messages") or []
+            }
+            if self.ASK_AGENT_TOOL in names:
+                self._committed.extend(self._pending)
+            self._pending.clear()
+        elif kind == "tool_call_chunk":
+            if str(chunk.get("name") or "") == self.ASK_AGENT_TOOL:
+                self._committed.extend(self._pending)
+                self._pending.clear()
+
+    def result(self) -> str:
+        self._committed.extend(self._pending)
+        self._pending.clear()
+        return "".join(self._committed)
+
+
 class CronDeliveryService:
     """Persist canonical cron turns and deliver their visible output."""
 
@@ -149,7 +188,7 @@ class CronDeliveryService:
         request = await self._build_agent_request(command, session)
         tracker = TurnHistoryTracker.from_request(request)
         usage = UsageTracker()
-        parts: list[str] = []
+        texts = PreToolTextFilter()
         interaction_required = False
         saw_tool_call = False
         emitted_tool_error_ids: set[str] = set()
@@ -171,13 +210,13 @@ class CronDeliveryService:
                             seen=emitted_tool_error_ids,
                             live=saw_tool_call,
                         )
-                    if kind in ("token", "delta"):
-                        parts.append(str(chunk.get("content") or chunk.get("text") or ""))
-                    elif kind == "hitl_required":
+                    if kind in ("token", "delta", "tool_call_chunk", "tool_result"):
+                        texts.observe(chunk)
+                    if kind == "hitl_required":
                         interaction_required = True
             if interaction_required:
                 raise RuntimeError("cron agent run requires user interaction")
-            outbound = strip_thinking("".join(parts)).strip()
+            outbound = strip_thinking(texts.result()).strip()
             if not outbound:
                 raise RuntimeError("cron agent run produced no visible response")
         finally:

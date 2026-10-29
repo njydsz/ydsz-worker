@@ -48,8 +48,9 @@ def with_skillhub_presentation_metadata(
     icon_url: str,
     label: dict[str, str] | None = None,
     summary: dict[str, str] | None = None,
+    source: str = "skillhub",
 ) -> str:
-    """Persist SkillHub presentation fields without changing the stable skill id."""
+    """Persist hub presentation fields without changing the stable skill id."""
     if not display_name and not icon_url and not label and not summary:
         return content
 
@@ -59,7 +60,7 @@ def with_skillhub_presentation_metadata(
     ydsz_meta = metadata.get("ydsz")
     ydsz_meta = {} if not isinstance(ydsz_meta, dict) else dict(ydsz_meta)
 
-    ydsz_meta["source"] = "skillhub"
+    ydsz_meta["source"] = source or "skillhub"
     if icon_url:
         ydsz_meta["icon_url"] = icon_url
     if label:
@@ -85,16 +86,17 @@ def with_skillhub_presentation_metadata(
     return rendered
 
 
-def prepare_skillhub_package(
+def prepare_hub_package(
     skill_name: str,
     files: list[tuple[str, bytes]],
     *,
+    source: str,
     display_name: str = "",
     icon_url: str = "",
     label: dict[str, str] | None = None,
     summary: dict[str, str] | None = None,
 ) -> ResolvedSkillPackage:
-    """Normalize SkillHub download files into a canonical package."""
+    """Normalize download files from any hub into a canonical package."""
     safe_name = validate_skill_slug(skill_name)
     transformed: list[tuple[str, bytes]] = []
     for rel, original_content in files:
@@ -112,12 +114,34 @@ def prepare_skillhub_package(
                     icon_url=icon_url,
                     label=label,
                     summary=summary,
+                    source=source,
                 ).encode("utf-8")
         transformed.append((normalized, content))
     return resolve_skill_package(
         slug=safe_name,
         files=transformed,
+        source=source,
+    )
+
+
+def prepare_skillhub_package(
+    skill_name: str,
+    files: list[tuple[str, bytes]],
+    *,
+    display_name: str = "",
+    icon_url: str = "",
+    label: dict[str, str] | None = None,
+    summary: dict[str, str] | None = None,
+) -> ResolvedSkillPackage:
+    """Normalize SkillHub download files into a canonical package."""
+    return prepare_hub_package(
+        skill_name,
+        files,
         source="skillhub",
+        display_name=display_name,
+        icon_url=icon_url,
+        label=label,
+        summary=summary,
     )
 
 
@@ -172,6 +196,39 @@ async def install_skill_from_url(
     )
 
 
+async def _install_hub_package(
+    target: SkillInstallTarget,
+    *,
+    skill_name: str,
+    files: list[tuple[str, bytes]],
+    source: str,
+    display_name: str = "",
+    icon_url: str = "",
+    label: dict[str, str] | None = None,
+    summary: dict[str, str] | None = None,
+    overwrite: bool = False,
+    enable: bool | None = None,
+) -> ResolvedSkillPackage:
+    """Prepare hub-downloaded files and commit them into the target."""
+    if not files:
+        raise SkillPackageError(f"{source} installed nothing for '{skill_name}'")
+    package = prepare_hub_package(
+        skill_name,
+        files,
+        source=source,
+        display_name=display_name,
+        icon_url=icon_url,
+        label=label,
+        summary=summary,
+    )
+    return await commit_skill_install(
+        target,
+        package,
+        overwrite=overwrite,
+        enable=enable,
+    )
+
+
 async def install_skill_from_skillhub(
     target: SkillInstallTarget,
     *,
@@ -185,19 +242,42 @@ async def install_skill_from_skillhub(
     enable: bool | None = None,
 ) -> ResolvedSkillPackage:
     """Prepare SkillHub files and commit them into the target."""
-    if not files:
-        raise SkillPackageError(f"skillhub installed nothing for '{skill_name}'")
-    package = prepare_skillhub_package(
-        skill_name,
-        files,
+    return await _install_hub_package(
+        target,
+        skill_name=skill_name,
+        files=files,
+        source="skillhub",
         display_name=display_name,
         icon_url=icon_url,
         label=label,
         summary=summary,
+        overwrite=overwrite,
+        enable=enable,
     )
-    return await commit_skill_install(
+
+
+async def install_skill_from_qoder(
+    target: SkillInstallTarget,
+    *,
+    skill_name: str,
+    files: list[tuple[str, bytes]],
+    display_name: str = "",
+    icon_url: str = "",
+    label: dict[str, str] | None = None,
+    summary: dict[str, str] | None = None,
+    overwrite: bool = False,
+    enable: bool | None = None,
+) -> ResolvedSkillPackage:
+    """Prepare Qoder marketplace files and commit them into the target."""
+    return await _install_hub_package(
         target,
-        package,
+        skill_name=skill_name,
+        files=files,
+        source="qoder",
+        display_name=display_name,
+        icon_url=icon_url,
+        label=label,
+        summary=summary,
         overwrite=overwrite,
         enable=enable,
     )
@@ -212,8 +292,10 @@ __all__ = [
     "SkillAlreadyExistsError",
     "SkillInstallTarget",
     "commit_skill_install",
+    "install_skill_from_qoder",
     "install_skill_from_skillhub",
     "install_skill_from_url",
+    "prepare_hub_package",
     "prepare_skillhub_package",
     "resolve_url_import",
     "valid_skillhub_icon_url",

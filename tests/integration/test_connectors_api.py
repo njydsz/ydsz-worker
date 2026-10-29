@@ -32,7 +32,7 @@ async def test_catalog(env):
     kinds = {e["kind"] for e in r.json()}
     assert "tencent-docs" in kinds
     assert "notion" in kinds
-    assert "figma" not in kinds
+    assert "figma" in kinds
     assert "baidu-netdisk" not in kinds
     for kind in (
         "openalex",
@@ -53,6 +53,8 @@ async def test_catalog(env):
         "didi",
         "yuandian",
         "qcc",
+        "tyc-mcp",
+        "kdocs",
     ):
         entry = next(e for e in r.json() if e["kind"] == kind)
         assert entry["phase"] == "available", kind

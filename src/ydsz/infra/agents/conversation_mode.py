@@ -140,7 +140,7 @@ def stamp_conversation_mode(
     """Write mode + Ask/Plan host overlays onto a harness request dict."""
     configurable = dict(request.get("configurable") or {})
     configurable[CONFIG_MODE_KEY] = mode
-    if mode in ("ask", "plan"):
+    if mode in ("ask", "plan", "chat"):
         configurable[CONFIG_EXTRA_READ_KEY] = list(HOST_READ_TOOLS)
         request["skills"] = []
         request["mcp_servers"] = []

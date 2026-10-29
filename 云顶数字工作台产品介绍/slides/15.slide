@@ -1,0 +1,76 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            能力不是一次性交付，而是可持续安装的资产
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 32 }}>
+            {/* 左解释栏 */}
+            <Box style={{ width: 300 }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#12275A', lineHeight: 1.3 }}>三层可安装资产</Text>
+                <Box style={{ width: 48, height: 4, borderRadius: 2, background: '#F59E0B', marginTop: 14 }} />
+                <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 16 }}>
+                    底座负责稳定运行，能力层随业务需要叠加。新增一项能力不需要改动平台代码，也不需要重启已有 Agent。
+                </Text>
+                <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 14 }}>
+                    第三方技能支持供应链扫描策略：关闭、告警或直接阻断，由企业安全策略决定。
+                </Text>
+            </Box>
+
+            {/* 右侧金字塔层级 */}
+            <Box style={{ width: 828, justifyContent: 'center' }}>
+                <Box style={{ alignItems: 'center' }}>
+                    <Box style={{ width: 560, background: '#12275A', borderRadius: 10, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+                        <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.1 }}>23</Text>
+                        <Box>
+                            <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>内置技能包（中英双语）</Text>
+                            <Text style={{ fontSize: 15, color: '#A9C2E8', lineHeight: 1.4 }}>plan、powerpoint、nano-pdf、ocr-and-documents 等</Text>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box style={{ alignItems: 'center', marginTop: 10 }}>
+                    <Box style={{ width: 700, background: '#1D4ED8', borderRadius: 10, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+                        <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.1 }}>37</Text>
+                        <Box>
+                            <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>内置插件，随安装注入</Text>
+                            <Text style={{ fontSize: 15, color: '#CBD9F0', lineHeight: 1.4 }}>market-quotes、hot-topics、expense-tracker、qrcode 等</Text>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box style={{ alignItems: 'center', marginTop: 10 }}>
+                    <Box style={{ width: 828, background: '#E6F7F9', borderWidth: 1, borderColor: '#B6E3EA', borderStyle: 'solid', borderRadius: 10, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+                        <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#0891B2', lineHeight: 1.1 }}>∞</Text>
+                        <Box>
+                            <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>SkillHub 在线市场与本地安装</Text>
+                            <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.4 }}>在线检索、下载、归档打包、跨实例传输</Text>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 20, marginTop: 14 }}>
+                    <Box style={{ flex: 1, borderTopWidth: 1, borderTopColor: '#E2E8F0', borderTopStyle: 'solid', paddingTop: 12 }}>
+                        <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5 }}>
+                            按 Agent 粒度启用，不同岗位拿不同技能集合。
+                        </Text>
+                    </Box>
+                    <Box style={{ flex: 1, borderTopWidth: 1, borderTopColor: '#E2E8F0', borderTopStyle: 'solid', paddingTop: 12 }}>
+                        <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5 }}>
+                            按场景过滤加载，只有相关技能进上下文。
+                        </Text>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                采购一套产品的同时，也拿到一条可持续扩充能力的供应链——新增场景时先问「有没有现成技能」，而不是先排开发。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

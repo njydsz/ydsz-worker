@@ -236,3 +236,49 @@ def test_apply_uses_runtime_config_when_get_config_empty() -> None:
         out = apply_conversation_mode_to_request(request)
     names = [getattr(t, "name", None) for t in (out.tools or [])]
     assert names == ["read_file"]
+
+
+def test_chat_mode_strips_all_tools() -> None:
+    """``chat`` mode (issue #2396 'none' policy) exposes no tools at all."""
+    assert parse_conversation_mode("chat") == "chat"
+    request = ModelRequest(
+        model=MagicMock(),
+        messages=[],
+        tools=[_tool("read_file"), _tool("execute"), _tool("write_file")],
+    )
+    with _configurable(conversation_mode="chat"):
+        out = apply_conversation_mode_to_request(request)
+    assert out.tools == []
+
+
+def test_chat_mode_blocks_tool_calls() -> None:
+    mw = ConversationModeMiddleware()
+    call = {"name": "read_file", "args": {"path": "x"}, "id": "call_1"}
+    tc_request = MagicMock()
+    tc_request.tool_call = call
+    with _configurable(conversation_mode="chat"):
+        blocked = mw._maybe_block(tc_request)
+    assert blocked is not None and blocked.status == "error"
+
+
+def test_chat_mode_strips_all_tools() -> None:
+    """``chat`` mode (issue #2396 'none' policy) exposes no tools at all."""
+    assert parse_conversation_mode("chat") == "chat"
+    request = ModelRequest(
+        model=MagicMock(),
+        messages=[],
+        tools=[_tool("read_file"), _tool("execute"), _tool("write_file")],
+    )
+    with _configurable(conversation_mode="chat"):
+        out = apply_conversation_mode_to_request(request)
+    assert out.tools == []
+
+
+def test_chat_mode_blocks_tool_calls() -> None:
+    mw = ConversationModeMiddleware()
+    call = {"name": "read_file", "args": {"path": "x"}, "id": "call_1"}
+    tc_request = MagicMock()
+    tc_request.tool_call = call
+    with _configurable(conversation_mode="chat"):
+        blocked = mw._maybe_block(tc_request)
+    assert blocked is not None and blocked.status == "error"

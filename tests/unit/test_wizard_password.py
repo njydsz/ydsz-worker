@@ -77,3 +77,49 @@ def test_boot_self_heal_no_op_when_users_exist_and_no_file(tmp_path: Path) -> No
     pw = boot_self_heal(tmp_path, user_count=1)
     assert pw is None
     assert not _file(tmp_path).exists()
+
+
+def test_windows_dacl_restricted_on_ensure(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """On Windows the 0o600 chmod is a no-op; icacls must set the DACL (#2370)."""
+    calls: list[list[str]] = []
+
+    def fake_run(cmd: list[str], **_kwargs: object) -> None:
+        calls.append(cmd)
+
+    monkeypatch.setattr("ydsz.infra.setup.password_file.subprocess.run", fake_run)
+    monkeypatch.setattr("ydsz.infra.setup.password_file.sys.platform", "win32")
+    monkeypatch.setenv("USERNAME", "alice")
+    monkeypatch.setenv("USERDOMAIN", "DESKTOP-X")
+
+    ensure_password(tmp_path)
+    assert calls, "icacls must be invoked on Windows"
+    cmd = calls[0]
+    assert cmd[0] == "icacls"
+    assert "/inheritance:r" in cmd and "/grant:r" in cmd
+    assert "DESKTOP-X\\alice:F" in cmd
+    assert "SYSTEM:F" in cmd
+
+
+def test_windows_dacl_failure_does_not_break_ensure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def boom(*_args: object, **_kwargs: object) -> None:
+        raise OSError("icacls missing")
+
+    monkeypatch.setattr("ydsz.infra.setup.password_file.subprocess.run", boom)
+    monkeypatch.setattr("ydsz.infra.setup.password_file.sys.platform", "win32")
+    pw = ensure_password(tmp_path)
+    assert pw is not None
+    assert _file(tmp_path).read_text(encoding="utf-8").strip() == pw
+
+
+def test_posix_skips_icacls(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    calls: list[list[str]] = []
+
+    def fake_run(cmd: list[str], **_kwargs: object) -> None:
+        calls.append(cmd)
+
+    monkeypatch.setattr("ydsz.infra.setup.password_file.subprocess.run", fake_run)
+    monkeypatch.setattr("ydsz.infra.setup.password_file.sys.platform", "linux")
+    ensure_password(tmp_path)
+    assert calls == []

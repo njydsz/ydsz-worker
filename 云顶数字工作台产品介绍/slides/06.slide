@@ -1,0 +1,64 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · POSITIONING</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            会思考、会干活、陪企业成长，是三件不同的事
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 32 }}>
+            {/* 主栏：会干活 */}
+            <Box style={{ width: 600, background: '#12275A', borderRadius: 12, padding: 20 }}>
+                <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.3 }}>会干活：把结论变成动作</Text>
+                <Text style={{ fontSize: 17, color: '#A9C2E8', lineHeight: 1.5, marginTop: 12 }}>
+                    读写文件、执行 Shell、调用浏览器、生成图片与视频、创建定时任务——动作真实发生在你的机器或沙箱里。
+                </Text>
+                <Box style={{ height: 1, background: '#2D4A85', marginTop: 14 }} />
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', marginTop: 12 }}>
+                    <Box style={{ width: 8, height: 8, borderRadius: 4, background: '#F59E0B', marginTop: 8 }} />
+                    <Text style={{ flex: 1, fontSize: 17, color: '#D6E3F5', lineHeight: 1.5 }}>
+                        文件与命令：ls / read_file / write_file / edit_file / glob / grep / execute
+                    </Text>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', marginTop: 10 }}>
+                    <Box style={{ width: 8, height: 8, borderRadius: 4, background: '#06B6D4', marginTop: 8 }} />
+                    <Text style={{ flex: 1, fontSize: 17, color: '#D6E3F5', lineHeight: 1.5 }}>
+                        联网与验证：5 个搜索后端、web_fetch、browser_use 无头浏览器会话
+                    </Text>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', marginTop: 10 }}>
+                    <Box style={{ width: 8, height: 8, borderRadius: 4, background: '#06B6D4', marginTop: 8 }} />
+                    <Text style={{ flex: 1, fontSize: 17, color: '#D6E3F5', lineHeight: 1.5 }}>
+                        交付与排程：文件回传、定时任务增删改查、立即执行
+                    </Text>
+                </Box>
+            </Box>
+
+            {/* 右栏：会思考 + 陪企业成长 */}
+            <Box style={{ width: 528 }}>
+                <Box style={{ background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 12, padding: 20 }}>
+                    <Text style={{ fontSize: 24, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>会思考：答案锚定私有数据</Text>
+                    <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 10 }}>
+                        知识库 RAG 给出带出处的答案；长期记忆以三层模型沉淀，跨会话仍认得你的组织。
+                    </Text>
+                </Box>
+                <Box style={{ background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 12, padding: 20, marginTop: 18 }}>
+                    <Text style={{ fontSize: 24, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>陪企业成长：越用越值钱</Text>
+                    <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 10 }}>
+                        23 个技能包、37 个内置插件与 SkillHub 市场随装随用，配置持续沉淀为组织资产。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 48, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                三者构成闭环：先理解你的上下文，再真的动手，最后把过程沉淀成下一次的能力——而不是一次性的问答。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

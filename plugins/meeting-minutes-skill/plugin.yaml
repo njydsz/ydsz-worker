@@ -1,0 +1,7 @@
+id: meeting-minutes-skill
+version: 0.1.0
+name: Meeting Minutes Skill
+description: 纯提示词技能 — 将会议记录整理为结构化纪要（结论、决议、待办、风险）
+icon: "📝"
+kind: skill
+entry: main.py

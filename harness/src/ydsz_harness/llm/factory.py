@@ -279,6 +279,17 @@ def _is_codex_base_url(base_url: str | None) -> bool:
     )
 
 
+# Hosts whose OpenAI-compatible API rejects ``reasoning_content`` on inbound
+# assistant messages (issue #2498: groq 400 "property 'reasoning_content' is
+# unsupported"). DeepSeek-style providers still need the round-trip.
+_REASONING_ROUNDTRIP_BLOCKED_HOSTS = ("groq.com",)
+
+
+def _reasoning_roundtrip_blocked(base_url: str | None) -> bool:
+    hostname = (urlsplit(base_url or "").hostname or "").lower()
+    return any(hostname == h or hostname.endswith(f".{h}") for h in _REASONING_ROUNDTRIP_BLOCKED_HOSTS)
+
+
 def _build_openai(provider: ProviderConfig, model: ModelConfig, *, max_retries: int | None = None) -> BaseChatModel:
     try:
         from langchain_openai import ChatOpenAI
@@ -328,6 +339,8 @@ def _build_openai(provider: ProviderConfig, model: ModelConfig, *, max_retries: 
         kwargs["http_client"], kwargs["http_async_client"] = session_clients
     instance: BaseChatModel = cls(**kwargs)
     instance._harness_codex = is_codex  # type: ignore[attr-defined]
+    roundtrip_reasoning = not _reasoning_roundtrip_blocked(provider.base_url)
+    instance._harness_roundtrip_reasoning = roundtrip_reasoning  # type: ignore[attr-defined]
 
     fallback_instance: BaseChatModel | None = None
     # Codex is Responses-only; never retry it through Chat Completions.
@@ -339,6 +352,7 @@ def _build_openai(provider: ProviderConfig, model: ModelConfig, *, max_retries: 
         object.__setattr__(instance, "_harness_api_fallback_model", fallback_instance)
         object.__setattr__(instance, "_harness_api_fallback_provider", provider.id)
         object.__setattr__(instance, "_harness_api_fallback_model_id", model.id)
+        fallback_instance._harness_roundtrip_reasoning = roundtrip_reasoning  # type: ignore[attr-defined]
     if session_clients is not None:
         attach_session_http_clients(instance, session_clients[0], session_clients[1])
     # Attach supported input modalities so the subclass can strip
@@ -668,6 +682,8 @@ def _get_reasoning_aware_chat_openai(base_cls: type[Any]) -> type[Any]:
                 _strip_unsupported_content_types(messages_out)
             source_messages = _source_messages_for_payload(input_, kwargs, self._convert_input)
             if not source_messages:
+                return payload
+            if not getattr(self, "_harness_roundtrip_reasoning", True):
                 return payload
             return _attach_reasoning_to_payload(payload, source_messages)
 

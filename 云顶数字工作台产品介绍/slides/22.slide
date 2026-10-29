@@ -1,0 +1,91 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>03 · SECURITY & GOVERNANCE</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            数据主权的开关，握在企业自己手里
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row' }}>
+            {/* 左：公有云 SaaS */}
+            <Box style={{ width: 500 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>公有云 AI 助手</Text>
+                <Box style={{ height: 3, width: 64, borderRadius: 2, background: '#CBD5E1', marginTop: 12 }} />
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', marginTop: 12 }}>
+                    <Box style={{ width: 8, height: 8, borderRadius: 4, background: '#CBD5E1', marginTop: 9 }} />
+                    <Text style={{ flex: 1, fontSize: 17, color: '#64748B', lineHeight: 1.5 }}>
+                        提示词与附件要出网，脱敏策略由厂商决定，企业难以逐条核验。
+                    </Text>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', marginTop: 11 }}>
+                    <Box style={{ width: 8, height: 8, borderRadius: 4, background: '#CBD5E1', marginTop: 9 }} />
+                    <Text style={{ flex: 1, fontSize: 17, color: '#64748B', lineHeight: 1.5 }}>
+                        向量、记忆与会话散落在厂商侧，迁移与导出通常受限于产品形态。
+                    </Text>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', marginTop: 11 }}>
+                    <Box style={{ width: 8, height: 8, borderRadius: 4, background: '#CBD5E1', marginTop: 9 }} />
+                    <Text style={{ flex: 1, fontSize: 17, color: '#64748B', lineHeight: 1.5 }}>
+                        合规举证依赖对方提供的承诺，审计时拿不到一手记录。
+                    </Text>
+                </Box>
+                <Box style={{ marginTop: 18, background: '#F1F5F9', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5 }}>
+                        结论：能力上线快，但边界由他人定义，越到核心业务越难说服合规部门。
+                    </Text>
+                </Box>
+            </Box>
+
+            <Box style={{ width: 1, background: '#E2E8F0', marginLeft: 28, marginRight: 28 }} />
+
+            {/* 右：自托管 */}
+            <Box style={{ width: 602 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>云顶数字工作台（自托管）</Text>
+                <Box style={{ height: 3, width: 64, borderRadius: 2, background: '#1D4ED8', marginTop: 12 }} />
+                <Box style={{ flexDirection: 'row', gap: 14, marginTop: 16 }}>
+                    <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 11 }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>脱敏四策略</Text>
+                        <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                            阻断、删除、掩码、哈希，可选作用于输入、输出与工具结果。
+                        </Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 11 }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>出站 SSRF 校验</Text>
+                        <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                            对外请求先过目标校验，避免被诱导访问内网地址。
+                        </Text>
+                    </Box>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 14, marginTop: 14 }}>
+                    <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 11 }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>本地推理可选</Text>
+                        <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                            Ollama 本地模型与本地 ONNX 向量化，敏感场景可完全离线。
+                        </Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 11 }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>沙箱执行</Text>
+                        <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
+                            命令可在 bubblewrap 沙箱 Shell 或容器后端中执行。
+                        </Text>
+                    </Box>
+                </Box>
+                <Box style={{ marginTop: 14, background: '#12275A', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ fontSize: 16, color: '#D6E3F5', lineHeight: 1.5 }}>
+                        配置、会话、工作区与凭证统一落在安装目录；供应商、存储与通道均可替换。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                该上云的环节仍可上云，但该留内网的必须留得住——选择权在配置里，不在合同里。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

@@ -1,0 +1,87 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            不只操作文件，还能操作机器本身
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22 }}>
+            <Box style={{ flexDirection: 'row', gap: 20 }}>
+                {/* 终端 AI+ */}
+                <Box style={{ width: 640, background: '#12275A', borderRadius: 12, padding: 17 }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+                        <Box style={{ width: 40, height: 40, borderRadius: 8, background: '#1E3C82', justifyContent: 'center', alignItems: 'center' }}>
+                            <FAIcon name='terminal' style={{ fill: '#06B6D4', width: 22, height: 22 }} />
+                        </Box>
+                        <Text style={{ fontSize: 22, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>终端 AI+</Text>
+                    </Box>
+                    <Text style={{ fontSize: 16, color: '#A9C2E8', lineHeight: 1.5, marginTop: 12 }}>
+                        浏览器内的交互式 Shell：命令由 AI 辅助生成与排错，执行前后都可见、可中断，不必离开控制台再开一个 SSH。
+                    </Text>
+                    <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.5, marginTop: 10 }}>
+                        典型场景：服务排障、日志排查、脚本执行、环境初始化。
+                    </Text>
+                </Box>
+                {/* 浏览器 AI+ */}
+                <Box style={{ width: 500, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 12, padding: 17 }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+                        <Box style={{ width: 40, height: 40, borderRadius: 8, background: '#FFFFFF', justifyContent: 'center', alignItems: 'center' }}>
+                            <FAIcon name='globe' style={{ fill: '#1D4ED8', width: 22, height: 22 }} />
+                        </Box>
+                        <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>浏览器 AI+</Text>
+                    </Box>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 12 }}>
+                        基于 Chromium 的无头会话：网页自动化、截图核验、表单填报，还能把一次操作录制成可复用技能。
+                    </Text>
+                    <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 10 }}>
+                        典型场景：内部系统填报、竞品采集、批量后台操作。
+                    </Text>
+                </Box>
+            </Box>
+
+            <Box style={{ flexDirection: 'row', gap: 20, marginTop: 20 }}>
+                {/* 远程桌面 */}
+                <Box style={{ width: 500, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 17 }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+                        <Box style={{ width: 40, height: 40, borderRadius: 8, background: '#E8EEFB', justifyContent: 'center', alignItems: 'center' }}>
+                            <FAIcon name='desktop' style={{ fill: '#1D4ED8', width: 22, height: 22 }} />
+                        </Box>
+                        <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>远程桌面与移动端</Text>
+                    </Box>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 12 }}>
+                        控制台内实时看屏与键鼠注入，跨 Linux / Windows / macOS；安卓设备可通过 adb 完成界面解析与手势操作。
+                    </Text>
+                    <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 10 }}>
+                        典型场景：远程运维、无人值守设备巡检。
+                    </Text>
+                </Box>
+                {/* 语音 */}
+                <Box style={{ width: 640, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 12, padding: 17 }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+                        <Box style={{ width: 40, height: 40, borderRadius: 8, background: '#FFFFFF', justifyContent: 'center', alignItems: 'center' }}>
+                            <FAIcon name='microphone' style={{ fill: '#B45309', width: 22, height: 22 }} />
+                        </Box>
+                        <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>语音输入与播报</Text>
+                    </Box>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 12 }}>
+                        语音转写与合成走兼容端点，也可接云厂商或本地方案；在车间、巡检、驾车等不便打字的场景同样可用。
+                    </Text>
+                    <Text style={{ fontSize: 15, color: '#92400E', lineHeight: 1.5, marginTop: 10 }}>
+                        典型场景：现场作业记录、移动端快速下达任务。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                自托管带来的本质差异就在这里：AI 面对的是一台真实的机器，而不是一堆只能通过接口读写的远端数据。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

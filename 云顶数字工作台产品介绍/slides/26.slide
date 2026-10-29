@@ -1,0 +1,79 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>04 · INTEGRATION</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            日常在用的系统，开箱就能接
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 32 }}>
+            {/* 巨型数字 */}
+            <Box style={{ width: 380, background: '#12275A', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 96, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.05 }}>41</Text>
+                <Text style={{ fontSize: 21, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3, marginTop: 4 }}>个企业系统连接器</Text>
+                <Box style={{ height: 1, background: '#2D4A85', marginTop: 16 }} />
+                <Text style={{ fontSize: 15, color: '#A9C2E8', lineHeight: 1.5, marginTop: 14 }}>
+                    16 个走 MCP 网关、13 个内建实现、11 个远程接入，认证方式覆盖 API Key、OAuth2、个人令牌与自定义字段。
+                </Text>
+                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.5, marginTop: 12 }}>
+                    OAuth 授权流程内建，无需为每个系统单独开发授权页面。
+                </Text>
+            </Box>
+
+            {/* 分类分布 */}
+            <Box style={{ width: 748 }}>
+                <Box style={{ flexDirection: 'row', gap: 12 }}>
+                    <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>办公文档 · 9</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯文档 / 腾讯会议 / Notion / M365</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>知识沉淀 · 8</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯 IMA / 乐享 / 语雀 / Obsidian</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>效率协作 · 6</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>滴答清单 / 钉钉飞书企微 CLI / 邮箱</Text>
+                    </Box>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, marginTop: 12 }}>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>出行差旅 · 5</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>飞猪 / 携程 / 美团 / 滴滴 / 百度地图</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>媒体与设计 · 5</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>腾讯新闻 / QQ 音乐 / Ardot / Figma</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>研发与项目 · 4</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>GitHub / Jira / Linear / Zapier</Text>
+                    </Box>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 12, marginTop: 12 }}>
+                    <Box style={{ flex: 1, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>专业数据 · 2</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>企查查 / 元典</Text>
+                    </Box>
+                    <Box style={{ flex: 2, background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 9, padding: 11 }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>自定义 MCP 与内部系统</Text>
+                        <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>支持按 MCP 协议登记企业自有服务，内部系统也能成为 Agent 的工具</Text>
+                    </Box>
+                </Box>
+                <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 16 }}>
+                    连接器按 Agent 绑定：客服 Agent 接工单与知识库，研发 Agent 接仓库与项目工具，权限边界随角色走。
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                主流办公与业务系统的接入已无需自研——省下的不是几个接口的工作量，而是整套授权、刷新与运维的长期成本。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

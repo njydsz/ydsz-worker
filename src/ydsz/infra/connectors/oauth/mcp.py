@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import time
 from typing import Any
-from urllib.parse import urlencode, urlparse
+from urllib.parse import parse_qsl, urlencode, urlparse, urlsplit, urlunsplit
 
 import httpx
 
@@ -133,7 +133,13 @@ def build_authorize_url(
         params["scope"] = scope
     if resource:
         params["resource"] = resource
-    return f"{metadata['authorization_endpoint']}?{urlencode(params)}"
+    # RFC 6749 §3.1: the authorization endpoint may carry its own query and
+    # clients MUST keep it when appending their own parameters.
+    endpoint = str(metadata["authorization_endpoint"])
+    parts = urlsplit(endpoint)
+    merged: dict[str, str] = dict(parse_qsl(parts.query, keep_blank_values=True))
+    merged.update(params)  # OAuth-required params win on key conflicts
+    return urlunsplit(parts._replace(query=urlencode(merged)))
 
 
 def _http_error_detail(resp: Any) -> str:

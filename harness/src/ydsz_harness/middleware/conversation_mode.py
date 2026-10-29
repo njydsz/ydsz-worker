@@ -1,7 +1,7 @@
-﻿"""Turn-scoped Ask / Plan / Craft: allowlist tools, disable skills, restrict plan writes.
+﻿"""Turn-scoped Ask / Plan / Chat / Craft: allowlist tools, disable skills, restrict plan writes.
 
-Hosts stamp ``configurable["conversation_mode"]`` (``ask`` | ``plan`` | ``craft``).
-Unknown / missing → craft (full tools). Ask/Plan: unknown tools are denied.
+Hosts stamp ``configurable["conversation_mode"]`` (``ask`` | ``plan`` | ``chat`` | ``craft``).
+Unknown / missing → craft (full tools). Ask/Plan/Chat: unknown tools are denied.
 Hosts may add extra read-only names via ``conversation_mode_extra_read_tools``.
 """
 
@@ -24,13 +24,13 @@ from ydsz_harness.middleware.runtime import runtime_config
 
 logger = logging.getLogger(__name__)
 
-ConversationMode = Literal["ask", "plan", "craft"]
+ConversationMode = Literal["ask", "plan", "chat", "craft"]
 
 CONFIG_MODE_KEY = "conversation_mode"
 CONFIG_EXTRA_READ_KEY = "conversation_mode_extra_read_tools"
 
 DEFAULT_CONVERSATION_MODE: ConversationMode = "craft"
-_VALID_MODES: frozenset[str] = frozenset({"ask", "plan", "craft"})
+_VALID_MODES: frozenset[str] = frozenset({"ask", "plan", "chat", "craft"})
 
 ASK_READ_TOOLS: frozenset[str] = frozenset(
     {
@@ -63,11 +63,16 @@ _PLAN_HINT = (
     "You may create or edit only that plans/*.md file. Do not execute, edit other files, "
     "or use skills. When the plan file is written, stop and wait for the user to confirm."
 )
+_CHAT_HINT = (
+    "You are in Chat mode: no tools are available. Answer directly from the "
+    "conversation itself; say so if the request needs capabilities you lack here."
+)
 _CRAFT_HINT = ""
 
 _HINTS: dict[ConversationMode, str] = {
     "ask": _ASK_HINT,
     "plan": _PLAN_HINT,
+    "chat": _CHAT_HINT,
     "craft": _CRAFT_HINT,
 }
 
@@ -107,6 +112,8 @@ def allowed_tool_names(
 ) -> frozenset[str]:
     """Model-visible tool names for *mode*. Craft is unrestricted (empty sentinel)."""
     if mode == "craft":
+        return frozenset()
+    if mode == "chat":
         return frozenset()
     allowed = set(ASK_READ_TOOLS)
     allowed.update(str(name).strip() for name in extra_read if str(name).strip())

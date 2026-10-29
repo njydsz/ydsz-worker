@@ -19,6 +19,7 @@ import tencentDocs from "./tencent-docs.png";
 import tencentIma from "./tencent-ima.png";
 import tencentMeeting from "./tencent-meeting.png";
 import tencentNews from "./tencent-news.png";
+import tencentSurvey from "./tencent-survey.png";
 import tencentLexiang from "./tencent-lexiang.png";
 import tencentWeiyun from "./tencent-weiyun.png";
 import wechatReading from "./wechat-reading.png";
@@ -53,6 +54,7 @@ export const CONNECTOR_LOGOS: Record<string, string> = {
   dida365: dida365,
   dify,
   "tencent-news": tencentNews,
+  "tencent-survey": tencentSurvey,
   "wechat-reading": wechatReading,
   "youdao-note": youdaoNote,
   "tencent-weiyun": tencentWeiyun,

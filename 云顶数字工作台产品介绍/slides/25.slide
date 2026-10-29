@@ -1,0 +1,30 @@
+<Slide style={{ padding: 60, background: '#12275A', position: 'relative' }}>
+    {/* 右侧装饰 */}
+    <Box style={{ position: 'absolute', right: 60, top: 130, width: 420, height: 460 }}>
+        <svg width={420} height={460} viewBox='0 0 420 460'>
+            <circle cx='210' cy='230' r='60' fill='#1D4ED8' opacity='0.25' />
+            <circle cx='210' cy='230' r='26' fill='#F59E0B' />
+            <line x1='210' y1='230' x2='60' y2='80' stroke='#06B6D4' strokeWidth='2' />
+            <line x1='210' y1='230' x2='360' y2='80' stroke='#06B6D4' strokeWidth='2' />
+            <line x1='210' y1='230' x2='60' y2='380' stroke='#2D4A85' strokeWidth='2' />
+            <line x1='210' y1='230' x2='360' y2='380' stroke='#2D4A85' strokeWidth='2' />
+            <circle cx='60' cy='80' r='10' fill='#06B6D4' />
+            <circle cx='360' cy='80' r='10' fill='#06B6D4' />
+            <circle cx='60' cy='380' r='10' fill='#3B5F9E' />
+            <circle cx='360' cy='380' r='10' fill='#3B5F9E' />
+        </svg>
+    </Box>
+
+    <Box style={{ position: 'absolute', left: 92, top: 168, width: 680 }}>
+        <Text style={{ fontSize: 180, fontWeight: 'bold', color: '#1F3C7A', lineHeight: 1.05 }}>
+            04
+        </Text>
+        <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.15, marginTop: 12 }}>
+            连接与集成
+        </Text>
+        <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#F59E0B', marginTop: 30 }} />
+        <Text style={{ fontSize: 22, color: '#9AB4DB', lineHeight: 1.5, marginTop: 26 }}>
+            不是新建孤岛，而是接进既有系统
+        </Text>
+    </Box>
+</Slide>

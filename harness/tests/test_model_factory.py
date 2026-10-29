@@ -784,3 +784,56 @@ class TestResponsesApiFallback:
             list(instance._stream([HumanMessage(content="ping")]))
 
         assert fallback_calls == 0
+
+
+class TestReasoningRoundTripGating:
+    """Providers that reject inbound ``reasoning_content`` (issue #2498)."""
+
+    def test_groq_base_url_is_blocked(self) -> None:
+        from ydsz_harness.llm.factory import _reasoning_roundtrip_blocked
+
+        assert _reasoning_roundtrip_blocked("https://api.groq.com/openai/v1") is True
+        assert _reasoning_roundtrip_blocked("https://api.groq.com.evil.io/v1") is False
+        assert _reasoning_roundtrip_blocked("https://api.example.com/v1") is False
+        assert _reasoning_roundtrip_blocked(None) is False
+
+    def _build(self, base_url: str) -> Any:
+        provider = ProviderConfig(
+            id="p",
+            base_url=base_url,
+            api_key="sk-x",
+            protocol="openai",
+        )
+        return build_chat_model(provider, ModelConfig(id="m"))
+
+    def test_groq_payload_drops_reasoning_content(self) -> None:
+        from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
+
+        instance = self._build("https://api.groq.com/openai/v1")
+        ai = AIMessage(
+            content="",
+            additional_kwargs={"reasoning_content": "thinking again"},
+            tool_calls=[
+                {"name": "get_weather", "args": {"city": "Beijing"}, "id": "call_1", "type": "tool_call"}
+            ],
+        )
+        messages = [
+            HumanMessage(content="weather?"),
+            ai,
+            ToolMessage(content="sunny", tool_call_id="call_1"),
+        ]
+        payload = instance._get_request_payload(messages)
+        assistants = [m for m in payload["messages"] if m.get("role") == "assistant"]
+        assert assistants and "reasoning_content" not in assistants[0]
+
+    def test_other_provider_payload_keeps_reasoning_content(self) -> None:
+        from langchain_core.messages import AIMessage, HumanMessage
+
+        instance = self._build("https://api.example.com/v1")
+        messages = [
+            HumanMessage(content="hi"),
+            AIMessage(content="hello", additional_kwargs={"reasoning_content": "deep thought"}),
+        ]
+        payload = instance._get_request_payload(messages)
+        assistants = [m for m in payload["messages"] if m.get("role") == "assistant"]
+        assert assistants[0]["reasoning_content"] == "deep thought"

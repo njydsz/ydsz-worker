@@ -61,6 +61,7 @@ from ydsz.infra.gateway.process.harness_request import (
 )
 from ydsz.infra.gateway.process.message_keys import (
     INBOUND_ATTACHMENTS_KEY,
+    chat_type_from_message,
     resolve_user_id_for_message,
     session_key_from_message,
     session_metadata_from_message,
@@ -859,6 +860,7 @@ class GlobalProcessor:
             mcp_servers=mcp_servers,
             locale=locale,
         )
+        request = self._enforce_group_tool_policy(request, agent_row=agent_row, msg=msg)
 
         yield MessageEvent.typing()
         stream_ok = False
@@ -1582,6 +1584,39 @@ class GlobalProcessor:
         from ydsz.infra.agents.conversation_mode import stamp_conversation_mode
 
         stamp_conversation_mode(request, mode)
+
+    def _enforce_group_tool_policy(
+        self,
+        request: dict[str, Any],
+        *,
+        agent_row: Any,
+        msg: Any,
+    ) -> dict[str, Any]:
+        """Force a conservative tool mode for non-owner IM group senders (#2396).
+
+        Group members share the owner's identity, so the enforced
+        ``conversation_mode`` (harness middleware) — not prompt text — is what
+        keeps them from driving workspace tools. Configured per agent via
+        ``config_json``: ``im_group_tool_policy`` = inherit | read_only | none,
+        with ``im_group_owner_sender_ids`` exempting trusted senders.
+        """
+        from ydsz.infra.gateway.process.im_group_policy import (
+            enforced_group_conversation_mode,
+            parse_config_json_safe,
+        )
+
+        cfg = parse_config_json_safe(getattr(agent_row, "config_json", None))
+        mode = enforced_group_conversation_mode(
+            cfg,
+            is_group_chat=chat_type_from_message(msg) == "group",
+            sender_id=(msg.metadata or {}).get("sender_id"),
+        )
+        if mode is None:
+            return request
+        self._attach_conversation_mode(request, mode)
+        request.pop("mcp_servers", None)
+        request["skills"] = []
+        return request
 
     def _done_chunk(self, thread_id: str) -> dict[str, Any]:
         payload: dict[str, Any] = {"type": "done"}

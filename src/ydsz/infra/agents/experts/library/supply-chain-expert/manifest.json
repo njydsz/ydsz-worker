@@ -1,0 +1,82 @@
+{
+  "id": "supply-chain-expert",
+  "label": {
+    "zh": "供应链物流专家",
+    "en": "Supply Chain & Logistics Expert"
+  },
+  "description": {
+    "zh": "供应链与物流场景专家——覆盖需求预测口径、库存策略、运输网络与转运路径优化、履约时效分析和物流成本拆解。分析以数据口径为先，事实与建议分离输出，适合电商/跨境/转运业务的运营与规划支持。",
+    "en": "Supply chain and logistics expert — demand forecasting definitions, inventory policy, transport network and routing, fulfillment lead-time analysis and logistics cost breakdown. Data definitions first, facts separated from advice; built for e-commerce, cross-border and transshipment operations."
+  },
+  "welcome_message": {
+    "zh": "把你的业务场景或数据口径发我——库存、时效、路由还是成本？先对齐口径，再给分析与建议",
+    "en": "Share your scenario or data definitions — inventory, lead time, routing or cost. We align on definitions first, then analysis and advice"
+  },
+  "icon_name": "truck",
+  "color": "#0E9F6E",
+  "prompt_files": [
+    "SOUL.md"
+  ],
+  "quick_prompts": [
+    {
+      "title": {
+        "zh": "库存策略诊断",
+        "en": "Inventory Policy Review"
+      },
+      "description": {
+        "zh": "按周转、缺货率与服务水平目标，诊断补货点/安全库存设置是否合理",
+        "en": "Review reorder point and safety stock against turnover, stockout rate and service-level targets"
+      },
+      "prompt": {
+        "zh": "请帮我诊断库存策略。业务背景：[填写业务与品类]；现状数据：[周转天数/缺货率/服务水平/补货周期等]；目标：[填写目标]。请先确认口径，再指出当前设置的问题并给出调整建议。",
+        "en": "Please review our inventory policy. Context: [business and category]; current data: [turnover days / stockout rate / service level / replenishment lead time]; target: [your target]. Confirm definitions first, then flag issues and suggest adjustments."
+      },
+      "color": "#def7ec",
+      "icon_name": "box"
+    },
+    {
+      "title": {
+        "zh": "物流成本拆解",
+        "en": "Logistics Cost Breakdown"
+      },
+      "description": {
+        "zh": "把运费、仓储、操作、关税等成本拆到单票/单公斤，定位异常高的环节",
+        "en": "Break freight, storage, handling and duty costs down per parcel / per kg and locate the outliers"
+      },
+      "prompt": {
+        "zh": "请帮我拆解物流成本。成本构成：[填写各项成本]；业务量：[单量/重量段/目的地]；异常现象：[哪条线/哪个环节偏高]。请输出单位成本拆解表并指出优化空间最大的环节。",
+        "en": "Please break down our logistics cost. Components: [cost items]; volume: [parcels / weight bands / destinations]; anomaly: [which lane or step looks expensive]. Output a unit-cost table and rank the biggest optimization opportunities."
+      },
+      "color": "#e1effe",
+      "icon_name": "coins"
+    },
+    {
+      "title": {
+        "zh": "时效异常定位",
+        "en": "Lead-Time Anomaly Diagnosis"
+      },
+      "description": {
+        "zh": "对履约时效波动做环节归因：揽收、干线、清关、末端哪段变慢了",
+        "en": "Attribute lead-time variance to pickup, line-haul, customs or last mile"
+      },
+      "prompt": {
+        "zh": "请帮我定位时效异常。数据：[各环节时效分布或节点时间戳]；现象：[哪条线路/哪个时段变慢]；约束：[成本不可超/运力有限等]。请按环节归因，并给出可执行的改善动作。",
+        "en": "Please diagnose our lead-time anomaly. Data: [segment-level lead times or node timestamps]; symptom: [which lane or period got slower]; constraints: [cost cap / capacity limit]. Attribute by segment and give actionable fixes."
+      },
+      "color": "#fef3c7",
+      "icon_name": "clock"
+    }
+  ],
+  "task_examples": {
+    "zh": [
+      "每天「09:30」拉取前一日各线路时效数据，标记超出 SLA 的环节并输出异常日报",
+      "每周一「10:00」汇总上周物流成本与单量，输出单位成本周报与趋势",
+      "每月 1 日「09:00」生成上月库存周转与缺货率复盘，列出周转最差的 10 个 SKU"
+    ],
+    "en": [
+      "Every day at 09:30 pull yesterday's lane lead times, flag SLA breaches and send a daily exception report",
+      "Every Monday at 10:00 summarize last week's logistics cost and volume into a unit-cost report with trends",
+      "On the 1st of each month at 09:00 generate last month's inventory turnover and stockout review, listing the 10 worst SKUs"
+    ]
+  }
+}

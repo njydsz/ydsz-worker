@@ -1,0 +1,82 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>03 · SECURITY & GOVERNANCE</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+            接进企业现有身份体系，而不是再建一套账号
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20 }}>
+            <Box style={{ flexDirection: 'row', alignItems: 'stretch' }}>
+                <Box style={{ width: 268, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>阶段一</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>登录方式</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        密码（argon2）、LDAP、SSO-OIDC（钉钉 / 飞书 / 企业微信 / 通用）、邀请码与验证码。
+                    </Text>
+                </Box>
+                <Box style={{ width: 28, justifyContent: 'center', alignItems: 'center' }}>
+                    <svg width={28} height={18} viewBox='0 0 28 18'><path d='M0 9 L18 9' stroke='#1D4ED8' strokeWidth='2' /><path d='M18 2 L28 9 L18 16 Z' fill='#1D4ED8' /></svg>
+                </Box>
+                <Box style={{ width: 268, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>阶段二</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>令牌与会话</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        全站接口强制校验，未完成初始化时锁定管理接口，空闲会话自动踢出。
+                    </Text>
+                </Box>
+                <Box style={{ width: 28, justifyContent: 'center', alignItems: 'center' }}>
+                    <svg width={28} height={18} viewBox='0 0 28 18'><path d='M0 9 L18 9' stroke='#06B6D4' strokeWidth='2' /><path d='M18 2 L28 9 L18 16 Z' fill='#06B6D4' /></svg>
+                </Box>
+                <Box style={{ width: 268, background: '#12275A', borderRadius: 10, padding: 14 }}>
+                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#7EA3D6', lineHeight: 1.3 }}>阶段三</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3, marginTop: 6 }}>权限判定</Text>
+                    <Text style={{ fontSize: 15, color: '#A9C2E8', lineHeight: 1.5, marginTop: 8 }}>
+                        模块级权限目录 + 角色模板，管理员取全集，成员按模块逐项授权。
+                    </Text>
+                </Box>
+                <Box style={{ width: 28, justifyContent: 'center', alignItems: 'center' }}>
+                    <svg width={28} height={18} viewBox='0 0 28 18'><path d='M0 9 L18 9' stroke='#F59E0B' strokeWidth='2' /><path d='M18 2 L28 9 L18 16 Z' fill='#F59E0B' /></svg>
+                </Box>
+                <Box style={{ width: 268, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>阶段四</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>资源所有权</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        数据行按 user_id 校验归属，跨用户运维仅管理员可用且留痕。
+                    </Text>
+                </Box>
+            </Box>
+
+            <Box style={{ flexDirection: 'row', gap: 20, marginTop: 22 }}>
+                <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 15 }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>对 IT 部门意味着什么</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        账号生命周期沿用现有目录服务，离职即失效；不必为 AI 平台单独维护一份人员台账。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 15 }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>对业务团队意味着什么</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        成员只看到被授权的模块与自己的 Agent，跨团队协作通过共享专家与邀请实现。
+                    </Text>
+                </Box>
+                <Box style={{ width: 340, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 15 }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>边界说明</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        当前未提供 SAML 登录，隔离粒度为用户与权限模块，不是租户级多租户模型。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+                身份接入越贴近企业现状，AI 平台推广的阻力越小——这一点往往比模型能力更早决定项目成败。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

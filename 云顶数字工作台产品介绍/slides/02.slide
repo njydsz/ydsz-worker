@@ -1,0 +1,47 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600, flexDirection: 'row' }}>
+        {/* 左侧标题区 */}
+        <Box style={{ width: 400 }}>
+            <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#1D4ED8' }} />
+            <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#12275A', marginTop: 30, lineHeight: 1.15 }}>
+                目录
+            </Text>
+            <Text style={{ fontSize: 18, color: '#94A3B8', letterSpacing: 6, marginTop: 18 }}>
+                CONTENTS
+            </Text>
+            <Box style={{ width: 300, height: 1, background: '#E2E8F0', marginTop: 40 }} />
+            <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 22 }}>
+                五个章节，依次为产品定位、能力全景、安全治理、连接集成与落地保障
+            </Text>
+        </Box>
+
+        {/* 右侧章节清单 */}
+        <Box style={{ width: 720, marginLeft: 40 }}>
+            <Box style={{ height: 112, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#1D4ED8' }}>01</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#12275A' }}>认识云顶：定位与价值</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 3</Text>
+            </Box>
+            <Box style={{ height: 112, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#1D4ED8' }}>02</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#12275A' }}>能力全景：从理解到执行</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 8</Text>
+            </Box>
+            <Box style={{ height: 112, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#1D4ED8' }}>03</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#12275A' }}>安全与治理：可验证的边界</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 18</Text>
+            </Box>
+            <Box style={{ height: 112, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#1D4ED8' }}>04</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#12275A' }}>连接与集成：接入既有系统</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 24</Text>
+            </Box>
+            <Box style={{ height: 112, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#1D4ED8' }}>05</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#12275A' }}>落地与保障：部署到持续运行</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 29</Text>
+            </Box>
+        </Box>
+    </Box>
+</Slide>

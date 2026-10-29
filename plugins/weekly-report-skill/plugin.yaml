@@ -1,0 +1,7 @@
+id: weekly-report-skill
+version: 0.1.0
+name: Weekly Report Skill
+description: 纯提示词技能 — 把零散工作记录整理为结构化周报
+icon: "📊"
+kind: skill
+entry: main.py

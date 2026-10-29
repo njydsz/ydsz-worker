@@ -105,3 +105,10 @@ def test_write_new_file_uses_umask_default_not_mkstemp_0600(tmp_path: Path) -> N
     path = tmp_path / "fresh.json"
     write_json_atomic(path, {"a": 1})
     assert stat.S_IMODE(path.stat().st_mode) == 0o666 & ~mask
+
+
+def test_read_json_object_accepts_utf8_bom(tmp_path) -> None:
+    """A BOM written by Windows editors must not fail startup (issue #1142)."""
+    p = tmp_path / "config.json"
+    p.write_bytes(b"\xef\xbb\xbf" + b'{"database": "sqlite"}')
+    assert read_json_object(p) == {"database": "sqlite"}

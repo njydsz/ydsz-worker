@@ -1,0 +1,104 @@
+<Slide style={{ padding: 60, background: '#12275A' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#7EA3D6', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#F59E0B' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#FFFFFF', marginTop: 16, lineHeight: 1.2 }}>
+            一套底座，把「理解 — 决策 — 执行 — 沉淀」串成闭环
+        </Text>
+        <Box style={{ height: 1, background: '#1E3C82', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22 }}>
+            {/* 载体层 */}
+            <Box style={{ flexDirection: 'row', alignItems: 'stretch', gap: 20 }}>
+                <Box style={{ width: 132, background: '#1E3C82', borderRadius: 10, justifyContent: 'center', alignItems: 'center', padding: 12 }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#CBD9F0', lineHeight: 1.3 }}>载体层</Text>
+                    <Text style={{ fontSize: 14, color: '#7EA3D6', lineHeight: 1.3 }}>人从哪里用</Text>
+                </Box>
+                <Box style={{ flex: 1, flexDirection: 'row', gap: 10 }}>
+                    <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 12, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>Web 控制台</Text>
+                        <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>React + WebSocket</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 12, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>命令行 CLI</Text>
+                        <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>21 个子命令</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 12, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>IM 通道</Text>
+                        <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>10 个平台</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 12, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>定时任务</Text>
+                        <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>主动推送</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 12, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>ACP / MCP</Text>
+                        <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>双向协议</Text>
+                    </Box>
+                </Box>
+            </Box>
+
+            {/* 能力层 */}
+            <Box style={{ flexDirection: 'row', alignItems: 'stretch', gap: 20, marginTop: 14 }}>
+                <Box style={{ width: 132, background: '#1D4ED8', borderRadius: 10, justifyContent: 'center', alignItems: 'center', padding: 12 }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>能力层</Text>
+                    <Text style={{ fontSize: 14, color: '#CBD9F0', lineHeight: 1.3 }}>AI 会什么</Text>
+                </Box>
+                <Box style={{ flex: 1 }}>
+                    <Box style={{ flexDirection: 'row', gap: 10 }}>
+                        <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 11, justifyContent: 'center' }}>
+                            <Text style={{ fontSize: 16, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>专家与团队</Text>
+                            <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>33 个专家 / 团队编排</Text>
+                        </Box>
+                        <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 11, justifyContent: 'center' }}>
+                            <Text style={{ fontSize: 16, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>知识库 RAG</Text>
+                            <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>解析到引用溯源</Text>
+                        </Box>
+                        <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 11, justifyContent: 'center' }}>
+                            <Text style={{ fontSize: 16, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>长期记忆</Text>
+                            <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>三层记忆模型</Text>
+                        </Box>
+                    </Box>
+                    <Box style={{ flexDirection: 'row', gap: 10, marginTop: 10 }}>
+                        <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 11, justifyContent: 'center' }}>
+                            <Text style={{ fontSize: 16, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>技能与插件</Text>
+                            <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>23 技能 / 37 插件</Text>
+                        </Box>
+                        <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 11, justifyContent: 'center' }}>
+                            <Text style={{ fontSize: 16, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>工具与执行</Text>
+                            <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>文件 / Shell / 浏览器</Text>
+                        </Box>
+                        <Box style={{ flex: 1, background: '#17305F', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 11, justifyContent: 'center' }}>
+                            <Text style={{ fontSize: 16, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>Connector</Text>
+                            <Text style={{ fontSize: 14, color: '#9AB4DB', lineHeight: 1.3 }}>41 个外部系统</Text>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
+
+            {/* 运行时层 */}
+            <Box style={{ flexDirection: 'row', alignItems: 'stretch', gap: 20, marginTop: 14 }}>
+                <Box style={{ width: 132, background: '#1E3C82', borderRadius: 10, justifyContent: 'center', alignItems: 'center', padding: 12 }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#CBD9F0', lineHeight: 1.3 }}>运行时</Text>
+                    <Text style={{ fontSize: 14, color: '#7EA3D6', lineHeight: 1.3 }}>底座是什么</Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#0F2247', borderWidth: 1, borderColor: '#2D4A85', borderStyle: 'solid', borderRadius: 10, padding: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 17, color: '#D6E3F5', lineHeight: 1.3 }}>LangGraph Agent 运行时 · 对话检查点</Text>
+                    <Box style={{ width: 1, height: 22, background: '#2D4A85' }} />
+                    <Text style={{ fontSize: 17, color: '#D6E3F5', lineHeight: 1.3 }}>记忆与检索引擎</Text>
+                    <Box style={{ width: 1, height: 22, background: '#2D4A85' }} />
+                    <Text style={{ fontSize: 17, color: '#D6E3F5', lineHeight: 1.3 }}>控制面 SQLite / PostgreSQL</Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 18, flexDirection: 'row', alignItems: 'center', background: '#1E3C82', borderRadius: 8, padding: 14, gap: 16 }}>
+            <Box style={{ width: 4, height: 44, borderRadius: 2, background: '#F59E0B' }} />
+            <Text style={{ flex: 1, fontSize: 18, color: '#E6EEFA', lineHeight: 1.5 }}>
+                三层之间不是拼凑的工具清单：载体共用一条消息管线，能力共用一套身份与审计，底座共用一份控制面数据。
+            </Text>
+        </Box>
+    </Box>
+</Slide>
