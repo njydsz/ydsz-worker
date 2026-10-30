@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Tabs } from "antd";
-import { Puzzle, Store } from "lucide-react";
+import { Boxes, Puzzle, Store, Wrench } from "lucide-react";
 import PageShell from "../../../layouts/PageShell";
 import { useSettingsHeader } from "../../../layouts/SettingsWindow/SettingsHeaderContext";
 import TabLabel from "../../../components/TabLabel";
 import { InstalledPluginsPanel } from "./InstalledPluginsPanel";
+import { CustomPluginsPanel } from "./CustomPluginsPanel";
+import { BuiltinPluginsPanel } from "./BuiltinPluginsPanel";
 import { PluginMarketPanel } from "./PluginMarketPanel";
 
-type TabKey = "installed" | "market";
+type TabKey = "installed" | "custom" | "builtin" | "market";
 
 function parseTab(raw: string | null): TabKey {
-  if (raw === "market") return "market";
+  if (raw === "custom" || raw === "builtin" || raw === "market") return raw;
   // Legacy ?tab=agent-tools redirects to installed (tools live in plugin detail).
   return "installed";
 }
@@ -62,6 +64,20 @@ export default function AdminPluginsPage() {
               <TabLabel icon={Puzzle}>{t("plugins.tabInstalled")}</TabLabel>
             ),
             children: <InstalledPluginsPanel />,
+          },
+          {
+            key: "custom",
+            label: (
+              <TabLabel icon={Wrench}>{t("plugins.tabCustom")}</TabLabel>
+            ),
+            children: <CustomPluginsPanel />,
+          },
+          {
+            key: "builtin",
+            label: (
+              <TabLabel icon={Boxes}>{t("plugins.tabBuiltin")}</TabLabel>
+            ),
+            children: <BuiltinPluginsPanel />,
           },
           {
             key: "market",
