@@ -1,4 +1,4 @@
-﻿"""Discover and load plugins from directories."""
+"""Discover and load plugins from directories."""
 
 from __future__ import annotations
 

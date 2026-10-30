@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.protocols.langgraph.LangGraphProtocol``."""
+"""Tests for ``ydsz_harness.protocols.langgraph.LangGraphProtocol``."""
 
 from __future__ import annotations
 

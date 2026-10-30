@@ -1,4 +1,4 @@
-﻿"""Core provider preset types and template loader.
+"""Core provider preset types and template loader.
 
 ``ModelPreset`` and ``ProviderPreset`` are the canonical dataclasses for
 provider configuration presets used across ydsz-harness — both in the

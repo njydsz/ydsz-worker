@@ -1,4 +1,4 @@
-﻿"""End-to-end tests for ``CandidateExtractor`` (with ``MockLLMClient``)."""
+"""End-to-end tests for ``CandidateExtractor`` (with ``MockLLMClient``)."""
 
 from __future__ import annotations
 

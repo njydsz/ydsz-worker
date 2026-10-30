@@ -1,4 +1,4 @@
-﻿"""Memory CLI command group."""
+"""Memory CLI command group."""
 
 from __future__ import annotations
 

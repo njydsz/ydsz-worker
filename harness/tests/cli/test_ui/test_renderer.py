@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.cli.ui.renderer."""
+"""Tests for ydsz_harness.cli.ui.renderer."""
 
 from io import StringIO
 

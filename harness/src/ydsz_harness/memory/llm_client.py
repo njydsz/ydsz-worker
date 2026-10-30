@@ -1,4 +1,4 @@
-﻿"""``HarnessAgentLLMClient`` — adapt the agent's models to ydsz-memory.
+"""``HarnessAgentLLMClient`` — adapt the agent's models to ydsz-memory.
 
 ``ydsz-memory``'s extractor / promotion / page-regen paths talk to the
 host model through the :class:`ydsz_memory.ports.llm.LLMClient` protocol. This

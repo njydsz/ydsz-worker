@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.middleware.tools_filter.ToolsFilterMiddleware``."""
+"""Tests for ``ydsz_harness.middleware.tools_filter.ToolsFilterMiddleware``."""
 
 from __future__ import annotations
 

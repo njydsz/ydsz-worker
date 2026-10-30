@@ -1,4 +1,4 @@
-﻿"""Workspace boundary for media inputs and generated artifacts."""
+"""Workspace boundary for media inputs and generated artifacts."""
 
 from __future__ import annotations
 

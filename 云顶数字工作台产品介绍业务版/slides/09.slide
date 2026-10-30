@@ -1,0 +1,52 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · 为什么需要</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            会干活：动作真的发生在你的业务里
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 18 }}>
+            <Box style={{ width: 460, background: '#2563EB', borderRadius: 14, padding: 24 }}>
+                <Text style={{ fontSize: 24, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>不是「建议你这样做」</Text>
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.6, marginTop: 12 }}>
+                    读文件、写文件、跑任务、查信息、生成报表、回传结果——每一步都真实执行，结果直接交到你手上。
+                </Text>
+                <Box style={{ height: 1, background: '#3B82F6', marginTop: 16 }} />
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.6, marginTop: 12 }}>
+                    执行发生在公司自己的机器或沙箱里；该审批的动作先停下来问人，干完的活全程留痕。
+                </Text>
+            </Box>
+            <Box style={{ flex: 1, gap: 12 }}>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>文件与内容</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        读文档、写文档、增量修改、全文检索，资料整理不再手工搬运。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>联网与查证</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        搜索公开信息、抓取网页、操作浏览器，调研类工作先帮你跑一遍。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>交付与排程</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        生成文件直接回传，定时任务到点执行，结果推送到指定会话。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                价值的分界线在这里：聊天工具帮你省打字，数字员工帮你把活干完。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

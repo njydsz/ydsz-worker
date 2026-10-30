@@ -1,4 +1,4 @@
-﻿"""Middleware that scans tool parameters before execution."""
+"""Middleware that scans tool parameters before execution."""
 
 from __future__ import annotations
 

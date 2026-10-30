@@ -1,4 +1,4 @@
-﻿"""Runtime slash commands for HarnessAgent (stop, skills, model)."""
+"""Runtime slash commands for HarnessAgent (stop, skills, model)."""
 
 from ydsz_harness.slash.core import (
     BufferSink,

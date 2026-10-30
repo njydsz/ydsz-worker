@@ -1,4 +1,4 @@
-﻿"""The `ydsz-harness init` command — workspace initialization.
+"""The `ydsz-harness init` command — workspace initialization.
 
 By default ``ydsz-harness init`` lays down a **global** Harness home
 under ``~/.ydsz-harness/``:

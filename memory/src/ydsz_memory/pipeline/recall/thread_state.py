@@ -1,4 +1,4 @@
-﻿"""Thread active-entity stack helpers (D41a-D + D41b-B).
+"""Thread active-entity stack helpers (D41a-D + D41b-B).
 
 Sits one level above the backend's ``upsert_active_entity`` /
 ``list_active_entities`` so the recall pipeline can push entities

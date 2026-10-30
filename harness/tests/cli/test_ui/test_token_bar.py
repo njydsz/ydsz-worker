@@ -1,4 +1,4 @@
-﻿"""Unit tests for ui/token_bar.py."""
+"""Unit tests for ui/token_bar.py."""
 
 from __future__ import annotations
 

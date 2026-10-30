@@ -1,4 +1,4 @@
-﻿"""Package version — single source of truth is ``pyproject.toml`` ``[project].version``.
+"""Package version — single source of truth is ``pyproject.toml`` ``[project].version``.
 
 Resolved at runtime from the installed distribution metadata so callers never
 need to keep a second hardcoded copy in sync.

@@ -1,4 +1,4 @@
-﻿"""Registry: pick the right web-search tools based on env vars / config.
+"""Registry: pick the right web-search tools based on env vars / config.
 
 Each provider declares a *required env-var tuple*. A provider is
 considered "available" iff every variable in its tuple is non-empty.

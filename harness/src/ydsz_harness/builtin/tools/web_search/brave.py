@@ -1,4 +1,4 @@
-﻿"""Brave Search tool. Requires ``BRAVE_API_KEY``.
+"""Brave Search tool. Requires ``BRAVE_API_KEY``.
 
 Brave runs an independent index and is privacy-friendly. The
 ``langchain-community`` integration only exposes a synchronous client,

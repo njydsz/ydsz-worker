@@ -1,4 +1,4 @@
-﻿"""Tests for FilesystemGuardMiddleware (execution-backend path policy)."""
+"""Tests for FilesystemGuardMiddleware (execution-backend path policy)."""
 
 from __future__ import annotations
 

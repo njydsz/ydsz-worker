@@ -1,4 +1,4 @@
-﻿"""Tavily AI search tool. Requires ``TAVILY_API_KEY``.
+"""Tavily AI search tool. Requires ``TAVILY_API_KEY``.
 
 Tavily is an AI-tuned search API that bundles result reranking and an
 optional one-shot synthesised answer. The ``langchain-tavily`` package

@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``consolidate`` subcommand (intra-entity semantic dedup).
+"""Memory CLI: ``consolidate`` subcommand (intra-entity semantic dedup).
 
 Sibling of ``gc``: a bounded, dry-run-able lifecycle pass that scans each
 entity's live atoms and deprecates paraphrase duplicates (keeping the

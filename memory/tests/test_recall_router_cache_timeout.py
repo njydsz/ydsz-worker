@@ -1,4 +1,4 @@
-﻿"""Tests for the recall router (M4.3) + cache + timeout."""
+"""Tests for the recall router (M4.3) + cache + timeout."""
 
 from __future__ import annotations
 

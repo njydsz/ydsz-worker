@@ -1,4 +1,4 @@
-﻿"""Record, replay, and skill generation for ydsz-browser."""
+"""Record, replay, and skill generation for ydsz-browser."""
 
 from ydsz_browser.record.models import (
     PrivacySettings,

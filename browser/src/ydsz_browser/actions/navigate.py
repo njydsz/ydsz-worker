@@ -1,4 +1,4 @@
-﻿"""Navigation actions: navigate, go_back, go_forward, reload."""
+"""Navigation actions: navigate, go_back, go_forward, reload."""
 
 from __future__ import annotations
 

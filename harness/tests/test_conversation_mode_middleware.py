@@ -1,4 +1,4 @@
-﻿"""Tests for turn-scoped Ask / Plan / Craft conversation mode."""
+"""Tests for turn-scoped Ask / Plan / Craft conversation mode."""
 
 from __future__ import annotations
 

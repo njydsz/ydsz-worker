@@ -1,4 +1,4 @@
-﻿"""High-level ACP service for delegated external agent sessions."""
+"""High-level ACP service for delegated external agent sessions."""
 
 from __future__ import annotations
 

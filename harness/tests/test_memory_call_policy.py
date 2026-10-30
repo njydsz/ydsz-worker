@@ -1,4 +1,4 @@
-﻿"""Memory request policy against real SDK serialization, without network."""
+"""Memory request policy against real SDK serialization, without network."""
 
 from __future__ import annotations
 

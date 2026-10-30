@@ -1,4 +1,4 @@
-﻿"""Plugin registration context passed to ``setup()``."""
+"""Plugin registration context passed to ``setup()``."""
 
 from __future__ import annotations
 

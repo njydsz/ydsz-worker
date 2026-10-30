@@ -122,6 +122,17 @@ class CapabilitiesConfig:
 
 
 @dataclass(frozen=True)
+class KnowledgeConfig:
+    """Knowledge base indexing backpressure settings."""
+
+    # Max parallel docs being parsed / embedded concurrently.
+    # Higher = more memory + CPU; lower = slower multi-doc uploads.
+    index_concurrency: int = 2
+    # Abort a single doc index job after this many seconds (OCR can hang).
+    index_timeout_seconds: int = 300
+
+
+@dataclass(frozen=True)
 class YdszConfig:
     bind_host: str = "127.0.0.1"
     port: int = 8088
@@ -142,6 +153,7 @@ class YdszConfig:
     tls: TlsConfig = field(default_factory=TlsConfig)
     backup: BackupConfig = field(default_factory=BackupConfig)
     capabilities: CapabilitiesConfig = field(default_factory=CapabilitiesConfig)
+    knowledge: KnowledgeConfig = field(default_factory=KnowledgeConfig)
     max_upload_mb: int = DEFAULT_MAX_UPLOAD_MB
     browser_idle_timeout_minutes: int = DEFAULT_BROWSER_IDLE_TIMEOUT_MINUTES
 
@@ -208,6 +220,28 @@ def _parse_capabilities_section(raw: object) -> CapabilitiesConfig:
         raise ValueError("config.capabilities must be an object")
     mobile_raw = raw.get("mobile")
     return CapabilitiesConfig(mobile=_parse_mobile_capabilities(mobile_raw))
+
+
+def _parse_knowledge_section(raw: object) -> KnowledgeConfig:
+    """Parse config.json ``knowledge`` section into a KnowledgeConfig."""
+    if raw is None:
+        return KnowledgeConfig()
+    if not isinstance(raw, dict):
+        raise ValueError("config.knowledge must be an object")
+    defaults = KnowledgeConfig()
+    concurrency = int(raw.get("index_concurrency", defaults.index_concurrency))
+    if concurrency < 1:
+        logger.warning(
+            "config.knowledge.index_concurrency < 1; using %s", defaults.index_concurrency
+        )
+        concurrency = defaults.index_concurrency
+    timeout = int(raw.get("index_timeout_seconds", defaults.index_timeout_seconds))
+    if timeout < 5:
+        logger.warning(
+            "config.knowledge.index_timeout_seconds < 5; using %s", defaults.index_timeout_seconds
+        )
+        timeout = defaults.index_timeout_seconds
+    return KnowledgeConfig(index_concurrency=concurrency, index_timeout_seconds=timeout)
 
 
 def _parse_backup_section(raw: object) -> BackupConfig:
@@ -601,6 +635,8 @@ def load_config(path: Path) -> YdszConfig:
             include_chats=_coerce_bool("YDSZ_BACKUP_INCLUDE_CHATS", v, backup.include_chats),
         )
 
+    knowledge = _parse_knowledge_section(raw.get("knowledge"))
+
     return YdszConfig(
         bind_host=merged["bind_host"],
         port=int(merged["port"]),
@@ -624,6 +660,7 @@ def load_config(path: Path) -> YdszConfig:
         tls=_parse_tls_section(raw.get("tls")),
         backup=backup,
         capabilities=capabilities,
+        knowledge=knowledge,
         max_upload_mb=int(merged.get("max_upload_mb", DEFAULT_MAX_UPLOAD_MB)),
         browser_idle_timeout_minutes=max(
             0,

@@ -1,4 +1,4 @@
-﻿"""Slash command registry and dispatch for the REPL."""
+"""Slash command registry and dispatch for the REPL."""
 
 from __future__ import annotations
 

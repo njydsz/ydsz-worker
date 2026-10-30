@@ -1,4 +1,4 @@
-﻿"""MCPProtocol — MCP Sampling format adapter."""
+"""MCPProtocol — MCP Sampling format adapter."""
 
 from __future__ import annotations
 

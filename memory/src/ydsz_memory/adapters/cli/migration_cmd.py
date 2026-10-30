@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``export`` / ``import`` / ``migrate`` / ``backfill`` (M5.9).
+"""Memory CLI: ``export`` / ``import`` / ``migrate`` / ``backfill`` (M5.9).
 
 All four belong to the migration / data-management family and share a
 single click group ``migration_cmd`` exposed at top level so users

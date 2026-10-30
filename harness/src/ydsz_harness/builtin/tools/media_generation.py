@@ -1,4 +1,4 @@
-﻿"""Built-in ``generate_image`` and ``generate_video`` tools."""
+"""Built-in ``generate_image`` and ``generate_video`` tools."""
 
 from __future__ import annotations
 

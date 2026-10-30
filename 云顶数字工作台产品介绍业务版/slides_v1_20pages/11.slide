@@ -1,0 +1,79 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            场景三｜知识管理与新人赋能：经验不再锁在个人电脑里
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 对比式 */}
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'stretch' }}>
+            {/* 左：现在 */}
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#64748B', lineHeight: 1.3 }}>现在的样子</Text>
+                <Box style={{ height: 1, background: '#E2E8F0', marginTop: 14 }} />
+                <Box style={{ marginTop: 12, gap: 12 }}>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>新人上手全靠问老同事，带教占用大量人力，遇到复杂问题还要等专家有空</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>文档散落在个人电脑、聊天记录和邮箱里，要用的时候找不到、找不全</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>同一件事不同人说法不一样，对外口径难统一，出了问题也难追溯来源</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>老员工一离职，客户关系、业务经验、历史结论跟着走，接的人两眼一抹黑</Text>
+                    </Box>
+                </Box>
+            </Box>
+
+            {/* 中缝 VS */}
+            <Box style={{ width: 64, justifyContent: 'center', alignItems: 'center' }}>
+                <Box style={{ width: 1, height: 130, background: '#E2E8F0' }} />
+                <Box style={{ width: 44, height: 44, borderRadius: 22, background: '#F59E0B', justifyContent: 'center', alignItems: 'center', marginTop: -22 }}>
+                    <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>VS</Text>
+                </Box>
+                <Box style={{ width: 1, height: 130, background: '#E2E8F0', marginTop: -22 }} />
+            </Box>
+
+            {/* 右：用起来之后 */}
+            <Box style={{ flex: 1, background: '#E8EEFB', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>用起来之后</Text>
+                <Box style={{ height: 1, background: '#C7D6F5', marginTop: 14 }} />
+                <Box style={{ marginTop: 12, gap: 12 }}>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>新人随时提问随时有答案，每个答案都带出处，可以点开原文核对，不怕答错</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>公司文档统一沉淀进知识库，按角色权限取用，找资料不再靠运气和人脉</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>同一份受控文档支撑所有回答，全公司口径一致，出了争议有据可查</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>关键结论与历史脉络由记忆留住，人员变动不影响业务连续性，交接更稳</Text>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 56, background: '#FFF7E9', borderRadius: 10, padding: 14, marginTop: 10, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#7C2D12', lineHeight: 1.4 }}>
+                知识管理的价值要到「新人也能答得像老人」那一天才算兑现——问答、出处、记忆三件事缺一不可。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

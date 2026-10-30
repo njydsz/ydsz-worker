@@ -1,4 +1,4 @@
-﻿"""Backward-compatible client tool-search imports."""
+"""Backward-compatible client tool-search imports."""
 
 from ydsz_harness.middleware.tool_search import (
     ClientToolSearchState,

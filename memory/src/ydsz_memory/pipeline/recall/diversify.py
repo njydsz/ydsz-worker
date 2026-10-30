@@ -1,4 +1,4 @@
-﻿"""Diversifier — cap snippets per entity (M4.6).
+"""Diversifier — cap snippets per entity (M4.6).
 
 Stops one prolific entity from monopolising the prompt budget: if
 recall hits 8 atoms about ``Hermes`` and 1 about ``OpenClaw``, we

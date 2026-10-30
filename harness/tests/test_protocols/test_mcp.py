@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.protocols.mcp.MCPProtocol``."""
+"""Tests for ``ydsz_harness.protocols.mcp.MCPProtocol``."""
 
 from __future__ import annotations
 

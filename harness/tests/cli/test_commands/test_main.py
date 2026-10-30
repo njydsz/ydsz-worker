@@ -1,4 +1,4 @@
-﻿"""Tests for the main CLI entry point."""
+"""Tests for the main CLI entry point."""
 
 from click.testing import CliRunner
 

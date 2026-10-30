@@ -1,4 +1,4 @@
-﻿"""MCP Server: expose browser_tool actions as MCP tools."""
+"""MCP Server: expose browser_tool actions as MCP tools."""
 
 from __future__ import annotations
 

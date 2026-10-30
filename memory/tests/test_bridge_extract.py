@@ -1,4 +1,4 @@
-﻿"""Tests for the bridge ``extract`` / ``promote`` RPC methods.
+"""Tests for the bridge ``extract`` / ``promote`` RPC methods.
 
 These drive ``Bridge.handle`` directly (no subprocess) with a tier-aware
 LLM stub: ``light`` calls get extractor JSON, ``heavy`` calls get page

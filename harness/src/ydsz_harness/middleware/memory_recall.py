@@ -1,4 +1,4 @@
-﻿"""Durable, per-message recall snapshots; clean transcript and stable API replay.
+"""Durable, per-message recall snapshots; clean transcript and stable API replay.
 
 Only the immutable suffix and a fingerprint of the original content are stored.
 This reconstructs the same model-facing content without duplicating attachments

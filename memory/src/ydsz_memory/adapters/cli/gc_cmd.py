@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``gc`` subcommand (M5.6, D47-C cron + manual)."""
+"""Memory CLI: ``gc`` subcommand (M5.6, D47-C cron + manual)."""
 
 from __future__ import annotations
 

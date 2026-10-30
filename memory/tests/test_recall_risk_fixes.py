@@ -1,4 +1,4 @@
-﻿"""Tests: RISK-007 recall source warning + RISK-011 page_headline gather."""
+"""Tests: RISK-007 recall source warning + RISK-011 page_headline gather."""
 
 from __future__ import annotations
 

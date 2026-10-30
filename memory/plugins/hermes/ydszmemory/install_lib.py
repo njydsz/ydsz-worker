@@ -1,4 +1,4 @@
-﻿"""Install/activate helpers for the standalone Hermes MemoryProvider installer.
+"""Install/activate helpers for the standalone Hermes MemoryProvider installer.
 
 Backs ``installer.py``'s ``install``/``doctor`` commands. Kept ``click``-free
 (framework concerns stay in the CLI layer) and stdlib-only, so it introduces

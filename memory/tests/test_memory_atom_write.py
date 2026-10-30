@@ -1,4 +1,4 @@
-﻿"""Manual create_atom / replace_atom — dashboard write path."""
+"""Manual create_atom / replace_atom — dashboard write path."""
 
 from __future__ import annotations
 

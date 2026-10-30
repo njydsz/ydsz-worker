@@ -1,4 +1,4 @@
-﻿"""Tests for provider-neutral media tools and the Volcengine adapter."""
+"""Tests for provider-neutral media tools and the Volcengine adapter."""
 
 from __future__ import annotations
 

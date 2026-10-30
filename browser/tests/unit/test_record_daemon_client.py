@@ -1,4 +1,4 @@
-﻿"""Tests for the record daemon client helpers."""
+"""Tests for the record daemon client helpers."""
 
 from __future__ import annotations
 

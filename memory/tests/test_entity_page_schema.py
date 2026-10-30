@@ -1,4 +1,4 @@
-﻿"""Tests for M3 EntityPage schema (SQLite backend)."""
+"""Tests for M3 EntityPage schema (SQLite backend)."""
 
 from __future__ import annotations
 

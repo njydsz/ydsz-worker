@@ -1,4 +1,4 @@
-﻿"""In-memory agent registry: :class:`AgentEntry` + storage CRUD."""
+"""In-memory agent registry: :class:`AgentEntry` + storage CRUD."""
 
 from __future__ import annotations
 

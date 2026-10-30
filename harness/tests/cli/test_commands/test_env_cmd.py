@@ -1,4 +1,4 @@
-﻿"""Tests for REPL /env command."""
+"""Tests for REPL /env command."""
 
 from __future__ import annotations
 

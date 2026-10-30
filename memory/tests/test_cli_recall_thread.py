@@ -1,4 +1,4 @@
-﻿"""Smoke tests for ``memory recall`` + ``memory thread show`` CLI (M4)."""
+"""Smoke tests for ``memory recall`` + ``memory thread show`` CLI (M4)."""
 
 from __future__ import annotations
 

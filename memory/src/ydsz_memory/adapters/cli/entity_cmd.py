@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``entity`` subcommand group for L3 entity anchors.
+"""Memory CLI: ``entity`` subcommand group for L3 entity anchors.
 
 Inspection only — entities are auto-created by the promotion worker
 during candidate.subject resolution. Long-form summaries live in the

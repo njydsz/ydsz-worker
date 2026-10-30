@@ -1,4 +1,4 @@
-﻿"""Alibaba Cloud OSS backend (uses the official ``oss2`` SDK).
+"""Alibaba Cloud OSS backend (uses the official ``oss2`` SDK).
 
 Inherits all ``BackendProtocol`` methods from
 :class:`~ydsz_harness.backends.cloud_storage_base.CloudStorageBackend`;

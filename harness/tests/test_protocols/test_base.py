@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.protocols.base.ChatProtocol`` ABC."""
+"""Tests for ``ydsz_harness.protocols.base.ChatProtocol`` ABC."""
 
 from __future__ import annotations
 

@@ -1,0 +1,69 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>04 · 怎么开始</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            路线图：已经做到的、正在做的、打算做的
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ marginTop: 20, gap: 14 }}>
+            <Box style={{ height: 96, flexDirection: 'row', background: '#E8EEFB', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 170, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>已完成</Text>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.3, marginTop: 2 }}>已可交付</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        资源共享池、专家共享、桌面客户端、IM 全平台通道——这四项可以当场演示、直接用起来。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 96, flexDirection: 'row', background: '#D6E4F9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 170, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E293B' }}>进行中</Text>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.3, marginTop: 2 }}>可用，仍在打磨</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        多智能体团队编排（Beta）、移动端客户端（内测）——想用可以先用，但按「打磨中」预期管理。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 96, flexDirection: 'row', background: '#FFF7E9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 170, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#B45309' }}>规划中</Text>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.3, marginTop: 2 }}>方向明确，不承诺时间</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        自进化能力、企业知识大脑、插件市场、对话式控制面——评估时请以「已完成」与「进行中」的实测为准。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ flexDirection: 'row', marginTop: 16, gap: 16 }}>
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    版本节奏：产品持续更新，升级前可一键备份，配置与数据平滑延续。
+                </Text>
+            </Box>
+            <Box style={{ width: 1, background: '#E2E8F0' }} />
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    开源托管：代码公开可审计，企业可自行二次开发，不被单一厂商绑定。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 52, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 10, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                成熟度的判断依据不是路线图有多长，而是「已完成」那一栏能当场演示多少。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

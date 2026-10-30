@@ -1,4 +1,4 @@
-﻿"""Tests for agent-fetch SSRF guard and web_fetch private-target blocking."""
+"""Tests for agent-fetch SSRF guard and web_fetch private-target blocking."""
 
 from __future__ import annotations
 

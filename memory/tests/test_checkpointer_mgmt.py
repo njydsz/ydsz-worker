@@ -1,4 +1,4 @@
-﻿"""Tests for Memory checkpointer management API."""
+"""Tests for Memory checkpointer management API."""
 
 from __future__ import annotations
 

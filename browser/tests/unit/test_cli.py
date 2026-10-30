@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_browser.cli — action dispatch + output formatting."""
+"""Tests for ydsz_browser.cli — action dispatch + output formatting."""
 
 from __future__ import annotations
 

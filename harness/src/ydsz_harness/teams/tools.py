@@ -1,4 +1,4 @@
-﻿"""Peer tools: ``agent_list`` and ``ask_agent`` bound to a :class:`~ydsz_harness.teams.team_manager.TeamManager`.
+"""Peer tools: ``agent_list`` and ``ask_agent`` bound to a :class:`~ydsz_harness.teams.team_manager.TeamManager`.
 
 Mounted by :class:`~ydsz_harness.middleware.peer.PeerAgentMiddleware` when
 ``HarnessAgentConfig.team_enabled`` is True and the agent is created through

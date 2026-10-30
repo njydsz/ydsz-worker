@@ -1,4 +1,4 @@
-﻿"""Configuration file discovery, loading, and merging."""
+"""Configuration file discovery, loading, and merging."""
 
 from __future__ import annotations
 

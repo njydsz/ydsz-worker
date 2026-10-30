@@ -1,4 +1,4 @@
-﻿"""LLM client abstraction for candidate extraction & promotion escalation.
+"""LLM client abstraction for candidate extraction & promotion escalation.
 
 Design (D25):
 - **Production path**: 100% host LLM via the ``LLMClient`` protocol. The

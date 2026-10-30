@@ -1,4 +1,4 @@
-﻿"""Tests for the prompt_toolkit bottom toolbar formatter."""
+"""Tests for the prompt_toolkit bottom toolbar formatter."""
 
 from ydsz_harness.cli.repl.state import SessionState
 from ydsz_harness.cli.ui.toolbar import format_toolbar

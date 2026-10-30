@@ -1,4 +1,4 @@
-﻿# tests/test_provider_api.py
+# tests/test_provider_api.py
 from __future__ import annotations
 
 from ydsz_harness.providers import ModelPreset, ProviderPreset, serialize_model_preset, serialize_provider_preset

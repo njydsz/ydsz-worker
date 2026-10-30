@@ -1,4 +1,4 @@
-﻿"""Tests for ContextUsageMiddleware turn-model cap."""
+"""Tests for ContextUsageMiddleware turn-model cap."""
 
 from __future__ import annotations
 

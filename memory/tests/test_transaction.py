@@ -1,4 +1,4 @@
-﻿"""Tests: backend transaction atomicity — rollback leaves no partial rows (RISK-013)."""
+"""Tests: backend transaction atomicity — rollback leaves no partial rows (RISK-013)."""
 
 from __future__ import annotations
 

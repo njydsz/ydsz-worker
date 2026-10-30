@@ -1,4 +1,4 @@
-﻿"""ydszmemory Hermes MemoryProvider plugin.
+"""ydszmemory Hermes MemoryProvider plugin.
 
 This module is intentionally importable outside Hermes so the core
 provider behaviour can be tested in this repository. When loaded inside

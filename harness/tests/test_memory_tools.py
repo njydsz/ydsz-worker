@@ -1,4 +1,4 @@
-﻿"""Tests for MemoryService-backed LLM tool functions."""
+"""Tests for MemoryService-backed LLM tool functions."""
 
 from __future__ import annotations
 

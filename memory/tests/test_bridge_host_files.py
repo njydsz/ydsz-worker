@@ -1,4 +1,4 @@
-﻿"""Tests for the host-files watcher (D51-C real-file index)."""
+"""Tests for the host-files watcher (D51-C real-file index)."""
 
 from __future__ import annotations
 

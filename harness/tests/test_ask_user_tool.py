@@ -1,4 +1,4 @@
-﻿"""Tests for the ``ask_user_question`` built-in tool and its HITL wiring."""
+"""Tests for the ``ask_user_question`` built-in tool and its HITL wiring."""
 
 from __future__ import annotations
 

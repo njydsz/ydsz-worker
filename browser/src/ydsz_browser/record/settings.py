@@ -1,4 +1,4 @@
-﻿"""Settings for record/replay."""
+"""Settings for record/replay."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Backward-compat re-export — prefer ``from ydsz_harness.slash import ...``."""
+"""Backward-compat re-export — prefer ``from ydsz_harness.slash import ...``."""
 
 from ydsz_harness.slash.core import (
     RuntimeSlashDispatcher,

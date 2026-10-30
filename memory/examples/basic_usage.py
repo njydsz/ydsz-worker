@@ -1,4 +1,4 @@
-﻿"""Store facts, build a tree and recall prompt context using the public API.
+"""Store facts, build a tree and recall prompt context using the public API.
 
 Run from a development checkout: uv run python examples/basic_usage.py
 All data is synthetic and the temporary database is removed on exit.

@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``page`` subcommand group for L3 entity pages (M3).
+"""Memory CLI: ``page`` subcommand group for L3 entity pages (M3).
 
 Subcommands:
 

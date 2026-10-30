@@ -1,4 +1,4 @@
-﻿"""Smoke tests for ``memory atom / entity / journal`` read-only CLI subcommands
+"""Smoke tests for ``memory atom / entity / journal`` read-only CLI subcommands
 plus the interactive ``memory candidate review`` queue.
 """
 

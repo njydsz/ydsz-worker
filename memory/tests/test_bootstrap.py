@@ -1,4 +1,4 @@
-﻿"""Tests for maybe_bootstrap_incremental (ADR-027 P2)."""
+"""Tests for maybe_bootstrap_incremental (ADR-027 P2)."""
 
 from __future__ import annotations
 

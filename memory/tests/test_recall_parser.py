@@ -1,4 +1,4 @@
-﻿"""Tests for the recall query parser (M4.1)."""
+"""Tests for the recall query parser (M4.1)."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""M2.8 fallback rules — keep the review queue from rotting.
+"""M2.8 fallback rules — keep the review queue from rotting.
 
 Two scheduled tasks the user can run via ``memory candidate fallback``:
 

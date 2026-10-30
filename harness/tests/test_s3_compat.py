@@ -1,4 +1,4 @@
-﻿"""S3-compatible client settings and ListObjects fallback."""
+"""S3-compatible client settings and ListObjects fallback."""
 
 from __future__ import annotations
 

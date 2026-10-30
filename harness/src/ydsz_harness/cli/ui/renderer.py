@@ -1,4 +1,4 @@
-﻿"""Rich Markdown streaming renderer for agent responses."""
+"""Rich Markdown streaming renderer for agent responses."""
 
 from __future__ import annotations
 

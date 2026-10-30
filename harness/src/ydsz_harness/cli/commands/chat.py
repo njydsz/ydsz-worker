@@ -1,4 +1,4 @@
-﻿"""The `ydsz-harness chat` command — launches the REPL."""
+"""The `ydsz-harness chat` command — launches the REPL."""
 
 from __future__ import annotations
 

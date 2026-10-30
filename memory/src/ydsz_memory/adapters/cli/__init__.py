@@ -1,4 +1,4 @@
-﻿"""CLI entry point for ydsz-memory."""
+"""CLI entry point for ydsz-memory."""
 
 from __future__ import annotations
 

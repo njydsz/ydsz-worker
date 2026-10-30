@@ -1,4 +1,4 @@
-﻿"""Unit tests for ui/completer.py."""
+"""Unit tests for ui/completer.py."""
 
 from __future__ import annotations
 

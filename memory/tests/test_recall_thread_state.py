@@ -1,4 +1,4 @@
-﻿"""Tests for thread active-entity stack (M4.2, D41a + D41b)."""
+"""Tests for thread active-entity stack (M4.2, D41a + D41b)."""
 
 from __future__ import annotations
 

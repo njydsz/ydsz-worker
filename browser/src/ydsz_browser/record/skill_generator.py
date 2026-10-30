@@ -1,4 +1,4 @@
-﻿"""Generate Codex/Claude-style SKILL.md files from steps."""
+"""Generate Codex/Claude-style SKILL.md files from steps."""
 
 from __future__ import annotations
 

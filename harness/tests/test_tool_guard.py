@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.security.tool_guard."""
+"""Tests for ydsz_harness.security.tool_guard."""
 
 from __future__ import annotations
 

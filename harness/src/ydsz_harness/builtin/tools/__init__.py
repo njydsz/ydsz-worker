@@ -1,4 +1,4 @@
-﻿"""Built-in tools provided by ydsz-harness."""
+"""Built-in tools provided by ydsz-harness."""
 
 from __future__ import annotations
 

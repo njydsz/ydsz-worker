@@ -1,0 +1,69 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            部门深挖｜财务与法务：口径统一、依据可查
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 28 }}>
+            {/* 左：典型工作 */}
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#64748B', lineHeight: 1.3 }}>典型工作</Text>
+                <Box style={{ height: 1, background: '#E2E8F0', marginTop: 12 }} />
+                <Box style={{ marginTop: 12, gap: 12 }}>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>制度条款查询：差旅标准、报销口径、审批流程</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>合同要点梳理：关键条款、期限、违约与付款条件</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>法规与案例检索：监管口径、过往判例、内部指引</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>重复答疑：业务部门每天来问的「这个能不能报」</Text>
+                    </Box>
+                </Box>
+            </Box>
+
+            {/* 右：它能做的 */}
+            <Box style={{ flex: 1, background: '#E8EEFB', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>它能做的</Text>
+                <Box style={{ height: 1, background: '#C7D6F5', marginTop: 12 }} />
+                <Box style={{ marginTop: 12, gap: 12 }}>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>秒查制度条款，答案附原文出处，口径全公司统一</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>合同关键条款提示与风险点初筛，辅助人工判断</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>法规检索整理成要点，引用可回溯到原文</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>高频问题沉淀成标准答复，重复答疑量直接下降</Text>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条（含边界说明） */}
+        <Box style={{ height: 58, background: '#FFF7E9', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#7C2D12', lineHeight: 1.4 }}>
+                定位是「辅助专业判断」，不是替代专业意见——查得到、说得清出处，财务法务才敢让它进场。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

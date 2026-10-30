@@ -1,4 +1,4 @@
-﻿"""Runtime wiring for the structured ``ydsz-memory`` integration.
+"""Runtime wiring for the structured ``ydsz-memory`` integration.
 
 ``HarnessAgent`` has several memory touchpoints: tools, middleware,
 checkpointer reuse, and session-end extraction. This module keeps those

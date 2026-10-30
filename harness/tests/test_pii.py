@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.middleware.pii``."""
+"""Tests for ``ydsz_harness.middleware.pii``."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Serialize provider presets for HTTP dashboards and other consumers."""
+"""Serialize provider presets for HTTP dashboards and other consumers."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""``--dry-run`` preview rendering (5.4, D49-C).
+"""``--dry-run`` preview rendering (5.4, D49-C).
 
 Two output formats:
 

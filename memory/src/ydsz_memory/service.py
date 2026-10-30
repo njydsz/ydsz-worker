@@ -1,4 +1,4 @@
-﻿"""MemoryService — the transport-neutral facade for in-process hosts.
+"""MemoryService — the transport-neutral facade for in-process hosts.
 
 In-process Python hosts (e.g. ydsz-harness, Hermes) talk to memory through
 this facade instead of building JSON-RPC envelopes for the bridge adapter.

@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz-memory openclaw`` setup / doctor / uninstall."""
+"""Tests for ``ydsz-memory openclaw`` setup / doctor / uninstall."""
 
 from __future__ import annotations
 

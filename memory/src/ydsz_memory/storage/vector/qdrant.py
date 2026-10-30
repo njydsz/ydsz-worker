@@ -1,4 +1,4 @@
-﻿"""Qdrant vector index implementation.
+"""Qdrant vector index implementation.
 
 Dependency: qdrant-client >= 1.7
 Install: pip install 'ydsz-memory[qdrant]'

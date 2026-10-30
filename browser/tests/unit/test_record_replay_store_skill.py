@@ -1,4 +1,4 @@
-﻿from ydsz_browser.record.models import (
+from ydsz_browser.record.models import (
     RecordingManifest,
     SemanticStep,
     StepsDocument,

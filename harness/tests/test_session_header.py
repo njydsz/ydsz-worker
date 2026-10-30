@@ -1,4 +1,4 @@
-﻿"""Tests for per-invocation session-header injection."""
+"""Tests for per-invocation session-header injection."""
 
 from __future__ import annotations
 

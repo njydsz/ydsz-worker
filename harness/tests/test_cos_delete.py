@@ -1,4 +1,4 @@
-﻿"""Tests for :class:`~ydsz_harness.backends.cos.CosBackend` delete helpers."""
+"""Tests for :class:`~ydsz_harness.backends.cos.CosBackend` delete helpers."""
 
 from __future__ import annotations
 

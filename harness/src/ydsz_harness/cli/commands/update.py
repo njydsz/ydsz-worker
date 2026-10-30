@@ -1,4 +1,4 @@
-﻿"""The `ydsz-harness update` command — self-upgrade the CLI."""
+"""The `ydsz-harness update` command — self-upgrade the CLI."""
 
 from __future__ import annotations
 

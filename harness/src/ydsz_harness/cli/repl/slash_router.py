@@ -1,4 +1,4 @@
-﻿"""REPL slash routing — agent runtime commands + CLI host commands."""
+"""REPL slash routing — agent runtime commands + CLI host commands."""
 
 from __future__ import annotations
 

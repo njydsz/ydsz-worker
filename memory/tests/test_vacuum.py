@@ -1,4 +1,4 @@
-﻿"""Tests for pipeline.lifecycle.vacuum (RISK-026 / ADR-025).
+"""Tests for pipeline.lifecycle.vacuum (RISK-026 / ADR-025).
 
 SQLite tests always run. Postgres tests follow the same skip pattern as
 test_postgres.py: skipped when psycopg isn't installed or the database

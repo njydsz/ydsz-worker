@@ -1,4 +1,4 @@
-﻿"""JavaScript evaluation action."""
+"""JavaScript evaluation action."""
 
 from __future__ import annotations
 

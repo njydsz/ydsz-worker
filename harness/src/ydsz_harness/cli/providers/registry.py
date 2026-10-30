@@ -1,4 +1,4 @@
-﻿"""Provider preset registry — re-exports core types from ydsz_harness.providers."""
+"""Provider preset registry — re-exports core types from ydsz_harness.providers."""
 
 from __future__ import annotations
 

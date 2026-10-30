@@ -1,4 +1,4 @@
-﻿"""Periodic intra-entity semantic dedup (Entity Consolidation).
+"""Periodic intra-entity semantic dedup (Entity Consolidation).
 
 Promotion-time dedup (``pipeline/promotion/checks.py::check_duplicate``) only
 catches **exact** signature matches (``normalize_alias`` whole-string

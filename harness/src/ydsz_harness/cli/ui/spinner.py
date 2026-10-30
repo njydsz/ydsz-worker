@@ -1,4 +1,4 @@
-﻿"""Thinking/waiting animation for the terminal."""
+"""Thinking/waiting animation for the terminal."""
 
 from __future__ import annotations
 

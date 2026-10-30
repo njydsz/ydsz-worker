@@ -1,4 +1,4 @@
-﻿"""prompt_toolkit based input handling for the REPL."""
+"""prompt_toolkit based input handling for the REPL."""
 
 from __future__ import annotations
 

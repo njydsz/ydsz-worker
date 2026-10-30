@@ -1,4 +1,4 @@
-﻿"""Custom middleware shipped with ydsz-harness."""
+"""Custom middleware shipped with ydsz-harness."""
 
 from __future__ import annotations
 

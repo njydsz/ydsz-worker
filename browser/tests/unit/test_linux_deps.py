@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_browser.linux_deps (native Chromium OS libraries)."""
+"""Tests for ydsz_browser.linux_deps (native Chromium OS libraries)."""
 
 from __future__ import annotations
 

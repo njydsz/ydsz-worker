@@ -1,4 +1,4 @@
-﻿"""Custom completers for the REPL: slash commands + @file references."""
+"""Custom completers for the REPL: slash commands + @file references."""
 
 from __future__ import annotations
 

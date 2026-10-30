@@ -1,4 +1,4 @@
-﻿"""ThinkingRenderer — animated status line during reasoning, Claude Code style."""
+"""ThinkingRenderer — animated status line during reasoning, Claude Code style."""
 
 from __future__ import annotations
 

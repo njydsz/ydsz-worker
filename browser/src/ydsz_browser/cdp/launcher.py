@@ -1,4 +1,4 @@
-﻿"""Chrome process management: launch, attach, and discover."""
+"""Chrome process management: launch, attach, and discover."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""EntityPage regenerator — turn atoms into markdown summary.
+"""EntityPage regenerator — turn atoms into markdown summary.
 
 Implements the M3 D33-B / D36-A / D37-B contract:
 

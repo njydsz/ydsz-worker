@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 
 from ydsz_browser.hooks import HooksMixin
 from ydsz_browser.models import ActionMetrics

@@ -1,4 +1,4 @@
-﻿"""PromotionWorker — turns L1 Candidates into L2 AtomCards (design §8.3).
+"""PromotionWorker — turns L1 Candidates into L2 AtomCards (design §8.3).
 
 Synchronous by design (D29): CLI and host bridge callers block until
 the whole batch is decided.

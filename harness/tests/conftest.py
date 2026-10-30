@@ -1,4 +1,4 @@
-﻿"""Shared pytest fixtures for ydsz_harness tests."""
+"""Shared pytest fixtures for ydsz_harness tests."""
 
 from __future__ import annotations
 

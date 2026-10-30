@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.builtin.tools.web_search``."""
+"""Tests for ``ydsz_harness.builtin.tools.web_search``."""
 
 from __future__ import annotations
 

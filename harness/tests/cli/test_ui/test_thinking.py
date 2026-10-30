@@ -1,4 +1,4 @@
-﻿"""Tests for ThinkingRenderer."""
+"""Tests for ThinkingRenderer."""
 
 from io import StringIO
 

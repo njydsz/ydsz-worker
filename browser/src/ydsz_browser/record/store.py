@@ -1,4 +1,4 @@
-﻿"""Persistent recording store."""
+"""Persistent recording store."""
 
 from __future__ import annotations
 

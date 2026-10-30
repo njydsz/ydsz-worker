@@ -1,4 +1,4 @@
-﻿"""Integration tests: real Chrome headless + CDP."""
+"""Integration tests: real Chrome headless + CDP."""
 
 from pathlib import Path
 

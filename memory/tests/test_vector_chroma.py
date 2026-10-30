@@ -1,4 +1,4 @@
-﻿"""ChromaVectorIndex integration tests (no real chromadb dependency, uses a mock).
+"""ChromaVectorIndex integration tests (no real chromadb dependency, uses a mock).
 
 Test coverage:
 1. VectorIndex Protocol compliance

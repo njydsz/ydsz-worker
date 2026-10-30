@@ -1,4 +1,4 @@
-﻿"""Tests for SessionState."""
+"""Tests for SessionState."""
 
 from ydsz_harness.cli.repl.state import SessionState
 

@@ -1,4 +1,4 @@
-﻿"""ModelAccess — protocol-aware access to a bound chat model."""
+"""ModelAccess — protocol-aware access to a bound chat model."""
 
 from __future__ import annotations
 

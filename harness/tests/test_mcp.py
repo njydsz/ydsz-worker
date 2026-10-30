@@ -1,4 +1,4 @@
-﻿"""Tests for MCP helpers and middleware."""
+"""Tests for MCP helpers and middleware."""
 
 from __future__ import annotations
 

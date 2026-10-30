@@ -1,4 +1,4 @@
-﻿"""OpenAIProtocol — ChatCompletion format adapter."""
+"""OpenAIProtocol — ChatCompletion format adapter."""
 
 from __future__ import annotations
 

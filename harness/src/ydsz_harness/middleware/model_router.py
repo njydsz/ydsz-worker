@@ -1,4 +1,4 @@
-﻿"""``ModelRouterMiddleware`` — multimodal-aware model selection.
+"""``ModelRouterMiddleware`` — multimodal-aware model selection.
 
 Priority chain (per design doc §3.4), highest first:
     1. ``configurable["model"]`` (set either explicitly by callers or

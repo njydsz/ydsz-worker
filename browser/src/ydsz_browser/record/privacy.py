@@ -1,4 +1,4 @@
-﻿"""Privacy and redaction helpers for record/replay."""
+"""Privacy and redaction helpers for record/replay."""
 
 from __future__ import annotations
 

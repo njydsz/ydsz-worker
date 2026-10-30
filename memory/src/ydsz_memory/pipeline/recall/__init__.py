@@ -1,4 +1,4 @@
-﻿"""Recall path: query → atom (primary) + raw fallback → prompt-injectable text.
+"""Recall path: query → atom (primary) + raw fallback → prompt-injectable text.
 
 The L2 atom layer is the **primary** recall source, with raw events kept as a
 **fallback** for things that haven't been promoted yet. The output is a single

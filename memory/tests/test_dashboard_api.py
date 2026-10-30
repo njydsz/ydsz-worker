@@ -1,4 +1,4 @@
-﻿"""Unit tests for the dashboard FastAPI endpoints.
+"""Unit tests for the dashboard FastAPI endpoints.
 
 Uses an in-memory SQLite database to build test data, verifying the
 correctness of each API endpoint as well as namespace isolation

@@ -1,4 +1,4 @@
-﻿"""Tests for ``LLMClient`` Protocol + ``MockLLMClient`` + ``NoopLLMClient``."""
+"""Tests for ``LLMClient`` Protocol + ``MockLLMClient`` + ``NoopLLMClient``."""
 
 from __future__ import annotations
 

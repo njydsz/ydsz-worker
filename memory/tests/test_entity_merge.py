@@ -1,4 +1,4 @@
-﻿"""Tests for Memory.merge_entity and SqliteMemoryBackend.migrate_atoms_to_entity."""
+"""Tests for Memory.merge_entity and SqliteMemoryBackend.migrate_atoms_to_entity."""
 
 from __future__ import annotations
 

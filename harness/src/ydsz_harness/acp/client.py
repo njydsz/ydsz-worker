@@ -1,4 +1,4 @@
-﻿"""ACP client callback for delegated external agents."""
+"""ACP client callback for delegated external agents."""
 
 from __future__ import annotations
 

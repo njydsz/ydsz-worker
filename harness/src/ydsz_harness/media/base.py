@@ -1,4 +1,4 @@
-﻿"""Template-method base class for media generation providers."""
+"""Template-method base class for media generation providers."""
 
 from __future__ import annotations
 

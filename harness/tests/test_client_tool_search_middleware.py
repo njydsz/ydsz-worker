@@ -1,4 +1,4 @@
-﻿"""Tests for provider-agnostic progressive tool loading."""
+"""Tests for provider-agnostic progressive tool loading."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Tests for Memory integration into HarnessAgent."""
+"""Tests for Memory integration into HarnessAgent."""
 
 from __future__ import annotations
 

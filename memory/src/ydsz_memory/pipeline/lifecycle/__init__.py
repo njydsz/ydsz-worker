@@ -1,4 +1,4 @@
-﻿"""Lifecycle management — GC, consolidation, vacuum, idle maintenance."""
+"""Lifecycle management — GC, consolidation, vacuum, idle maintenance."""
 
 from ydsz_memory.pipeline.lifecycle.consolidate import (
     DEFAULT_JACCARD_PREFILTER,

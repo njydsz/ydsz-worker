@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.observability.logging``."""
+"""Tests for ``ydsz_harness.observability.logging``."""
 
 from __future__ import annotations
 

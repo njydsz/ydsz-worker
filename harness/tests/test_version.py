@@ -1,4 +1,4 @@
-﻿"""Tests for package version resolution."""
+"""Tests for package version resolution."""
 
 from __future__ import annotations
 

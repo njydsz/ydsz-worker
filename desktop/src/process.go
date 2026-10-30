@@ -219,7 +219,7 @@ func listenProbe(host string, port int) (bool, error) {
 		_ = ln.Close()
 		return false, nil
 	}
-	if errors.Is(err, syscall.EADDRINUSE) {
+	if errors.Is(err, syscall.EADDRINUSE) || errors.Is(err, errAddrInUse) {
 		return true, nil
 	}
 	return false, err

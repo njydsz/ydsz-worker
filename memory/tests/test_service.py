@@ -1,4 +1,4 @@
-﻿"""Tests for the MemoryService transport-neutral facade.
+"""Tests for the MemoryService transport-neutral facade.
 
 These drive the typed facade directly (no JSON-RPC envelopes), mirroring how an
 in-process host (ydsz-harness / Hermes) would use it.

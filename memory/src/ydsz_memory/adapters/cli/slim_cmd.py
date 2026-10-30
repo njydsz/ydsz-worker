@@ -1,4 +1,4 @@
-﻿"""Simple, lossless SQLite checkpoint maintenance with automatic backups."""
+"""Simple, lossless SQLite checkpoint maintenance with automatic backups."""
 
 from __future__ import annotations
 

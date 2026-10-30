@@ -1,4 +1,4 @@
-﻿"""Harness Agent CLI — terminal interface.
+"""Harness Agent CLI — terminal interface.
 
 Install with: pip install ydsz-harness[cli]
 """

@@ -1,4 +1,4 @@
-﻿"""Provider presets and setup wizard for the CLI."""
+"""Provider presets and setup wizard for the CLI."""
 
 from __future__ import annotations
 

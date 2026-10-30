@@ -1369,9 +1369,7 @@ async def refresh_instance_tools(
     if inst.user_id != user.id:
         raise YdszError(ErrorCode.FORBIDDEN, "not your connector instance")
     server.services.agent_registry.invalidate_mcp_tool_cache(inst.user_id)
-    logger.info(
-        "connector tools cache invalidated: instance=%s user=%s", instance_id, inst.user_id
-    )
+    logger.info("connector tools cache invalidated: instance=%s user=%s", instance_id, inst.user_id)
     return {"ok": True, "invalidated": True}
 
 

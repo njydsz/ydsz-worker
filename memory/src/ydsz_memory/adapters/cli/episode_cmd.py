@@ -1,4 +1,4 @@
-﻿"""CLI commands for Episodes (M5 user-diary layer) and Digests."""
+"""CLI commands for Episodes (M5 user-diary layer) and Digests."""
 
 from __future__ import annotations
 

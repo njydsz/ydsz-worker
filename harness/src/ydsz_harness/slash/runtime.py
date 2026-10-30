@@ -1,4 +1,4 @@
-﻿"""Runtime slash: context building, request parsing, and stream/call interception."""
+"""Runtime slash: context building, request parsing, and stream/call interception."""
 
 from __future__ import annotations
 

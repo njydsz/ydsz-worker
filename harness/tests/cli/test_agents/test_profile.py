@@ -1,4 +1,4 @@
-﻿"""Tests for AgentProfile."""
+"""Tests for AgentProfile."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""``MCPToolMiddleware`` — per-request MCP server tool filtering."""
+"""``MCPToolMiddleware`` — per-request MCP server tool filtering."""
 
 from __future__ import annotations
 

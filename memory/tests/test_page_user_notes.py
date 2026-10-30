@@ -1,4 +1,4 @@
-﻿"""Tests for ``## My Notes`` user-section preservation (D34-A)."""
+"""Tests for ``## My Notes`` user-section preservation (D34-A)."""
 
 from __future__ import annotations
 

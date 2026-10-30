@@ -1,4 +1,4 @@
-﻿"""Alibaba Cloud Model Studio adapters for Wan image and video models."""
+"""Alibaba Cloud Model Studio adapters for Wan image and video models."""
 
 from __future__ import annotations
 

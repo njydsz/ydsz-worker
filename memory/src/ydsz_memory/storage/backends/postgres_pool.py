@@ -1,4 +1,4 @@
-﻿"""Process-local PostgreSQL pools shared across namespaces.
+"""Process-local PostgreSQL pools shared across namespaces.
 
 Business SQL and LangGraph use separate session settings and budgets. A lease
 owns one reference, so closing an agent cannot close another agent's pool.

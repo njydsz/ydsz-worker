@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_memory.types."""
+"""Tests for ydsz_memory.types."""
 
 from __future__ import annotations
 

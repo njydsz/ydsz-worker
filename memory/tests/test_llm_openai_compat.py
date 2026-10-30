@@ -1,4 +1,4 @@
-﻿"""Tests for the production ``OpenAICompatClient``.
+"""Tests for the production ``OpenAICompatClient``.
 
 All network I/O is faked by monkeypatching ``request.urlopen`` in the
 client module — no sockets are opened.

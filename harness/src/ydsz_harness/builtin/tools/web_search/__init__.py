@@ -1,4 +1,4 @@
-﻿"""Optional web-search tools.
+"""Optional web-search tools.
 
 Each provider lives in its own module so the heavy / region-locked
 dependencies (``langchain-tavily``, ``langchain-community``,

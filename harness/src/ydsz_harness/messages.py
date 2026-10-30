@@ -1,4 +1,4 @@
-﻿"""Message parsing helpers for call results and OpenAI-style dict messages."""
+"""Message parsing helpers for call results and OpenAI-style dict messages."""
 
 from __future__ import annotations
 

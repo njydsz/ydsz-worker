@@ -1,4 +1,4 @@
-﻿"""Contract-fidelity tests for the Hermes MemoryProvider adapter.
+"""Contract-fidelity tests for the Hermes MemoryProvider adapter.
 
 These tests pin the *shape* of the Hermes integration so it cannot drift
 silently. The provider is normally exercised against a fallback stub base

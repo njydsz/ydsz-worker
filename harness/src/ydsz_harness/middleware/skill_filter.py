@@ -1,4 +1,4 @@
-﻿"""``SkillFilterMiddleware`` — agent-level disable + per-request skill filtering."""
+"""``SkillFilterMiddleware`` — agent-level disable + per-request skill filtering."""
 
 from __future__ import annotations
 

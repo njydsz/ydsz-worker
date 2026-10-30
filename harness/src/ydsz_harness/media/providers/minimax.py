@@ -1,4 +1,4 @@
-﻿"""MiniMax adapters for image-01 and H3 video generation."""
+"""MiniMax adapters for image-01 and H3 video generation."""
 
 from __future__ import annotations
 

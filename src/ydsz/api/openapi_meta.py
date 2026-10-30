@@ -132,6 +132,10 @@ OPENAPI_TAGS: list[dict[str, str]] = [
         "description": "Agent security policy: tool approval (HITL), command guard rules, filesystem rules, PII redaction.",
     },
     {"name": "admin", "description": "Server-wide admin operations (audit log, storage, usage)."},
+    {
+        "name": "market",
+        "description": "Unified marketplace — browse, search, and install Skills, Experts, Plugins, and Connectors.",
+    },
     {"name": "storage-backends", "description": "User-visible remote storage backend connections."},
     {
         "name": "filesystem",

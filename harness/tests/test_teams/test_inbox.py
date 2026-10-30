@@ -1,4 +1,4 @@
-﻿# tests/test_inbox.py
+# tests/test_inbox.py
 from __future__ import annotations
 
 import asyncio

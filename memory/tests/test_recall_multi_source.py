@@ -1,4 +1,4 @@
-﻿"""Tests for M2.9 multi-source recall (atom main + raw fallback)."""
+"""Tests for M2.9 multi-source recall (atom main + raw fallback)."""
 
 from __future__ import annotations
 

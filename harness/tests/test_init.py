@@ -1,4 +1,4 @@
-﻿"""Tests for ``HarnessAgent.init_workspace()`` and the template helpers."""
+"""Tests for ``HarnessAgent.init_workspace()`` and the template helpers."""
 
 from __future__ import annotations
 

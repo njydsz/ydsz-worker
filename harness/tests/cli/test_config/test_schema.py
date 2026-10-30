@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.cli.config.schema."""
+"""Tests for ydsz_harness.cli.config.schema."""
 
 from ydsz_harness.cli.config.schema import CliConfig
 

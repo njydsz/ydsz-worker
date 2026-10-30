@@ -1,0 +1,52 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            部门深挖｜市场与销售：素材与情报随手可得
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 16 }}>
+            <Box style={{ width: 440, background: '#2563EB', borderRadius: 12, padding: 20 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>典型工作</Text>
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.6, marginTop: 10 }}>
+                    方案初稿、竞品信息收集、客户背景整理、销售话术准备、活动文案、会议纪要跟进——多数时间花在「找料」和「起稿」上。
+                </Text>
+                <Box style={{ height: 1, background: '#3B82F6', marginTop: 14 }} />
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.6, marginTop: 12 }}>
+                    把准备时间从小时压到分钟，销售的时间应该花在客户身上，不是花在 PPT 上。
+                </Text>
+            </Box>
+            <Box style={{ flex: 1, gap: 12 }}>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>案例与话术，随问随取</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        从公司知识库调成功案例、报价口径、方案模板，新人也能答出老销售的水平。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>公开信息先替你跑一遍</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        联网搜索、网页抓取、浏览器收集公开资料，竞品与行业动态整理成简报。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>初稿它写，定稿你来</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        文案、纪要、跟进邮件生成初稿，人负责判断与润色——把重复的写作交出去。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                市场销售最先感受到的不是「更聪明」，而是「准备一场客户会不再要一整个下午」。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

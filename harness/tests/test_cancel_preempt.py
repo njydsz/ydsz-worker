@@ -1,4 +1,4 @@
-﻿"""Preemptible cancel for HarnessAgent.stream."""
+"""Preemptible cancel for HarnessAgent.stream."""
 
 from __future__ import annotations
 

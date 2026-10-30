@@ -1,4 +1,4 @@
-﻿"""In-process plugin registry."""
+"""In-process plugin registry."""
 
 from __future__ import annotations
 

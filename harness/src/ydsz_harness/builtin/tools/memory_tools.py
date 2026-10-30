@@ -1,4 +1,4 @@
-﻿"""LLM tool functions for the memory system.
+"""LLM tool functions for the memory system.
 
 These are registered as agent tools at construction time. They use
 ``langchain_core.tools.tool`` to produce ``StructuredTool`` instances.

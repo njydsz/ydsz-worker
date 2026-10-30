@@ -1,4 +1,4 @@
-﻿import json
+import json
 
 from ydsz_harness.plugins import PluginContext, get_tool_config
 

@@ -1,4 +1,4 @@
-﻿"""Tests for ``memory candidate`` CLI subcommands.
+"""Tests for ``memory candidate`` CLI subcommands.
 
 We do NOT exercise the ``--dev-llm=ollama:...`` path here (that needs a
 real Ollama and is covered in ``test_llm_client.py``). Instead we monkey-

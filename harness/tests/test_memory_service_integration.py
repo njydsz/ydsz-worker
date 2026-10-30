@@ -1,4 +1,4 @@
-﻿"""Tests for the MemoryService-backed integration.
+"""Tests for the MemoryService-backed integration.
 
 These exercise the ``MemoryService`` plumbing:
 

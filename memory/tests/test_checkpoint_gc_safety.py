@@ -1,4 +1,4 @@
-﻿"""Guard rails that decide whether deleting a checkpoint is safe.
+"""Guard rails that decide whether deleting a checkpoint is safe.
 
 ``prune_checkpoints`` with ``keep_last=1`` deletes a thread's ancestor
 snapshots, so everything here protects the one thing that cannot be

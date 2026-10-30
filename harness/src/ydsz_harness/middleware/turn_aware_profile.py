@@ -1,4 +1,4 @@
-﻿"""Turn-aware ``model.profile`` for SummarizationMiddleware thresholds.
+"""Turn-aware ``model.profile`` for SummarizationMiddleware thresholds.
 
 deepagents builds ``SummarizationMiddleware`` with the compile-time seed model.
 Fraction triggers read ``model.profile["max_input_tokens"]`` on every check —

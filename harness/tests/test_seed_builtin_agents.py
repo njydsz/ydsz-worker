@@ -1,4 +1,4 @@
-﻿"""Tests for seeding packaged builtin agents into the workspace."""
+"""Tests for seeding packaged builtin agents into the workspace."""
 
 from __future__ import annotations
 

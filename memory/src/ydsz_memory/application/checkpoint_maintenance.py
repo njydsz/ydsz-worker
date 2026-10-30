@@ -1,4 +1,4 @@
-﻿"""Backend dispatch for explicit checkpoint maintenance; never boots an agent."""
+"""Backend dispatch for explicit checkpoint maintenance; never boots an agent."""
 
 from __future__ import annotations
 

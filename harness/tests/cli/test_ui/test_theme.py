@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.cli.ui.theme."""
+"""Tests for ydsz_harness.cli.ui.theme."""
 
 from ydsz_harness.cli.ui.theme import Theme, get_theme
 

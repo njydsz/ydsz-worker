@@ -1,4 +1,4 @@
-﻿"""Offline SQLite checkpoint migration and conservative dependency retention.
+"""Offline SQLite checkpoint migration and conservative dependency retention.
 
 SQL stays in the backend layer. The application owns the maintenance window,
 backup and invocation. No automatic retention is installed by this module.

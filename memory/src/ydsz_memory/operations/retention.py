@@ -1,4 +1,4 @@
-﻿"""Govern retained facts against runtime provenance and user-owned documents.
+"""Govern retained facts against runtime provenance and user-owned documents.
 
 No raw evidence is modified or removed. Marked diagnostics remain excluded
 online; ambiguous legacy evidence is preserved and listed for human review.

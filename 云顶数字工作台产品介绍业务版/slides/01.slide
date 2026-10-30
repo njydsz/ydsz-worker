@@ -1,0 +1,59 @@
+<Slide style={{ padding: 0, position: 'relative', background: 'linear-gradient(120deg, #FFFFFF 0%, #F4F6FB 52%, #E4ECF9 100%)' }}>
+    {/* 右侧节点网络主视觉 */}
+    <Box style={{ position: 'absolute', top: 0, right: 0, width: 620, height: 720 }}>
+        <svg width={620} height={720} viewBox='0 0 620 720'>
+            <g stroke='#C7D6F5' strokeWidth='1' opacity='0.9'>
+                <line x1='120' y1='150' x2='290' y1='110' />
+                <line x1='120' y1='150' x2='280' y1='260' />
+                <line x1='290' y1='110' x2='450' y1='180' />
+                <line x1='290' y1='110' x2='420' y1='60' />
+                <line x1='280' y1='260' x2='450' y1='180' />
+                <line x1='280' y1='260' x2='380' y1='400' />
+                <line x1='450' y1='180' x2='560' y1='100' />
+                <line x1='450' y1='180' x2='540' y1='300' />
+                <line x1='380' y1='400' x2='540' y1='300' />
+                <line x1='380' y1='400' x2='250' y1='490' />
+                <line x1='250' y1='490' x2='430' y1='580' />
+                <line x1='430' y1='580' x2='540' y1='300' />
+                <line x1='430' y1='580' x2='520' y1='660' />
+                <line x1='560' y1='100' x2='540' y1='300' />
+            </g>
+            <circle cx='120' cy='150' r='9' fill='#0891B2' />
+            <circle cx='290' cy='110' r='6' fill='#93C5FD' />
+            <circle cx='420' cy='60' r='5' fill='#93C5FD' />
+            <circle cx='450' cy='180' r='14' fill='#2563EB' />
+            <circle cx='560' cy='100' r='6' fill='#93C5FD' />
+            <circle cx='280' cy='260' r='9' fill='#0891B2' opacity='0.85' />
+            <circle cx='540' cy='300' r='11' fill='#2563EB' />
+            <circle cx='380' cy='400' r='18' fill='#F59E0B' />
+            <circle cx='250' cy='490' r='7' fill='#93C5FD' />
+            <circle cx='430' cy='580' r='10' fill='#0891B2' opacity='0.85' />
+            <circle cx='520' cy='660' r='7' fill='#93C5FD' />
+        </svg>
+    </Box>
+
+    {/* 主文本区 */}
+    <Box style={{ position: 'absolute', left: 92, top: 172, width: 560 }}>
+        <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#F59E0B', marginBottom: 34 }} />
+        <Text style={{ fontSize: 30, fontWeight: '600', color: '#2563EB', letterSpacing: 6, marginBottom: 22 }}>
+            YDSZ WORKER
+        </Text>
+        <Text style={{ fontSize: 66, fontWeight: 'bold', color: '#1E293B', lineHeight: 1.15 }}>
+            云顶数字工作台
+        </Text>
+        <Text style={{ fontSize: 30, color: '#334155', marginTop: 26, lineHeight: 1.4 }}>
+            会思考，会干活，陪企业成长的智能伙伴
+        </Text>
+        <Box style={{ width: 420, height: 1, background: '#C7D6F5', marginTop: 30 }} />
+        <Text style={{ fontSize: 24, color: '#475569', marginTop: 24, lineHeight: 1.4 }}>
+            业务版产品介绍 · 面向管理层与业务团队
+        </Text>
+    </Box>
+
+    {/* 信息层 */}
+    <Box style={{ position: 'absolute', left: 92, bottom: 64 }}>
+        <Text style={{ fontSize: 16, color: '#64748B' }}>
+            2026 年 10 月
+        </Text>
+    </Box>
+</Slide>

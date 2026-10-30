@@ -1,4 +1,4 @@
-﻿"""Path constants and resolution for CLI configuration files."""
+"""Path constants and resolution for CLI configuration files."""
 
 from __future__ import annotations
 

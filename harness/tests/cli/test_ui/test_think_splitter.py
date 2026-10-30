@@ -1,4 +1,4 @@
-﻿"""Tests for ThinkSplitter — the streaming-friendly <think> tag splitter."""
+"""Tests for ThinkSplitter — the streaming-friendly <think> tag splitter."""
 
 from __future__ import annotations
 

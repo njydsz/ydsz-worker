@@ -1,4 +1,4 @@
-﻿"""``BootstrapMiddleware`` — one-time onboarding via BOOTSTRAP.md."""
+"""``BootstrapMiddleware`` — one-time onboarding via BOOTSTRAP.md."""
 
 from __future__ import annotations
 

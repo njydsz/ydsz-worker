@@ -1,4 +1,4 @@
-﻿"""L1 tool-call parameter guarding."""
+"""L1 tool-call parameter guarding."""
 
 from ydsz_harness.security.tool_guard.engine import (
     ToolGuardEngine,

@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``db`` subcommand (storage-level maintenance, RISK-026 / ADR-025).
+"""Memory CLI: ``db`` subcommand (storage-level maintenance, RISK-026 / ADR-025).
 
 Distinct from ``ydsz-memory gc`` (which cleans up business rows — candidates,
 atoms, raw events) and ``ydsz-memory thread prune`` (LangGraph checkpoint

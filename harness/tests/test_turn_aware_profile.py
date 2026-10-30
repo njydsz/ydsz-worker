@@ -1,4 +1,4 @@
-﻿"""Tests for turn-aware summarization profile thresholds."""
+"""Tests for turn-aware summarization profile thresholds."""
 
 from __future__ import annotations
 

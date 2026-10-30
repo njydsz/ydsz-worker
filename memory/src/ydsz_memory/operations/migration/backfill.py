@@ -1,4 +1,4 @@
-﻿"""``memory backfill`` — replay extractor on historical raw events (5.5).
+"""``memory backfill`` — replay extractor on historical raw events (5.5).
 
 Workflow::
 

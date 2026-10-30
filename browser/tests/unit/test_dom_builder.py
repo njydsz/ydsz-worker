@@ -1,4 +1,4 @@
-﻿import json
+import json
 
 from ydsz_browser.dom.builder import DOMBuilder
 from ydsz_browser.dom.refs import RefCache

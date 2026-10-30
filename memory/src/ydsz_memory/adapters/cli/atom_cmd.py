@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``atom`` subcommand group for L2 AtomCards.
+"""Memory CLI: ``atom`` subcommand group for L2 AtomCards.
 
 Read-only inspection commands. Atoms are produced by the M2.5 promotion
 worker (``memory candidate promote``); they are NEVER manually inserted

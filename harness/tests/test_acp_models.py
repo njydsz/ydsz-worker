@@ -1,4 +1,4 @@
-﻿"""Tests for ACP configuration models."""
+"""Tests for ACP configuration models."""
 
 from __future__ import annotations
 

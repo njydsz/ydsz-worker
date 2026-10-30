@@ -1,4 +1,4 @@
-﻿"""Volcengine Ark adapter for Seedream image and Seedance video generation."""
+"""Volcengine Ark adapter for Seedream image and Seedance video generation."""
 
 from __future__ import annotations
 

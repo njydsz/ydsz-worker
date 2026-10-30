@@ -1,4 +1,4 @@
-﻿"""CJK FTS segmentation (fts_text v2) — index + query + migration.
+"""CJK FTS segmentation (fts_text v2) — index + query + migration.
 
 Regression suite for the unicode61 Han-run bug: contiguous Chinese text
 used to be indexed as one giant token, so natural-language Chinese

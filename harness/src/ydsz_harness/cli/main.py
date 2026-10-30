@@ -1,4 +1,4 @@
-﻿"""Click CLI entry point: the `harness` command group."""
+"""Click CLI entry point: the `harness` command group."""
 
 from __future__ import annotations
 

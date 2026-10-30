@@ -1,4 +1,4 @@
-﻿"""D51-C path projection: virtual ``path`` strings ↔ SQLite rows.
+"""D51-C path projection: virtual ``path`` strings ↔ SQLite rows.
 
 OpenClaw's ``memory_get(path, from, lines)`` is shaped for a file-backed
 memory store. Our storage is SQLite. To bridge the gap we project rows

@@ -26,21 +26,15 @@ def test_enforced_mode_mapping() -> None:
 
 def test_dm_turns_are_never_restricted() -> None:
     cfg = {"im_group_tool_policy": "none"}
-    assert (
-        enforced_group_conversation_mode(cfg, is_group_chat=False, sender_id="u1") is None
-    )
+    assert enforced_group_conversation_mode(cfg, is_group_chat=False, sender_id="u1") is None
 
 
 def test_group_non_owner_gets_enforced_mode() -> None:
     cfg = {"im_group_tool_policy": "none"}
-    assert (
-        enforced_group_conversation_mode(cfg, is_group_chat=True, sender_id="stranger")
-        == "chat"
-    )
+    assert enforced_group_conversation_mode(cfg, is_group_chat=True, sender_id="stranger") == "chat"
     cfg_ro = {"im_group_tool_policy": "read_only"}
     assert (
-        enforced_group_conversation_mode(cfg_ro, is_group_chat=True, sender_id="stranger")
-        == "ask"
+        enforced_group_conversation_mode(cfg_ro, is_group_chat=True, sender_id="stranger") == "ask"
     )
 
 
@@ -53,10 +47,7 @@ def test_configured_owner_sender_bypasses_policy() -> None:
         enforced_group_conversation_mode(cfg, is_group_chat=True, sender_id="owner-openid-1")
         is None
     )
-    assert (
-        enforced_group_conversation_mode(cfg, is_group_chat=True, sender_id="member-2")
-        == "chat"
-    )
+    assert enforced_group_conversation_mode(cfg, is_group_chat=True, sender_id="member-2") == "chat"
 
 
 def test_inherit_policy_never_enforces() -> None:
@@ -70,9 +61,9 @@ def test_inherit_policy_never_enforces() -> None:
 
 def test_owner_ids_ignores_malformed_config() -> None:
     assert owner_sender_ids_from_cfg({"im_group_owner_sender_ids": "owner"}) == frozenset()
-    assert owner_sender_ids_from_cfg(
-        {"im_group_owner_sender_ids": ["a", " ", 42]}
-    ) == frozenset({"a", "42"})
+    assert owner_sender_ids_from_cfg({"im_group_owner_sender_ids": ["a", " ", 42]}) == frozenset(
+        {"a", "42"}
+    )
 
 
 def test_parse_config_json_safe() -> None:

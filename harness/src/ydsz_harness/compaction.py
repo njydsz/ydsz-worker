@@ -1,4 +1,4 @@
-﻿"""Forced conversation compaction (SummarizationMiddleware offload + summary).
+"""Forced conversation compaction (SummarizationMiddleware offload + summary).
 
 deepagents auto-summarizes when fraction/token thresholds are hit. Slash
 ``/compact`` needs the same offload + summary path on demand, without waiting

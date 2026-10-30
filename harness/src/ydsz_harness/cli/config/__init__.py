@@ -1,4 +1,4 @@
-﻿"""CLI configuration discovery, loading, and merging."""
+"""CLI configuration discovery, loading, and merging."""
 
 from ydsz_harness.cli.config.loader import load_config
 from ydsz_harness.cli.config.paths import CliPaths

@@ -1,4 +1,4 @@
-﻿"""CLI-specific configuration schema (not passed to ydsz-harness core)."""
+"""CLI-specific configuration schema (not passed to ydsz-harness core)."""
 
 from __future__ import annotations
 

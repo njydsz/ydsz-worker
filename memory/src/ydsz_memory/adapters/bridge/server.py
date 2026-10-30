@@ -1,4 +1,4 @@
-﻿"""Stdio JSON-RPC server entry point.
+"""Stdio JSON-RPC server entry point.
 
 Spawned by the OpenClaw TS plugin shell as ``ydszmemory-bridge``.
 Reads one JSON object per line on stdin, writes one JSON object per

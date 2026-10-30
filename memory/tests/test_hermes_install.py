@@ -1,4 +1,4 @@
-﻿"""Unit tests for the Hermes standalone installer's install/activate helpers.
+"""Unit tests for the Hermes standalone installer's install/activate helpers.
 
 These pure functions back ``ydsz-memory-hermes install/doctor``
 (``plugins/hermes/ydszmemory/install_lib.py``). Testing them directly

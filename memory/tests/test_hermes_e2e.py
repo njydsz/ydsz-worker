@@ -1,4 +1,4 @@
-﻿"""Real-Hermes end-to-end contract test (opt-in).
+"""Real-Hermes end-to-end contract test (opt-in).
 
 Skipped unless ``HERMES_SOURCE`` points at a real ``NousResearch/hermes-agent``
 checkout (one containing ``agent/memory_provider.py``). When present, this is

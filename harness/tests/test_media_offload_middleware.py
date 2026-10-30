@@ -1,4 +1,4 @@
-﻿"""Tests for ``MediaOffloadMiddleware``."""
+"""Tests for ``MediaOffloadMiddleware``."""
 
 from __future__ import annotations
 

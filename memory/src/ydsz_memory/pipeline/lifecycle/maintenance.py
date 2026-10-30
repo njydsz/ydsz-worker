@@ -1,4 +1,4 @@
-﻿"""Host-callable idle maintenance — prune + GC + nudge + one-shot bootstrap.
+"""Host-callable idle maintenance — prune + GC + nudge + one-shot bootstrap.
 
 RISK-026's cleanup primitives were CLI-only. Hosts (ydsz-harness
 ``MemoryMiddleware``) call :func:`run_idle_maintenance` from an idle /

@@ -1,4 +1,4 @@
-﻿"""End-to-end tests for the M5 Episode pipeline (extract + digest + recall)."""
+"""End-to-end tests for the M5 Episode pipeline (extract + digest + recall)."""
 
 from __future__ import annotations
 

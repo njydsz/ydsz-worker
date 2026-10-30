@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_memory.pipeline.extractor.prompts``."""
+"""Tests for ``ydsz_memory.pipeline.extractor.prompts``."""
 
 from __future__ import annotations
 

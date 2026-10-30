@@ -1,4 +1,4 @@
-﻿"""Built-in media generation provider adapters."""
+"""Built-in media generation provider adapters."""
 
 from ydsz_harness.media.providers.dashscope import DashScopeMediaProvider
 from ydsz_harness.media.providers.minimax import MiniMaxMediaProvider

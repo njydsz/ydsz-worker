@@ -1,4 +1,4 @@
-﻿"""Tests for the REPL main loop."""
+"""Tests for the REPL main loop."""
 
 from __future__ import annotations
 

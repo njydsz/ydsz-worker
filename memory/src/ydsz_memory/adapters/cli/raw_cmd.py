@@ -1,4 +1,4 @@
-﻿"""Memory CLI: `raw` subcommand group for L0 raw events."""
+"""Memory CLI: `raw` subcommand group for L0 raw events."""
 
 from __future__ import annotations
 

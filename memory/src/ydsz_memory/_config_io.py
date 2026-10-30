@@ -1,4 +1,4 @@
-﻿"""Plain config IO module (no click dependency).
+"""Plain config IO module (no click dependency).
 
 Provides load/save for ``~/.ydsz-memory/config.json``, used by:
 

@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz-harness agent commands."""
+"""Tests for ydsz-harness agent commands."""
 
 from __future__ import annotations
 

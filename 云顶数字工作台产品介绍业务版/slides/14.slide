@@ -1,0 +1,53 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            部门深挖｜客服与售后：答得准、记得住、转得顺
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 28 }}>
+            {/* 左：示例卡 */}
+            <Box style={{ width: 400, background: '#F4F6FB', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#64748B', lineHeight: 1.3 }}>现场是什么样</Text>
+                <Box style={{ background: '#FFFFFF', borderRadius: 10, padding: 16, marginTop: 12, borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid' }}>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>客户问：「你们的设备保修多久？上门收费吗？」</Text>
+                </Box>
+                <Box style={{ background: '#E8EEFB', borderRadius: 10, padding: 16, marginTop: 10 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>
+                        数字客服答：整机保修 2 年、核心部件 3 年，保修期内上门免收服务费——依据《售后服务政策 2026 版》第 3.2 条。
+                    </Text>
+                </Box>
+                <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 12 }}>
+                    答案点得开出处；答不上来时主动转人工，不硬编。
+                </Text>
+            </Box>
+
+            {/* 右：两块 */}
+            <Box style={{ flex: 1, gap: 14 }}>
+                <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>典型工作</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 8 }}>
+                        产品咨询、售后政策解答、投诉初步处理、回访提醒、常见问题整理——重复度高、口径要求高。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#E8EEFB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>它能做的</Text>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55, marginTop: 8 }}>
+                        秒答高频问题并附出处；二次咨询记得前情；超范围自动转人工并带上下文；常见问题持续沉淀。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                口径统一 + 背景延续 + 出处可查——客服体验的三块短板，一次补齐。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

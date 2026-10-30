@@ -1,4 +1,4 @@
-﻿"""Shared Bearer-authenticated JSON transport for media providers."""
+"""Shared Bearer-authenticated JSON transport for media providers."""
 
 from __future__ import annotations
 

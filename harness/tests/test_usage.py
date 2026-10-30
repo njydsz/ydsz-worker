@@ -1,4 +1,4 @@
-﻿"""Provider-neutral token usage normalization tests."""
+"""Provider-neutral token usage normalization tests."""
 
 from ydsz_harness.usage import normalize_usage_metadata
 

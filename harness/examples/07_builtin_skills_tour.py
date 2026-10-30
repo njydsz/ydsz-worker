@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """Demo: built-in Skills (skill-creator / install-skill / …).
 
 Walks through:

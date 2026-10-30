@@ -1,4 +1,4 @@
-﻿"""Tests for M1 L0 raw events: schema, CRUD, FTS, batch insert, GC, CLI."""
+"""Tests for M1 L0 raw events: schema, CRUD, FTS, batch insert, GC, CLI."""
 
 from __future__ import annotations
 

@@ -1,0 +1,86 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            场景一｜智能客服：答复有出处，背景记得住
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 五步流程 */}
+        <Box style={{ flexDirection: 'row', marginTop: 20, alignItems: 'stretch' }}>
+            <Box style={{ width: 210, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 12 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>01</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>客户提问</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    问题从企业微信、飞书或钉钉进来，和网页控制台走同一条处理管线。
+                </Text>
+            </Box>
+            <Box style={{ width: 25, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={25} height={18} viewBox='0 0 25 18'><path d='M0 9 L15 9' stroke='#2563EB' strokeWidth='2' /><path d='M15 2 L25 9 L15 16 Z' fill='#2563EB' /></svg>
+            </Box>
+            <Box style={{ width: 210, background: '#D6E4F9', borderRadius: 10, padding: 12 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#475569', lineHeight: 1.3 }}>02</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>检索知识库</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    在公司受控文档中检索相关片段，只引用授权范围内的资料。
+                </Text>
+            </Box>
+            <Box style={{ width: 25, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={25} height={18} viewBox='0 0 25 18'><path d='M0 9 L15 9' stroke='#0891B2' strokeWidth='2' /><path d='M15 2 L25 9 L15 16 Z' fill='#0891B2' /></svg>
+            </Box>
+            <Box style={{ width: 210, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 12 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>03</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>带出处作答</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    答案直接回到原会话，附来源标记，客户和坐席都能点开核对。
+                </Text>
+            </Box>
+            <Box style={{ width: 25, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={25} height={18} viewBox='0 0 25 18'><path d='M0 9 L15 9' stroke='#F59E0B' strokeWidth='2' /><path d='M15 2 L25 9 L15 16 Z' fill='#F59E0B' /></svg>
+            </Box>
+            <Box style={{ width: 210, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 10, padding: 12 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>04</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>不知则转人工</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    缺信息时主动反问，超出范围时升级人工并保留完整上下文。
+                </Text>
+            </Box>
+            <Box style={{ width: 25, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={25} height={18} viewBox='0 0 25 18'><path d='M0 9 L15 9' stroke='#F59E0B' strokeWidth='2' /><path d='M15 2 L25 9 L15 16 Z' fill='#F59E0B' /></svg>
+            </Box>
+            <Box style={{ width: 210, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 12 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>05</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>沉淀为记忆</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    本次结论进入长期记忆，客户下次咨询不必从头复述背景。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 三条收益 */}
+        <Box style={{ flexDirection: 'row', marginTop: 20, gap: 16 }}>
+            <Box style={{ flex: 1.2, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>坐席减负</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>不必在工单、知识库与聊天窗之间来回切换。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>口径统一</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>答案来自同一份受控文档，不同坐席不再打架。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>体验延续</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>二次咨询带着上次结论继续，客户不用重讲。</Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 62, background: '#E8EEFB', borderRadius: 10, padding: 16, marginTop: 14, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                客服场景的价值不在「回答得快」，而在「答得准、说得出出处、记得住前情」。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

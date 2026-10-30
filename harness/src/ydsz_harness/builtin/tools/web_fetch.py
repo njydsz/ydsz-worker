@@ -1,4 +1,4 @@
-﻿"""Built-in tool: ``web_fetch`` — fetch a URL and convert HTML to markdown."""
+"""Built-in tool: ``web_fetch`` — fetch a URL and convert HTML to markdown."""
 
 from __future__ import annotations
 

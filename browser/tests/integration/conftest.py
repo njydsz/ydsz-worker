@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 
 from ydsz_browser.cdp.launcher import find_chrome
 

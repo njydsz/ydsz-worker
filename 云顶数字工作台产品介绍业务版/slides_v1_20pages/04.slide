@@ -1,0 +1,25 @@
+<Slide style={{ padding: 60, background: '#F4F6FB', position: 'relative' }}>
+    <Box style={{ position: 'absolute', right: 60, top: 130, width: 420, height: 460 }}>
+        <svg width={420} height={460} viewBox='0 0 420 460'>
+            <circle cx='210' cy='240' r='150' fill='none' stroke='#C7D6F5' strokeWidth='1' />
+            <circle cx='210' cy='240' r='200' fill='none' stroke='#C7D6F5' strokeWidth='1' />
+            <path d='M10 240 A200 200 0 0 1 410 240' fill='none' stroke='#0891B2' strokeWidth='3' opacity='0.6' />
+            <circle cx='360' cy='240' r='8' fill='#F59E0B' />
+            <circle cx='60' cy='240' r='8' fill='#2563EB' />
+            <circle cx='210' cy='40' r='6' fill='#0891B2' />
+        </svg>
+    </Box>
+
+    <Box style={{ position: 'absolute', left: 92, top: 168, width: 680 }}>
+        <Text style={{ fontSize: 180, fontWeight: 'bold', color: '#CBD9F0', lineHeight: 1.05 }}>
+            01
+        </Text>
+        <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#1E293B', lineHeight: 1.15, marginTop: 12 }}>
+            为什么需要
+        </Text>
+        <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#F59E0B', marginTop: 30 }} />
+        <Text style={{ fontSize: 22, color: '#64748B', lineHeight: 1.5, marginTop: 26 }}>
+            AI 落地的三道坎：数据、工具、管控
+        </Text>
+    </Box>
+</Slide>

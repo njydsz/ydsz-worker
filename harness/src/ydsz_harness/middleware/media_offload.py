@@ -1,4 +1,4 @@
-﻿"""``MediaOffloadMiddleware`` — keep large media out of long-running threads.
+"""``MediaOffloadMiddleware`` — keep large media out of long-running threads.
 
 Why
 ---

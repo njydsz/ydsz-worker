@@ -1,0 +1,62 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            场景四｜给每个岗位配一个专业助理
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 32 }}>
+            {/* 左：巨型数字 */}
+            <Box style={{ width: 420, justifyContent: 'center' }}>
+                <Text style={{ fontSize: 120, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.0 }}>33</Text>
+                <Text style={{ fontSize: 24, fontWeight: '600', color: '#1E293B', marginTop: 8 }}>个开箱即用的岗位专家</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 12 }}>
+                    覆盖研发、数据、运维、安全、法务、人力、市场、财务等职能——装好即可上岗，不是空白对话框。
+                </Text>
+                <Box style={{ flexDirection: 'row', gap: 8, marginTop: 16 }}>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 8 }}><Text style={{ fontSize: 16, color: '#1E293B' }}>法务助理</Text></Box>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 8 }}><Text style={{ fontSize: 16, color: '#1E293B' }}>人力招聘官</Text></Box>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 8 }}><Text style={{ fontSize: 16, color: '#1E293B' }}>数据分析师</Text></Box>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 8 }}><Text style={{ fontSize: 16, color: '#1E293B' }}>项目经理</Text></Box>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 8 }}><Text style={{ fontSize: 16, color: '#1E293B' }}>安全顾问</Text></Box>
+                    <Box style={{ background: '#FFF7E9', borderRadius: 6, padding: 8 }}><Text style={{ fontSize: 16, color: '#B45309' }}>更多岗位…</Text></Box>
+                </Box>
+            </Box>
+
+            {/* 右：三条要点 */}
+            <Box style={{ flex: 1, gap: 12 }}>
+                <Box style={{ height: 126, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>自带专业设定，微调即可上岗</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        每个专家预置岗位职责、专业知识与表达风格，业务部门调整几句就能用起来。
+                    </Text>
+                </Box>
+                <Box style={{ height: 126, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>一人配好，全公司共享</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        专家可以发布共享：一个部门沉淀的岗位定义，其他部门直接取用、各自微调。
+                    </Text>
+                </Box>
+                <Box style={{ height: 126, background: '#F4F6FB', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>资产留在公司，不随人走</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        岗位专家、技能、记忆都存放在公司自己的平台上——人员流动，能力沉淀。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 10, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                业务部门自己就能沉淀岗位资产，不必每次都找工程师改提示词——这是「陪企业成长」的具体含义。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

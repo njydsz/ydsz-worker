@@ -1,0 +1,46 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>04 · 怎么开始</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            试点常见问题：顾虑都有对应答案
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ marginTop: 20, gap: 12 }}>
+            <Box style={{ height: 84, background: '#F4F6FB', borderRadius: 10, padding: 16 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>要不要先买服务器、先立项采购？</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>
+                    不用。一台笔记本就能起步验证；开源许可，不需要为「试一试」先走采购流程。
+                </Text>
+            </Box>
+            <Box style={{ height: 84, background: '#F4F6FB', borderRadius: 10, padding: 16 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>员工会用吗？培训成本高不高？</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>
+                    在飞书、钉钉、企业微信里直接对话即可，会打字就会用；33 个岗位专家开箱即用，不需要写提示词。
+                </Text>
+            </Box>
+            <Box style={{ height: 84, background: '#F4F6FB', borderRadius: 10, padding: 16 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>数据会不会泄露？</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>
+                    本地部署、数据不出内网；脱敏策略可配置，敏感场景可完全离线运行，出站访问可控。
+                </Text>
+            </Box>
+            <Box style={{ height: 84, background: '#FFF7E9', borderRadius: 10, padding: 16 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>效果怎么衡量？说不清楚怎么向管理层交代？</Text>
+                <Text style={{ fontSize: 18, color: '#7C2D12', lineHeight: 1.5, marginTop: 4 }}>
+                    用三个可观察的维度：答得准不准（抽样核对）、处理快没快（前后对比）、员工愿不愿用（使用频次）——试点报告就写这三件事。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 16, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                质疑是试点的一部分：把顾虑列出来，30 天里逐条验证，答案比承诺有说服力。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

@@ -1,4 +1,4 @@
-﻿"""Backward-compatible provider-native tool-search middleware."""
+"""Backward-compatible provider-native tool-search middleware."""
 
 from typing import Literal
 

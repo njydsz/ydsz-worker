@@ -1,4 +1,4 @@
-﻿"""Turn raw browser events into semantic replay steps."""
+"""Turn raw browser events into semantic replay steps."""
 
 from __future__ import annotations
 

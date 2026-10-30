@@ -1,4 +1,4 @@
-﻿"""Architecture boundary checks for the ydsz_memory package layout."""
+"""Architecture boundary checks for the ydsz_memory package layout."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""REPL main loop — read input, route commands, stream agent responses."""
+"""REPL main loop — read input, route commands, stream agent responses."""
 
 from __future__ import annotations
 

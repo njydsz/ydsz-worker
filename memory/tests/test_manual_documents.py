@@ -1,4 +1,4 @@
-﻿"""Manual documents outrank ordinary memory, with auditable review candidates."""
+"""Manual documents outrank ordinary memory, with auditable review candidates."""
 
 from __future__ import annotations
 

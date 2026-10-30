@@ -1,4 +1,4 @@
-﻿"""Tests for stable parent/subagent model-facing tool ordering."""
+"""Tests for stable parent/subagent model-facing tool ordering."""
 
 from __future__ import annotations
 

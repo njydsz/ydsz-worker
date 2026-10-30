@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """Demo: ``HarnessAgent.init_workspace()`` plus the media-aware built-in tools.
 
 Walks through:

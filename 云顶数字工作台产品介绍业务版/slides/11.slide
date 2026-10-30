@@ -1,0 +1,84 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · 为什么需要</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            和通用聊天 AI 比，差别在哪
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 对比式 */}
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'stretch' }}>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#64748B', lineHeight: 1.3 }}>通用聊天 AI</Text>
+                <Box style={{ height: 1, background: '#E2E8F0', marginTop: 14 }} />
+                <Box style={{ marginTop: 12, gap: 12 }}>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>答案基于公开知识，不了解你的制度与业务</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>只能给出建议，不能真的动手执行</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>数据要出网，合规审查难过</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>会话结束即忘，每次都像新同事</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#94A3B8', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#475569', lineHeight: 1.5 }}>个人订阅制，能力不沉淀为组织资产</Text>
+                    </Box>
+                </Box>
+            </Box>
+
+            <Box style={{ width: 64, justifyContent: 'center', alignItems: 'center' }}>
+                <Box style={{ width: 1, height: 120, background: '#E2E8F0' }} />
+                <Box style={{ width: 44, height: 44, borderRadius: 22, background: '#F59E0B', justifyContent: 'center', alignItems: 'center', marginTop: -22 }}>
+                    <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>VS</Text>
+                </Box>
+                <Box style={{ width: 1, height: 120, background: '#E2E8F0', marginTop: -22 }} />
+            </Box>
+
+            <Box style={{ flex: 1, background: '#E8EEFB', borderRadius: 12, padding: 22 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>云顶数字工作台</Text>
+                <Box style={{ height: 1, background: '#C7D6F5', marginTop: 14 }} />
+                <Box style={{ marginTop: 12, gap: 12 }}>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>基于公司知识库作答，答案带出处</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>读写文件、执行任务、交付结果</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>本地部署，数据不出内网</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>记忆持续积累，越合作越懂你</Text>
+                    </Box>
+                    <Box style={{ flexDirection: 'row' }}>
+                        <Box style={{ width: 10, height: 10, borderRadius: 5, background: '#2563EB', marginRight: 12, marginTop: 8 }} />
+                        <Text style={{ flex: 1, fontSize: 18, color: '#1E293B', lineHeight: 1.5 }}>专家、技能、记忆沉淀为组织资产</Text>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 56, background: '#FFF7E9', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#7C2D12', lineHeight: 1.4 }}>
+                聊天工具解决「问」，数字员工解决「做」——这是两种东西，不是两个牌子。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

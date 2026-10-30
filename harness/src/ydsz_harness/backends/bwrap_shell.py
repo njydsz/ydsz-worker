@@ -1,4 +1,4 @@
-﻿"""Bubblewrap directory jail for ``LocalShellBackend.execute``.
+"""Bubblewrap directory jail for ``LocalShellBackend.execute``.
 
 ``root_dir`` is a backend mount (construction-time), not the agent workspace.
 :class:`BubbledLocalShellBackend` is only constructed when

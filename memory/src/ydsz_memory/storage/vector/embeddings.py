@@ -1,4 +1,4 @@
-﻿"""Built-in EmbeddingProvider implementations, ready to use out of the box.
+"""Built-in EmbeddingProvider implementations, ready to use out of the box.
 
 Supports three common embedding sources:
 

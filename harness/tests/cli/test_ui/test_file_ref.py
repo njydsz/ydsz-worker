@@ -1,4 +1,4 @@
-﻿"""Unit tests for ui/file_ref.py."""
+"""Unit tests for ui/file_ref.py."""
 
 from __future__ import annotations
 

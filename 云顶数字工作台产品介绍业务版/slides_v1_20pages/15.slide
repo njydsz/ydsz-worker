@@ -1,0 +1,68 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>03 · 为什么放心</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            越界动作先由人拍板：自主执行与人工掌控并存
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 三层：事前 / 事中 / 事后 */}
+        <Box style={{ marginTop: 18, gap: 12 }}>
+            <Box style={{ height: 92, flexDirection: 'row', background: '#E8EEFB', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 150, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>事前 · 立规矩</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        写文件、改文件、执行命令、删除这类高风险动作默认纳入审批清单；哪些动作要人点头、由谁来批，管理员可按岗位逐项设定。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 92, flexDirection: 'row', background: '#D6E4F9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 150, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E293B' }}>事中 · 暂停等决策</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        命中审批清单或危险命令规则时，任务在此挂起等待人工处置：通过、修改后通过、拒绝、追问补充四种决策任选，结果回写进度。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 92, flexDirection: 'row', background: '#FFF7E9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 150, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#B45309' }}>事后 · 留痕可回放</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        每一次工具调用写入轨迹账本，可按会话回放完整过程；决策记录在案，任务从断点继续，出了争议也拿得出证据。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 补充说明行 */}
+        <Box style={{ flexDirection: 'row', marginTop: 12, gap: 16 }}>
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    会话级放行：确认某个工具可信后，可以一次放行整段会话，同类动作不再反复打断工作流。
+                </Text>
+            </Box>
+            <Box style={{ width: 1, background: '#E2E8F0' }} />
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    四处入口同一套审批：网页、命令行、聊天工具、定时任务触发的动作，走的是同一套审批规则。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 10, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                机器负责把活干完，人保留随时改主意和问清楚的权利——这才敢让 AI 进业务流程。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

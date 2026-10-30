@@ -1,4 +1,4 @@
-﻿"""Trigger logic for marking EntityPages dirty (D33-B — async cron).
+"""Trigger logic for marking EntityPages dirty (D33-B — async cron).
 
 The PromotionWorker calls :func:`mark_entity_dirty_after_promote` at the
 very end of a successful atom write. That function is intentionally

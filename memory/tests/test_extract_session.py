@@ -1,4 +1,4 @@
-﻿"""Tests for ``extract_session`` (extractor + Memory glue)."""
+"""Tests for ``extract_session`` (extractor + Memory glue)."""
 
 from __future__ import annotations
 

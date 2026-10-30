@@ -1,0 +1,76 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            专题｜知识库与引用溯源：敢用的前提是说得清出处
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 流程 */}
+        <Box style={{ flexDirection: 'row', marginTop: 20, alignItems: 'stretch' }}>
+            <Box style={{ width: 265, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>01</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>文档进来</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    PDF、Word、Excel、网页、扫描件都能收；编码自动兼容，老格式自动转换。
+                </Text>
+            </Box>
+            <Box style={{ width: 30, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={30} height={18} viewBox='0 0 30 18'><path d='M0 9 L18 9' stroke='#2563EB' strokeWidth='2' /><path d='M18 2 L30 9 L18 16 Z' fill='#2563EB' /></svg>
+            </Box>
+            <Box style={{ width: 265, background: '#D6E4F9', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#475569', lineHeight: 1.3 }}>02</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>切片入库</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    自动拆分、建立索引，按知识库分仓管理，谁建的、谁能看一目了然。
+                </Text>
+            </Box>
+            <Box style={{ width: 30, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={30} height={18} viewBox='0 0 30 18'><path d='M0 9 L18 9' stroke='#0891B2' strokeWidth='2' /><path d='M18 2 L30 9 L18 16 Z' fill='#0891B2' /></svg>
+            </Box>
+            <Box style={{ width: 265, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>03</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>检索作答</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    提问时只取授权范围内的片段作答，超出知识范围就明说。
+                </Text>
+            </Box>
+            <Box style={{ width: 30, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={30} height={18} viewBox='0 0 30 18'><path d='M0 9 L18 9' stroke='#F59E0B' strokeWidth='2' /><path d='M18 2 L30 9 L18 16 Z' fill='#F59E0B' /></svg>
+            </Box>
+            <Box style={{ width: 265, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>04</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>出处随答案</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    每条回答标注来源文档与位置，点开即可核对原文。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 三点支撑 */}
+        <Box style={{ flexDirection: 'row', marginTop: 20, gap: 16 }}>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>中文场景专门处理</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>编码回退、老格式转换、扫描件 OCR 一条龙。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>同库共享，按权取用</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>一份受控文档，全公司按权限引用，口径统一。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>边界说在前面</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>当前为向量检索，中小企业语料规模下足够，超大规模再升级。</Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 16, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                减少「一本正经地胡说」的关键，不是换个更大的模型，而是让答案锚定公司自己的文档并交出出处。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

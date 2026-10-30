@@ -1,4 +1,4 @@
-﻿"""``memory import`` — replay a JSONL dump into a target namespace (5.2).
+"""``memory import`` — replay a JSONL dump into a target namespace (5.2).
 
 Streaming reader matched against :mod:`ydsz_memory.operations.migration.export`.
 Robust against:

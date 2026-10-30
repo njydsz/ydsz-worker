@@ -1,4 +1,4 @@
-﻿"""Tests for the 5-factor reranker (M4.5, D38-A)."""
+"""Tests for the 5-factor reranker (M4.5, D38-A)."""
 
 from __future__ import annotations
 

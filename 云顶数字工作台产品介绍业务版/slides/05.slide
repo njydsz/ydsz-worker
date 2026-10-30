@@ -1,0 +1,78 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · 为什么需要</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            为什么 AI 试了很多，业务却没有变化
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 32 }}>
+            {/* 左：现状卡 */}
+            <Box style={{ width: 380, background: '#F4F6FB', borderRadius: 12, padding: 24 }}>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.35 }}>
+                    演示很惊艳，落地没变化
+                </Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 12 }}>
+                    模型能力已经足够强。卡住企业的，不是「AI 不够聪明」，而是它进不了业务的三段路。
+                </Text>
+                <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+                <Box style={{ marginTop: 16 }}>
+                    <svg width={332} height={72} viewBox='0 0 332 72'>
+                        <rect x='8' y='22' width='84' height='28' rx='8' fill='#E8EEFB' />
+                        <rect x='124' y='22' width='84' height='28' rx='8' fill='#FDEBC8' />
+                        <rect x='240' y='22' width='84' height='28' rx='8' fill='#E8EEFB' />
+                        <path d='M92 36 L118 36' stroke='#94A3B8' strokeWidth='2' strokeDasharray='4 4' />
+                        <path d='M208 36 L234 36' stroke='#94A3B8' strokeWidth='2' strokeDasharray='4 4' />
+                        <text x='50' y='41' textAnchor='middle' fontSize='13' fill='#2563EB' fontFamily='Microsoft YaHei'>数据</text>
+                        <text x='166' y='41' textAnchor='middle' fontSize='13' fill='#B45309' fontFamily='Microsoft YaHei'>工具</text>
+                        <text x='282' y='41' textAnchor='middle' fontSize='13' fill='#2563EB' fontFamily='Microsoft YaHei'>管控</text>
+                    </svg>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
+                        三段路都通了，AI 才进得了生产
+                    </Text>
+                </Box>
+            </Box>
+
+            {/* 右：三行断层 */}
+            <Box style={{ flex: 1 }}>
+                <Box style={{ height: 126, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+                        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#2563EB', width: 56 }}>01</Text>
+                        <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B' }}>不懂业务</Text>
+                    </Box>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        通用 AI 没读过你的制度、合同、工单，回答「放之四海皆准」，落不到具体业务上。
+                    </Text>
+                </Box>
+                <Box style={{ height: 126, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+                        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#2563EB', width: 56 }}>02</Text>
+                        <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B' }}>不会干活</Text>
+                    </Box>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        只能给建议，不能真的改文件、跑流程、发通知——结论停在聊天框里，价值进不了业务流程。
+                    </Text>
+                </Box>
+                <Box style={{ height: 126 }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+                        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#2563EB', width: 56 }}>03</Text>
+                        <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B' }}>不敢放手</Text>
+                    </Box>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        说不清它做了什么，管理层不敢批准它进入业务流程——越能干，越不敢用。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 62, background: '#E8EEFB', borderRadius: 10, padding: 16, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                模型不是瓶颈——缺的是让 AI 进业务的三段路：数据、工具、管控。三项补齐，AI 才进得了生产。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

@@ -1,4 +1,4 @@
-﻿"""Optional Hermes CLI hooks for the ydszmemory provider.
+"""Optional Hermes CLI hooks for the ydszmemory provider.
 
 Hermes exposes these commands only when ``memory.provider`` is set to
 ``ydszmemory``. Commands are intentionally small diagnostics around the

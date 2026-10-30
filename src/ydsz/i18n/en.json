@@ -993,5 +993,96 @@
     "error_exited": "laya-serve exited before it was ready.",
     "error_not_installed": "Laya is not installed yet.",
     "error_stalled": "The install produced no result for too long and was stopped."
+  },
+  "market": {
+    "title": "Marketplace",
+    "title_subtitle": "Discover & install Skills, Experts, Plugins, Connectors",
+    "search": {
+      "placeholder": "Search the marketplace...",
+      "no_results": "No results found for \"{query}\"",
+      "no_results_hint": "Try different keywords or browse categories",
+      "clear": "Clear",
+      "filters": "Filters"
+    },
+    "tabs": {
+      "skills": "Skills",
+      "experts": "Experts",
+      "plugins": "Plugins",
+      "connectors": "Connectors",
+      "installed": "Installed"
+    },
+    "filters": {
+      "category": "Category",
+      "all_category": "All",
+      "sort": "Sort",
+      "sort_relevance": "Relevance",
+      "sort_downloads": "Most Installed",
+      "sort_rating": "Top Rated",
+      "sort_newest": "Latest",
+      "group": "Group",
+      "auth_kind": "Auth Type",
+      "count": "{count} items"
+    },
+    "card": {
+      "by_author": "by {name}",
+      "downloads": "{count} installs",
+      "rating": "{score} rating",
+      "installed": "Installed",
+      "update_available": "Update available",
+      "coming_soon": "Coming soon",
+      "configure": "Configure"
+    },
+    "actions": {
+      "install": "Install",
+      "installing": "Installing...",
+      "update": "Update",
+      "updating": "Updating...",
+      "submit": "Submit to Marketplace",
+      "connect": "Connect",
+      "disconnect": "Disconnect",
+      "configure": "Configure",
+      "retry": "Retry",
+      "view_source": "View Source"
+    },
+    "install": {
+      "select_agent": "Choose Agent",
+      "select_package": "Install as Package",
+      "choose_target": "Select where to install:",
+      "name_label": "Agent Name",
+      "name_placeholder": "Enter a name for your agent...",
+      "desc_label": "Description",
+      "model_label": "Model",
+      "confirm": "Install",
+      "cancel": "Cancel"
+    },
+    "connector": {
+      "authorize": "Authorize",
+      "client_id_label": "Client ID",
+      "client_secret_label": "Client Secret",
+      "token_label": "API Token",
+      "instance_name_label": "Instance Name"
+    },
+    "installed": {
+      "title": "My Installed",
+      "updates_available": "{count} update(s) available",
+      "check_updates": "Check for updates",
+      "update_all": "Update All",
+      "empty": "You haven't installed anything yet",
+      "empty_hint": "Browse the marketplace to discover capabilities"
+    },
+    "empty": {
+      "no_installed": "You haven't installed anything yet",
+      "no_installed_hint": "Browse the marketplace to discover capabilities",
+      "no_matching_installed": "No installed items match your filter"
+    },
+    "errors": {
+      "install_failed": "Installation failed",
+      "update_failed": "Update failed",
+      "unsupported_type": "Unsupported market type",
+      "not_found": "Market item not found",
+      "provider_unavailable": "Market provider unavailable",
+      "download_failed": "Download failed",
+      "invalid_target": "Invalid install target"
+    }
   }
 }

@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """E2E test: searchfree as a built-in web-search tool.
 
 Verifies that the agent can use ``searchfree_search`` out-of-the-box

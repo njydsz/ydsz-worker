@@ -1,4 +1,4 @@
-﻿"""Tests for migrate (rename namespace) + dry-run preview (M5.3 + M5.4)."""
+"""Tests for migrate (rename namespace) + dry-run preview (M5.3 + M5.4)."""
 
 from __future__ import annotations
 

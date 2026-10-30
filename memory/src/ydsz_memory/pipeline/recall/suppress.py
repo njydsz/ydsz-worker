@@ -1,4 +1,4 @@
-﻿"""Pre-injection suppression — rule-based by default (D44-A).
+"""Pre-injection suppression — rule-based by default (D44-A).
 
 Drops or downranks snippets that would duplicate information the
 host already has. Two scenarios:

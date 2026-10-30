@@ -1,4 +1,4 @@
-﻿"""Pure asyncio Chrome DevTools Protocol WebSocket client."""
+"""Pure asyncio Chrome DevTools Protocol WebSocket client."""
 
 from __future__ import annotations
 

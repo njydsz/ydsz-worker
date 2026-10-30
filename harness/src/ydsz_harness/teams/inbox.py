@@ -1,4 +1,4 @@
-﻿"""Global inbox queue for asynchronous agent-to-agent collaboration.
+"""Global inbox queue for asynchronous agent-to-agent collaboration.
 
 One :class:`HarnessAgentInboxManager` serves all agents in a shared
 :class:`~ydsz_harness.registry.AgentRegistry`. A dispatcher hands each

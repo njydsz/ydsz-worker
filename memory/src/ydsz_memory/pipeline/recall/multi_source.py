@@ -1,4 +1,4 @@
-﻿"""Multi-source recall — atom + raw fanout per route.
+"""Multi-source recall — atom + raw fanout per route.
 
 Pure I/O orchestration: takes a parsed query + memory handle + budgets
 and returns a flat ``list[RerankCandidate]`` ready for the reranker.

@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.config.env``."""
+"""Tests for ``ydsz_harness.config.env``."""
 
 from __future__ import annotations
 

@@ -29,7 +29,7 @@ type SkillsTab = "custom" | "builtin" | "skillhub" | "packages";
 const SKILL_TABS: TabBarItem<SkillsTab>[] = [
   { key: "custom", labelKey: "skills.customizedSkills", icon: Sparkles },
   { key: "builtin", labelKey: "skills.builtinSkills", icon: Blocks },
-  { key: "skillhub", labelKey: "skills.tencentSkillHub", icon: Store },
+  { key: "skillhub", labelKey: "skills.njydszSkillHub", icon: Store },
   { key: "packages", labelKey: "skills.skillPackages", icon: Package },
 ];
 

@@ -1,4 +1,4 @@
-﻿"""``ydsz-memory openclaw`` — manage the OpenClaw native plugin slot.
+"""``ydsz-memory openclaw`` — manage the OpenClaw native plugin slot.
 
 These operator-facing subcommands wire up ydszmemory without requiring
 manual edits to ``openclaw.json``:

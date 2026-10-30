@@ -1,4 +1,4 @@
-﻿"""Tests for context-window usage estimation and persistence."""
+"""Tests for context-window usage estimation and persistence."""
 
 from __future__ import annotations
 

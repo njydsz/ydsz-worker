@@ -1,4 +1,4 @@
-﻿"""Configuration management for the CLI.
+"""Configuration management for the CLI.
 
 The pure IO portion (``DEFAULTS``, ``load_config``, ``save_config``,
 ``get_config_path``, ``set_config_path``) lives in

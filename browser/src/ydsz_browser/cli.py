@@ -1,4 +1,4 @@
-﻿"""ydsz-browser command-line entry point.
+"""ydsz-browser command-line entry point.
 
 Subcommands fall into three groups:
 

@@ -1,4 +1,4 @@
-﻿"""OpenAICompatClient — production OpenAI-compatible LLM client.
+"""OpenAICompatClient — production OpenAI-compatible LLM client.
 
 This is the supported production path for **self-hosted bridge
 deployments** (claw production deployment): the OpenClaw TS shell passes an ``llm``

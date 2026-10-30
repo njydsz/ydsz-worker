@@ -1,4 +1,4 @@
-﻿"""``ToolsFilterMiddleware`` — hide tools listed in ``tools_disabled`` from the model."""
+"""``ToolsFilterMiddleware`` — hide tools listed in ``tools_disabled`` from the model."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Tests for ToolGuardMiddleware approval flow."""
+"""Tests for ToolGuardMiddleware approval flow."""
 
 from __future__ import annotations
 

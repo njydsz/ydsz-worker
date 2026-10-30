@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``recall`` subcommand for M4 v2 pipeline.
+"""Memory CLI: ``recall`` subcommand for M4 v2 pipeline.
 
 Lets you preview the recall pipeline for a given query without
 running it through the host LLM. Useful for:

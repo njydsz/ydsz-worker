@@ -1,4 +1,4 @@
-﻿"""FastAPI service for the local ydsz-memory dashboard.
+"""FastAPI service for the local ydsz-memory dashboard.
 
 Reads SQLite directly and exposes memory data through REST endpoints.
 It intentionally avoids ``ydsz_memory.core.Memory`` and queries with

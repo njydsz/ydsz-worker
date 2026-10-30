@@ -1,4 +1,4 @@
-﻿"""Tests for ``PeerAgentMiddleware``."""
+"""Tests for ``PeerAgentMiddleware``."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Parser for Candidate Extractor LLM output.
+"""Parser for Candidate Extractor LLM output.
 
 Responsibilities:
 

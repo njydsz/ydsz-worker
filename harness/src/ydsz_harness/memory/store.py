@@ -1,4 +1,4 @@
-﻿"""Process-wide ``Memory`` reuse keyed by namespace + store location.
+"""Process-wide ``Memory`` reuse keyed by namespace + store location.
 
 A ``HarnessAgent`` rebuild (MCP servers changed, security policy, …) used to
 ``close()`` the old runtime and construct a new ``Memory``. That opened a

@@ -1,4 +1,4 @@
-﻿"""Memory CLI: `candidate` subcommand group for L1 candidates.
+"""Memory CLI: `candidate` subcommand group for L1 candidates.
 
 Subcommands:
 - ``memory candidate extract`` — run extractor against a session's raw events.

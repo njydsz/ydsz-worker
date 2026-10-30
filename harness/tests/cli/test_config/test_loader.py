@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.cli.config.loader."""
+"""Tests for ydsz_harness.cli.config.loader."""
 
 import json
 from pathlib import Path

@@ -1,4 +1,4 @@
-﻿"""Host-neutral memory runtime shared by in-process and JSON-RPC adapters."""
+"""Host-neutral memory runtime shared by in-process and JSON-RPC adapters."""
 
 from __future__ import annotations
 

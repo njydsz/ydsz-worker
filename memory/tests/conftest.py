@@ -1,4 +1,4 @@
-﻿"""Probe PostgreSQL once before pool-backed integration fixtures."""
+"""Probe PostgreSQL once before pool-backed integration fixtures."""
 
 import os
 

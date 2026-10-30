@@ -1,4 +1,4 @@
-﻿"""Candidate Extractor — turns a batch of L0 raw events into L1 candidates.
+"""Candidate Extractor — turns a batch of L0 raw events into L1 candidates.
 
 Orchestration:
 1. Render the prompt v2 against the input raw events

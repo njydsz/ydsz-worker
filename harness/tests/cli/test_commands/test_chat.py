@@ -1,4 +1,4 @@
-﻿"""Tests for harness chat command."""
+"""Tests for harness chat command."""
 
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch

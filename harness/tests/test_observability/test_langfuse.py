@@ -1,4 +1,4 @@
-﻿"""Tests for Langfuse tracing in ydsz-harness."""
+"""Tests for Langfuse tracing in ydsz-harness."""
 
 from __future__ import annotations
 

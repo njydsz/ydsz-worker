@@ -1,4 +1,4 @@
-﻿"""Tencent Cloud COS backend (uses the official ``cos-python-sdk-v5``).
+"""Tencent Cloud COS backend (uses the official ``cos-python-sdk-v5``).
 
 Inherits all ``BackendProtocol`` methods from
 :class:`~ydsz_harness.backends.cloud_storage_base.CloudStorageBackend`;

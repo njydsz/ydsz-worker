@@ -1,4 +1,4 @@
-﻿"""Workspace subagent loading for deepagents."""
+"""Workspace subagent loading for deepagents."""
 
 from ydsz_harness.subagents.catalog import DEFAULT_SUBAGENT_EMOJI, list_subagent_summaries
 from ydsz_harness.subagents.loader import (

@@ -1,4 +1,4 @@
-﻿"""CLI-layer agent manager: file persistence + library HarnessAgentManager delegation."""
+"""CLI-layer agent manager: file persistence + library HarnessAgentManager delegation."""
 
 from __future__ import annotations
 

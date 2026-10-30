@@ -1,4 +1,4 @@
-﻿"""Tests for Memory behavior when langgraph is not installed.
+"""Tests for Memory behavior when langgraph is not installed.
 
 These tests mock the absence of langgraph to verify graceful degradation.
 """

@@ -1,4 +1,4 @@
-﻿"""Tests for harness skill command."""
+"""Tests for harness skill command."""
 
 from pathlib import Path
 

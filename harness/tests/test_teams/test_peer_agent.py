@@ -1,4 +1,4 @@
-﻿# tests/test_peer_agent.py
+# tests/test_peer_agent.py
 from __future__ import annotations
 
 import asyncio

@@ -1,4 +1,4 @@
-﻿"""ydsz-harness: production-grade Harness Agent on top of LangChain Deep Agents."""
+"""ydsz-harness: production-grade Harness Agent on top of LangChain Deep Agents."""
 
 from __future__ import annotations
 

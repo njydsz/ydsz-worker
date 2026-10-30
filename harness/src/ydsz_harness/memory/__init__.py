@@ -1,4 +1,4 @@
-﻿"""Memory adapter helpers for ydsz-harness.
+"""Memory adapter helpers for ydsz-harness.
 
 The public surface of this subpackage is :class:`MemoryRuntime`, which wires
 :class:`ydsz_memory.Memory` / :class:`ydsz_memory.MemoryService` into the

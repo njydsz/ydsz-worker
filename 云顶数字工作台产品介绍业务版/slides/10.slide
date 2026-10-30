@@ -1,0 +1,66 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · 为什么需要</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            陪成长：越用越值钱的三类组织资产
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ marginTop: 20, gap: 12 }}>
+            <Box style={{ height: 92, flexDirection: 'row', background: '#E8EEFB', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 160, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>岗位专家</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        33 个岗位定义可发布共享、各自微调：一个部门配好，全公司取用——业务能力第一次变成可交接的资产。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 92, flexDirection: 'row', background: '#D6E4F9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 160, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E293B' }}>技能与插件</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        24 个技能包、37 个内置插件随装随用，在线市场持续扩充；新场景先看「有没有现成能力」，再考虑开发。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 92, flexDirection: 'row', background: '#FFF7E9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 160, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#B45309' }}>知识与记忆</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        每次合作沉淀进知识库与记忆：员工离职带走的是个人经验，留下的是公司能力。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ flexDirection: 'row', marginTop: 16, gap: 16 }}>
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    全部存放在公司自己的平台上，不绑定任何员工的个人账号。
+                </Text>
+            </Box>
+            <Box style={{ width: 1, background: '#E2E8F0' }} />
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    人员流动时，新人接的是「配好的数字同事」，不是空白的交接文档。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 14, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                第一年它是工具，第三年它是公司自己的数字能力——越用越懂业务，这是「陪企业成长」的实感。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

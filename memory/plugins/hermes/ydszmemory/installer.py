@@ -1,4 +1,4 @@
-﻿"""Installer CLI for the ydszmemory Hermes provider package."""
+"""Installer CLI for the ydszmemory Hermes provider package."""
 
 from __future__ import annotations
 

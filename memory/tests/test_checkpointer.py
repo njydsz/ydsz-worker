@@ -1,4 +1,4 @@
-﻿"""Tests for Memory as a LangGraph checkpointer."""
+"""Tests for Memory as a LangGraph checkpointer."""
 
 from __future__ import annotations
 

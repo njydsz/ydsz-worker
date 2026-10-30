@@ -1,4 +1,4 @@
-﻿"""Tests for provider-native deferred tool loading."""
+"""Tests for provider-native deferred tool loading."""
 
 from __future__ import annotations
 

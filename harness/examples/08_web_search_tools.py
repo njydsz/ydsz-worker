@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """Demo: optional web-search built-in tools.
 
 Walks through the four configuration policies for

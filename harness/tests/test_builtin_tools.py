@@ -1,4 +1,4 @@
-﻿"""Tests for built-in tools."""
+"""Tests for built-in tools."""
 
 from __future__ import annotations
 

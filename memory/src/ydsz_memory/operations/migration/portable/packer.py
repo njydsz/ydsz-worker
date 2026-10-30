@@ -1,4 +1,4 @@
-﻿"""One-click pack implementation (requirements 2, 6).
+"""One-click pack implementation (requirements 2, 6).
 
 Exports the memory of a given namespace into a .hmpkg file (a zip container
 holding manifest.json + data.jsonl.gz).

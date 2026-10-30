@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.middleware.model_router.ModelRouterMiddleware``.
+"""Tests for ``ydsz_harness.middleware.model_router.ModelRouterMiddleware``.
 
 These tests build a synthetic ``ModelRequest`` via direct construction so we
 can exercise the priority chain without spinning up the full LangGraph

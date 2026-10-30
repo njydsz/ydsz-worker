@@ -1,4 +1,4 @@
-﻿"""MockLLMClient for tests — deterministic canned responses.
+"""MockLLMClient for tests — deterministic canned responses.
 
 Usage (in a test):
 

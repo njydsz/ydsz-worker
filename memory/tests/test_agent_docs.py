@@ -1,4 +1,4 @@
-﻿"""Public maintenance-document contracts, independent of dates and Git history."""
+"""Public maintenance-document contracts, independent of dates and Git history."""
 
 from __future__ import annotations
 

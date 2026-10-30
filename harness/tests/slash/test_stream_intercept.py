@@ -1,4 +1,4 @@
-﻿"""Tests for runtime slash interception on HarnessAgentManager.stream."""
+"""Tests for runtime slash interception on HarnessAgentManager.stream."""
 
 from __future__ import annotations
 

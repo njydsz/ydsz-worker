@@ -1,4 +1,4 @@
-﻿"""Teams: optional inbox-driven agent-to-agent collaboration."""
+"""Teams: optional inbox-driven agent-to-agent collaboration."""
 
 from __future__ import annotations
 

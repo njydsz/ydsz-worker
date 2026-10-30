@@ -1,4 +1,4 @@
-﻿"""Unit tests for browser launch mode (auto / headed / headless)."""
+"""Unit tests for browser launch mode (auto / headed / headless)."""
 
 from __future__ import annotations
 

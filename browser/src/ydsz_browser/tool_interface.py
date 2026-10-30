@@ -1,4 +1,4 @@
-﻿"""Stateless browser_tool() entry point for AI frameworks."""
+"""Stateless browser_tool() entry point for AI frameworks."""
 
 from __future__ import annotations
 

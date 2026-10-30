@@ -1,4 +1,4 @@
-﻿"""The `ydsz-harness skill` command group — skill management."""
+"""The `ydsz-harness skill` command group — skill management."""
 
 from __future__ import annotations
 

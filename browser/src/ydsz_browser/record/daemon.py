@@ -1,4 +1,4 @@
-﻿"""Local daemon for long-lived browser recording sessions."""
+"""Local daemon for long-lived browser recording sessions."""
 
 from __future__ import annotations
 

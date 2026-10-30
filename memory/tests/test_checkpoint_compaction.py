@@ -1,4 +1,4 @@
-﻿"""Lossless checkpoint storage, mixed formats and offline migration behavior."""
+"""Lossless checkpoint storage, mixed formats and offline migration behavior."""
 
 from __future__ import annotations
 

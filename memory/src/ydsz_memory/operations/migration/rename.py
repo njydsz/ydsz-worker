@@ -1,4 +1,4 @@
-﻿"""``memory migrate --rename-namespace`` (5.3) — SQL-level table rename.
+"""``memory migrate --rename-namespace`` (5.3) — SQL-level table rename.
 
 Operates **directly on the SQLite database file** because renaming a
 namespace is purely a metadata operation: every table in our schema

@@ -1,4 +1,4 @@
-﻿"""prompt_toolkit bottom toolbar formatter."""
+"""prompt_toolkit bottom toolbar formatter."""
 
 from __future__ import annotations
 

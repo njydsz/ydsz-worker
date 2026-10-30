@@ -1,4 +1,4 @@
-﻿"""Tests for backfill (M5.5) — rate limiter + session iteration."""
+"""Tests for backfill (M5.5) — rate limiter + session iteration."""
 
 from __future__ import annotations
 

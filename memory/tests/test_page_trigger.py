@@ -1,4 +1,4 @@
-﻿"""Tests for the page-trigger helpers (D33-B mark-dirty + cold-skip)."""
+"""Tests for the page-trigger helpers (D33-B mark-dirty + cold-skip)."""
 
 from __future__ import annotations
 

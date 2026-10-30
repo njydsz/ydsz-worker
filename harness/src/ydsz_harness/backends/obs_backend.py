@@ -1,4 +1,4 @@
-﻿"""Huawei Cloud OBS backend (uses the official ``esdk-obs-python`` SDK).
+"""Huawei Cloud OBS backend (uses the official ``esdk-obs-python`` SDK).
 
 Inherits all ``BackendProtocol`` methods from
 :class:`~ydsz_harness.backends.cloud_storage_base.CloudStorageBackend`;

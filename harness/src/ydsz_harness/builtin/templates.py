@@ -1,4 +1,4 @@
-﻿"""Packaged template helpers (read packaged ``builtin/`` resources).
+"""Packaged template helpers (read packaged ``builtin/`` resources).
 
 The init/bootstrap *orchestration* lives on :meth:`HarnessAgent.init_workspace()`;
 this module is the pure resource-reading layer it depends on.

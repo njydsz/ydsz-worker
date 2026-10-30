@@ -1,4 +1,4 @@
-﻿"""Dashboard-only JSON-RPC handlers.
+"""Dashboard-only JSON-RPC handlers.
 
 This module exposes read/write RPCs powering the orca dashboard
 ``Agent/Memory`` views. They are intentionally split from

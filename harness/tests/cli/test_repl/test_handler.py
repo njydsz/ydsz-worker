@@ -1,4 +1,4 @@
-﻿"""Tests for the stream event handler."""
+"""Tests for the stream event handler."""
 
 from __future__ import annotations
 

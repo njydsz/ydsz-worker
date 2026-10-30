@@ -1,4 +1,4 @@
-﻿"""``memory export`` — stream a namespace to JSONL (5.1, D50-C).
+"""``memory export`` — stream a namespace to JSONL (5.1, D50-C).
 
 Output layout (one JSON object per line)::
 

@@ -1,4 +1,4 @@
-﻿"""Langfuse tracing via LangChain CallbackHandler."""
+"""Langfuse tracing via LangChain CallbackHandler."""
 
 from __future__ import annotations
 

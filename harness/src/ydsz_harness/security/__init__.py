@@ -1,4 +1,4 @@
-﻿"""Security policy models and helpers for ydsz-harness hosts."""
+"""Security policy models and helpers for ydsz-harness hosts."""
 
 from ydsz_harness.security.models import (
     FilesystemPolicy,

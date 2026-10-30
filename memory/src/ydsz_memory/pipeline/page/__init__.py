@@ -1,4 +1,4 @@
-﻿"""M3 EntityPage layer (D32-D37 contract).
+"""M3 EntityPage layer (D32-D37 contract).
 
 Public surface:
 

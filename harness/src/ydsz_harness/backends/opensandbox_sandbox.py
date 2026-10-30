@@ -1,4 +1,4 @@
-﻿"""OpenSandbox remote backend (optional ``[opensandbox]`` extra).
+"""OpenSandbox remote backend (optional ``[opensandbox]`` extra).
 
 Creates a remote sandbox on construct and destroys it on :meth:`close`.
 Implements the three Deep Agents ``BaseSandbox`` primitives so file tools and

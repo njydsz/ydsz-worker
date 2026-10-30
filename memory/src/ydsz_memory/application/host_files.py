@@ -1,4 +1,4 @@
-﻿"""D51-C / D52-C — host-written real-file index.
+"""D51-C / D52-C — host-written real-file index.
 
 OpenClaw's compaction silent turn writes ``memory/YYYY-MM-DD.md`` and
 the user may hand-edit ``MEMORY.md``. Both are real files on disk, NOT

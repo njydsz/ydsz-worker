@@ -1,0 +1,79 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>04 · 怎么开始</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            建议：30 天，验证一个真实场景
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 32 }}>
+            {/* 左：30 天 */}
+            <Box style={{ width: 300, background: '#2563EB', borderRadius: 12, padding: 22, justifyContent: 'center' }}>
+                <Text style={{ fontSize: 88, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.0 }}>30</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#DBEAFE', marginTop: 8, lineHeight: 1.3 }}>天完成一次可决策的验证</Text>
+                <Box style={{ height: 1, background: '#3B82F6', marginTop: 16 }} />
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.55, marginTop: 14 }}>
+                    需要的投入：1 位业务对接人，每天几条真实问题。产出：一份可以拿去开会的评估结论。
+                </Text>
+            </Box>
+
+            {/* 右：四周安排 */}
+            <Box style={{ flex: 1 }}>
+                <Box style={{ height: 102, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Box style={{ width: 96, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#2563EB' }}>第 1 周</Text>
+                    </Box>
+                    <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 10 }}>
+                        <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>选定场景，搭好环境</Text>
+                        <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>
+                            确定 1 个高频、可衡量的场景与业务对接人，部署试点环境、导入核心文档。
+                        </Text>
+                    </Box>
+                </Box>
+                <Box style={{ height: 102, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Box style={{ width: 96, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#2563EB' }}>第 2 周</Text>
+                    </Box>
+                    <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 10 }}>
+                        <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>配置专家，设定规则</Text>
+                        <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>
+                            挑选或微调岗位专家，设定审批清单与使用规范，小范围内先行试用。
+                        </Text>
+                    </Box>
+                </Box>
+                <Box style={{ height: 102, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Box style={{ width: 96, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#2563EB' }}>第 3 周</Text>
+                    </Box>
+                    <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 10 }}>
+                        <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>真实使用，持续微调</Text>
+                        <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>
+                            放进真实业务跑起来，按反馈补充知识库、调整话术，观察员工的使用意愿。
+                        </Text>
+                    </Box>
+                </Box>
+                <Box style={{ height: 102, flexDirection: 'row' }}>
+                    <Box style={{ width: 96, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#F59E0B' }}>第 4 周</Text>
+                    </Box>
+                    <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 10 }}>
+                        <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>复盘效果，决定下一步</Text>
+                        <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>
+                            看三个问题：答得准不准、处理快没快、员工愿不愿用——据此决定扩大、调整还是停止。
+                        </Text>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#FFF7E9', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#7C2D12', lineHeight: 1.4 }}>
+                不需要先签合同再验证：装好跑通一个场景，再决定要不要扩大到全公司。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

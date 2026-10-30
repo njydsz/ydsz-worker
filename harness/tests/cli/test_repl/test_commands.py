@@ -1,4 +1,4 @@
-﻿"""Tests for slash command registry."""
+"""Tests for slash command registry."""
 
 from __future__ import annotations
 

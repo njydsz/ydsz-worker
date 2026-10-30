@@ -1,4 +1,4 @@
-﻿"""Reranker — 5 factor linear combination (D38-A).
+"""Reranker — 5 factor linear combination (D38-A).
 
 Each candidate snippet (atom / raw event, plus the reserved
 ``page_headline`` type) is scored on five orthogonal factors,

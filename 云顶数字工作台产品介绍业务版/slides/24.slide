@@ -1,0 +1,76 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            专题｜文件、报表与信息收集：从「找到」到「交付」的完整链路
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 四步流程 */}
+        <Box style={{ flexDirection: 'row', marginTop: 20, alignItems: 'stretch' }}>
+            <Box style={{ width: 265, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>01</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>找到信息</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    全文检索公司资料、联网搜索公开信息、抓取网页内容，多路并行找料。
+                </Text>
+            </Box>
+            <Box style={{ width: 30, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={30} height={18} viewBox='0 0 30 18'><path d='M0 9 L18 9' stroke='#2563EB' strokeWidth='2' /><path d='M18 2 L30 9 L18 16 Z' fill='#2563EB' /></svg>
+            </Box>
+            <Box style={{ width: 265, background: '#D6E4F9', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#475569', lineHeight: 1.3 }}>02</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>读懂内容</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    PDF、Word、Excel、扫描件都能解析，长文档按需摘取要点与数据。
+                </Text>
+            </Box>
+            <Box style={{ width: 30, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={30} height={18} viewBox='0 0 30 18'><path d='M0 9 L18 9' stroke='#0891B2' strokeWidth='2' /><path d='M18 2 L30 9 L18 16 Z' fill='#0891B2' /></svg>
+            </Box>
+            <Box style={{ width: 265, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>03</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>生成成果</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    汇总成表、整理成报告、拟定初稿，按你要求的格式产出。
+                </Text>
+            </Box>
+            <Box style={{ width: 30, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={30} height={18} viewBox='0 0 30 18'><path d='M0 9 L18 9' stroke='#F59E0B' strokeWidth='2' /><path d='M18 2 L30 9 L18 16 Z' fill='#F59E0B' /></svg>
+            </Box>
+            <Box style={{ width: 265, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>04</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>交付到位</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                    文件直接回传会话、推送到群、或按计划定时发出——结果到人，不用再来取。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 支撑点 */}
+        <Box style={{ flexDirection: 'row', marginTop: 20, gap: 16 }}>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>中文场景处理</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>编码兼容、老格式转换、扫描件自动识别。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>浏览器自动化</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>内部系统填报、批量后台操作、页面截图核验。</Text>
+            </Box>
+            <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>全程可控</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 4 }}>高风险动作先审批，文件操作按权限执行。</Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 16, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                大部分办公时间不是花在「想」，而是花在找、抄、改、发——这条链路正是数字员工的主场。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

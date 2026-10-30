@@ -1,4 +1,4 @@
-﻿"""LLM subpackage: provider configuration → LangChain ``BaseChatModel``."""
+"""LLM subpackage: provider configuration → LangChain ``BaseChatModel``."""
 
 from __future__ import annotations
 

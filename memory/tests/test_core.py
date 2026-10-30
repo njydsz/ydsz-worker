@@ -1,4 +1,4 @@
-﻿"""Tests for Memory core class."""
+"""Tests for Memory core class."""
 
 from __future__ import annotations
 

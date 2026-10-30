@@ -1,4 +1,4 @@
-﻿"""Tests for intra-entity semantic dedup (Entity Consolidation)."""
+"""Tests for intra-entity semantic dedup (Entity Consolidation)."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿# tests/test_provider_preset_core.py
+# tests/test_provider_preset_core.py
 from __future__ import annotations
 
 import json
@@ -176,7 +176,13 @@ class TestCoreProviderPresets:
     def test_deepseek_bundle_only_lists_current_v4_models(self) -> None:
         presets = {p.id: p for p in load_provider_templates(templates_path=_BUNDLED_TEMPLATE)}
         ds = presets["deepseek"]
-        assert {m.id for m in ds.models} == {"deepseek-v4-flash", "deepseek-v4-pro", "deepseek-v4.1-flash", "deepseek-v3.2", "deepseek-r1"}
+        assert {m.id for m in ds.models} == {
+            "deepseek-v4-flash",
+            "deepseek-v4-pro",
+            "deepseek-v4.1-flash",
+            "deepseek-v3.2",
+            "deepseek-r1",
+        }
         assert {m.max_input_tokens for m in ds.models} == {65536, 1_000_000, 1_048_576}
         assert {m.max_output_tokens for m in ds.models} == {32768, 384_000, 393_216}
 

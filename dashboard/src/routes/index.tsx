@@ -3,6 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 // Lazy-loaded pages — Common
 const ExpertsPage = lazy(() => import("../pages/Experts"));
+const MarketPage = lazy(() => import("../pages/Market"));
 const CronJobsPage = lazy(() => import("../pages/Control/CronJobs"));
 const ConnectorsPage = lazy(() => import("../pages/Agent/Connectors"));
 const SkillPackagesPage = lazy(() => import("../pages/SkillPackages"));
@@ -65,6 +66,8 @@ export const pathToKey: Record<string, string> = {
   "/skills": "personalization",
   "/token-usage": "token-usage",
   "/agent-config": "agent-config",
+  // Market (unified marketplace)
+  "/market": "market",
   // Control
   "/acp": "acp",
   "/channels": "channels",
@@ -233,6 +236,7 @@ export const routeConfigs: RouteConfig[] = [
   { path: "/admin/agents", element: <Navigate to="/admin/users" replace /> },
   { path: "/admin/plugins", element: <AdminPluginsPage /> },
   { path: "/admin/advanced", element: <AdvancedSettingsPage /> },
+  { path: "/market", element: <MarketPage /> },
   { path: "/admin/security", element: <AdminSecurityPage /> },
   {
     path: "/admin/voice",

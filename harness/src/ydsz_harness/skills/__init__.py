@@ -1,4 +1,4 @@
-﻿"""Skill catalog and metadata helpers."""
+"""Skill catalog and metadata helpers."""
 
 from ydsz_harness.skills.catalog import list_skill_summaries, skill_slug_from_path
 

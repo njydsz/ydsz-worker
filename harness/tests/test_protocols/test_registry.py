@@ -1,4 +1,4 @@
-﻿"""Tests for the protocol registry."""
+"""Tests for the protocol registry."""
 
 from __future__ import annotations
 

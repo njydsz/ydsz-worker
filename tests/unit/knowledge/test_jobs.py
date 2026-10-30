@@ -40,9 +40,14 @@ def test_enqueue_index_document_limits_concurrency(monkeypatch: pytest.MonkeyPat
 
     monkeypatch.setattr(jobs, "process_document", blocking)
 
+    # Explicitly pin concurrency to 1 to verify strict serial behavior.
+    services = SimpleNamespace(
+        config=SimpleNamespace(knowledge=SimpleNamespace(index_concurrency=1))
+    )
+
     async def run() -> None:
-        first = jobs.enqueue_index_document(object(), "kb", "d1")
-        second = jobs.enqueue_index_document(object(), "kb", "d2")
+        first = jobs.enqueue_index_document(services, "kb", "d1")
+        second = jobs.enqueue_index_document(services, "kb", "d2")
         for _ in range(100):
             if entered.is_set():
                 break
@@ -54,6 +59,56 @@ def test_enqueue_index_document_limits_concurrency(monkeypatch: pytest.MonkeyPat
 
     asyncio.run(run())
     assert peak == 1
+
+
+def test_enqueue_index_document_default_concurrency(monkeypatch: pytest.MonkeyPatch) -> None:
+    """The default concurrency is now 2 (was 1) via YDSZConfig.knowledge.
+
+    The semaphore allows 2 jobs through concurrently. Since our mock has no
+    async yield point, effective parallelism within a single branch is
+    synchronous — this test pins concurrency=2 via config and verifies the
+    semaphore accepts two concurrent holders without blocking.
+    """
+    jobs.reset_index_semaphore_for_tests()
+
+    acquired = threading.Event()
+    release = threading.Event()
+    concurrent_holders = 0
+    peak_holders = 0
+    lock = threading.Lock()
+
+    def blocking(_services: object, _kb: str, _doc: str) -> None:
+        nonlocal concurrent_holders, peak_holders
+        with lock:
+            concurrent_holders += 1
+            peak_holders = max(peak_holders, concurrent_holders)
+        acquired.set()
+        assert release.wait(timeout=3)
+        with lock:
+            concurrent_holders -= 1
+
+    monkeypatch.setattr(jobs, "process_document", blocking)
+
+    # Pin concurrency to 2 explicitly.
+    services = SimpleNamespace(
+        config=SimpleNamespace(knowledge=SimpleNamespace(index_concurrency=2))
+    )
+
+    async def run() -> None:
+        t1 = jobs.enqueue_index_document(services, "kb", "d1")
+        t2 = jobs.enqueue_index_document(services, "kb", "d2")
+        # Wait for both holders to register in the lock body.
+        for _ in range(100):
+            with lock:
+                if concurrent_holders == 2:
+                    break
+            await asyncio.sleep(0.01)
+        with lock:
+            assert peak_holders == 2, "semaphore should admit 2 parallel holders"
+        release.set()
+        await asyncio.gather(t1, t2)
+
+    asyncio.run(run())
 
 
 def test_process_document_marks_empty_extract_as_failed(

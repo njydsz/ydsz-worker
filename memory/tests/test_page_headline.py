@@ -1,4 +1,4 @@
-﻿"""Tests for headline truncation (D32-A)."""
+"""Tests for headline truncation (D32-A)."""
 
 from __future__ import annotations
 

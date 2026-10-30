@@ -1,4 +1,4 @@
-﻿"""Unit tests for the dashboard JSON-RPC surface (M5+ orca dashboard).
+"""Unit tests for the dashboard JSON-RPC surface (M5+ orca dashboard).
 
 Drives :class:`Bridge` directly with hand-built rows to keep tests
 deterministic — no LLM, no extractor pipeline. Each test composes a

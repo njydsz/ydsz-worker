@@ -14,7 +14,12 @@ from ydsz.infra.bridge.utils import _annotate_bridge_dial_error, _should_refresh
 from ydsz.infra.errors import ErrorCode, YdszError
 
 
-def test_normalize_accepts_https_host() -> None:
+def test_normalize_accepts_https_host(monkeypatch: pytest.MonkeyPatch) -> None:
+    # SSRF guard does a DNS lookup; mock it so the test is offline-safe.
+    monkeypatch.setattr(
+        "ydsz.infra.bridge.peer_auth.socket.getaddrinfo",
+        lambda *a, **kw: [(2, 1, 6, "", ("93.184.216.34", 0))],
+    )
     assert normalize_peer_base_url("https://demo.ydsz.chat/") == "https://demo.ydsz.chat"
 
 

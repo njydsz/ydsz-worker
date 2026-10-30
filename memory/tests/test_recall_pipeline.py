@@ -1,4 +1,4 @@
-﻿"""End-to-end tests for ``recall_for_prompt`` (full pipeline)."""
+"""End-to-end tests for ``recall_for_prompt`` (full pipeline)."""
 
 from __future__ import annotations
 

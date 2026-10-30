@@ -1,4 +1,4 @@
-﻿"""Multi-agent profile management."""
+"""Multi-agent profile management."""
 
 from __future__ import annotations
 

@@ -1,0 +1,66 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            专题｜47 个系统连接器：接进公司已经在用的工具
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 28 }}>
+            {/* 左：大数字 */}
+            <Box style={{ width: 300 }}>
+                <Text style={{ fontSize: 100, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.0 }}>47</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', marginTop: 8 }}>个企业系统连接器</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 12 }}>
+                    43 个已可用、4 个即将上线。授权流程内建：API Key、OAuth2、个人令牌按系统适配。
+                </Text>
+                <Box style={{ width: 180, height: 1, background: '#E2E8F0', marginTop: 14 }} />
+                <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 12 }}>
+                    按岗位绑定：客服接工单与知识库，销售接 CRM 与文档
+                </Text>
+            </Box>
+
+            {/* 右：分类 */}
+            <Box style={{ flex: 1, gap: 6 }}>
+                <Box style={{ height: 52, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ width: 170, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>办公文档 · 10</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>腾讯文档、腾讯会议、微云、金山文档等</Text>
+                </Box>
+                <Box style={{ height: 52, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ width: 170, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>知识沉淀 · 8</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>腾讯 IMA、乐享、语雀、Obsidian 等</Text>
+                </Box>
+                <Box style={{ height: 52, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ width: 170, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>效率协作 · 7</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>邮箱、滴答清单、办公套件、腾讯问卷等</Text>
+                </Box>
+                <Box style={{ height: 52, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ width: 170, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>出行差旅 · 5</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>飞猪、携程、美团、滴滴、百度地图</Text>
+                </Box>
+                <Box style={{ height: 52, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ width: 170, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>媒体内容 · 4</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>腾讯新闻、微信读书、QQ 音乐、RSS</Text>
+                </Box>
+                <Box style={{ height: 52, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ width: 170, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>研发与项目 · 4</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>GitHub、Jira、Linear、TAPD 等</Text>
+                </Box>
+                <Box style={{ height: 52, flexDirection: 'row', alignItems: 'center', background: '#FFF7E9', borderRadius: 10, padding: 12 }}>
+                    <Text style={{ width: 170, fontSize: 18, fontWeight: '600', color: '#B45309' }}>专业数据 · 5+</Text>
+                    <Text style={{ fontSize: 18, color: '#7C2D12' }}>企查查、天眼查、法规、金融数据等；内部系统可自定义接入</Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                省下的不是几个接口的工作量，而是整套授权、刷新与运维的长期成本——主流系统接入无需自研。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

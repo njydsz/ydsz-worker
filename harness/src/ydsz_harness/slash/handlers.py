@@ -1,4 +1,4 @@
-﻿"""Runtime slash command handlers: stop, model, skills."""
+"""Runtime slash command handlers: stop, model, skills."""
 
 from __future__ import annotations
 

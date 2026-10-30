@@ -1,4 +1,4 @@
-﻿"""Tests for harness config command."""
+"""Tests for harness config command."""
 
 import json
 from pathlib import Path

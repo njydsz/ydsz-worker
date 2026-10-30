@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.slash runtime dispatcher."""
+"""Tests for ydsz_harness.slash runtime dispatcher."""
 
 from __future__ import annotations
 

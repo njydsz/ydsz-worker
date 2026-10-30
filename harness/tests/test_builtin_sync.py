@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.builtin._sync.sync_builtin_skills_to_backend``."""
+"""Tests for ``ydsz_harness.builtin._sync.sync_builtin_skills_to_backend``."""
 
 from __future__ import annotations
 

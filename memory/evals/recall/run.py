@@ -1,4 +1,4 @@
-﻿"""Recall evaluation runner — P@5 / MRR over synthetic fixtures.
+"""Recall evaluation runner — P@5 / MRR over synthetic fixtures.
 
 Two pipelines compared by default:
 

@@ -1,4 +1,4 @@
-﻿"""Vector-search enhancement layer -- VectorIndex Protocol.
+"""Vector-search enhancement layer -- VectorIndex Protocol.
 
 This layer is an **optional enhancement** over the SQLite/Postgres relational backend,
 not a replacement. The relational backend remains the source of truth; VectorIndex is

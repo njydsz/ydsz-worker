@@ -1,4 +1,4 @@
-﻿"""Tests for harness init command."""
+"""Tests for harness init command."""
 
 from pathlib import Path
 

@@ -1,4 +1,4 @@
-﻿"""Tests for the OpenSandbox backend (mocked SDK — no live server)."""
+"""Tests for the OpenSandbox backend (mocked SDK — no live server)."""
 
 from __future__ import annotations
 

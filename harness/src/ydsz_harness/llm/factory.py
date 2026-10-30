@@ -1,4 +1,4 @@
-﻿"""Build a ``BaseChatModel`` from a ``ProviderConfig`` + ``ModelConfig`` pair.
+"""Build a ``BaseChatModel`` from a ``ProviderConfig`` + ``ModelConfig`` pair.
 
 Per design doc §3.3:
     - ``protocol="openai"``    → ``ChatOpenAI`` (also covers OpenAI-compatible

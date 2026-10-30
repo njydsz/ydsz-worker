@@ -1,4 +1,4 @@
-﻿"""Tests for the bundled built-in Skills (skill-creator / install-skill / …).
+"""Tests for the bundled built-in Skills (skill-creator / install-skill / …).
 
 The Skills themselves are documents, not code, so the unit-test surface
 is intentionally narrow: we verify they ship correctly and that scripted

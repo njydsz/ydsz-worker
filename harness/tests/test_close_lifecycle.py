@@ -1,4 +1,4 @@
-﻿"""Lifecycle close behaviour — sync vs async construction/teardown."""
+"""Lifecycle close behaviour — sync vs async construction/teardown."""
 
 from __future__ import annotations
 

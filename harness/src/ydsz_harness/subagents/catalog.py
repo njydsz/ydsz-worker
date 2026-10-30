@@ -1,4 +1,4 @@
-﻿"""Summaries of workspace subagents for dashboards and tooling."""
+"""Summaries of workspace subagents for dashboards and tooling."""
 
 from __future__ import annotations
 

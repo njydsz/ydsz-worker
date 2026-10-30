@@ -1,4 +1,4 @@
-﻿"""Tests for the ``browser_use`` built-in tool.
+"""Tests for the ``browser_use`` built-in tool.
 
 The real ``ydsz_browser.browser_tool`` would launch Chrome over CDP;
 we replace that single entry-point with a fake during each test so the

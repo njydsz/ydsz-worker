@@ -1,4 +1,4 @@
-﻿"""Tests for Playwright CDN source race."""
+"""Tests for Playwright CDN source race."""
 
 from __future__ import annotations
 

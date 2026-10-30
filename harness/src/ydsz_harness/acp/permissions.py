@@ -1,4 +1,4 @@
-﻿"""ACP permission handling."""
+"""ACP permission handling."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Environment variable detection for provider configuration."""
+"""Environment variable detection for provider configuration."""
 
 from __future__ import annotations
 

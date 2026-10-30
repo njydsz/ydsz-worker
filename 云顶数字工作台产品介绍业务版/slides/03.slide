@@ -1,0 +1,39 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600, flexDirection: 'row' }}>
+        {/* 左侧标题区 */}
+        <Box style={{ width: 400 }}>
+            <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#2563EB' }} />
+            <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#1E293B', marginTop: 30, lineHeight: 1.15 }}>
+                目录
+            </Text>
+            <Text style={{ fontSize: 18, color: '#94A3B8', letterSpacing: 6, marginTop: 18 }}>
+                CONTENTS
+            </Text>
+            <Box style={{ width: 300, height: 1, background: '#E2E8F0', marginTop: 40 }} />
+        </Box>
+
+        {/* 右侧章节清单 */}
+        <Box style={{ width: 720, marginLeft: 40 }}>
+            <Box style={{ height: 130, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#2563EB' }}>01</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#1E293B' }}>为什么需要</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 4</Text>
+            </Box>
+            <Box style={{ height: 130, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#2563EB' }}>02</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#1E293B' }}>业务怎么用</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 12</Text>
+            </Box>
+            <Box style={{ height: 130, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#2563EB' }}>03</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#1E293B' }}>为什么放心</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 31</Text>
+            </Box>
+            <Box style={{ height: 130, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 90, fontSize: 32, fontWeight: 'bold', color: '#2563EB' }}>04</Text>
+                <Text style={{ flex: 1, fontSize: 26, fontWeight: '600', color: '#1E293B' }}>怎么开始</Text>
+                <Text style={{ width: 70, fontSize: 16, color: '#64748B', textAlign: 'right' }}>P 37</Text>
+            </Box>
+        </Box>
+    </Box>
+</Slide>

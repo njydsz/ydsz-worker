@@ -1,4 +1,4 @@
-﻿"""Peer-call helpers: one-shot requests and user-id coercion."""
+"""Peer-call helpers: one-shot requests and user-id coercion."""
 
 from __future__ import annotations
 

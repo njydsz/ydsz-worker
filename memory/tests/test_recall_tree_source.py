@@ -1,4 +1,4 @@
-﻿"""Tests: MemoryNode tree is an organizational view over AtomCard."""
+"""Tests: MemoryNode tree is an organizational view over AtomCard."""
 
 from __future__ import annotations
 

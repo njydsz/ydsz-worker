@@ -1,4 +1,4 @@
-﻿"""Tests for pipeline.lifecycle.maintenance (ADR-027 idle tick)."""
+"""Tests for pipeline.lifecycle.maintenance (ADR-027 idle tick)."""
 
 from __future__ import annotations
 

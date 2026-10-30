@@ -1,4 +1,4 @@
-﻿"""Interaction actions: click, type_text, scroll, hover."""
+"""Interaction actions: click, type_text, scroll, hover."""
 
 from __future__ import annotations
 

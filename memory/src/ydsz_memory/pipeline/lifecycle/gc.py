@@ -1,4 +1,4 @@
-﻿"""Lifecycle GC for old / dead data (5.6, D47-C cron + CLI).
+"""Lifecycle GC for old / dead data (5.6, D47-C cron + CLI).
 
 Implements the cleanup rules from design doc §17 plus journal retention
 (ADR-028 / RISK-026 ③):

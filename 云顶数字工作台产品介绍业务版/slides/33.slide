@@ -1,0 +1,47 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>03 · 为什么放心</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            五层防线：每一层都看得见、查得到、改得动
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ marginTop: 20, gap: 12 }}>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 56, fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>01</Text>
+                <Text style={{ width: 210, fontSize: 20, fontWeight: '600', color: '#1E293B' }}>身份与授权</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>密码、LDAP、SSO 单点登录与邀请码；数据按人隔离，谁能看谁的一目了然。</Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 56, fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>02</Text>
+                <Text style={{ width: 210, fontSize: 20, fontWeight: '600', color: '#1E293B' }}>命令守卫</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>20 条内建危险命令规则：删除、提权、危险网络操作等，拦截、告警或转审批可配。</Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 56, fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>03</Text>
+                <Text style={{ width: 210, fontSize: 20, fontWeight: '600', color: '#1E293B' }}>文件系统沙箱</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>按操作与路径授权；系统目录、密钥、凭证等敏感位置默认拦截，开箱即在保护状态。</Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Text style={{ width: 56, fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>04</Text>
+                <Text style={{ width: 210, fontSize: 20, fontWeight: '600', color: '#1E293B' }}>数据脱敏与出站</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>阻断、删除、掩码、哈希四种脱敏策略作用于输入输出；对外请求先过安全校验。</Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ width: 56, fontSize: 22, fontWeight: 'bold', color: '#2563EB' }}>05</Text>
+                <Text style={{ width: 210, fontSize: 20, fontWeight: '600', color: '#1E293B' }}>审计与备份</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>工具调用全量进轨迹账本，支持自动备份与一键恢复，出事之前就有准备。</Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 52, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                安全不是一句承诺：这五层都是配置里看得见、改得动、有日志可查的具体机制。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

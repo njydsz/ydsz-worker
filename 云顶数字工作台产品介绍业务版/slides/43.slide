@@ -1,0 +1,56 @@
+<Slide style={{ padding: 0, position: 'relative', background: 'linear-gradient(115deg, #FFFFFF 0%, #F4F6FB 55%, #E4ECF9 100%)' }}>
+    {/* 右侧节点图 */}
+    <Box style={{ position: 'absolute', right: 40, top: 90, width: 640, height: 540 }}>
+        <svg width={640} height={540} viewBox='0 0 640 540'>
+            <g stroke='#C7D6F5' strokeWidth='1' opacity='0.9'>
+                <line x1='80' y1='60' x2='240' y2='180' />
+                <line x1='240' y1='180' x2='420' y2='120' />
+                <line x1='240' y1='180' x2='400' y2='330' />
+                <line x1='400' y1='330' x2='560' y2='260' />
+                <line x1='400' y1='330' x2='300' y2='470' />
+                <line x1='300' y1='470' x2='520' y2='440' />
+                <line x1='420' y1='120' x2='560' y2='260' />
+            </g>
+            <circle cx='80' cy='60' r='7' fill='#0891B2' />
+            <circle cx='240' cy='180' r='12' fill='#2563EB' />
+            <circle cx='420' cy='120' r='7' fill='#0891B2' />
+            <circle cx='400' cy='330' r='16' fill='#F59E0B' />
+            <circle cx='560' cy='260' r='8' fill='#93C5FD' />
+            <circle cx='300' cy='470' r='9' fill='#0891B2' />
+            <circle cx='520' cy='440' r='7' fill='#93C5FD' />
+        </svg>
+    </Box>
+
+    {/* 收束金句 */}
+    <Box style={{ position: 'absolute', left: 92, top: 140, width: 720 }}>
+        <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#F59E0B' }} />
+        <Text style={{ fontSize: 46, fontWeight: 'bold', color: '#1E293B', lineHeight: 1.35, marginTop: 30 }}>
+            让 AI 不只回答问题，<br />而是把活真正干完。
+        </Text>
+        <Text style={{ fontSize: 20, color: '#64748B', lineHeight: 1.5, marginTop: 20 }}>
+            云顶数字工作台 · 会思考，会干活，陪企业成长的智能伙伴
+        </Text>
+    </Box>
+
+    {/* 行动路径 + 落款 */}
+    <Box style={{ position: 'absolute', left: 92, bottom: 110, width: 720 }}>
+        <Box style={{ height: 1, background: '#C7D6F5' }} />
+        <Box style={{ flexDirection: 'row', gap: 24, marginTop: 20 }}>
+            <Box style={{ width: 200 }}>
+                <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>第一步</Text>
+                <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4, marginTop: 4 }}>选定 1 个试点场景</Text>
+            </Box>
+            <Box style={{ width: 200 }}>
+                <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>第二步</Text>
+                <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4, marginTop: 4 }}>30 天试点验证</Text>
+            </Box>
+            <Box style={{ width: 250 }}>
+                <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>第三步</Text>
+                <Text style={{ fontSize: 19, fontWeight: '600', color: '#2563EB', lineHeight: 1.4, marginTop: 4 }}>复盘效果，决定推广</Text>
+            </Box>
+        </Box>
+        <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 18 }}>
+            开源仓库 github.com/njydsz/ydsz-worker · MIT 许可 · 业务版介绍 · 2026 年 10 月
+        </Text>
+    </Box>
+</Slide>

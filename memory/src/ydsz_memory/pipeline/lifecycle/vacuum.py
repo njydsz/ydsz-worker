@@ -1,4 +1,4 @@
-﻿"""Storage-level space reclamation (RISK-026 vacuum plan, ADR-025).
+"""Storage-level space reclamation (RISK-026 vacuum plan, ADR-025).
 
 Deleting rows (lifecycle GC, checkpoint pruning, journal retention) only
 marks the space they occupied as reusable — it never shrinks the on-disk

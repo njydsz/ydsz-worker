@@ -1,4 +1,4 @@
-﻿"""Capture context-window usage from the final outbound model request."""
+"""Capture context-window usage from the final outbound model request."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """Tencent Cloud COS backend end-to-end test.
 
 Exercises five scenarios:

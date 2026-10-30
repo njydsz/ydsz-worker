@@ -1,4 +1,4 @@
-﻿"""Tests for recall formatter (M1.7)."""
+"""Tests for recall formatter (M1.7)."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Recall router (M4.3) — picks recall sources by parsed query shape.
+"""Recall router (M4.3) — picks recall sources by parsed query shape.
 
 Decision matrix (design doc §9.2):
 

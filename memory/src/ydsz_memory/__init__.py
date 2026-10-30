@@ -1,4 +1,4 @@
-﻿"""ydsz-memory: pluggable memory system for LLM agents."""
+"""ydsz-memory: pluggable memory system for LLM agents."""
 
 from __future__ import annotations
 

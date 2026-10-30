@@ -1,0 +1,66 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            每个部门拿到什么
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 32 }}>
+            {/* 左：大数字 */}
+            <Box style={{ width: 280 }}>
+                <Text style={{ fontSize: 100, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.0 }}>7</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', marginTop: 8 }}>类部门各有收获</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 12 }}>
+                    从一线客服到管理层，每个岗位都能说出「它帮我干了什么」——这是采纳率的起点。
+                </Text>
+                <Box style={{ width: 180, height: 1, background: '#E2E8F0', marginTop: 16 }} />
+                <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 12 }}>
+                    同一份受控知识库，各部门按权限取用
+                </Text>
+            </Box>
+
+            {/* 右：七行清单 */}
+            <Box style={{ flex: 1 }}>
+                <Box style={{ height: 54, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ width: 150, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>客服</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>答复有出处，二次咨询记得住前情</Text>
+                </Box>
+                <Box style={{ height: 54, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ width: 150, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>运营</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>日报周报自动出稿，异常预警主动推送</Text>
+                </Box>
+                <Box style={{ height: 54, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ width: 150, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>市场销售</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>方案初稿、竞品信息随手可问</Text>
+                </Box>
+                <Box style={{ height: 54, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ width: 150, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>财务法务</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>制度查询、合同要点快速梳理</Text>
+                </Box>
+                <Box style={{ height: 54, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ width: 150, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>人力 HR</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>政策问答、面试安排、入职答疑有问必答</Text>
+                </Box>
+                <Box style={{ height: 54, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ width: 150, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>研发</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>需求澄清、日志排查、文档生成提速</Text>
+                </Box>
+                <Box style={{ height: 54, flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{ width: 150, fontSize: 18, fontWeight: '600', color: '#2563EB' }}>管理层</Text>
+                    <Text style={{ fontSize: 18, color: '#475569' }}>进度可查、过程留痕、投入可控</Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 62, background: '#E8EEFB', borderRadius: 10, padding: 16, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                不是替换岗位，而是给每个岗位配一个不下班的助理——业务先受益，推广阻力自然小。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

@@ -1,4 +1,4 @@
-﻿"""Bind the current ``thread_id`` for session-header HTTP injection."""
+"""Bind the current ``thread_id`` for session-header HTTP injection."""
 
 from __future__ import annotations
 

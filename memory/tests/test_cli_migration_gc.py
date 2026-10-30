@@ -1,4 +1,4 @@
-﻿"""Smoke tests for the M5 CLI commands (export / import / migrate / gc)."""
+"""Smoke tests for the M5 CLI commands (export / import / migrate / gc)."""
 
 from __future__ import annotations
 

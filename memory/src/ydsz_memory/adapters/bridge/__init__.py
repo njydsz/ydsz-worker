@@ -1,4 +1,4 @@
-﻿"""OpenClaw/Hermes memory bridge protocol.
+"""OpenClaw/Hermes memory bridge protocol.
 
 This subpackage hosts the Python side of the ydszmemory ↔ OpenClaw
 plugin bridge. The TS plugin shell (``plugins/openclaw/ydszmemory/``)

@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.llm.factory``."""
+"""Tests for ``ydsz_harness.llm.factory``."""
 
 from __future__ import annotations
 
@@ -813,9 +813,7 @@ class TestReasoningRoundTripGating:
         ai = AIMessage(
             content="",
             additional_kwargs={"reasoning_content": "thinking again"},
-            tool_calls=[
-                {"name": "get_weather", "args": {"city": "Beijing"}, "id": "call_1", "type": "tool_call"}
-            ],
+            tool_calls=[{"name": "get_weather", "args": {"city": "Beijing"}, "id": "call_1", "type": "tool_call"}],
         )
         messages = [
             HumanMessage(content="weather?"),

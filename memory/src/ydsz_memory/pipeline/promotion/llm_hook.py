@@ -1,4 +1,4 @@
-﻿"""Default LLM escalation hook implementations for the promotion worker.
+"""Default LLM escalation hook implementations for the promotion worker.
 
 These wrap an :class:`LLMClient` (host-injected per D25) and provide the
 three grey-zone disambiguations the rule path can't decide on its own:

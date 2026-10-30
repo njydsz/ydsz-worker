@@ -1,4 +1,4 @@
-﻿"""Stream event handler — consumes agent.stream() and dispatches rendering."""
+"""Stream event handler — consumes agent.stream() and dispatches rendering."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Tests for the memory CLI commands."""
+"""Tests for the memory CLI commands."""
 
 from __future__ import annotations
 

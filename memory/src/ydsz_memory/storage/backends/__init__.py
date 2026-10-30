@@ -1,4 +1,4 @@
-﻿"""Memory backend protocol and registry."""
+"""Memory backend protocol and registry."""
 
 from __future__ import annotations
 

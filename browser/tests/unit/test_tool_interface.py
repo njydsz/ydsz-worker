@@ -1,4 +1,4 @@
-﻿from types import SimpleNamespace
+from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 
 from ydsz_browser.cdp.client import CDPSessionError

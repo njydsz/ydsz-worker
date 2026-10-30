@@ -1,4 +1,4 @@
-﻿"""ydsz-memory dashboard CLI command.
+"""ydsz-memory dashboard CLI command.
 
 Usage:
     ydsz-memory dashboard

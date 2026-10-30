@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.backends.probe."""
+"""Tests for ydsz_harness.backends.probe."""
 
 from __future__ import annotations
 

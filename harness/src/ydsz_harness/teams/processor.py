@@ -1,4 +1,4 @@
-﻿"""Team callback contract: TeamProcessor + ReplyEvent.
+"""Team callback contract: TeamProcessor + ReplyEvent.
 
 A :class:`TeamProcessor` turns the inbox into an *active* mailbox. When a
 manager is constructed with one, :class:`~ydsz_harness.teams.inbox.HarnessAgentInboxManager`

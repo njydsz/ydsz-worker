@@ -1,4 +1,4 @@
-﻿"""Tests for the M2.5b default LLM escalation hook implementation.
+"""Tests for the M2.5b default LLM escalation hook implementation.
 
 We use a deterministic ``MockLLMClient`` so no network is required.
 The hook's contract is: never raise, always return ``True / False / str / None``.

@@ -1,4 +1,4 @@
-﻿"""Classification of object-store / probe I/O errors."""
+"""Classification of object-store / probe I/O errors."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""YAML regex rule guardian for shell tool parameters."""
+"""YAML regex rule guardian for shell tool parameters."""
 
 from __future__ import annotations
 

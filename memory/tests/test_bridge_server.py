@@ -1,4 +1,4 @@
-﻿"""End-to-end tests for the bridge JSON-RPC server.
+"""End-to-end tests for the bridge JSON-RPC server.
 
 We drive the server with in-memory pipes (``StringIO``) so no
 subprocess is needed. Each test composes a ``Memory`` instance pointed

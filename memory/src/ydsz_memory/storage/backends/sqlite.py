@@ -1,4 +1,4 @@
-﻿"""SQLite-based memory backend with FTS5 full-text search."""
+"""SQLite-based memory backend with FTS5 full-text search."""
 
 from __future__ import annotations
 

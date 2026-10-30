@@ -1,4 +1,4 @@
-﻿"""Stamp ``checkpoint_ts`` onto messages at write time.
+"""Stamp ``checkpoint_ts`` onto messages at write time.
 
 Open-chat latency used to be dominated by ``graph.aget_state_history`` walks
 just to recover first-seen times for history display. Instead, stamp

@@ -128,19 +128,28 @@ func TestChooseFreePortStopsWhenHostCannotBind(t *testing.T) {
 }
 
 func TestListenProbeSeesOpenListener(t *testing.T) {
-	ln, err := net.Listen("tcp", "127.0.0.1:0")
-	if err != nil {
-		t.Fatal(err)
+	mustListen := func() (net.Listener, int) {
+		ln, err := net.Listen("tcp", "127.0.0.1:0")
+		if err != nil {
+			t.Fatal(err)
+		}
+		return ln, ln.Addr().(*net.TCPAddr).Port
 	}
-	port := ln.Addr().(*net.TCPAddr).Port
-	inUse, err := listenProbe("127.0.0.1", port)
+
+	// in-use port: hold a listener, free a different port.
+	lnA, portA := mustListen()
+	defer lnA.Close()
+	lnB, portB := mustListen()
+	_ = lnB.Close() // portB is now free
+
+	inUse, err := listenProbe("127.0.0.1", portA)
 	if err != nil || !inUse {
-		t.Fatalf("inUse = %v, err = %v", inUse, err)
+		t.Fatalf("in-use port: inUse = %v, err = %v", inUse, err)
 	}
-	_ = ln.Close()
-	inUse, err = listenProbe("127.0.0.1", port)
+
+	inUse, err = listenProbe("127.0.0.1", portB)
 	if err != nil || inUse {
-		t.Fatalf("after close inUse = %v, err = %v", inUse, err)
+		t.Fatalf("free port: inUse = %v, err = %v", inUse, err)
 	}
 }
 

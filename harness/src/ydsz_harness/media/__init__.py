@@ -1,4 +1,4 @@
-﻿"""Provider-neutral media generation with built-in vendor adapters."""
+"""Provider-neutral media generation with built-in vendor adapters."""
 
 from ydsz_harness.media.base import BaseMediaProvider, MediaGenerationProvider
 from ydsz_harness.media.errors import MediaGenerationError

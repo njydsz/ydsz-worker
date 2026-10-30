@@ -1,4 +1,4 @@
-﻿"""Shared ``Memory`` store: rebuilds keep the same backend / checkpointer."""
+"""Shared ``Memory`` store: rebuilds keep the same backend / checkpointer."""
 
 from __future__ import annotations
 

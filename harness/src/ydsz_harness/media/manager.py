@@ -1,4 +1,4 @@
-﻿"""Unified routing and lifecycle orchestration for media generation."""
+"""Unified routing and lifecycle orchestration for media generation."""
 
 from __future__ import annotations
 

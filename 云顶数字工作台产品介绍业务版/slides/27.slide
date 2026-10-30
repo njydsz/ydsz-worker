@@ -1,0 +1,70 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            专题｜三层记忆：换个会话还认得你，纠错一次改一次
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 三层结构 */}
+        <Box style={{ marginTop: 20, gap: 14 }}>
+            <Box style={{ height: 112, flexDirection: 'row', background: '#E8EEFB', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 170, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#2563EB', lineHeight: 1.3 }}>原子事实</Text>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.3, marginTop: 2 }}>最小可核验的条目</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        「项目 A 的负责人是张工」「差旅标准是每天 500 元」——一条一条记住，错了可以纠正、过期可以更新。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 112, flexDirection: 'row', background: '#D6E4F9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 170, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#1E293B', lineHeight: 1.3 }}>实体画像</Text>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.3, marginTop: 2 }}>人 / 项目 / 系统的档案</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        每个人、每个项目、每套系统有自己的档案页：偏好、职责、历史结论一查即得，同名也能分得清。
+                    </Text>
+                </Box>
+            </Box>
+            <Box style={{ height: 112, flexDirection: 'row', background: '#FFF7E9', borderRadius: 12, padding: 18 }}>
+                <Box style={{ width: 170, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#B45309', lineHeight: 1.3 }}>情节经历</Text>
+                    <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.3, marginTop: 2 }}>事件的来龙去脉</Text>
+                </Box>
+                <Box style={{ flex: 1, justifyContent: 'center', marginLeft: 12 }}>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55 }}>
+                        保留事情的脉络：上个月为什么改了口径、当时谁拍的板——回答「当时是怎么定的」不再翻聊天记录。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box style={{ flexDirection: 'row', marginTop: 16, gap: 16 }}>
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    可纠正：说一次「记错了」，它就改，不再重复同样的误解。
+                </Text>
+            </Box>
+            <Box style={{ width: 1, background: '#E2E8F0' }} />
+            <Box style={{ flex: 1 }}>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55 }}>
+                    可清理：长期运行自动整理归档，不会越堆越乱、越问越慢。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 52, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 10, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                记忆让 AI 的能力随合作时间累积——每次会话不再从零开始，这是「越用越值钱」的技术底座。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

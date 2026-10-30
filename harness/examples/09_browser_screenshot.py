@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """Demo: drive a real Chrome browser via the ``browser_use`` built-in tool.
 
 Three run modes:

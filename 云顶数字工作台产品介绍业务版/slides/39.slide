@@ -1,0 +1,62 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>04 · 怎么开始</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            五种部署形态：从一台电脑到一台 NAS，都有对应跑法
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ marginTop: 20, gap: 12 }}>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Box style={{ width: 200, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB' }}>一键脚本安装</Text>
+                </Box>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>
+                  各平台一条命令装好，自动配独立运行环境，不碰系统原有配置。适合个人验证。
+                </Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Box style={{ width: 200, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB' }}>Docker Compose</Text>
+                </Box>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>
+                    官方编排文件开箱可用，另有国内镜像加速版；生产环境推荐，迁移方便。
+                </Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Box style={{ width: 200, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB' }}>注册为系统服务</Text>
+                </Box>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>
+                    开机自启、内置自更新，升级后自动重启恢复——像运维一套正式系统。
+                </Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                <Box style={{ width: 200, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB' }}>桌面客户端</Text>
+                </Box>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>
+                    Windows / macOS / Linux 原生安装包，图形界面完成安装，不需要终端。
+                </Text>
+            </Box>
+            <Box style={{ height: 72, flexDirection: 'row', alignItems: 'center' }}>
+                <Box style={{ width: 200, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#2563EB' }}>NAS 与移动访问</Text>
+                </Box>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5 }}>
+                    飞牛 fnOS 提供原生与容器两种包；控制台支持手机浏览器与 HTTPS 安全访问。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 52, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                上线路径不依赖任何云厂商：试点在一台电脑上完成，规模扩大时配置与数据可平滑带走。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

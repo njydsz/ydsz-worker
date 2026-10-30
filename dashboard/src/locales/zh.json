@@ -179,7 +179,7 @@
     "LDAP_UNAVAILABLE": "LDAP 目录服务不可用。请检查服务器地址与绑定凭证。",
     "LDAP_USER_NOT_PROVISIONED": "该目录账号尚未创建 云顶数字工作台 账号。请联系管理员创建，或开启自动创建账号。",
     "LDAP_GROUP_NOT_ALLOWED": "该目录账号不属于允许登录的用户组。请联系管理员将你加入允许登录的组。",
-    "EXPERT_MARKET_FAILED": "专家市场暂时不可用，请稍后重试。",
+    "EXPERT_MARKET_FAILED": "专家团市场暂时不可用，请稍后重试。",
     "SKILLHUB_SSL_FAILED": "SkillHub 请求失败：检测到 Python SSL 错误。macOS 可尝试 `brew reinstall openssl@3`，或检查系统 CA 证书。",
     "DESKTOP_SESSION_LIMIT": "远程桌面并发连接已达上限（最多 {{limit}} 路），请关闭其他连接后重试。",
     "DESKTOP_CAPTURE_FAILED": "连续抓屏失败。Linux 服务器请重启虚拟桌面；macOS 请在系统设置中授予屏幕录制与辅助功能权限后重连。",
@@ -878,8 +878,8 @@
       "proactive": "主动推送"
     },
     "myExperts": "我的专家",
-    "expertLibrary": "内置专家",
-    "expertMarket": "专家市场",
+    "expertLibrary": "内置专家团",
+    "expertMarket": "专家团市场",
     "viewCard": "卡片",
     "viewTable": "表格",
     "mbtiDefault": "默认",
@@ -900,12 +900,12 @@
     "totalAgents": "共 {{count}} 个专家",
     "searchPlaceholder": "搜索专家",
     "searchEmpty": "没有匹配的专家",
-    "totalLibrary": "共 {{count}} 个内置专家",
+    "totalLibrary": "共 {{count}} 个内置专家团",
     "totalMarket": "共 {{count}} 个市场专家",
-    "addFromLibrary": "+ 从内置专家新建",
+    "addFromLibrary": "+ 从内置专家团新建",
     "newExpert": "新建专家",
     "emptyMyExperts": "你还没有专家",
-    "emptyMyExpertsHint": "点击新建专家，或从内置专家、专家市场选择模板。",
+    "emptyMyExpertsHint": "点击新建专家，或从内置专家团、专家团市场选择模板。",
     "emptyGuideTitle": "还没有专家",
     "emptyGuideDesc": "专家是带身份与技能的 AI 助手。可新建，或从内置/市场选用模板。",
     "emptyGuideStepWhat": "专家是什么",
@@ -913,7 +913,7 @@
     "emptyGuideStepHow": "怎么创建",
     "emptyGuideStepHowDetail": "点击「新建专家」快速开一个空白专家，再按需配置模型、技能与人格。",
     "emptyGuideStepTemplate": "用模板更快上手",
-    "emptyGuideStepTemplateDetail": "也可从「内置专家」或「专家市场」选模板创建，开箱即用。",
+    "emptyGuideStepTemplateDetail": "也可从「内置专家团」或「专家团市场」选模板创建，开箱即用。",
     "myTeams": "我的团队",
     "teams": {
       "betaBadge": "Beta",
@@ -951,12 +951,12 @@
       "emptyGuideStepChatDetail": "从侧栏进入团队聊天。主持人负责调度，成员气泡会出现在同一房间。",
       "total": "共 {{count}} 个团队"
     },
-    "goToLibrary": "去内置专家",
-    "emptyLibrary": "暂无可用的内置专家",
-    "emptyLibraryHint": "请联系管理员配置内置专家。",
-    "marketLoadFailed": "加载专家市场失败",
+    "goToLibrary": "去内置专家团",
+    "emptyLibrary": "暂无可用的内置专家团",
+    "emptyLibraryHint": "请联系管理员配置内置专家团。",
+    "marketLoadFailed": "加载专家团市场失败",
     "marketBackendMissing": "后端还没有加载专家市场接口，请重启 云顶数字工作台 后端或确认当前运行的是这份新代码。",
-    "marketSearchPlaceholder": "搜索专家市场",
+    "marketSearchPlaceholder": "搜索专家团市场",
     "sceneAll": "全部",
     "scenes": {
       "academic": "学术",
@@ -976,13 +976,13 @@
     },
     "emptyMarket": "暂无可用的市场专家",
     "emptyMarketHint": "可以换个关键词，或稍后再试。",
-    "marketOffline": "专家市场暂时不可用",
+    "marketOffline": "专家团市场暂时不可用",
     "marketOfflineHint": "无法连接到市场服务器，请检查网络连接或稍后再试。",
     "noMarketDescription": "该市场专家暂未提供简介。",
     "marketSkillCount": "{{count}} 个技能",
     "createFromMarket": "从市场创建",
     "createAgainFromMarket": "再创建一个",
-    "marketCreateSuccess": "已从专家市场创建：{{name}}",
+    "marketCreateSuccess": "已从专家团市场创建：{{name}}",
     "marketCreateSuccessEnriching": "已创建 {{name}}。欢迎卡片正在后台优化，稍后进入对话即可看到更新。",
     "marketDetailLoadFailed": "加载专家详情失败",
     "marketSource": "SkillHub",
@@ -2225,7 +2225,7 @@
     "editNotSupported": "后端API不支持编辑操作",
     "editNote": "注意：后端API不支持编辑技能。您只能查看或切换启用/禁用状态。",
     "installedSkills": "已安装技能",
-    "tencentSkillHub": "技能市场",
+    "njydszSkillHub": "技能包市场",
     "skillPackages": "技能包",
     "mountedPackages": "已挂载技能包",
     "mountPackage": "挂载技能包",
@@ -2253,7 +2253,7 @@
     "mountBackendHint": "技能包需本地存储，且根目录为 /。",
     "skillPackagesUnsupportedHint": "无法直接使用技能包：存储根目录不是 / 时，因沙箱限制无法访问技能包的相关文件目录，但可以使用“复制技能”将技能复制到专家工作区。",
     "installedSkillsDesc": "管理已安装的内置和自定义技能。",
-    "tencentSkillHubDesc": "浏览和安装来自腾讯 SkillHub 的社区技能。",
+    "njydszSkillHubDesc": "浏览和安装来自腾讯 SkillHub 的社区技能。",
     "install": "安装",
     "installed": "已安装",
     "reinstall": "重新安装",
@@ -6296,6 +6296,9 @@
     "tabBuiltin": "内置连接器",
     "tabEnabled": "已启用连接器",
     "tabCustom": "自定义连接器",
+    "tabMarket": "连接器市场",
+    "marketEmptyTitle": "连接器市场即将上线",
+    "marketEmptyDesc": "在这里发现并安装更多第三方连接器，敬请期待。",
     "category": {
       "office": "办公协作",
       "knowledge": "笔记与知识",
@@ -7093,5 +7096,54 @@
     "step4Desc": "操作完成后，输入\"结束\"停止录制，确认后技能将以任务目标为名保存。之后只需输入任务目标关键词即可触发回放。",
     "envNotReady": "请先安装浏览器环境",
     "title": "技能录制引导"
+  },
+  "market": {
+    "title": "市场",
+    "title_subtitle": "发现并安装技能、专家、插件、连接器",
+    "search": {
+      "placeholder": "搜索市场...",
+      "noResults": "未找到结果",
+      "noResultsHint": "尝试其他关键词或浏览分类"
+    },
+    "tabs": {
+      "skills": "技能",
+      "experts": "专家",
+      "plugins": "插件",
+      "connectors": "连接器",
+      "installed": "已安装"
+    },
+    "filters": {
+      "category": "分类",
+      "allCategory": "全部",
+      "sort": "排序",
+      "sortRelevance": "相关度",
+      "sortDownloads": "安装量",
+      "sortRating": "评分",
+      "sortNewest": "最新",
+      "group": "分组",
+      "count": "共 {count} 项"
+    },
+    "card": {
+      "byAuthor": "作者 {name}",
+      "downloads": "{count} 次安装",
+      "installed": "已安装",
+      "updateAvailable": "有更新",
+      "comingSoon": "即将推出"
+    },
+    "actions": {
+      "install": "安装",
+      "installing": "安装中...",
+      "update": "更新",
+      "submit": "提交到市场",
+      "connect": "连接",
+      "configure": "配置"
+    },
+    "installed": {
+      "title": "我的已安装",
+      "updatesAvailable": "{count} 项可更新",
+      "checkUpdates": "检查更新",
+      "empty": "您还没有安装任何内容",
+      "emptyHint": "浏览市场发现更多能力"
+    }
   }
 }

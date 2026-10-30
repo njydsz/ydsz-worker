@@ -1,4 +1,4 @@
-﻿"""Tests for .env file path resolution and loading."""
+"""Tests for .env file path resolution and loading."""
 
 from __future__ import annotations
 

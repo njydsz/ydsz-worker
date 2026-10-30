@@ -1,4 +1,4 @@
-﻿"""Workspace bootstrap helpers.
+"""Workspace bootstrap helpers.
 
 Two public entry points share the same machinery:
 

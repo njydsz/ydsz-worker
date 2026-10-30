@@ -1,0 +1,65 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            专题｜24 个技能包、37 个插件：开箱即用的能力库
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 24 }}>
+            {/* 左：技能包 */}
+            <Box style={{ width: 540, background: '#F4F6FB', borderRadius: 12, padding: 20 }}>
+                <Box style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                    <Text style={{ fontSize: 46, fontWeight: 'bold', color: '#2563EB', lineHeight: 1.0 }}>24</Text>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', marginLeft: 10 }}>个技能包（中英双语）</Text>
+                </Box>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                    按场景装进不同岗位的数字同事，像给员工配发工具箱。
+                </Text>
+                <Box style={{ height: 1, background: '#E2E8F0', marginTop: 12 }} />
+                <Box style={{ flexDirection: 'row', gap: 8, marginTop: 12 }}>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>计划拆解</Text></Box>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>PPT 制作</Text></Box>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>PDF 处理</Text></Box>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>扫描件识别</Text></Box>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>数据笔记本</Text></Box>
+                    <Box style={{ background: '#E8EEFB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>系统化排障</Text></Box>
+                </Box>
+                <Box style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
+                    <Box style={{ background: '#FFF7E9', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#B45309' }}>技能工厂 · 更多…</Text></Box>
+                </Box>
+            </Box>
+
+            {/* 右：插件 + 扩充 */}
+            <Box style={{ flex: 1, gap: 14 }}>
+                <Box style={{ flex: 1, background: '#E8EEFB', borderRadius: 12, padding: 20 }}>
+                    <Box style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                        <Text style={{ fontSize: 46, fontWeight: 'bold', color: '#2563EB', lineHeight: 1.0 }}>37</Text>
+                        <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', marginLeft: 10 }}>个内置插件</Text>
+                    </Box>
+                    <Text style={{ fontSize: 18, color: '#1E293B', lineHeight: 1.55, marginTop: 8 }}>
+                        天气、行情、热点、记账、二维码、习惯打卡、影视查询……装上即可让数字同事多一手技能。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#FFF7E9', borderRadius: 12, padding: 20 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>持续扩充 + 安全把关</Text>
+                    <Text style={{ fontSize: 18, color: '#7C2D12', lineHeight: 1.55, marginTop: 8 }}>
+                        在线技能市场随时安装新能力；第三方技能支持扫描策略（关闭 / 告警 / 阻断），进什么不进什么由公司定。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                采购一套产品，也拿到一条可持续扩充能力的供应链——新场景先问「有没有现成技能」，而不是先排开发。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

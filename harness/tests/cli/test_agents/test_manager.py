@@ -1,4 +1,4 @@
-﻿"""Tests for CliAgentManager."""
+"""Tests for CliAgentManager."""
 
 from __future__ import annotations
 

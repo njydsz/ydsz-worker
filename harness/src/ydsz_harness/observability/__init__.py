@@ -1,4 +1,4 @@
-﻿"""Optional observability integrations."""
+"""Optional observability integrations."""
 
 from ydsz_harness.observability.langfuse import LangfuseConfig, LangfuseTracer
 from ydsz_harness.observability.logging import (

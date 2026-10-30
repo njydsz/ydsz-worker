@@ -1,4 +1,4 @@
-﻿"""Harness wrappers around deepagents ``CompositeBackend``."""
+"""Harness wrappers around deepagents ``CompositeBackend``."""
 
 from __future__ import annotations
 

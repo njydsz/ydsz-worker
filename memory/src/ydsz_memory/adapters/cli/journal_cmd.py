@@ -1,4 +1,4 @@
-﻿"""Memory CLI: ``journal`` subcommand group for L4 audit log.
+"""Memory CLI: ``journal`` subcommand group for L4 audit log.
 
 Read-only — journal is append-only by design and the worker is the only
 writer. This CLI exists for debugging / replay (D-?), not for end-user

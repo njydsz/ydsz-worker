@@ -1,4 +1,4 @@
-﻿"""Built-in tool: ``acp_runner`` — delegate work to external ACP agent runtimes."""
+"""Built-in tool: ``acp_runner`` — delegate work to external ACP agent runtimes."""
 
 from __future__ import annotations
 

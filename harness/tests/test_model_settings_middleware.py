@@ -1,4 +1,4 @@
-﻿"""Tests for configurable model-settings middleware."""
+"""Tests for configurable model-settings middleware."""
 
 from __future__ import annotations
 

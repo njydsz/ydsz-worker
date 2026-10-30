@@ -1,4 +1,4 @@
-﻿"""Tests for M2.8 fallback rules: 7-day stale promote + repeated-rejection escalate."""
+"""Tests for M2.8 fallback rules: 7-day stale promote + repeated-rejection escalate."""
 
 from __future__ import annotations
 

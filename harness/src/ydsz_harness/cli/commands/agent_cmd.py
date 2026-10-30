@@ -1,4 +1,4 @@
-﻿"""The `ydsz-harness agent` command group — manage agent profiles."""
+"""The `ydsz-harness agent` command group — manage agent profiles."""
 
 from __future__ import annotations
 

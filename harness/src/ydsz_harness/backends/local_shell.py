@@ -1,4 +1,4 @@
-﻿"""Host ``LocalShellBackend`` with conservative virtual-path translation.
+"""Host ``LocalShellBackend`` with conservative virtual-path translation.
 
 Used when a bubblewrap jail is unavailable (macOS, missing ``bwrap``, or a
 host-rooted backend). Agent tool entry paths stay rootfs-shaped; this backend

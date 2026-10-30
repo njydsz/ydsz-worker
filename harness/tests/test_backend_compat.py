@@ -1,4 +1,4 @@
-﻿"""Tests for cos_spec_to_s3_compat and S3 spec alias normalization."""
+"""Tests for cos_spec_to_s3_compat and S3 spec alias normalization."""
 
 from __future__ import annotations
 

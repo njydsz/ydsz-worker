@@ -959,7 +959,7 @@ export default function SkillPackagesPage() {
                             onClick={() => setHubOpen(true)}
                           >
                             <Store size={14} />
-                            {t("skills.tencentSkillHub")}
+                            {t("skills.njydszSkillHub")}
                           </button>
                           <button
                             type="button"
@@ -1159,7 +1159,7 @@ export default function SkillPackagesPage() {
       />
 
       <Drawer
-        title={t("skills.tencentSkillHub")}
+        title={t("skills.njydszSkillHub")}
         open={hubOpen}
         onClose={() => setHubOpen(false)}
         width={860}

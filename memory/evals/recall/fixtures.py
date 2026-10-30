@@ -1,4 +1,4 @@
-﻿"""Synthetic recall evaluation fixture builder.
+"""Synthetic recall evaluation fixture builder.
 
 Generates entity, topical, time-bounded and co-reference queries from a
 small synthetic corpus. Names and assertions are test data, not claims

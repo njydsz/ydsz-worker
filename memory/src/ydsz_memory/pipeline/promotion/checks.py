@@ -1,4 +1,4 @@
-﻿"""5-check promotion logic for L1 Candidate → L2 AtomCard (design §8.3.2).
+"""5-check promotion logic for L1 Candidate → L2 AtomCard (design §8.3.2).
 
 Demotion-only philosophy: every candidate becomes an atom by default. We
 only step away from the happy path in these cases:

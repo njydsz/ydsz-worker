@@ -99,7 +99,9 @@ def render_download_section(raw_version: str) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Print Ydsz Worker GitHub Release download markdown.")
+    parser = argparse.ArgumentParser(
+        description="Print Ydsz Worker GitHub Release download markdown."
+    )
     parser.add_argument("version", help="Package version, with or without a leading v")
     args = parser.parse_args(argv)
     sys.stdout.write(render_download_section(args.version))

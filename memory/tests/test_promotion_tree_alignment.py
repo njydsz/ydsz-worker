@@ -1,4 +1,4 @@
-﻿"""Tests: full alignment between promotion and the MemoryNode tree (ADR-010 entity branch addendum).
+"""Tests: full alignment between promotion and the MemoryNode tree (ADR-010 entity branch addendum).
 
 Verification points:
 1. Leaves produced by promotion are attached under the corresponding entity branch, not orphaned top-level nodes.

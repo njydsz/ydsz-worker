@@ -1,4 +1,4 @@
-﻿"""Tests for the diversifier + suppressor (M4.6 + D44-A)."""
+"""Tests for the diversifier + suppressor (M4.6 + D44-A)."""
 
 from __future__ import annotations
 

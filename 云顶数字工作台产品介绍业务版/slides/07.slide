@@ -1,0 +1,58 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · 为什么需要</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            不是又一个聊天框，是企业的「数字员工工作台」
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 宣言行 */}
+        <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 18, gap: 18 }}>
+            <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#1E293B' }}>会思考</Text>
+            <Box style={{ width: 24, height: 3, borderRadius: 2, background: '#F59E0B' }} />
+            <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#1E293B' }}>会干活</Text>
+            <Box style={{ width: 24, height: 3, borderRadius: 2, background: '#F59E0B' }} />
+            <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#1E293B' }}>陪企业成长</Text>
+        </Box>
+
+        <Box style={{ flex: 1, marginTop: 18, flexDirection: 'row', gap: 24 }}>
+            {/* 左大卡：会思考 */}
+            <Box style={{ width: 560, background: '#2563EB', borderRadius: 14, padding: 28 }}>
+                <Text style={{ fontSize: 24, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3 }}>会思考：答案懂你的业务</Text>
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.6, marginTop: 14 }}>
+                    公司的制度、合同、案例、话术都进知识库；AI 基于这些私有知识作答，每个答案都带得出出处。
+                </Text>
+                <Box style={{ height: 1, background: '#3B82F6', marginTop: 18 }} />
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.6, marginTop: 14 }}>
+                    长期记忆让它记得住你的偏好、项目和上一次的结论——换个会话还认得你，越合作越懂你的公司。
+                </Text>
+            </Box>
+
+            {/* 右两卡 */}
+            <Box style={{ flex: 1, gap: 16 }}>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 22 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>会干活：动作真的发生</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 10 }}>
+                        读写文件、执行任务、生成报表、定时推送、操作浏览器——不是「建议你这样做」，而是真的帮你做完。
+                    </Text>
+                </Box>
+                <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 12, padding: 22 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>陪成长：能力沉淀下来</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 10 }}>
+                        岗位专家、技能、记忆都是组织资产：配好一次，全公司复用；人员流动，能力不留失。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 62, background: '#E8EEFB', borderRadius: 10, padding: 16, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                一个平台全员共用：每位员工有自己的数字同事，共用一台服务器，数据彼此隔离。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

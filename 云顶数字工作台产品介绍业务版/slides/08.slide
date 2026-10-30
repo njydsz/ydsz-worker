@@ -1,0 +1,58 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · 为什么需要</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            会思考：答案来自你的业务，不是网上的话
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 20, flexDirection: 'row', gap: 32 }}>
+            {/* 左：主视觉 */}
+            <Box style={{ width: 380, background: '#F4F6FB', borderRadius: 12, padding: 22, justifyContent: 'center', alignItems: 'center' }}>
+                <svg width={300} height={230} viewBox='0 0 300 230'>
+                    <rect x='30' y='30' width='150' height='100' rx='10' fill='#E8EEFB' stroke='#C7D6F5' strokeWidth='2' />
+                    <rect x='120' y='70' width='150' height='100' rx='10' fill='#FFFFFF' stroke='#2563EB' strokeWidth='2' />
+                    <rect x='75' y='110' width='150' height='100' rx='10' fill='#D6E4F9' stroke='#C7D6F5' strokeWidth='2' />
+                    <text x='105' y='85' textAnchor='middle' fontSize='15' fill='#2563EB' fontFamily='Microsoft YaHei'>公司文档</text>
+                    <text x='195' y='125' textAnchor='middle' fontSize='15' fill='#1E293B' fontFamily='Microsoft YaHei'>知识库</text>
+                    <text x='150' y='165' textAnchor='middle' fontSize='15' fill='#1E293B' fontFamily='Microsoft YaHei'>长期记忆</text>
+                </svg>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 14 }}>
+                    AI 只在公司的知识范围内作答，答不上来就明说、就转人工，不编故事。
+                </Text>
+            </Box>
+
+            {/* 右：三条 */}
+            <Box style={{ flex: 1 }}>
+                <Box style={{ height: 128, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>私有知识库：基于公司资料回答</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        制度、合同、案例、话术统一入库，问答从这些资料出发，而不是凭空生成。
+                    </Text>
+                </Box>
+                <Box style={{ height: 128, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>引用溯源：每个答案带得出出处</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        回答附来源标记，点得开原文核对——敢用的前提是说得清「凭什么这么答」。
+                    </Text>
+                </Box>
+                <Box style={{ height: 128 }}>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>长期记忆：换个会话还认得你</Text>
+                    <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
+                        记得住你的项目、偏好和上一次的结论，背景不用每次重讲，纠错一次就改一次。
+                    </Text>
+                </Box>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                AI 的「聪明」要用在你的业务上，而不是用在编得像上——知识、出处、记忆三件事定住这一点。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

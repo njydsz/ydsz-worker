@@ -1,4 +1,4 @@
-﻿"""``PeerAgentMiddleware`` — let an agent call other agents via ``ask_agent``."""
+"""``PeerAgentMiddleware`` — let an agent call other agents via ``ask_agent``."""
 
 from __future__ import annotations
 

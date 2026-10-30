@@ -1,4 +1,4 @@
-﻿"""Tests for CLI configuration management."""
+"""Tests for CLI configuration management."""
 
 from __future__ import annotations
 

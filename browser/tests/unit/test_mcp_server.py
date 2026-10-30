@@ -1,4 +1,4 @@
-﻿"""Import-time smoke tests for the MCP server entry point.
+"""Import-time smoke tests for the MCP server entry point.
 
 ``mcp_server`` is the only module that imports ``mcp``, and it registers its
 handlers with the low-level ``@app.list_tools()`` / ``@app.call_tool()``

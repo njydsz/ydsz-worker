@@ -1,4 +1,4 @@
-﻿"""SQLite offline maintenance job: connections, backup and storage operations."""
+"""SQLite offline maintenance job: connections, backup and storage operations."""
 
 from __future__ import annotations
 

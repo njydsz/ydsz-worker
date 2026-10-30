@@ -1,4 +1,4 @@
-﻿"""Turn-scoped Ask / Plan / Chat / Craft: allowlist tools, disable skills, restrict plan writes.
+"""Turn-scoped Ask / Plan / Chat / Craft: allowlist tools, disable skills, restrict plan writes.
 
 Hosts stamp ``configurable["conversation_mode"]`` (``ask`` | ``plan`` | ``chat`` | ``craft``).
 Unknown / missing → craft (full tools). Ask/Plan/Chat: unknown tools are denied.

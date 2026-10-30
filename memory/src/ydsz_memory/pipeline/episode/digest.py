@@ -1,4 +1,4 @@
-﻿"""Daily / weekly / monthly digest generator over Episodes.
+"""Daily / weekly / monthly digest generator over Episodes.
 
 Aggregation strategy:
 

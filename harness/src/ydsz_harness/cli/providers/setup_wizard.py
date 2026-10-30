@@ -1,4 +1,4 @@
-﻿"""Interactive provider setup wizard for first-run configuration."""
+"""Interactive provider setup wizard for first-run configuration."""
 
 from __future__ import annotations
 

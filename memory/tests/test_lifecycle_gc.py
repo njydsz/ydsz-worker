@@ -1,4 +1,4 @@
-﻿"""Tests for lifecycle GC (M5.6, D47-C)."""
+"""Tests for lifecycle GC (M5.6, D47-C)."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Checkpoint growth optimization and explicit offline historical migration."""
+"""Checkpoint growth optimization and explicit offline historical migration."""
 
 from __future__ import annotations
 

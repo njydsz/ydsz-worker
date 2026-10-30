@@ -1,4 +1,4 @@
-﻿"""Tests for PostgresMemoryBackend.
+"""Tests for PostgresMemoryBackend.
 
 These tests require a running PostgreSQL instance. They are automatically skipped
 when psycopg is not installed or when the database is unreachable.

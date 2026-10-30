@@ -1,4 +1,4 @@
-﻿"""Google Custom Search tool. Requires ``GOOGLE_API_KEY`` + ``GOOGLE_CSE_ID``.
+"""Google Custom Search tool. Requires ``GOOGLE_API_KEY`` + ``GOOGLE_CSE_ID``.
 
 Google's Custom Search Engine (CSE) is the supported public API for
 programmatic Google search. You need an API key from Google Cloud and

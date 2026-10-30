@@ -1,4 +1,4 @@
-﻿"""Tiered DOM output builder for AI-friendly page state representation."""
+"""Tiered DOM output builder for AI-friendly page state representation."""
 
 from __future__ import annotations
 

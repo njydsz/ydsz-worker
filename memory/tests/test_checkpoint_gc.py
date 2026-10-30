@@ -1,4 +1,4 @@
-﻿"""Tests for checkpoint retention pruning (ydsz_memory.pipeline.lifecycle.checkpoint_gc)."""
+"""Tests for checkpoint retention pruning (ydsz_memory.pipeline.lifecycle.checkpoint_gc)."""
 
 from __future__ import annotations
 

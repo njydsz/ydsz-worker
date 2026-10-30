@@ -1,0 +1,54 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>04 · 怎么开始</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            三条路径：从一台电脑到全公司，规模变了不用换产品
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 阶梯三步 */}
+        <Box style={{ flexDirection: 'row', marginTop: 24, gap: 20, alignItems: 'flex-end' }}>
+            <Box style={{ width: 373, background: '#E8EEFB', borderRadius: 12, padding: 20 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>路径一 · 自助验证</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 8 }}>一台笔记本跑通一个场景</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 8 }}>
+                    一键脚本安装，本地运行，不需要任何中间件与采购流程。适合先小范围验证，成本几乎为零。
+                </Text>
+            </Box>
+            <Box style={{ width: 373, background: '#D6E4F9', borderRadius: 12, padding: 20 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>路径二 · 团队部署</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 8 }}>一个部门稳定使用</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.55, marginTop: 8 }}>
+                    切到服务器部署，开多用户、备份与 HTTPS 对外访问。适合部门级常态化使用。
+                </Text>
+            </Box>
+            <Box style={{ width: 374, background: '#2563EB', borderRadius: 12, padding: 20 }}>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#BFDBFE', lineHeight: 1.3 }}>路径三 · 规模推广</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3, marginTop: 8 }}>全公司共用一台实例</Text>
+                <Text style={{ fontSize: 18, color: '#DBEAFE', lineHeight: 1.55, marginTop: 8 }}>
+                    桌面客户端与 NAS 包分发到终端，专家与知识库沉淀为组织资产，数据与资产按人隔离。
+                </Text>
+            </Box>
+        </Box>
+
+        {/* 部署形态 */}
+        <Box style={{ flexDirection: 'row', marginTop: 20, gap: 10, alignItems: 'center' }}>
+            <Text style={{ fontSize: 18, color: '#64748B' }}>部署形态：</Text>
+            <Box style={{ background: '#F4F6FB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>一键脚本</Text></Box>
+            <Box style={{ background: '#F4F6FB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>Docker</Text></Box>
+            <Box style={{ background: '#F4F6FB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>系统服务</Text></Box>
+            <Box style={{ background: '#F4F6FB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>桌面客户端</Text></Box>
+            <Box style={{ background: '#F4F6FB', borderRadius: 8, padding: 9 }}><Text style={{ fontSize: 18, color: '#1E293B' }}>NAS</Text></Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 16, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                三条路径共用同一份配置与数据：试点时积累的专家、知识库与记忆，扩大规模时直接带走。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

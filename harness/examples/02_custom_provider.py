@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """Custom provider example: OpenAI-compatible endpoint with multiple models
 including automatic multimodal switching.
 

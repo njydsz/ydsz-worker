@@ -1,4 +1,4 @@
-﻿"""Pydantic models for ydsz-browser."""
+"""Pydantic models for ydsz-browser."""
 
 from __future__ import annotations
 

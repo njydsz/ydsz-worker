@@ -1,4 +1,4 @@
-﻿"""Protocol registry — discover and resolve chat protocol implementations."""
+"""Protocol registry — discover and resolve chat protocol implementations."""
 
 from __future__ import annotations
 

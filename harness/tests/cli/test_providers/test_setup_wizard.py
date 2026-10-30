@@ -1,4 +1,4 @@
-﻿"""Tests for the provider setup wizard."""
+"""Tests for the provider setup wizard."""
 
 from __future__ import annotations
 

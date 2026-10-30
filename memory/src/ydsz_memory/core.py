@@ -1,4 +1,4 @@
-﻿"""Memory — the unified interface for the memory system."""
+"""Memory — the unified interface for the memory system."""
 
 from __future__ import annotations
 
@@ -1707,8 +1707,7 @@ class Memory(_CheckpointerBase):  # type: ignore[misc]
         if not _LANGGRAPH_AVAILABLE:
             if isinstance(self._backend, SqliteMemoryBackend):
                 raise ImportError(
-                    "Checkpointer requires 'ydsz-memory[langgraph]'. "
-                    "Install with: pip install 'ydsz-memory[langgraph]'"
+                    "Checkpointer requires 'ydsz-memory[langgraph]'. Install with: pip install 'ydsz-memory[langgraph]'"
                 )
             raise ImportError(
                 "Checkpointer requires 'ydsz-memory[langgraph]' (SQLite) or "

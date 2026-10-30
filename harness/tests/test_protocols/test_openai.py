@@ -1,4 +1,4 @@
-﻿"""Tests for ``ydsz_harness.protocols.openai.OpenAIProtocol``."""
+"""Tests for ``ydsz_harness.protocols.openai.OpenAIProtocol``."""
 
 from __future__ import annotations
 

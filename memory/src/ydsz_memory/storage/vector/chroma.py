@@ -1,4 +1,4 @@
-﻿"""ChromaDB vector index implementation.
+"""ChromaDB vector index implementation.
 
 Dependency: chromadb >= 0.4
 Install: pip install 'ydsz-memory[chroma]'

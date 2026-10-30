@@ -1,4 +1,4 @@
-﻿"""Connectivity probes for harness backend specs (write → read → delete)."""
+"""Connectivity probes for harness backend specs (write → read → delete)."""
 
 from __future__ import annotations
 

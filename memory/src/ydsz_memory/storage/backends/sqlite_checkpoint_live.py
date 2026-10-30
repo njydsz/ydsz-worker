@@ -1,4 +1,4 @@
-﻿"""Host-coordinated live field migration; no pruning or blob deletion.
+"""Host-coordinated live field migration; no pruning or blob deletion.
 
 Compatible WAL readers may retain their snapshots. Concurrent writers are
 serialized by SQLite, with each migration batch reading after BEGIN IMMEDIATE.

@@ -1,4 +1,4 @@
-﻿"""Tests for the provider preset registry."""
+"""Tests for the provider preset registry."""
 
 from __future__ import annotations
 

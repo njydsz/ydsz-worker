@@ -1,4 +1,4 @@
-﻿"""Host restore drains one middleware without stopping other experts."""
+"""Host restore drains one middleware without stopping other experts."""
 
 from __future__ import annotations
 

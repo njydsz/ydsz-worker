@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_harness.cli.config.paths."""
+"""Tests for ydsz_harness.cli.config.paths."""
 
 from pathlib import Path
 

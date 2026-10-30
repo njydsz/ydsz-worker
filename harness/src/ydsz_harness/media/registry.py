@@ -1,4 +1,4 @@
-﻿"""Registry and factory for built-in media generation providers."""
+"""Registry and factory for built-in media generation providers."""
 
 from __future__ import annotations
 

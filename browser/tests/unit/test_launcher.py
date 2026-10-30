@@ -1,4 +1,4 @@
-﻿"""Tests for ydsz_browser.cdp.launcher.find_chrome auto-discovery."""
+"""Tests for ydsz_browser.cdp.launcher.find_chrome auto-discovery."""
 
 from __future__ import annotations
 

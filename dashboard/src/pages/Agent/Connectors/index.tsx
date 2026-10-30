@@ -2254,12 +2254,13 @@ function ConnectorConfigDrawer({
   );
 }
 
-type ConnectorTab = "enabled" | "builtin" | "custom";
+type ConnectorTab = "enabled" | "custom" | "builtin" | "market";
 
 const CONNECTOR_TABS: TabBarItem<ConnectorTab>[] = [
   { key: "enabled", labelKey: "connectors.tabEnabled", icon: Link2 },
-  { key: "builtin", labelKey: "connectors.tabBuiltin", icon: Blocks },
   { key: "custom", labelKey: "connectors.tabCustom", icon: Wrench },
+  { key: "builtin", labelKey: "connectors.tabBuiltin", icon: Blocks },
+  { key: "market", labelKey: "connectors.tabMarket", icon: Sparkles },
 ];
 
 export default function ConnectorsPage() {
@@ -2384,6 +2385,17 @@ export default function ConnectorsPage() {
     >
       {activeTab === "custom" ? (
         <CustomMcpTab focusServerName={customFocusServerName} />
+      ) : activeTab === "market" ? (
+        <div className={styles.emptyLayout}>
+          <StreamSetupGuide
+            className={styles.emptyGuide}
+            wide
+            plain
+            icon={<YdEmptyMascot />}
+            title={t("connectors.marketEmptyTitle")}
+            description={t("connectors.marketEmptyDesc")}
+          />
+        </div>
       ) : activeTab === "enabled" ? (
         loading ? (
           <div className={styles.loadingState}>

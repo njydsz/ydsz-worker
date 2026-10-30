@@ -1,4 +1,4 @@
-﻿"""Tests for the budget allocator (M4.7, D45-A)."""
+"""Tests for the budget allocator (M4.7, D45-A)."""
 
 from __future__ import annotations
 

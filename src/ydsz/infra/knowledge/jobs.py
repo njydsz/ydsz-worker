@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import asyncio
+import logging
+from contextlib import suppress
 from typing import Any
 
 from ydsz.infra.knowledge.chunk import chunk_text
@@ -14,21 +16,26 @@ from ydsz.infra.knowledge.ocr import optional_ocr_extractor
 from ydsz.infra.knowledge.params import get_advanced_settings
 from ydsz.infra.knowledge.parse import parse_document
 
-# Parsing/OCR also consumes memory; only one document should be in flight.
-INDEX_CONCURRENCY = 1
+logger = logging.getLogger(__name__)
+
+# Parsing/OCR also consumes memory; index_concurrency defaults to 2
+# (configurable via config.json: knowledge.index_concurrency).
 _index_semaphore: asyncio.Semaphore | None = None
+_index_concurrency: int = 0
 
 
 def reset_index_semaphore_for_tests() -> None:
-    """Drop the cached semaphore so tests can change INDEX_CONCURRENCY."""
-    global _index_semaphore
+    """Drop the cached semaphore so tests can change the concurrency."""
+    global _index_semaphore, _index_concurrency
     _index_semaphore = None
+    _index_concurrency = 0
 
 
-def _get_index_semaphore() -> asyncio.Semaphore:
-    global _index_semaphore
-    if _index_semaphore is None:
-        _index_semaphore = asyncio.Semaphore(INDEX_CONCURRENCY)
+def _get_index_semaphore(concurrency: int) -> asyncio.Semaphore:
+    global _index_semaphore, _index_concurrency
+    if _index_semaphore is None or _index_concurrency != concurrency:
+        _index_semaphore = asyncio.Semaphore(max(1, concurrency))
+        _index_concurrency = concurrency
     return _index_semaphore
 
 
@@ -64,11 +71,37 @@ def process_document(services: Any, kb_id: str, doc_id: str) -> None:
 def enqueue_index_document(services: Any, kb_id: str, doc_id: str) -> asyncio.Task[None]:
     """Schedule CPU- and I/O-bound indexing outside the event loop."""
     loop = asyncio.get_running_loop()
-    sem = _get_index_semaphore()
+    config = getattr(services, "config", None)
+    concurrency = 2
+    timeout = 300
+    if config is not None:
+        knowledge_cfg = getattr(config, "knowledge", None)
+        if knowledge_cfg is not None:
+            concurrency = getattr(knowledge_cfg, "index_concurrency", concurrency)
+            timeout = getattr(knowledge_cfg, "index_timeout_seconds", timeout)
+    sem = _get_index_semaphore(concurrency)
 
     async def _run() -> None:
         async with sem:
-            await loop.run_in_executor(None, process_document, services, kb_id, doc_id)
+            try:
+                await asyncio.wait_for(
+                    loop.run_in_executor(None, process_document, services, kb_id, doc_id),
+                    timeout=timeout,
+                )
+            except TimeoutError:
+                logger.error(
+                    "knowledge index timeout doc=%s kb=%s limit=%ss",
+                    doc_id,
+                    kb_id,
+                    timeout,
+                )
+                with suppress(Exception):
+                    services.knowledge_repo.update_document(
+                        doc_id,
+                        status="failed",
+                        error_message=f"index timed out after {timeout}s",
+                        chunk_count=0,
+                    )
 
     return asyncio.create_task(_run())
 

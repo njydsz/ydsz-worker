@@ -1,4 +1,4 @@
-﻿"""Shared base class for cloud object storage backends (OSS, OBS, …).
+"""Shared base class for cloud object storage backends (OSS, OBS, …).
 
 All providers store files as JSON-enveloped ``FileData`` objects under a
 configurable key prefix. The public ``BackendProtocol`` methods (read, write,

@@ -1,0 +1,50 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · 业务怎么用</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            部门深挖｜运营与行政：重复的事自动发生
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        {/* 一天的时间轴 */}
+        <Box style={{ flex: 1, marginTop: 16, position: 'relative' }}>
+            <svg width={1160} height={330} viewBox='0 0 1160 330'>
+                <line x1='40' y1='165' x2='1120' y2='165' stroke='#C7D6F5' strokeWidth='2' />
+                <circle cx='160' cy='165' r='9' fill='#2563EB' />
+                <circle cx='440' cy='165' r='9' fill='#0891B2' />
+                <circle cx='720' cy='165' r='9' fill='#2563EB' />
+                <circle cx='1000' cy='165' r='11' fill='#F59E0B' />
+                <line x1='160' y1='165' x2='160' y2='110' stroke='#C7D6F5' strokeWidth='1' />
+                <line x1='440' y1='165' x2='440' y2='222' stroke='#C7D6F5' strokeWidth='1' />
+                <line x1='720' y1='165' x2='720' y2='110' stroke='#C7D6F5' strokeWidth='1' />
+                <line x1='1000' y1='165' x2='1000' y2='222' stroke='#C7D6F5' strokeWidth='1' />
+            </svg>
+            <Box style={{ position: 'absolute', left: 20, top: 8, width: 280, background: '#E8EEFB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>早 8:00 · 日报已就绪</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>数据自动汇总、摘要生成、推送到管理群。</Text>
+            </Box>
+            <Box style={{ position: 'absolute', left: 580, top: 8, width: 280, background: '#E8EEFB', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>随时 · 批量操作回放</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>后台填报录成技能，一次操作批量重放。</Text>
+            </Box>
+            <Box style={{ position: 'absolute', left: 300, top: 208, width: 280, background: '#D6E4F9', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>日间 · 异常即刻预警</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>指标越线主动提醒，不用等周会复盘才发现。</Text>
+            </Box>
+            <Box style={{ position: 'absolute', left: 860, top: 208, width: 280, background: '#FFF7E9', borderRadius: 10, padding: 14 }}>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>到期前 · 主动提醒</Text>
+                <Text style={{ fontSize: 18, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>证照年检、合同续签、费用到期提前打招呼。</Text>
+            </Box>
+        </Box>
+
+        {/* 结论条 */}
+        <Box style={{ height: 58, background: '#E8EEFB', borderRadius: 10, padding: 14, marginTop: 12, justifyContent: 'center' }}>
+            <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.4 }}>
+                运营行政的价值不在「快一点」，而在「不漏事」——该做的自动发生，人只处理例外。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

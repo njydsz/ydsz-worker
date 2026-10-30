@@ -1,4 +1,4 @@
-﻿"""Tests for export / import roundtrip (M5.1 + M5.2)."""
+"""Tests for export / import roundtrip (M5.1 + M5.2)."""
 
 from __future__ import annotations
 

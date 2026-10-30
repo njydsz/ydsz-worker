@@ -1,4 +1,4 @@
-﻿"""ydsz-memory local visualization dashboard module.
+"""ydsz-memory local visualization dashboard module.
 
 Provides a lightweight FastAPI service that reads the SQLite database
 directly and exposes memory data via a REST API for the frontend

@@ -1,4 +1,4 @@
-﻿"""Short-term recall result cache (M4.11).
+"""Short-term recall result cache (M4.11).
 
 Cache key = ``(thread_id, query_hash)``; value = the rendered
 ``RecallResult``. TTL defaults to 60 seconds — long enough to absorb

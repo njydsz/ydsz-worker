@@ -1,4 +1,4 @@
-﻿"""Sync packaged built-in skills and agents into the workspace via :class:`BackendWorkspace`."""
+"""Sync packaged built-in skills and agents into the workspace via :class:`BackendWorkspace`."""
 
 from __future__ import annotations
 

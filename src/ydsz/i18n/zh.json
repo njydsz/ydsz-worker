@@ -481,7 +481,7 @@
     "LDAP_UNAVAILABLE": "LDAP 目录服务不可用。请检查服务器地址与绑定凭证。",
     "LDAP_USER_NOT_PROVISIONED": "该目录账号尚未创建 云顶数字工作台 账号。请联系管理员创建，或开启自动创建账号。",
     "LDAP_GROUP_NOT_ALLOWED": "该目录账号不属于允许登录的用户组。请联系管理员将你加入允许登录的组。",
-    "EXPERT_MARKET_FAILED": "专家市场暂时不可用，请稍后重试。",
+    "EXPERT_MARKET_FAILED": "专家团市场暂时不可用，请稍后重试。",
     "SKILLHUB_SSL_FAILED": "SkillHub 请求失败：检测到 Python SSL 错误。macOS 可尝试 `brew reinstall openssl@3`，或检查系统 CA 证书。",
     "DESKTOP_SESSION_LIMIT": "远程桌面并发连接已达上限（最多 {limit} 路），请关闭其他连接后重试。",
     "DESKTOP_CAPTURE_FAILED": "连续抓屏失败。Linux 服务器请重启虚拟桌面；macOS 请在系统设置中授予屏幕录制与辅助功能权限后重连。",
@@ -993,5 +993,96 @@
     "error_exited": "laya-serve 在就绪前退出了。",
     "error_not_installed": "尚未安装 Laya。",
     "error_stalled": "安装长时间没有结果，已停止。"
+  },
+  "market": {
+    "title": "市场",
+    "title_subtitle": "发现并安装技能、专家、插件、连接器",
+    "search": {
+      "placeholder": "搜索市场...",
+      "no_results": "未找到 \"{query}\" 相关结果",
+      "no_results_hint": "尝试其他关键词或浏览分类",
+      "clear": "清除",
+      "filters": "筛选"
+    },
+    "tabs": {
+      "skills": "技能",
+      "experts": "专家",
+      "plugins": "插件",
+      "connectors": "连接器",
+      "installed": "已安装"
+    },
+    "filters": {
+      "category": "分类",
+      "all_category": "全部分类",
+      "sort": "排序",
+      "sort_relevance": "相关度",
+      "sort_downloads": "安装量",
+      "sort_rating": "评分",
+      "sort_newest": "最新",
+      "group": "分组",
+      "auth_kind": "认证方式",
+      "count": "共 {count} 项"
+    },
+    "card": {
+      "by_author": "作者 {name}",
+      "downloads": "{count} 次安装",
+      "rating": "评分 {score}",
+      "installed": "已安装",
+      "update_available": "有更新",
+      "coming_soon": "即将推出",
+      "configure": "配置"
+    },
+    "actions": {
+      "install": "安装",
+      "installing": "安装中...",
+      "update": "更新",
+      "updating": "更新中...",
+      "submit": "提交到市场",
+      "connect": "连接",
+      "disconnect": "断开",
+      "configure": "配置",
+      "retry": "重试",
+      "view_source": "查看来源"
+    },
+    "install": {
+      "select_agent": "选择 Agent",
+      "select_package": "安装为技能包",
+      "choose_target": "选择安装位置:",
+      "name_label": "Agent 名称",
+      "name_placeholder": "输入 Agent 名称...",
+      "desc_label": "描述",
+      "model_label": "模型",
+      "confirm": "安装",
+      "cancel": "取消"
+    },
+    "connector": {
+      "authorize": "授权",
+      "client_id_label": "客户端 ID",
+      "client_secret_label": "客户端密钥",
+      "token_label": "API Token",
+      "instance_name_label": "实例名称"
+    },
+    "installed": {
+      "title": "我的已安装",
+      "updates_available": "{count} 项可更新",
+      "check_updates": "检查更新",
+      "update_all": "全部更新",
+      "empty": "您还没有安装任何内容",
+      "empty_hint": "浏览市场发现更多能力"
+    },
+    "empty": {
+      "no_installed": "您还没有安装任何内容",
+      "no_installed_hint": "浏览市场发现更多能力",
+      "no_matching_installed": "没有符合条件的已安装项"
+    },
+    "errors": {
+      "install_failed": "安装失败",
+      "update_failed": "更新失败",
+      "unsupported_type": "不支持的市场类型",
+      "not_found": "找不到市场项",
+      "provider_unavailable": "市场提供方不可用",
+      "download_failed": "下载失败",
+      "invalid_target": "无效的安装目标"
+    }
   }
 }

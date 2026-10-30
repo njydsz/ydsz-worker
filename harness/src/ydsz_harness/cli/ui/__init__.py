@@ -1,4 +1,4 @@
-﻿"""Terminal UI components: rendering, input, theme, completions, and file references."""
+"""Terminal UI components: rendering, input, theme, completions, and file references."""
 
 from ydsz_harness.cli.ui.renderer import StreamRenderer
 from ydsz_harness.cli.ui.theme import Theme, get_theme

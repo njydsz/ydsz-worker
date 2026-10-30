@@ -1,4 +1,4 @@
-﻿"""Tests for CheckpointTsMiddleware write-time stamps."""
+"""Tests for CheckpointTsMiddleware write-time stamps."""
 
 from __future__ import annotations
 

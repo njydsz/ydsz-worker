@@ -1,4 +1,4 @@
-﻿"""Episode Extractor — turns raw events into L2.5 user-diary episodes.
+"""Episode Extractor — turns raw events into L2.5 user-diary episodes.
 
 Episodes capture **what happened to the user** and **how they felt**, the
 exact category that the candidate extractor explicitly filters out as

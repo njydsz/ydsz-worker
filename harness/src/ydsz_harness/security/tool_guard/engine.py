@@ -1,4 +1,4 @@
-﻿"""Tool guard engine — scan tool parameters before execution."""
+"""Tool guard engine — scan tool parameters before execution."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""``ChatRequest`` — a normalized one-call invocation parameter object.
+"""``ChatRequest`` — a normalized one-call invocation parameter object.
 
 Per design doc §4:
     - Accepts ``messages`` as ``str`` / ``list[dict]`` / ``list[BaseMessage]``;

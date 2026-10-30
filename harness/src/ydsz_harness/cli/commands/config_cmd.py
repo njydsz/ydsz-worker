@@ -1,4 +1,4 @@
-﻿"""The `ydsz-harness config` command group — configuration management."""
+"""The `ydsz-harness config` command group — configuration management."""
 
 from __future__ import annotations
 

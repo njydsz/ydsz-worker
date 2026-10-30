@@ -1,4 +1,4 @@
-﻿"""LangGraphProtocol — native LangGraph streaming protocol."""
+"""LangGraphProtocol — native LangGraph streaming protocol."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-﻿"""Replay recorded semantic steps using ydsz-browser actions."""
+"""Replay recorded semantic steps using ydsz-browser actions."""
 
 from __future__ import annotations
 

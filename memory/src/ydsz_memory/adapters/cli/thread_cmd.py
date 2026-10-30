@@ -1,4 +1,4 @@
-﻿"""Memory CLI ``thread`` subcommand.
+"""Memory CLI ``thread`` subcommand.
 
 Memory CLI: ``thread`` subcommand for inspecting active-entity stack (M4)
 and pruning checkpoint history (checkpointer sqlite growth management)."""

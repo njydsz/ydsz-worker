@@ -1,4 +1,4 @@
-﻿"""Slash parsing, context, formatting, i18n, stats, and runtime dispatch."""
+"""Slash parsing, context, formatting, i18n, stats, and runtime dispatch."""
 
 from __future__ import annotations
 

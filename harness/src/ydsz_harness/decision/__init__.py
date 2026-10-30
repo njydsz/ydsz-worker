@@ -1,4 +1,4 @@
-﻿"""Optional decision-model shortlist for skills, tools, and team members."""
+"""Optional decision-model shortlist for skills, tools, and team members."""
 
 from ydsz_harness.decision.client import HttpDecisionClient, build_decision_body, parse_probabilities
 from ydsz_harness.decision.config import DecisionConfig, decision_active

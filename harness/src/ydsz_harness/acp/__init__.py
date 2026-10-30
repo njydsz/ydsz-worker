@@ -1,4 +1,4 @@
-﻿"""ACP (Agent Client Protocol) client integration for delegated external agents."""
+"""ACP (Agent Client Protocol) client integration for delegated external agents."""
 
 from __future__ import annotations
 

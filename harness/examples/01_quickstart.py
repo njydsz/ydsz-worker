@@ -1,4 +1,4 @@
-﻿# pylint: disable=invalid-name
+# pylint: disable=invalid-name
 """Quickstart: single agent via HarnessAgentManager.
 
 Demonstrates the recommended entry point for ydsz-harness:

@@ -1,4 +1,4 @@
-﻿"""Query parser — extract entity hints + time hints + topic from raw text (M4.1).
+"""Query parser — extract entity hints + time hints + topic from raw text (M4.1).
 
 Used by :mod:`ydsz_memory.pipeline.recall.router` to decide which sources to
 hit. Pure-Python heuristics, no LLM.

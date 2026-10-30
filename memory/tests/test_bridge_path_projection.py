@@ -1,4 +1,4 @@
-﻿"""Unit tests for :mod:`ydsz_memory.application.path_projection`.
+"""Unit tests for :mod:`ydsz_memory.application.path_projection`.
 
 These are pure-Python tests; no SQLite, no I/O.
 """

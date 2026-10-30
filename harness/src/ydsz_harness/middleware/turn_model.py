@@ -1,4 +1,4 @@
-﻿"""Shared turn model-ref resolution for router, profile, and compaction."""
+"""Shared turn model-ref resolution for router, profile, and compaction."""
 
 from __future__ import annotations
 
