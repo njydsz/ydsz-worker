@@ -1,0 +1,7 @@
+id: code-review-skill
+version: 0.1.0
+name: Code Review Skill
+description: 纯提示词技能 — 按工程化清单做代码评审，输出分级问题报告
+icon: "🔍"
+kind: skill
+entry: main.py

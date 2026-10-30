@@ -17,6 +17,14 @@
 | [`demo-turn-logger`](./demo-turn-logger/) | `hook` | 注册 `AgentMiddleware`，在模型调用前后打日志 |
 | [`demo-ui-card`](./demo-ui-card/) | `tool` + `ui/` | 后端返回 `Ydsz_ui` JSON；前端在聊天页渲染可交互卡片 |
 
+WorkBuddy 生态移植试转（纯提示词技能，原创内容，见 `docs/skill-porting-tool-map.md`）：
+
+| 目录 | `kind` | 作用 |
+|------|--------|------|
+| [`meeting-minutes-skill`](./meeting-minutes-skill/) | `skill` | 会议记录 → 结构化纪要 |
+| [`code-review-skill`](./code-review-skill/) | `skill` | 代码评审清单与分级报告 |
+| [`weekly-report-skill`](./weekly-report-skill/) | `skill` | 零散记录 → 结构化周报 |
+
 ## 目录约定
 
 每个插件是一个文件夹，至少包含：

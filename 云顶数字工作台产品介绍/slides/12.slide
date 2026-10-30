@@ -2,9 +2,9 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             复杂任务交给协调者，而不是靠一个人写长提示词
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
@@ -14,46 +14,46 @@
             <Box style={{ flexDirection: 'row', alignItems: 'stretch' }}>
                 <Box style={{ width: 200, background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
                     <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>STEP 01</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>任务进入</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>任务进入</Text>
                     <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         多步骤目标从任一入口提交，落到同一会话线程。
                     </Text>
                 </Box>
                 <Box style={{ width: 26, justifyContent: 'center', alignItems: 'center' }}>
                     <svg width={26} height={18} viewBox='0 0 26 18'>
-                        <path d='M0 9 L16 9' stroke='#1D4ED8' strokeWidth='2' />
-                        <path d='M16 2 L26 9 L16 16 Z' fill='#1D4ED8' />
+                        <path d='M0 9 L16 9' stroke='#2563EB' strokeWidth='2' />
+                        <path d='M16 2 L26 9 L16 16 Z' fill='#2563EB' />
                     </svg>
                 </Box>
-                <Box style={{ width: 200, background: '#12275A', borderRadius: 10, padding: 14 }}>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#7EA3D6', lineHeight: 1.3 }}>STEP 02</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3, marginTop: 6 }}>协调者拆解</Text>
-                    <Text style={{ fontSize: 15, color: '#A9C2E8', lineHeight: 1.5, marginTop: 8 }}>
+                <Box style={{ width: 200, background: '#D6E4F9', borderRadius: 10, padding: 14 }}>
+                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#475569', lineHeight: 1.3 }}>STEP 02</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>协调者拆解</Text>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         主持人 Agent 拆分子目标，识别所需专长。
                     </Text>
                 </Box>
                 <Box style={{ width: 26, justifyContent: 'center', alignItems: 'center' }}>
                     <svg width={26} height={18} viewBox='0 0 26 18'>
-                        <path d='M0 9 L16 9' stroke='#06B6D4' strokeWidth='2' />
-                        <path d='M16 2 L26 9 L16 16 Z' fill='#06B6D4' />
+                        <path d='M0 9 L16 9' stroke='#0891B2' strokeWidth='2' />
+                        <path d='M16 2 L26 9 L16 16 Z' fill='#0891B2' />
                     </svg>
                 </Box>
                 <Box style={{ width: 200, background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
                     <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>STEP 03</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>异步派工</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>异步派工</Text>
                     <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         通过邮箱队列向成员专家投递任务，互不阻塞。
                     </Text>
                 </Box>
                 <Box style={{ width: 26, justifyContent: 'center', alignItems: 'center' }}>
                     <svg width={26} height={18} viewBox='0 0 26 18'>
-                        <path d='M0 9 L16 9' stroke='#06B6D4' strokeWidth='2' />
-                        <path d='M16 2 L26 9 L16 16 Z' fill='#06B6D4' />
+                        <path d='M0 9 L16 9' stroke='#0891B2' strokeWidth='2' />
+                        <path d='M16 2 L26 9 L16 16 Z' fill='#0891B2' />
                     </svg>
                 </Box>
                 <Box style={{ width: 200, background: '#F4F6FB', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
                     <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>STEP 04</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>成员执行</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>成员执行</Text>
                     <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         成员在各自线程内调用工具与知识库完成任务。
                     </Text>
@@ -66,7 +66,7 @@
                 </Box>
                 <Box style={{ width: 200, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
                     <Text style={{ fontSize: 16, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>STEP 05</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>回流汇总</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>回流汇总</Text>
                     <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         结果写回父线程检查点，按角色分条呈现。
                     </Text>
@@ -76,19 +76,19 @@
             {/* 输出条 */}
             <Box style={{ flexDirection: 'row', gap: 20, marginTop: 20 }}>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 16 }}>
-                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>邮箱队列，不是无限级联</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>邮箱队列，不是无限级联</Text>
                     <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         基于收件箱管理与统一处理器，成员回复精确落回发起线程，避免上下文在多轮调用中漂移丢失。
                     </Text>
                 </Box>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 16 }}>
-                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>过程可见，中途可干预</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>过程可见，中途可干预</Text>
                     <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         对话区按发言 Agent 分角色渲染，实时快照与收尾摘要同步展示，随时可以插话或叫停。
                     </Text>
                 </Box>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 16 }}>
-                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>跨入口同一套链路</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>跨入口同一套链路</Text>
                     <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         控制台、命令行、IM 与定时任务触发的团队任务，走的是同一条处理管线，不会因入口不同而行为分叉。
                     </Text>
@@ -97,8 +97,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 把一次性的复杂任务变成可编排、可追溯的流水线——这是多步骤业务真正能被托付出去的前提。
             </Text>
         </Box>

@@ -663,105 +663,6 @@
       }
     },
     {
-      "kind": "weknora",
-      "name": { "en": "WeKnora", "zh": "WeKnora" },
-      "description": {
-        "en": "Connect a private WeKnora knowledge base for read-only search and document reading",
-        "zh": "连接 WeKnora 私有知识库，提供只读检索与文档阅读"
-      },
-      "auth_kind": "custom_fields",
-      "doc_url": "https://github.com/Tencent/WeKnora",
-      "icon": "weknora",
-      "color": "#0052d9",
-      "phase": "available",
-      "mcp_mode": "gateway",
-      "category": "knowledge",
-      "guide_url": "https://github.com/Tencent/WeKnora/blob/main/docs/api/README.md",
-      "auth_hint": {
-        "en": "Enter the WeKnora service URL. Fill in API Key and Tenant ID according to your deployment’s auth settings.",
-        "zh": "填写 WeKnora 服务地址；API Key 与 Tenant ID 按部署的鉴权设置填写。"
-      },
-      "credential_fields": [
-        {
-          "key": "base_url",
-          "label": { "en": "Service URL", "zh": "服务地址" },
-          "field_type": "url",
-          "placeholder": {
-            "en": "http://127.0.0.1:8080 or https://weknora.example.com",
-            "zh": "http://127.0.0.1:8080 或 https://weknora.example.com"
-          },
-          "help": {
-            "en": "Worker appends /api/v1 when the URL does not already include it",
-            "zh": "未包含 /api/v1 时会自动补齐"
-          }
-        },
-        {
-          "key": "api_key",
-          "label": { "en": "API Key", "zh": "API Key" },
-          "field_type": "password",
-          "required": false,
-          "placeholder": {
-            "en": "sk-... (leave empty if the deployment has no auth)",
-            "zh": "sk-...（无鉴权部署可留空）"
-          },
-          "secret": true
-        },
-        {
-          "key": "tenant_id",
-          "label": { "en": "Tenant ID", "zh": "Tenant ID" },
-          "required": false,
-          "help": {
-            "en": "Required when a platform-level API Key must target a workspace",
-            "zh": "平台级 API Key 需要指定工作空间时填写"
-          }
-        },
-        {
-          "key": "knowledge_base_ids",
-          "label": { "en": "Default knowledge-base IDs", "zh": "默认知识库 ID" },
-          "field_type": "tags",
-          "required": false,
-          "placeholder": "kb-123, kb-456",
-          "help": {
-            "en": "Leave empty to search every knowledge base visible to this credential",
-            "zh": "留空时检索当前凭证可见的全部知识库"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "dify",
-      "name": { "en": "Dify", "zh": "Dify" },
-      "description": {
-        "en": "Connect the MCP endpoint of a published Dify app or workflow",
-        "zh": "连接 Dify 已发布应用或工作流的 MCP 服务"
-      },
-      "auth_kind": "custom_fields",
-      "doc_url": "https://docs.dify.ai/",
-      "icon": "dify",
-      "color": "#1c64f2",
-      "phase": "available",
-      "mcp_mode": "remote",
-      "category": "self_hosted",
-      "auth_hint": {
-        "en": "Enable MCP on the Dify app access point, then paste the full MCP Server URL.",
-        "zh": "在 Dify 应用的访问点中启用 MCP，然后粘贴完整的 MCP Server URL。"
-      },
-      "credential_fields": [
-        {
-          "key": "mcp_url",
-          "label": { "en": "MCP Server URL", "zh": "MCP Server URL" },
-          "field_type": "url",
-          "placeholder": "https://dify.example.com/mcp/server/<server_code>/mcp",
-          "help": {
-            "en": "Full URL including the access id; stored encrypted",
-            "zh": "完整 URL 含访问标识，将按密钥加密保存"
-          },
-          "secret": true
-        }
-      ],
-      "remote_transport": "streamable_http"
-    },
-    {
       "kind": "google-workspace",
       "name": { "en": "Google Workspace", "zh": "Google 工作台" },
       "description": {
@@ -994,6 +895,206 @@
         "en": "Generate API key at linear.app → Settings → API → Personal API keys",
         "zh": "在 linear.app → 设置 → API → Personal API keys 生成 API Key"
       }
+    },
+    {
+      "kind": "tyc-mcp",
+      "name": { "en": "Tianyancha", "zh": "天眼查" },
+      "description": {
+        "en": "Tianyancha official MCP: enterprise registration, equity structure, risk & litigation, IP and bidding data for due diligence and KYB checks",
+        "zh": "天眼查官方 MCP：工商信息、股权结构、风险诉讼、知识产权、招投标等企业数据，支撑尽调与企业核验"
+      },
+      "auth_kind": "api_key",
+      "doc_url": "https://open.tianyancha.com/",
+      "icon": "tyc-mcp",
+      "color": "#0066FF",
+      "phase": "available",
+      "mcp_mode": "remote",
+      "category": "professional",
+      "guide_url": "https://github.com/tyc-tech/tyc-banking-plugin/blob/main/docs/MCP_CONFIGURATION.md",
+      "auth_hint": {
+        "en": "Request an API key from the Tianyancha Agent Data Platform, then paste it below",
+        "zh": "在天眼查智能体数据平台申请 API Key 并粘贴到下方"
+      }
+    },
+    {
+      "kind": "kdocs",
+      "name": { "en": "Kingsoft Docs (WPS)", "zh": "金山文档" },
+      "description": {
+        "en": "Kingsoft Docs official MCP: create, edit, search and manage WPS cloud docs, spreadsheets, slides and knowledge bases",
+        "zh": "金山文档官方 MCP：创建、编辑、搜索和管理 WPS 云文档、表格、演示与知识库"
+      },
+      "auth_kind": "personal_token",
+      "doc_url": "https://developer.kdocs.cn/",
+      "icon": "kdocs",
+      "color": "#EB2F2F",
+      "phase": "available",
+      "mcp_mode": "remote",
+      "category": "office",
+      "guide_url": "https://bbs.wps.cn/topic/85760",
+      "auth_hint": {
+        "en": "Sign in at kdocs.cn, open the avatar menu to copy your MCP token, then paste it below",
+        "zh": "登录 kdocs.cn，从头像主菜单复制 MCP Token 并粘贴到下方"
+      }
+    },
+    {
+      "kind": "tapd",
+      "name": { "en": "TAPD", "zh": "TAPD" },
+      "description": {
+        "en": "Tencent agile project management: stories, bugs, tasks, iterations and worklogs over the TAPD open API",
+        "zh": "腾讯敏捷项目管理：需求、缺陷、任务、迭代与工时，对接 TAPD 开放 API"
+      },
+      "auth_kind": "api_token",
+      "doc_url": "https://www.tapd.cn/",
+      "icon": "tapd",
+      "color": "#0085FF",
+      "phase": "coming_soon",
+      "mcp_mode": "remote",
+      "category": "project",
+      "guide_url": "https://www.tapd.cn/help/1120003271001001182"
+    },
+    {
+      "kind": "tencent-survey",
+      "name": { "en": "Tencent Survey", "zh": "腾讯问卷" },
+      "description": {
+        "en": "Create, manage and analyze Tencent questionnaires — form design, response collection and statistics",
+        "zh": "创建、管理和分析腾讯问卷——问卷设计、回收数据与统计分析"
+      },
+      "auth_kind": "personal_token",
+      "doc_url": "https://wj.qq.com/",
+      "icon": "tencent-survey",
+      "color": "#0052D9",
+      "phase": "coming_soon",
+      "mcp_mode": "remote",
+      "category": "productivity"
+    },
+    {
+      "kind": "pkulaw",
+      "name": { "en": "PKULaw", "zh": "北大法宝" },
+      "description": {
+        "en": "Legal research over statutes, articles and judicial cases, with citation verification against the PKULaw database",
+        "zh": "法律法规、法条与司法案例检索，并对文本中的法条引用做库内比对核验"
+      },
+      "auth_kind": "api_key",
+      "doc_url": "https://www.pkulaw.com/",
+      "icon": "pkulaw",
+      "color": "#8B1A1A",
+      "phase": "coming_soon",
+      "mcp_mode": "remote",
+      "category": "professional"
+    },
+    {
+      "kind": "tushare",
+      "name": { "en": "Tushare", "zh": "Tushare" },
+      "description": {
+        "en": "Financial research data: A-shares, indices, funds, financials, valuation, money flow, announcements and macro series",
+        "zh": "金融研究数据：A股、指数、基金、财务、估值、资金流、公告新闻与宏观数据"
+      },
+      "auth_kind": "api_token",
+      "doc_url": "https://tushare.pro/",
+      "icon": "tushare",
+      "color": "#E8590C",
+      "phase": "coming_soon",
+      "mcp_mode": "remote",
+      "category": "professional"
+    },
+    {
+      "kind": "weknora",
+      "name": { "en": "WeKnora", "zh": "WeKnora" },
+      "description": {
+        "en": "Connect a private WeKnora knowledge base for read-only search and document reading",
+        "zh": "连接 WeKnora 私有知识库，提供只读检索与文档阅读"
+      },
+      "auth_kind": "custom_fields",
+      "doc_url": "https://github.com/Tencent/WeKnora",
+      "icon": "weknora",
+      "color": "#0052d9",
+      "phase": "available",
+      "mcp_mode": "gateway",
+      "category": "knowledge",
+      "guide_url": "https://github.com/Tencent/WeKnora/blob/main/docs/api/README.md",
+      "auth_hint": {
+        "en": "Enter the WeKnora service URL. Fill in API Key and Tenant ID according to your deployment’s auth settings.",
+        "zh": "填写 WeKnora 服务地址；API Key 与 Tenant ID 按部署的鉴权设置填写。"
+      },
+      "credential_fields": [
+        {
+          "key": "base_url",
+          "label": { "en": "Service URL", "zh": "服务地址" },
+          "field_type": "url",
+          "placeholder": {
+            "en": "http://127.0.0.1:8080 or https://weknora.example.com",
+            "zh": "http://127.0.0.1:8080 或 https://weknora.example.com"
+          },
+          "help": {
+            "en": "Worker appends /api/v1 when the URL does not already include it",
+            "zh": "未包含 /api/v1 时会自动补齐"
+          }
+        },
+        {
+          "key": "api_key",
+          "label": { "en": "API Key", "zh": "API Key" },
+          "field_type": "password",
+          "required": false,
+          "placeholder": {
+            "en": "sk-... (leave empty if the deployment has no auth)",
+            "zh": "sk-...（无鉴权部署可留空）"
+          },
+          "secret": true
+        },
+        {
+          "key": "tenant_id",
+          "label": { "en": "Tenant ID", "zh": "Tenant ID" },
+          "required": false,
+          "help": {
+            "en": "Required when a platform-level API Key must target a workspace",
+            "zh": "平台级 API Key 需要指定工作空间时填写"
+          }
+        },
+        {
+          "key": "knowledge_base_ids",
+          "label": { "en": "Default knowledge-base IDs", "zh": "默认知识库 ID" },
+          "field_type": "tags",
+          "required": false,
+          "placeholder": "kb-123, kb-456",
+          "help": {
+            "en": "Leave empty to search every knowledge base visible to this credential",
+            "zh": "留空时检索当前凭证可见的全部知识库"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "dify",
+      "name": { "en": "Dify", "zh": "Dify" },
+      "description": {
+        "en": "Connect the MCP endpoint of a published Dify app or workflow",
+        "zh": "连接 Dify 已发布应用或工作流的 MCP 服务"
+      },
+      "auth_kind": "custom_fields",
+      "doc_url": "https://docs.dify.ai/",
+      "icon": "dify",
+      "color": "#1c64f2",
+      "phase": "available",
+      "mcp_mode": "remote",
+      "category": "self_hosted",
+      "auth_hint": {
+        "en": "Enable MCP on the Dify app access point, then paste the full MCP Server URL.",
+        "zh": "在 Dify 应用的访问点中启用 MCP，然后粘贴完整的 MCP Server URL。"
+      },
+      "credential_fields": [
+        {
+          "key": "mcp_url",
+          "label": { "en": "MCP Server URL", "zh": "MCP Server URL" },
+          "field_type": "url",
+          "placeholder": "https://dify.example.com/mcp/server/<server_code>/mcp",
+          "help": {
+            "en": "Full URL including the access id; stored encrypted",
+            "zh": "完整 URL 含访问标识，将按密钥加密保存"
+          },
+          "secret": true
+        }
+      ],
+      "remote_transport": "streamable_http"
     }
   ]
 }

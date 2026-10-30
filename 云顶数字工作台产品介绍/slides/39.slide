@@ -1,0 +1,58 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>05 · DEPLOYMENT</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            三条路径：从一台机器到全公司共用
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 20 }}>
+            <Box style={{ width: 374, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 18 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>路径一</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>自助验证</Text>
+                <Box style={{ width: 40, height: 3, borderRadius: 2, background: '#2563EB', marginTop: 12 }} />
+                <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 12 }}>
+                    在一台笔记本上跑通一个场景：pip 安装或一键脚本，SQLite 起步，不需要任何中间件。
+                </Text>
+                <Box style={{ height: 1, background: '#E2E8F0', marginTop: 14 }} />
+                <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 12 }}>
+                    适合：技术负责人做 1–2 周的可行性验证，成本几乎为零。
+                </Text>
+            </Box>
+            <Box style={{ width: 354, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 12, padding: 18 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>路径二</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>团队部署</Text>
+                <Box style={{ width: 40, height: 3, borderRadius: 2, background: '#2563EB', marginTop: 12 }} />
+                <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 12 }}>
+                    Docker Compose 起步，切 PostgreSQL 控制面，注册为系统服务，用内建 ACME 签发 HTTPS 证书。
+                </Text>
+                <Box style={{ height: 1, background: '#C7D6F5', marginTop: 14 }} />
+                <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 12 }}>
+                    适合：一个部门稳定使用，需要多用户、备份与对外访问。
+                </Text>
+            </Box>
+            <Box style={{ width: 374, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 18 }}>
+                <Text style={{ fontSize: 16, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>路径三</Text>
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>规模推广</Text>
+                <Box style={{ width: 40, height: 3, borderRadius: 2, background: '#F59E0B', marginTop: 12 }} />
+                <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 12 }}>
+                    桌面客户端与 NAS 包分发到终端，接 IM 通道，把专家与知识库沉淀为可复用的组织资产。
+                </Text>
+                <Box style={{ height: 1, background: '#E2E8F0', marginTop: 14 }} />
+                <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 12 }}>
+                    适合：全公司共用一台实例，按用户隔离数据与智能体资产。
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
+                三条路径共用同一份配置与数据：试点时积累的专家、知识库与记忆，扩大规模时可以直接带走。
+            </Text>
+        </Box>
+    </Box>
+</Slide>

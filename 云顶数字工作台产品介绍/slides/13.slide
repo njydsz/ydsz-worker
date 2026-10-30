@@ -2,9 +2,9 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             换个会话还认得你，靠的是结构化的记忆而不是更长的上下文
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
@@ -44,29 +44,29 @@
 
             {/* 右：三层记忆 */}
             <Box style={{ width: 598 }}>
-                <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>三层记忆 + 多阶段召回</Text>
-                <Box style={{ height: 3, width: 64, borderRadius: 2, background: '#1D4ED8', marginTop: 12 }} />
+                <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>三层记忆 + 多阶段召回</Text>
+                <Box style={{ height: 3, width: 64, borderRadius: 2, background: '#D6E4F9', marginTop: 12 }} />
                 <Box style={{ flexDirection: 'row', gap: 12, marginTop: 16 }}>
                     <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 13 }}>
-                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>Atom 原子事实</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>Atom 原子事实</Text>
                         <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
                             最小粒度的可核验条目，支持后续纠偏与更新。
                         </Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 13 }}>
-                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>Entity 实体画像</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>Entity 实体画像</Text>
                         <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
                             人、项目、系统的档案页，支持别名消歧。
                         </Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 13 }}>
-                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>Episode 情节经历</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>Episode 情节经历</Text>
                         <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
                             保留事件脉络，回答「当时是怎么定的」。
                         </Text>
                     </Box>
                 </Box>
-                <Box style={{ marginTop: 14, background: '#F4F6FB', borderLeftWidth: 3, borderLeftColor: '#06B6D4', borderLeftStyle: 'solid', borderRadius: 8, padding: 14 }}>
+                <Box style={{ marginTop: 14, background: '#F4F6FB', borderLeftWidth: 3, borderLeftColor: '#0891B2', borderLeftStyle: 'solid', borderRadius: 8, padding: 14 }}>
                     <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5 }}>
                         召回不是关键词匹配：抽取 → 候选提升 → 实体消解 → 生命周期整理，取用时再经过路由、重排、去重与预算控制，才进上下文。
                     </Text>
@@ -83,8 +83,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 记忆是分层、可纠正、可清理的资产——它让 AI 的能力随合作时间累积，而不是每次会话从零开始。
             </Text>
         </Box>

@@ -2,9 +2,9 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>05 · DEPLOYMENT</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             交付的不是演示界面，而是工程化打磨的操作台
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
@@ -13,45 +13,45 @@
             {/* 左：控制台结构 */}
             <Box style={{ width: 760 }}>
                 <Box style={{ background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 14 }}>
-                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>控制台四个分区，约 20 个一级页面</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>控制台四个分区，约 20 个一级页面</Text>
                     <Box style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
                         <Box style={{ flex: 1, background: '#E8EEFB', borderRadius: 8, padding: 10 }}>
-                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>常用</Text>
+                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>常用</Text>
                             <Text style={{ fontSize: 13, color: '#475569', lineHeight: 1.4 }}>对话 / 专家 / 定时任务 / Token 用量</Text>
                         </Box>
                         <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 10 }}>
-                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>个性化</Text>
+                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>个性化</Text>
                             <Text style={{ fontSize: 13, color: '#475569', lineHeight: 1.4 }}>技能 / 子智能体 / 工具 / 插件 / 记忆 / 通道</Text>
                         </Box>
                         <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 10 }}>
-                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>控制</Text>
+                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>控制</Text>
                             <Text style={{ fontSize: 13, color: '#475569', lineHeight: 1.4 }}>工作台 / 终端 / 浏览器 / 远程桌面 / ACP</Text>
                         </Box>
                         <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 10 }}>
-                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>管理</Text>
+                            <Text style={{ fontSize: 14, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>管理</Text>
                             <Text style={{ fontSize: 13, color: '#475569', lineHeight: 1.4 }}>用户 / 模型 / 存储 / 安全 / 高级设置</Text>
                         </Box>
                     </Box>
                     <Box style={{ height: 1, background: '#E2E8F0', marginTop: 12 }} />
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 12 }}>对话区能承载的内容</Text>
+                    <Text style={{ fontSize: 16, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 12 }}>对话区能承载的内容</Text>
                     <Box style={{ flexDirection: 'row', gap: 8, marginTop: 10 }}>
-                        <Box style={{ background: '#12275A', borderRadius: 6, padding: 7 }}>
-                            <Text style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.3 }}>推理过程</Text>
+                        <Box style={{ background: '#D6E4F9', borderRadius: 6, padding: 7 }}>
+                            <Text style={{ fontSize: 13, color: '#1E293B', lineHeight: 1.3 }}>推理过程</Text>
                         </Box>
                         <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 7 }}>
-                            <Text style={{ fontSize: 13, color: '#12275A', lineHeight: 1.3 }}>工具调用卡</Text>
+                            <Text style={{ fontSize: 13, color: '#1E293B', lineHeight: 1.3 }}>工具调用卡</Text>
                         </Box>
                         <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 7 }}>
-                            <Text style={{ fontSize: 13, color: '#12275A', lineHeight: 1.3 }}>审批卡</Text>
+                            <Text style={{ fontSize: 13, color: '#1E293B', lineHeight: 1.3 }}>审批卡</Text>
                         </Box>
                         <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 7 }}>
-                            <Text style={{ fontSize: 13, color: '#12275A', lineHeight: 1.3 }}>待办清单</Text>
+                            <Text style={{ fontSize: 13, color: '#1E293B', lineHeight: 1.3 }}>待办清单</Text>
                         </Box>
                         <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 7 }}>
-                            <Text style={{ fontSize: 13, color: '#12275A', lineHeight: 1.3 }}>引用溯源</Text>
+                            <Text style={{ fontSize: 13, color: '#1E293B', lineHeight: 1.3 }}>引用溯源</Text>
                         </Box>
                         <Box style={{ background: '#E8EEFB', borderRadius: 6, padding: 7 }}>
-                            <Text style={{ fontSize: 13, color: '#12275A', lineHeight: 1.3 }}>多 Agent 分角色</Text>
+                            <Text style={{ fontSize: 13, color: '#1E293B', lineHeight: 1.3 }}>多 Agent 分角色</Text>
                         </Box>
                         <Box style={{ background: '#FFF7E9', borderRadius: 6, padding: 7 }}>
                             <Text style={{ fontSize: 13, color: '#B45309', lineHeight: 1.3 }}>轨迹检视</Text>
@@ -65,19 +65,19 @@
 
             {/* 右：规模与体验 */}
             <Box style={{ width: 372 }}>
-                <Box style={{ background: '#12275A', borderRadius: 12, padding: 18 }}>
-                    <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>前端工程规模</Text>
+                <Box style={{ background: '#D6E4F9', borderRadius: 12, padding: 18 }}>
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.4 }}>前端工程规模</Text>
                     <Text style={{ fontSize: 40, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.1, marginTop: 6 }}>200,684</Text>
-                    <Text style={{ fontSize: 15, color: '#CBD9F0', lineHeight: 1.4 }}>行 TypeScript / TSX</Text>
-                    <Box style={{ height: 1, background: '#2D4A85', marginTop: 14 }} />
+                    <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.4 }}>行 TypeScript / TSX</Text>
+                    <Box style={{ height: 1, background: '#93C5FD', marginTop: 14 }} />
                     <Box style={{ flexDirection: 'row', marginTop: 12 }}>
                         <Box style={{ flex: 1 }}>
-                            <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.2 }}>1,033</Text>
-                            <Text style={{ fontSize: 14, color: '#A9C2E8', lineHeight: 1.4 }}>源文件</Text>
+                            <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#1E293B', lineHeight: 1.2 }}>1,033</Text>
+                            <Text style={{ fontSize: 14, color: '#475569', lineHeight: 1.4 }}>源文件</Text>
                         </Box>
                         <Box style={{ flex: 1 }}>
-                            <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.2 }}>267</Text>
-                            <Text style={{ fontSize: 14, color: '#A9C2E8', lineHeight: 1.4 }}>测试文件</Text>
+                            <Text style={{ fontSize: 26, fontWeight: 'bold', color: '#1E293B', lineHeight: 1.2 }}>267</Text>
+                            <Text style={{ fontSize: 14, color: '#475569', lineHeight: 1.4 }}>测试文件</Text>
                         </Box>
                     </Box>
                 </Box>
@@ -90,8 +90,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 评估一套平台时，界面往往是最诚实的证据：功能是否真的可用、过程是否真的可控，打开控制台就看得出来。
             </Text>
         </Box>

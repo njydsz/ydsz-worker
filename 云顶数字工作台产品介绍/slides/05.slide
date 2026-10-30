@@ -2,9 +2,9 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · POSITIONING</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             一个安装包交付整套企业级 AI 助手
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
@@ -12,38 +12,38 @@
         <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 40 }}>
             {/* 左侧进程拓扑 */}
             <Box style={{ width: 660, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 14 }}>
-                <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>YdszServer · 单进程，重启即恢复</Text>
+                <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>YdszServer · 单进程，重启即恢复</Text>
                 <Box style={{ flexDirection: 'row', gap: 10, marginTop: 10 }}>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 9 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>控制面数据库</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>控制面数据库</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>SQLite WAL 起步，可切 PostgreSQL</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 9 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>SharedServices</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>SharedServices</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>仓库与工厂的统一依赖注入根</Text>
                     </Box>
                 </Box>
                 <Box style={{ flexDirection: 'row', gap: 10, marginTop: 10 }}>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 9 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>AgentManager</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>AgentManager</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>多 Agent 注册与生命周期</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 9 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>Harness 运行时</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>Harness 运行时</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>LangGraph 对话与检查点</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 9 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>Gateway</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>Gateway</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>IM 通道与 WebSocket 枢纽</Text>
                     </Box>
                 </Box>
                 <Box style={{ flexDirection: 'row', gap: 10, marginTop: 10 }}>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 9 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>CronManager</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>CronManager</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>APScheduler 定时任务</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 9 }}>
-                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>FastAPI + 控制台</Text>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>FastAPI + 控制台</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>HTTP / WebSocket / CLI 同源</Text>
                     </Box>
                 </Box>
@@ -52,19 +52,19 @@
             {/* 右侧定位三段 */}
             <Box style={{ width: 460 }}>
                 <Box style={{ paddingBottom: 14, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
-                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>形态：一个进程，四种入口</Text>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>形态：一个进程，四种入口</Text>
                     <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         Web 控制台、CLI、IM 通道与定时任务共享同一条消息管线，无外部队列依赖。
                     </Text>
                 </Box>
                 <Box style={{ paddingTop: 14, paddingBottom: 14, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
-                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>来源：站在开源生态之上</Text>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>来源：站在开源生态之上</Text>
                     <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         基于 Octop 开源生态，采用 MIT 许可，并承诺与上游子组件版本同步。
                     </Text>
                 </Box>
                 <Box style={{ paddingTop: 14 }}>
-                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>边界：不是又一个聊天框</Text>
+                    <Text style={{ fontSize: 22, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>边界：不是又一个聊天框</Text>
                     <Text style={{ fontSize: 17, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         让 AI 带着身份、权限与审计进入业务流程的控制面。
                     </Text>
@@ -73,8 +73,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 48, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 48, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 运维复杂度被压缩到一个进程：没有消息队列要管、没有中间件要调，一台机器就能把整套能力跑起来。
             </Text>
         </Box>

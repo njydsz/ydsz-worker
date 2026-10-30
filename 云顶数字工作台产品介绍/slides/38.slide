@@ -1,51 +1,85 @@
-<Slide style={{ padding: 0, position: 'relative', background: 'linear-gradient(115deg, #12275A 0%, #101F45 50%, #0A2A6E 100%)' }}>
-    {/* 背景光束 */}
-    <Box style={{ position: 'absolute', right: 40, top: 90, width: 640, height: 540 }}>
-        <svg width={640} height={540} viewBox='0 0 640 540'>
-            <g stroke='#2F4C86' strokeWidth='1' opacity='0.5'>
-                <line x1='80' y1='60' x2='240' y2='180' />
-                <line x1='240' y1='180' x2='420' y2='120' />
-                <line x1='240' y1='180' x2='400' y2='330' />
-                <line x1='400' y1='330' x2='560' y2='260' />
-                <line x1='400' y1='330' x2='300' y2='470' />
-                <line x1='300' y1='470' x2='520' y2='440' />
-                <line x1='420' y1='120' x2='560' y2='260' />
-            </g>
-            <circle cx='80' cy='60' r='7' fill='#06B6D4' />
-            <circle cx='240' cy='180' r='12' fill='#2563EB' />
-            <circle cx='420' cy='120' r='7' fill='#06B6D4' />
-            <circle cx='400' cy='330' r='16' fill='#F59E0B' />
-            <circle cx='560' cy='260' r='8' fill='#5B7FC7' />
-            <circle cx='300' cy='470' r='9' fill='#06B6D4' />
-            <circle cx='520' cy='440' r='7' fill='#5B7FC7' />
-        </svg>
-    </Box>
-
-    <Box style={{ position: 'absolute', left: 92, top: 150, width: 700 }}>
-        <Box style={{ width: 72, height: 6, borderRadius: 3, background: '#F59E0B' }} />
-        <Text style={{ fontSize: 66, fontWeight: 'bold', color: '#FFFFFF', lineHeight: 1.15, marginTop: 30 }}>
-            从一条命令开始
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>05 · DEPLOYMENT</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            路线图：已经做到的、正在做的、打算做的
         </Text>
-        <Text style={{ fontSize: 22, color: '#9AB4DB', lineHeight: 1.5, marginTop: 20 }}>
-            先在一台机器上跑通一个场景，再决定要不要扩大到全公司。
-        </Text>
-    </Box>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
 
-    <Box style={{ position: 'absolute', left: 92, bottom: 120, width: 700 }}>
-        <Box style={{ height: 1, background: '#2D4A85' }} />
-        <Box style={{ flexDirection: 'row', gap: 26, marginTop: 22 }}>
-            <Box style={{ width: 200 }}>
-                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>第一步</Text>
-                <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.4, marginTop: 4 }}>ydsz-worker init</Text>
+        <Box style={{ flex: 1, marginTop: 22 }}>
+            <Box style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Box style={{ width: 150, background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 8, padding: 12, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>已完成</Text>
+                    <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.3, marginTop: 4 }}>已可交付</Text>
+                </Box>
+                <Box style={{ flex: 1, flexDirection: 'row', gap: 10, marginLeft: 16 }}>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>资源共享池</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>专家共享</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>桌面客户端</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>IM 通道集成</Text>
+                    </Box>
+                </Box>
             </Box>
-            <Box style={{ width: 200 }}>
-                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>第二步</Text>
-                <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.4, marginTop: 4 }}>ydsz-worker run</Text>
+
+            <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
+                <Box style={{ width: 150, background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 8, padding: 12, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>进行中</Text>
+                    <Text style={{ fontSize: 14, color: '#92400E', lineHeight: 1.3, marginTop: 4 }}>可用但仍在打磨</Text>
+                </Box>
+                <Box style={{ flex: 1, flexDirection: 'row', gap: 10, marginLeft: 16 }}>
+                    <Box style={{ flex: 1, background: '#FFFDF6', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>AgentTeams（Beta）</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#FFFDF6', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>移动端客户端（内测）</Text>
+                    </Box>
+                </Box>
             </Box>
-            <Box style={{ width: 250 }}>
-                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.4 }}>第三步</Text>
-                <Text style={{ fontSize: 19, fontWeight: '600', color: '#F59E0B', lineHeight: 1.4, marginTop: 4 }}>打开 127.0.0.1:8088</Text>
+
+            <Box style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
+                <Box style={{ width: 150, background: '#F1F5F9', borderWidth: 1, borderColor: '#CBD5E1', borderStyle: 'solid', borderRadius: 8, padding: 12, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#475569', lineHeight: 1.3 }}>规划中</Text>
+                    <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.3, marginTop: 4 }}>方向明确，未承诺时间</Text>
+                </Box>
+                <Box style={{ flex: 1, flexDirection: 'row', gap: 10, marginLeft: 16 }}>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.3 }}>自进化能力</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.3 }}>企业知识大脑</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.3 }}>插件市场</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.3 }}>对话式控制面</Text>
+                    </Box>
+                    <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 8, padding: 11, alignItems: 'center' }}>
+                        <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.3 }}>云边端一体</Text>
+                    </Box>
+                </Box>
             </Box>
+
+            <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 18 }}>
+                规划项只说明方向，不承诺交付时间；评估时请以「已完成」与「进行中」的实测能力为准。
+            </Text>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
+                成熟度的判断依据不是路线图有多长，而是「已完成」那一栏能当场演示多少。
+            </Text>
         </Box>
     </Box>
 </Slide>

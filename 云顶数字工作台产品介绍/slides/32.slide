@@ -2,9 +2,9 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>05 · DEPLOYMENT</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             从一台笔记本到一台 NAS，都有对应的跑法
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
@@ -13,7 +13,7 @@
             <Box style={{ width: 216, justifyContent: 'flex-end' }}>
                 <Box style={{ background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14, height: 156 }}>
                     <Text style={{ fontSize: 15, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>方式一</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>一键脚本安装</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>一键脚本安装</Text>
                     <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         Linux / macOS / Windows 各自一条命令，自动创建隔离的 Python 3.12 环境。
                     </Text>
@@ -22,7 +22,7 @@
             <Box style={{ width: 216, justifyContent: 'flex-end' }}>
                 <Box style={{ background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14, height: 196 }}>
                     <Text style={{ fontSize: 15, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>方式二</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>Docker Compose</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>Docker Compose</Text>
                     <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         官方编排文件开箱可用，另有国内镜像加速版与 PostgreSQL 版，生产环境推荐。
                     </Text>
@@ -31,17 +31,17 @@
             <Box style={{ width: 216, justifyContent: 'flex-end' }}>
                 <Box style={{ background: '#E8EEFB', borderWidth: 1, borderColor: '#C7D6F5', borderStyle: 'solid', borderRadius: 10, padding: 14, height: 236 }}>
                     <Text style={{ fontSize: 15, fontWeight: '600', color: '#94A3B8', lineHeight: 1.3 }}>方式三</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>注册为系统服务</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>注册为系统服务</Text>
                     <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         支持 systemd、launchd 与 Windows 服务，开机自启；内置自更新，升级后自动重启恢复。
                     </Text>
                 </Box>
             </Box>
             <Box style={{ width: 216, justifyContent: 'flex-end' }}>
-                <Box style={{ background: '#12275A', borderRadius: 10, padding: 14, height: 276 }}>
-                    <Text style={{ fontSize: 15, fontWeight: '600', color: '#7EA3D6', lineHeight: 1.3 }}>方式四</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3, marginTop: 6 }}>桌面客户端与 NAS</Text>
-                    <Text style={{ fontSize: 14, color: '#A9C2E8', lineHeight: 1.5, marginTop: 8 }}>
+                <Box style={{ background: '#D6E4F9', borderRadius: 10, padding: 14, height: 276 }}>
+                    <Text style={{ fontSize: 15, fontWeight: '600', color: '#475569', lineHeight: 1.3 }}>方式四</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>桌面客户端与 NAS</Text>
+                    <Text style={{ fontSize: 14, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         Windows / macOS / Linux 原生安装包，飞牛 FnOS 另提供原生与容器两种包；图形界面即可完成安装，不需要终端。
                     </Text>
                 </Box>
@@ -49,7 +49,7 @@
             <Box style={{ width: 216, justifyContent: 'flex-end' }}>
                 <Box style={{ background: '#FFF7E9', borderWidth: 1, borderColor: '#F5D9A4', borderStyle: 'solid', borderRadius: 10, padding: 14, height: 316 }}>
                     <Text style={{ fontSize: 15, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>方式五</Text>
-                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 6 }}>随时随地的访问</Text>
+                    <Text style={{ fontSize: 19, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>随时随地的访问</Text>
                     <Text style={{ fontSize: 14, color: '#92400E', lineHeight: 1.5, marginTop: 8 }}>
                         控制台支持 PWA 安装与移动端适配，配合内建 ACME 自动签发证书，可安全地对外提供 HTTPS 访问。
                     </Text>
@@ -58,8 +58,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 上线路径不依赖任何云厂商：试点可以在一台电脑上完成，规模扩大时再迁到容器与集群，配置与数据可平滑带走。
             </Text>
         </Box>

@@ -2,9 +2,9 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>02 · ABILITY LANDSCAPE</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             每一次越界动作，都可以被人叫停、修改或追问
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
@@ -14,17 +14,17 @@
             <Box style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                 <Box style={{ width: 268 }}>
                     <Box style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Box style={{ width: 14, height: 14, borderRadius: 7, background: '#1D4ED8' }} />
+                        <Box style={{ width: 14, height: 14, borderRadius: 7, background: '#2563EB' }} />
                         <Box style={{ flex: 1, height: 2, background: '#E2E8F0' }} />
                     </Box>
-                    <Text style={{ fontSize: 17, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3, marginTop: 12 }}>事前定义</Text>
+                    <Text style={{ fontSize: 17, fontWeight: '600', color: '#2563EB', lineHeight: 1.3, marginTop: 12 }}>事前定义</Text>
                     <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 6 }}>
                         写文件、改文件、执行命令与删除默认纳入审批清单，由管理员按 Agent 调整。
                     </Text>
                 </Box>
                 <Box style={{ width: 268 }}>
                     <Box style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Box style={{ width: 14, height: 14, borderRadius: 7, background: '#06B6D4' }} />
+                        <Box style={{ width: 14, height: 14, borderRadius: 7, background: '#0891B2' }} />
                         <Box style={{ flex: 1, height: 2, background: '#E2E8F0' }} />
                     </Box>
                     <Text style={{ fontSize: 17, fontWeight: '600', color: '#0891B2', lineHeight: 1.3, marginTop: 12 }}>事中暂停</Text>
@@ -44,10 +44,10 @@
                 </Box>
                 <Box style={{ width: 296 }}>
                     <Box style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Box style={{ width: 14, height: 14, borderRadius: 7, background: '#12275A' }} />
+                        <Box style={{ width: 14, height: 14, borderRadius: 7, background: '#2563EB' }} />
                         <Box style={{ flex: 1, height: 2, background: '#E2E8F0' }} />
                     </Box>
-                    <Text style={{ fontSize: 17, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 12 }}>事后继续</Text>
+                    <Text style={{ fontSize: 17, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 12 }}>事后继续</Text>
                     <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 6 }}>
                         决策结果回写检查点，Agent 接着跑完剩余步骤，不会从头开始。
                     </Text>
@@ -57,20 +57,20 @@
             {/* 四种决策 + 说明 */}
             <Box style={{ flexDirection: 'row', gap: 20, marginTop: 24 }}>
                 <Box style={{ width: 300, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 16 }}>
-                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>四处入口，同一套审批</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>四处入口，同一套审批</Text>
                     <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         控制台、命令行、IM 与定时任务都能收到审批请求；在飞书、钉钉里也能直接点按钮处置。
                     </Text>
                 </Box>
                 <Box style={{ width: 300, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 16 }}>
-                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>会话级放行，减少打扰</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>会话级放行，减少打扰</Text>
                     <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         确认可信后可本次放行或整段会话放行指定工具，避免同类动作反复打断工作流。
                     </Text>
                 </Box>
-                <Box style={{ width: 500, background: '#12275A', borderRadius: 10, padding: 16 }}>
+                <Box style={{ width: 500, background: '#D6E4F9', borderRadius: 10, padding: 16 }}>
                     <Text style={{ fontSize: 18, fontWeight: '600', color: '#F59E0B', lineHeight: 1.3 }}>为什么这决定能不能上线</Text>
-                    <Text style={{ fontSize: 16, color: '#D6E3F5', lineHeight: 1.5, marginTop: 8 }}>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 8 }}>
                         绝大多数企业 AI 项目卡在「不敢授权」。审批机制把默认策略从「全禁止」变成「可控放行」，AI 才真正进入业务流程而不是停在建议层。
                     </Text>
                 </Box>
@@ -78,8 +78,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 自主执行与人工掌控并不矛盾：机器负责把活干完，人保留随时改主意和问清楚的权利。
             </Text>
         </Box>

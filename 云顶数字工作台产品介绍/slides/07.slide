@@ -2,16 +2,16 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>01 · POSITIONING</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             一句话说清边界
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
 
         <Box style={{ flex: 1, marginTop: 18 }}>
-            <Text style={{ fontSize: 44, fontWeight: 'bold', color: '#12275A', lineHeight: 1.35 }}>
-                对话即操作，配置即能力，<span style={{ color: '#1D4ED8' }}>数据不出内网</span>
+            <Text style={{ fontSize: 44, fontWeight: 'bold', color: '#1E293B', lineHeight: 1.35 }}>
+                对话即操作，配置即能力，<span style={{ color: '#2563EB' }}>数据不出内网</span>
             </Text>
             <Text style={{ fontSize: 20, color: '#64748B', lineHeight: 1.5, marginTop: 22 }}>
                 这三句分别对应三个工程事实：同一条消息管线驱动所有入口、专家与工具都是可配置资产、全部数据落在你自己的机器上。
@@ -20,21 +20,21 @@
             <Box style={{ flexDirection: 'row', gap: 26, marginTop: 26 }}>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 20 }}>
                     <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.1 }}>341,291</Text>
-                    <Text style={{ fontSize: 18, color: '#12275A', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>行自研代码</Text>
+                    <Text style={{ fontSize: 18, color: '#1E293B', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>行自研代码</Text>
                     <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         Python 主包与四个自研子组件合计，工程体量决定可持续演进能力。
                     </Text>
                 </Box>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 20 }}>
-                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#1D4ED8', lineHeight: 1.1 }}>797</Text>
-                    <Text style={{ fontSize: 18, color: '#12275A', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>个测试文件</Text>
+                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#2563EB', lineHeight: 1.1 }}>797</Text>
+                    <Text style={{ fontSize: 18, color: '#1E293B', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>个测试文件</Text>
                     <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         覆盖后端、运行时、网关、浏览器与记忆引擎，不是只测主流程。
                     </Text>
                 </Box>
                 <Box style={{ flex: 1, background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 12, padding: 20 }}>
-                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#06B6D4', lineHeight: 1.1 }}>MIT</Text>
-                    <Text style={{ fontSize: 18, color: '#12275A', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>开源许可</Text>
+                    <Text style={{ fontSize: 56, fontWeight: 'bold', color: '#0891B2', lineHeight: 1.1 }}>MIT</Text>
+                    <Text style={{ fontSize: 18, color: '#1E293B', fontWeight: '600', lineHeight: 1.4, marginTop: 8 }}>开源许可</Text>
                     <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5, marginTop: 8 }}>
                         无传染性协议约束，企业私有化部署与二次开发没有授权障碍。
                     </Text>
@@ -43,8 +43,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 48, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 48, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 承诺的性质不同：功能可以模仿，代码体量、测试密度与许可证条款是可以当场核验的事实。
             </Text>
         </Box>

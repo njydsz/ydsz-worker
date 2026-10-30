@@ -2,23 +2,23 @@
     <Box style={{ height: 600 }}>
         <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>03 · SECURITY & GOVERNANCE</Text>
-            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#1D4ED8' }} />
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
         </Box>
-        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#12275A', marginTop: 16, lineHeight: 1.2 }}>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
             危险动作在执行前被拦下，而不是事后追责
         </Text>
         <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
 
         <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 32 }}>
             {/* 左标题色块 */}
-            <Box style={{ width: 320, background: '#12275A', borderRadius: 12, padding: 22 }}>
+            <Box style={{ width: 320, background: '#D6E4F9', borderRadius: 12, padding: 22 }}>
                 <Text style={{ fontSize: 64, fontWeight: 'bold', color: '#F59E0B', lineHeight: 1.05 }}>20</Text>
-                <Text style={{ fontSize: 21, fontWeight: '600', color: '#FFFFFF', lineHeight: 1.3, marginTop: 6 }}>条内建危险命令规则</Text>
-                <Box style={{ width: 48, height: 4, borderRadius: 2, background: '#06B6D4', marginTop: 14 }} />
-                <Text style={{ fontSize: 16, color: '#A9C2E8', lineHeight: 1.5, marginTop: 14 }}>
+                <Text style={{ fontSize: 21, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 6 }}>条内建危险命令规则</Text>
+                <Box style={{ width: 48, height: 4, borderRadius: 2, background: '#0891B2', marginTop: 14 }} />
+                <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 14 }}>
                     覆盖删除与覆写、资源滥用、命令注入、提权、敏感文件与网络滥用六类威胁。
                 </Text>
-                <Text style={{ fontSize: 15, color: '#7EA3D6', lineHeight: 1.5, marginTop: 12 }}>
+                <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 12 }}>
                     规则以 YAML 维护，支持校验、热加载，误伤时可一键恢复内置版本。
                 </Text>
             </Box>
@@ -28,14 +28,14 @@
                 {/* 判定链 */}
                 <Box style={{ flexDirection: 'row', alignItems: 'center', background: '#F8FAFC', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
                     <Box style={{ width: 200, alignItems: 'center' }}>
-                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>工具调用请求</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>工具调用请求</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>bash / execute 的 command</Text>
                     </Box>
                     <Box style={{ width: 40, justifyContent: 'center', alignItems: 'center' }}>
                         <svg width={40} height={16} viewBox='0 0 40 16'><path d='M0 8 L28 8' stroke='#C7D6F5' strokeWidth='2' /><path d='M28 2 L40 8 L28 14 Z' fill='#C7D6F5' /></svg>
                     </Box>
                     <Box style={{ width: 200, alignItems: 'center' }}>
-                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>规则引擎匹配</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>规则引擎匹配</Text>
                         <Text style={{ fontSize: 14, color: '#64748B', lineHeight: 1.4 }}>YAML 规则 + 用户自定义</Text>
                     </Box>
                     <Box style={{ width: 40, justifyContent: 'center', alignItems: 'center' }}>
@@ -49,7 +49,7 @@
                             <Text style={{ fontSize: 15, fontWeight: '600', color: '#B45309', lineHeight: 1.3 }}>告警</Text>
                         </Box>
                         <Box style={{ flex: 1, background: '#E8EEFB', borderRadius: 6, padding: 8, alignItems: 'center' }}>
-                            <Text style={{ fontSize: 15, fontWeight: '600', color: '#1D4ED8', lineHeight: 1.3 }}>转审批</Text>
+                            <Text style={{ fontSize: 15, fontWeight: '600', color: '#2563EB', lineHeight: 1.3 }}>转审批</Text>
                         </Box>
                     </Box>
                 </Box>
@@ -58,36 +58,36 @@
                 <Box style={{ flexDirection: 'row', gap: 14, marginTop: 14 }}>
                     <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 13 }}>
                         <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>代码执行类</Text>
-                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 4 }}>8 条</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>8 条</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 13 }}>
                         <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>资源滥用类</Text>
-                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 4 }}>4 条</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>4 条</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 13 }}>
                         <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>命令注入类</Text>
-                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 4 }}>3 条</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>3 条</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 13 }}>
                         <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>提权与敏感文件</Text>
-                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 4 }}>各 2 条</Text>
+                        <Text style={{ fontSize: 24, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>各 2 条</Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#F4F6FB', borderRadius: 10, padding: 13 }}>
                         <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.4 }}>等级分布</Text>
-                        <Text style={{ fontSize: 20, fontWeight: '600', color: '#12275A', lineHeight: 1.3, marginTop: 4 }}>高危 7 / 严重 13</Text>
+                        <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3, marginTop: 4 }}>高危 7 / 严重 13</Text>
                     </Box>
                 </Box>
 
                 {/* 文件系统沙箱 */}
                 <Box style={{ flexDirection: 'row', gap: 16, marginTop: 14 }}>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
-                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>文件系统：按操作 × 路径授权</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>文件系统：按操作 × 路径授权</Text>
                         <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
                             读、写、删除分别授权，首个匹配规则生效，可整体设为默认允许或默认拒绝。
                         </Text>
                     </Box>
                     <Box style={{ flex: 1, background: '#FFFFFF', borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid', borderRadius: 10, padding: 14 }}>
-                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#12275A', lineHeight: 1.3 }}>默认已拦截的路径</Text>
+                        <Text style={{ fontSize: 17, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>默认已拦截的路径</Text>
                         <Text style={{ fontSize: 15, color: '#475569', lineHeight: 1.5, marginTop: 7 }}>
                             /etc、/root、.env、SSH 私钥、云厂商凭证目录等，开箱即处于保护状态。
                         </Text>
@@ -97,8 +97,8 @@
         </Box>
 
         <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
-            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#1D4ED8' }} />
-            <Text style={{ flex: 1, fontSize: 19, color: '#12275A', lineHeight: 1.5 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
                 规则不是摆设：它把「哪些命令不能跑、哪些目录不能碰」变成可执行、可审计、可调整的企业策略。
             </Text>
         </Box>

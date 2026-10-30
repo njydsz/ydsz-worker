@@ -1,0 +1,66 @@
+<Slide style={{ padding: 60, background: '#FFFFFF' }}>
+    <Box style={{ height: 600 }}>
+        <Box style={{ height: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={{ fontSize: 14, color: '#94A3B8', letterSpacing: 2 }}>05 · DEPLOYMENT</Text>
+            <Box style={{ width: 44, height: 4, borderRadius: 2, background: '#2563EB' }} />
+        </Box>
+        <Text style={{ fontSize: 34, fontWeight: 'bold', color: '#1E293B', marginTop: 16, lineHeight: 1.2 }}>
+            今天就跑起来：四个入口与一个二维码
+        </Text>
+        <Box style={{ height: 1, background: '#E2E8F0', marginTop: 16 }} />
+
+        <Box style={{ flex: 1, marginTop: 22, flexDirection: 'row', gap: 32 }}>
+            <Box style={{ width: 720 }}>
+                <Box style={{ paddingBottom: 12, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>开源仓库</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        github.com/njydsz/ydsz-worker —— MIT 许可，可自行审计与二次开发
+                    </Text>
+                </Box>
+                <Box style={{ paddingTop: 12, paddingBottom: 12, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>Python 包</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        pip install ydsz-worker —— 已发布在 PyPI，纳入既有 Python 环境即可
+                    </Text>
+                </Box>
+                <Box style={{ paddingTop: 12, paddingBottom: 12, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', borderBottomStyle: 'solid' }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>桌面客户端</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        Releases 页提供 Windows / macOS / Linux 安装包，飞牛 NAS 另有两种包
+                    </Text>
+                </Box>
+                <Box style={{ paddingTop: 12 }}>
+                    <Text style={{ fontSize: 20, fontWeight: '600', color: '#1E293B', lineHeight: 1.3 }}>文档与接口</Text>
+                    <Text style={{ fontSize: 16, color: '#475569', lineHeight: 1.5, marginTop: 6 }}>
+                        CLI 参考、API 参考与配置说明随仓库分发，交互式接口文档可在本地控制台开启
+                    </Text>
+                </Box>
+            </Box>
+
+            <Box style={{ width: 408, background: '#F4F6FB', borderRadius: 12, padding: 20, alignItems: 'center', justifyContent: 'center' }}>
+                <Box style={{ background: '#FFFFFF', borderRadius: 10, padding: 14, borderWidth: 1, borderColor: '#E2E8F0', borderStyle: 'solid' }}>
+                    <QRCode
+                        text='https://github.com/njydsz/ydsz-worker'
+                        width={188}
+                        darkColor='#0F172A'
+                        lightColor='#FFFFFF'
+                        errorCorrectionLevel='Q'
+                    />
+                </Box>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: '#1E293B', lineHeight: 1.4, marginTop: 16, textAlign: 'center' }}>
+                    扫码查看源码与最新版本
+                </Text>
+                <Text style={{ fontSize: 15, color: '#64748B', lineHeight: 1.5, marginTop: 10, textAlign: 'center' }}>
+                    开源仓库即最完整的文档；部署与二次开发问题可在仓库 Issue 中提出
+                </Text>
+            </Box>
+        </Box>
+
+        <Box style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', background: '#F4F6FB', borderRadius: 8, padding: 16, gap: 16 }}>
+            <Box style={{ width: 4, height: 40, borderRadius: 2, background: '#2563EB' }} />
+            <Text style={{ flex: 1, fontSize: 19, color: '#1E293B', lineHeight: 1.5 }}>
+                不需要先签合同再验证：装好跑通一个场景，再决定要不要扩大到全公司。
+            </Text>
+        </Box>
+    </Box>
+</Slide>
