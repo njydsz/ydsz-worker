@@ -205,35 +205,179 @@ const EXPERTS: Expert[] = [
 
 const DOWNLOAD_BASE = 'https://gitee.com/njydsz/ydsz-worker/tree/main/infra/agents/experts/library'
 
+/* ── 6 种渐变配色（按序号循环） ── */
 const GRADIENTS = [
-  'from-emerald-500 to-teal-600',
-  'from-green-400 to-cyan-500',
-  'from-lime-400 to-emerald-500',
-  'from-teal-400 to-green-600',
-  'from-cyan-500 to-emerald-400',
-  'from-emerald-400 to-green-500',
+  { light: '#34d399' },
+  { light: '#4ade80' },
+  { light: '#a3e635' },
+  { light: '#2dd4bf' },
+  { light: '#06b6d4' },
+  { light: '#6ee7b7' },
 ]
 
-function hashString(str: string): number {
-  let hash = 0
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i)
-    hash = ((hash << 5) - hash) + char
-    hash |= 0
-  }
-  return Math.abs(hash)
+/* ── SVG: 专家卡片 90px 顶部渐变区（6 种不同 SVG 装饰） ── */
+function ExpertCardDecoration({ index }: { index: number }) {
+  // 每种模式基于 index 选择，使用渐变配色
+  const color = GRADIENTS[index % GRADIENTS.length].light
+
+  const patternElements = [
+    // 0: 圆形光斑 + 底部渐隐
+    <svg key="p0" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={`eg-0-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.45" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.1" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="90" fill={`url(#eg-0-${index})`} />
+      <circle cx="320" cy="20" r="55" fill="white" opacity="0.06" />
+      <circle cx="320" cy="20" r="30" fill="white" opacity="0.04" />
+      <circle cx="80" cy="70" r="35" fill="black" opacity="0.15" />
+    </svg>,
+    // 1: 斜线纹理
+    <svg key="p1" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={`eg-1-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.4" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.08" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="90" fill={`url(#eg-1-${index})`} />
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <line key={i} x1={50 + i * 70} y1="0" x2={90 + i * 70} y2="90" stroke="white" strokeWidth="0.5" opacity="0.08" />
+      ))}
+      <circle cx="50" cy="45" r="25" fill="white" opacity="0.04" />
+    </svg>,
+    // 2: 三角几何
+    <svg key="p2" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={`eg-2-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.35" />
+          <stop offset="50%" stopColor={color} stopOpacity="0.15" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.05" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="90" fill={`url(#eg-2-${index})`} />
+      <polygon points="20,90 65,15 110,90" fill="white" opacity="0.04" />
+      <polygon points="330,90 375,5 420,90" fill="black" opacity="0.08" />
+    </svg>,
+    // 3: 波浪线
+    <svg key="p3" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={`eg-3-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.4" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.08" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="90" fill={`url(#eg-3-${index})`} />
+      <path d="M0,55 Q100,15 200,45 T400,35" stroke="white" strokeWidth="1" fill="none" opacity="0.1" />
+      <path d="M0,75 Q150,35 300,65 T400,45" stroke="white" strokeWidth="0.8" fill="none" opacity="0.06" />
+      <circle cx="200" cy="40" r="20" fill="white" opacity="0.03" />
+    </svg>,
+    // 4: 菱形几何
+    <svg key="p4" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={`eg-4-${index}`} x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.4" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.1" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="90" fill={`url(#eg-4-${index})`} />
+      <rect x="320" y="10" width="48" height="48" rx="4" transform="rotate(45 344 34)" fill="white" opacity="0.05" />
+      <rect x="40" y="30" width="28" height="28" rx="2" transform="rotate(45 54 44)" fill="black" opacity="0.08" />
+    </svg>,
+    // 5: 散射三角
+    <svg key="p5" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={`eg-5-${index}`} x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.35" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.08" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="90" fill={`url(#eg-5-${index})`} />
+      <polygon points="0,90 55,25 110,90" fill="white" opacity="0.04" />
+      <polygon points="290,90 340,8 390,90" fill="white" opacity="0.05" />
+    </svg>,
+  ]
+
+  return (
+    <div className="absolute top-0 left-0 right-0 h-[90px] overflow-hidden">
+      {patternElements[index % patternElements.length]}
+      {/* 底部渐变遮罩 */}
+      <div className="absolute bottom-0 left-0 right-0 h-[45px] bg-gradient-to-t from-ink-900 to-transparent" />
+    </div>
+  )
 }
 
-// Subtle SVG decoration pattern for expert cards
-function ExpertCardDecoration({ gradient }: { gradient: string }) {
+/* ── SVG: 作者头像占位 ── */
+function AuthorAvatarSvg() {
   return (
-    <div className="absolute top-0 left-0 right-0 h-24 overflow-hidden rounded-t-2xl">
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-80`} />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent" />
-      {/* Blurred decorative orbs */}
-      <div className="absolute -top-6 -right-6 w-24 h-24 bg-white/10 rounded-full blur-xl" />
-      <div className="absolute top-8 -left-4 w-16 h-16 bg-black/20 rounded-full blur-lg" />
-    </div>
+    <svg className="w-5 h-5 text-yuanbao-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+      <circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15" />
+      <circle cx="10" cy="7" r="3" fill="currentColor" opacity="0.6" />
+      <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="currentColor" opacity="0.4" />
+    </svg>
+  )
+}
+
+/* ── SVG: Header 下划线装饰 ── */
+function HeaderUnderline() {
+  return (
+    <svg className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-48 h-2 text-yuanbao-500" viewBox="0 0 200 8" fill="none" aria-hidden="true">
+      <path
+        d="M2 4 Q40 0 80 4 Q120 8 180 4 L198 4"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+      <circle cx="198" cy="4" r="1.5" fill="currentColor" opacity="0.8" />
+    </svg>
+  )
+}
+
+/* ── SVG: 搜索图标 ── */
+function SearchIcon() {
+  return (
+    <svg
+      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  )
+}
+
+/* ── SVG: 清除按钮 ── */
+function ClearIcon() {
+  return (
+    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  )
+}
+
+/* ── SVG: 空状态图 ── */
+function EmptyStateSvg() {
+  return (
+    <svg className="w-24 h-24 mx-auto mb-6 text-yuanbao-500/20" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+      <circle cx="50" cy="50" r="40" fill="currentColor" opacity="0.05" />
+      <circle cx="44" cy="44" r="18" stroke="currentColor" strokeWidth="3" opacity="0.5" />
+      <line x1="57" y1="57" x2="72" y2="72" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
+      <line x1="40" y1="44" x2="48" y2="44" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.2" />
+      <line x1="40" y1="48" x2="45" y2="48" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.15" />
+      <circle cx="35" cy="38" r="1.5" fill="currentColor" opacity="0.3" />
+      <circle cx="55" cy="40" r="1" fill="currentColor" opacity="0.2" />
+    </svg>
   )
 }
 
@@ -261,7 +405,7 @@ export default function ExpertsPage() {
   return (
     <div className="py-16 lg:py-24">
       <div className="container-page">
-        {/* Header */}
+        {/* Header — 含 SVG 下划线 */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
             <span className="section-label">专家市场</span>
@@ -269,17 +413,18 @@ export default function ExpertsPage() {
               {EXPERTS.length} 个专家
             </span>
           </div>
-          <h1 className="heading-xl mt-4 mb-3">
+          <h1 className="relative inline-block heading-xl mt-4 mb-3">
             <span className="text-gradient">专家市场</span>
+            <HeaderUnderline />
           </h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/60 text-lg max-w-2xl mx-auto mt-6">
             精心构建的专家智能体，覆盖金融、技术、内容、生活等多个领域。即装即用，持续更新。
           </p>
         </div>
 
-        {/* Filter Row: Categories + Search */}
+        {/* Filter Row: 分类 pill + 搜索框 */}
         <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-10">
-          {/* Category Pills */}
+          {/* 分类 pill — 精致化样式 */}
           <div className="flex flex-wrap gap-2 flex-1">
             {CATEGORIES.map((cat) => (
               <button
@@ -287,7 +432,7 @@ export default function ExpertsPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeCategory === cat
-                    ? 'bg-yuanbao-500 text-ink-900 shadow-lg shadow-yuanbao-500/25'
+                    ? 'bg-yuanbao-500/15 text-yuanbao-300 border border-yuanbao-500/30 shadow-sm shadow-yuanbao-500/10'
                     : 'bg-white/[0.05] text-white/70 hover:bg-white/[0.1] hover:text-white border border-white/[0.08]'
                 }`}
               >
@@ -296,51 +441,47 @@ export default function ExpertsPage() {
             ))}
           </div>
 
-          {/* Search Box */}
+          {/* 搜索框 — 含图标 + 清除按钮 */}
           <div className="relative lg:w-72">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="搜索专家..."
-              className="w-full px-4 py-2.5 pl-10 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-white/40 text-sm focus:outline-none focus:border-yuanbao-500/50 focus:ring-1 focus:ring-yuanbao-500/25 transition-all"
+              placeholder="按名称、关键词或分类搜索..."
+              className="w-full px-4 py-2.5 pl-10 pr-8 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-white/35 text-sm focus:outline-none focus:border-yuanbao-500/50 focus:ring-1 focus:ring-yuanbao-500/25 transition-all"
             />
-            <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+            <SearchIcon />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+                aria-label="清除搜索"
+              >
+                <ClearIcon />
+              </button>
+            )}
           </div>
         </div>
 
         {/* Expert Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((expert) => {
-            const gradient = GRADIENTS[hashString(expert.id) % GRADIENTS.length]
+          {filtered.map((expert, cardIndex) => {
             return (
               <div
                 key={expert.id}
                 className="card-glow p-0 overflow-hidden group cursor-default"
               >
-                {/* Gradient Header Area */}
-                <ExpertCardDecoration gradient={gradient} />
+                {/* 90px SVG 渐变装饰区 */}
+                <ExpertCardDecoration index={cardIndex} />
 
                 {/* Card Content */}
                 <div className="relative pt-14 px-6 pb-6">
-                  {/* Avatar */}
+                  {/* 头像 */}
                   <div className="absolute -top-6 left-6 w-12 h-12 rounded-xl bg-gradient-to-br from-yuanbao-400 to-yuanbao-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-yuanbao-500/30 border-2 border-ink-900">
                     {expert.name.charAt(0)}
                   </div>
 
-                  {/* Name + Category */}
+                  {/* 名称 + 分类 */}
                   <div className="mb-3">
                     <h3 className="text-white font-semibold text-base group-hover:text-yuanbao-300 transition-colors">
                       {expert.name}
@@ -355,14 +496,20 @@ export default function ExpertsPage() {
                     </div>
                   </div>
 
-                  {/* Description */}
+                  {/* 描述 */}
                   <p className="text-white/55 text-sm leading-relaxed mb-5 line-clamp-2">
                     {expert.description}
                   </p>
 
-                  {/* Bottom Row */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
-                    <span className="text-xs text-white/40">by {expert.author}</span>
+                  {/* 分隔线 */}
+                  <div className="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent mb-4" />
+
+                  {/* 底部行: 作者头像 + 下载按钮 */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <AuthorAvatarSvg />
+                      <span className="text-xs text-white/40">{expert.author}</span>
+                    </div>
                     <a
                       href={`${DOWNLOAD_BASE}/${expert.id}`}
                       target="_blank"
@@ -381,14 +528,12 @@ export default function ExpertsPage() {
           })}
         </div>
 
-        {/* Empty State */}
+        {/* 空状态 — SVG */}
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-white/40">
-            <svg className="w-12 h-12 mx-auto mb-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <p className="text-lg mb-2">未找到匹配的专家</p>
-            <p className="text-sm">试试其他关键词或分类</p>
+          <div className="text-center py-20">
+            <EmptyStateSvg />
+            <p className="text-lg text-white/50 mb-2">未找到匹配的专家</p>
+            <p className="text-sm text-white/35">尝试修改关键词或切换分类重新查找</p>
           </div>
         )}
       </div>

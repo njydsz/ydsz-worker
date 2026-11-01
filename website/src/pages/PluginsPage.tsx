@@ -279,12 +279,14 @@ const PLUGINS: Plugin[] = [
 
 const DOWNLOAD_BASE = 'https://gitee.com/njydsz/ydsz-worker/tree/main/plugins'
 
+/* ── 卡片顶部渐变配色（hover 时亮度变亮） ── */
 const PLUGIN_GRADIENTS = [
-  'from-violet-500/20 to-indigo-500/20',
-  'from-blue-500/20 to-cyan-500/20',
-  'from-emerald-500/20 to-teal-500/20',
-  'from-orange-500/20 to-red-500/20',
-  'from-pink-500/20 to-purple-500/20',
+  'from-yuanbao-500/20 to-emerald-600/10',
+  'from-emerald-400/20 to-teal-500/10',
+  'from-green-500/20 to-lime-500/10',
+  'from-teal-400/20 to-cyan-500/10',
+  'from-lime-400/20 to-green-500/10',
+  'from-cyan-400/20 to-emerald-500/10',
 ]
 
 function hashString(str: string): number {
@@ -295,6 +297,85 @@ function hashString(str: string): number {
     hash |= 0
   }
   return Math.abs(hash)
+}
+
+/* ── SVG: 版本号 Badge ── */
+function VersionBadge({ version }: { version: string }) {
+  return (
+    <svg className="absolute top-3 right-3 w-14 h-7" viewBox="0 0 56 28" fill="none">
+      {/* 小标签形状 */}
+      <rect x="1" y="1" width="54" height="26" rx="6" fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.25)" strokeWidth="1" />
+      <text x="28" y="18" textAnchor="middle" fill="#86efac" fontSize="10" fontFamily="monospace" fontWeight="500">
+        {version}
+      </text>
+    </svg>
+  )
+}
+
+/* ── SVG: 搜索图标 ── */
+function SearchIcon() {
+  return (
+    <svg
+      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  )
+}
+
+/* ── SVG: 清除按钮 ── */
+function ClearIcon() {
+  return (
+    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  )
+}
+
+/* ── SVG: 空状态图 ── */
+function EmptyStateSvg() {
+  return (
+    <svg className="w-28 h-28 mx-auto mb-6 text-yuanbao-500/20" viewBox="0 0 112 112" fill="none">
+      {/* 大圆背景 */}
+      <circle cx="56" cy="56" r="52" stroke="currentColor" strokeWidth="2" opacity="0.2" />
+      <circle cx="56" cy="56" r="44" fill="currentColor" opacity="0.04" />
+      {/* 插件方块 */}
+      <rect x="36" y="36" width="40" height="40" rx="8" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+      <rect x="44" y="44" width="24" height="24" rx="4" fill="currentColor" opacity="0.08" />
+      {/* 搜索放大镜 */}
+      <circle cx="70" cy="68" r="14" stroke="currentColor" strokeWidth="2.5" opacity="0.4" />
+      <line x1="80" y1="78" x2="90" y2="88" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.4" />
+      {/* 小装饰点 */}
+      <circle cx="40" cy="56" r="2" fill="currentColor" opacity="0.15" />
+      <circle cx="56" cy="42" r="1.5" fill="currentColor" opacity="0.2" />
+      <circle cx="68" cy="52" r="2.5" fill="currentColor" opacity="0.1" />
+    </svg>
+  )
+}
+
+/* ── Header SVG 下划线 ── */
+function HeaderUnderline() {
+  return (
+    <svg className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-48 h-2 text-yuanbao-500" viewBox="0 0 200 8" fill="none" aria-hidden="true">
+      <path
+        d="M2 4 Q40 0 80 4 Q120 8 180 4 L198 4"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+      <circle cx="198" cy="4" r="1.5" fill="currentColor" opacity="0.8" />
+    </svg>
+  )
 }
 
 export default function PluginsPage() {
@@ -329,17 +410,18 @@ export default function PluginsPage() {
               {PLUGINS.length} 个插件
             </span>
           </div>
-          <h1 className="heading-xl mt-4 mb-3">
+          <h1 className="relative inline-block heading-xl mt-4 mb-3">
             <span className="text-gradient">插件市场</span>
+            <HeaderUnderline />
           </h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/60 text-lg max-w-2xl mx-auto mt-6">
             轻量级功能扩展插件，覆盖工具、生活、资讯、娱乐等场景。一键安装，即装即用。
           </p>
         </div>
 
-        {/* Filter Row: Categories + Search */}
+        {/* Filter Row: 分类 pill + 搜索框 */}
         <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-10">
-          {/* Category Pills */}
+          {/* 分类 pill — 精致化 active 样式 */}
           <div className="flex flex-wrap gap-2 flex-1">
             {CATEGORIES.map((cat) => (
               <button
@@ -347,7 +429,7 @@ export default function PluginsPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeCategory === cat
-                    ? 'bg-yuanbao-500 text-ink-900 shadow-lg shadow-yuanbao-500/25'
+                    ? 'bg-yuanbao-500/15 text-yuanbao-300 border border-yuanbao-500/30 shadow-sm shadow-yuanbao-500/10'
                     : 'bg-white/[0.05] text-white/70 hover:bg-white/[0.1] hover:text-white border border-white/[0.08]'
                 }`}
               >
@@ -356,32 +438,29 @@ export default function PluginsPage() {
             ))}
           </div>
 
-          {/* Search Box */}
+          {/* 搜索框 — 含图标 + 清除按钮 */}
           <div className="relative lg:w-72">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="搜索插件..."
-              className="w-full px-4 py-2.5 pl-10 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-white/40 text-sm focus:outline-none focus:border-yuanbao-500/50 focus:ring-1 focus:ring-yuanbao-500/25 transition-all"
+              placeholder="按名称、关键词或分类搜索..."
+              className="w-full px-4 py-2.5 pl-10 pr-8 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-white/35 text-sm focus:outline-none focus:border-yuanbao-500/50 focus:ring-1 focus:ring-yuanbao-500/25 transition-all"
             />
-            <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+            <SearchIcon />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+                aria-label="清除搜索"
+              >
+                <ClearIcon />
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Plugin Cards Grid */}
+        {/* Plugin Cards Grid — hover 时顶部渐变区变亮 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((plugin) => {
             const gradientBg = PLUGIN_GRADIENTS[hashString(plugin.id) % PLUGIN_GRADIENTS.length]
@@ -390,19 +469,28 @@ export default function PluginsPage() {
                 key={plugin.id}
                 className="card-glow p-6 overflow-hidden relative group"
               >
-                {/* Background Gradient Blob */}
-                <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${gradientBg} rounded-full blur-3xl group-hover:scale-150 transition-transform duration-500`} />
+                {/* 版本号 SVG Badge（右上角） */}
+                <VersionBadge version={plugin.version} />
 
-                {/* Icon + Name + Version */}
-                <div className="relative flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-yuanbao-500/10 border border-yuanbao-500/20 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                {/* 顶部渐变区 — hover 时亮度变亮 */}
+                <div className={`absolute top-0 left-0 right-0 h-20 bg-gradient-to-br ${gradientBg} transition-all duration-300 group-hover:brightness-110`}>
+                  {/* 渐变区 SVG 装饰纹理 */}
+                  <svg className="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 320 80" preserveAspectRatio="none">
+                    <path d="M0,60 Q80,20 160,50 T320,40" stroke="white" strokeWidth="0.5" fill="none" opacity="0.15" />
+                    <circle cx="280" cy="20" r="30" fill="white" opacity="0.04" />
+                  </svg>
+                </div>
+
+                {/* Icon + 名称 */}
+                <div className="relative flex items-start gap-4 mb-4 mt-2">
+                  <div className="w-12 h-12 rounded-xl bg-yuanbao-500/10 border border-yuanbao-500/20 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 group-hover:bg-yuanbao-500/20 transition-all duration-300">
                     {plugin.icon}
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-white font-semibold truncate group-hover:text-yuanbao-300 transition-colors">
+                  <div className="min-w-0 flex-1 pt-1">
+                    <h3 className="text-white font-semibold truncate group-hover:text-yuanbao-300 transition-colors pr-14">
                       {plugin.name}
                     </h3>
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center gap-2 mt-1.5">
                       <span className="text-xs text-white/40 font-mono">{plugin.version}</span>
                       <span className="text-white/20">·</span>
                       <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-yuanbao-500/10 text-yuanbao-400 text-xs border border-yuanbao-500/20">
@@ -412,12 +500,12 @@ export default function PluginsPage() {
                   </div>
                 </div>
 
-                {/* Description */}
+                {/* 描述 */}
                 <p className="relative text-white/55 text-sm leading-relaxed mb-4 line-clamp-2">
                   {plugin.description}
                 </p>
 
-                {/* Meta */}
+                {/* Meta 行 */}
                 <div className="relative flex items-center justify-between text-xs text-white/40 mb-5">
                   <span>by {plugin.author}</span>
                   <span className="flex items-center gap-1">
@@ -450,14 +538,12 @@ export default function PluginsPage() {
           })}
         </div>
 
-        {/* Empty State */}
+        {/* 空状态 — SVG */}
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-white/40">
-            <svg className="w-12 h-12 mx-auto mb-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <p className="text-lg mb-2">未找到匹配的插件</p>
-            <p className="text-sm">试试其他关键词或分类</p>
+          <div className="text-center py-20">
+            <EmptyStateSvg />
+            <p className="text-lg text-white/50 mb-2">未找到匹配的插件</p>
+            <p className="text-sm text-white/35">尝试修改关键词或切换分类重新查找</p>
           </div>
         )}
       </div>

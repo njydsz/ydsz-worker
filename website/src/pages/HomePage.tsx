@@ -2,11 +2,141 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import DashboardMock from '../components/DashboardMock'
+import SectionDivider from '../components/SectionDivider'
 
 /* ═══════════════════════════════════════════════
    外部链接常量
    ═══════════════════════════════════════════════ */
 const GITHUB = 'https://gitee.com/njydsz/ydsz-worker'
+
+/* ───────────────────────────────────────────────
+   SVG: 显示器 + 简笔小猫（Desktop Pet 区域）
+   ─────────────────────────────────────────────── */
+function CatMonitorGraphic() {
+  return (
+    <svg className="w-full max-w-sm mx-auto h-auto" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* 显示器 */}
+      <rect x="60" y="30" width="180" height="120" rx="6" fill="#1a2320" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
+      <rect x="68" y="38" width="164" height="104" rx="3" fill="#0d1512" />
+      {/* 屏幕光晕 */}
+      <rect x="68" y="38" width="164" height="104" rx="3" fill="url(#screenGlow)" opacity="0.5" />
+      {/* 屏幕代码行 */}
+      <rect x="78" y="52" width="60" height="4" rx="2" fill="#22c55e" opacity="0.5" />
+      <rect x="78" y="62" width="90" height="4" rx="2" fill="#22c55e" opacity="0.25" />
+      <rect x="78" y="72" width="45" height="4" rx="2" fill="#22c55e" opacity="0.15" />
+      <rect x="78" y="82" width="70" height="4" rx="2" fill="#22c55e" opacity="0.35" />
+      <rect x="78" y="92" width="55" height="4" rx="2" fill="#22c55e" opacity="0.2" />
+      <rect x="78" y="102" width="80" height="4" rx="2" fill="#22c55e" opacity="0.3" />
+      <rect x="78" y="112" width="40" height="4" rx="2" fill="#22c55e" opacity="0.15" />
+      {/* 显示器支架 */}
+      <rect x="130" y="150" width="40" height="12" rx="2" fill="#1a2320" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+      <rect x="115" y="160" width="70" height="6" rx="3" fill="#1a2320" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+      {/* 显示器指示灯 */}
+      <circle cx="150" cy="22" r="2" fill="#22c55e" opacity="0.6" />
+
+      {/* 🐱 简笔小猫（坐在显示器旁） */}
+      {/* 身体 */}
+      <ellipse cx="250" cy="175" rx="30" ry="22" fill="#22c55e" opacity="0.9" />
+      {/* 头部 */}
+      <circle cx="250" cy="140" r="22" fill="#22c55e" />
+      {/* 左耳 */}
+      <polygon points="235,122 230,100 245,115" fill="#22c55e" />
+      {/* 右耳 */}
+      <polygon points="265,122 270,100 255,115" fill="#22c55e" />
+      {/* 内耳 */}
+      <polygon points="237,120 235,110 243,117" fill="#166534" opacity="0.5" />
+      <polygon points="263,120 265,110 257,117" fill="#166534" opacity="0.5" />
+      {/* 眼睛 */}
+      <ellipse cx="243" cy="138" rx="4" ry="4.5" fill="#0a0f0d" />
+      <ellipse cx="257" cy="138" rx="4" ry="4.5" fill="#0a0f0d" />
+      {/* 眼睛高光 */}
+      <circle cx="244.5" cy="136.5" r="1.5" fill="white" opacity="0.8" />
+      <circle cx="258.5" cy="136.5" r="1.5" fill="white" opacity="0.8" />
+      {/* 鼻子 */}
+      <ellipse cx="250" cy="145" rx="2.5" ry="1.8" fill="#166534" />
+      {/* 嘴巴 */}
+      <path d="M247 147 Q250 150 253 147" stroke="#166534" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+      {/* 胡须 */}
+      <line x1="228" y1="143" x2="240" y2="145" stroke="#166534" strokeWidth="0.8" opacity="0.6" />
+      <line x1="228" y1="147" x2="240" y2="147" stroke="#166534" strokeWidth="0.8" opacity="0.6" />
+      <line x1="260" y1="145" x2="272" y2="143" stroke="#166534" strokeWidth="0.8" opacity="0.6" />
+      <line x1="260" y1="147" x2="272" y2="147" stroke="#166534" strokeWidth="0.8" opacity="0.6" />
+      {/* 尾巴 */}
+      <path d="M280 175 Q295 160 290 145" stroke="#22c55e" strokeWidth="6" fill="none" strokeLinecap="round" />
+      {/* 前爪 */}
+      <ellipse cx="238" cy="190" rx="8" ry="5" fill="#22c55e" />
+      <ellipse cx="262" cy="190" rx="8" ry="5" fill="#22c55e" />
+      {/* 爪垫细节 */}
+      <circle cx="236" cy="190" r="1.5" fill="#166534" opacity="0.3" />
+      <circle cx="240" cy="190" r="1.5" fill="#166534" opacity="0.3" />
+      <circle cx="238" cy="187" r="1.5" fill="#166534" opacity="0.3" />
+
+      {/* 装饰小元素 */}
+      {/* 围绕小猫的光晕点 */}
+      <circle cx="218" cy="130" r="2" fill="#22c55e" opacity="0.15" />
+      <circle cx="282" cy="125" r="3" fill="#22c55e" opacity="0.1" />
+      <circle cx="290" cy="155" r="1.5" fill="#22c55e" opacity="0.2" />
+      <circle cx="215" cy="160" r="2.5" fill="#22c55e" opacity="0.12" />
+
+      {/* 装饰爱心 */}
+      <path d="M220 118 C220 115 225 113 225 117 C225 113 230 115 230 118 C230 122 225 124 225 124 C225 124 220 122 220 118Z" fill="#22c55e" opacity="0.4" />
+
+      {/* 小代码符号漂浮 */}
+      <text x="270" y="100" fill="#22c55e" opacity="0.2" fontSize="12" fontFamily="monospace">{'</>'}</text>
+      <text x="200" y="95" fill="#22c55e" opacity="0.15" fontSize="10" fontFamily="monospace">{'{ }'}</text>
+
+      <defs>
+        <linearGradient id="screenGlow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#22c55e" stopOpacity="0.05" />
+          <stop offset="100%" stopColor="#22c55e" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   SVG: Dashboard 四个角 L 形装饰标记
+   ─────────────────────────────────────────────── */
+function CornerMarkers() {
+  return (
+    <div className="absolute inset-0 z-10 pointer-events-none" aria-hidden="true">
+      {/* 左上 */}
+      <svg className="absolute -top-1.5 -left-1.5 w-6 h-6 text-yuanbao-500/50" viewBox="0 0 24 24" fill="none">
+        <path d="M2 8V2H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      {/* 右上 */}
+      <svg className="absolute -top-1.5 -right-1.5 w-6 h-6 text-yuanbao-500/50" viewBox="0 0 24 24" fill="none">
+        <path d="M16 2H22V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      {/* 左下 */}
+      <svg className="absolute -bottom-1.5 -left-1.5 w-6 h-6 text-yuanbao-500/50" viewBox="0 0 24 24" fill="none">
+        <path d="M2 16V22H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      {/* 右下 */}
+      <svg className="absolute -bottom-1.5 -right-1.5 w-6 h-6 text-yuanbao-500/50" viewBox="0 0 24 24" fill="none">
+        <path d="M16 22H22V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
+   SVG: 复制成功动画
+   ─────────────────────────────────────────────── */
+function CopySuccessIcon() {
+  return (
+    <svg className="w-4 h-4 text-yuanbao-400" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
 
 /* ═══════════════════════════════════════════════
    Section 1: Hero
@@ -21,7 +151,7 @@ function Hero() {
 
       <div className="container-page">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge 横幅 — 可点击跳转 GitHub */}
+          {/* Badge 横幅 */}
           <Reveal>
             <a
               href={GITHUB}
@@ -78,6 +208,9 @@ function Hero() {
               <div className="absolute inset-0 flex items-center justify-center -z-10">
                 <div className="w-[700px] h-[400px] bg-yuanbao-500/[0.05] rounded-full blur-[120px]" />
               </div>
+
+              {/* 角落 L 形装饰 */}
+              <CornerMarkers />
 
               <div className="card-glass p-2.5 shadow-2xl shadow-yuanbao-500/[0.04]">
                 <div className="rounded-xl overflow-hidden bg-ink-800 border border-white/[0.04]">
@@ -195,10 +328,10 @@ function ExpertRoles() {
                 <button
                   key={role.name}
                   onClick={() => setActiveRole(idx)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-xl text-left transition-all duration-300 group ${
+                  className={`relative w-full flex items-center gap-4 p-4 rounded-xl text-left transition-all duration-300 group border-l-2 ${
                     activeRole === idx
-                      ? `bg-gradient-to-r ${role.color} border ${role.borderColor} shadow-lg`
-                      : 'bg-white/[0.02] border border-transparent hover:border-white/[0.06] hover:bg-white/[0.04]'
+                      ? 'bg-gradient-to-r ' + role.color + ' ' + role.borderColor + ' shadow-lg border-l-yuanbao-500'
+                      : 'bg-white/[0.02] border-l-transparent hover:border-l-yuanbao-500/50 hover:border-white/[0.06] hover:bg-white/[0.04]'
                   }`}
                 >
                   <div className={`w-11 h-11 rounded-lg flex items-center justify-center text-xl flex-shrink-0 transition-all duration-300 ${
@@ -258,7 +391,7 @@ function ExpertRoles() {
 }
 
 /* ═══════════════════════════════════════════════
-   Section 4: Quick Start — 精致终端窗口
+   Section 4: Quick Start — 精致终端窗口 + 复制动画
    ═══════════════════════════════════════════════ */
 const TABS = [
   {
@@ -369,38 +502,62 @@ function QuickStart() {
                 </div>
                 <span className="text-xs text-white/30 ml-2 font-mono truncate">{current.label}</span>
 
-                {/* 复制按钮 */}
+                {/* 复制按钮 — 带 SVG 成功动画 */}
                 <button
                   onClick={handleCopy}
-                  className={`ml-auto flex items-center gap-1.5 text-xs font-medium transition-all duration-200 px-2.5 py-1 rounded-md flex-shrink-0 ${
+                  className={`ml-auto flex items-center gap-1.5 text-xs font-medium transition-all duration-300 px-2.5 py-1 rounded-md flex-shrink-0 ${
                     copied
-                      ? 'text-yuanbao-400 bg-yuanbao-500/10'
+                      ? 'text-yuanbao-400 bg-yuanbao-500/15 shadow-sm shadow-yuanbao-500/10'
                       : 'text-white/40 hover:text-white/70 hover:bg-white/[0.06]'
                   }`}
                 >
                   {copied ? (
-                    <>
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>已复制！</span>
-                    </>
+                    <span className="flex items-center gap-1.5">
+                      <CopySuccessIcon />
+                      <span className="hidden sm:inline">已复制</span>
+                      <span className="sm:hidden">✓</span>
+                    </span>
                   ) : (
-                    <>
+                    <span className="flex items-center gap-1.5">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
                       </svg>
-                      <span>复制</span>
-                    </>
+                      <span className="hidden sm:inline">复制</span>
+                    </span>
                   )}
                 </button>
               </div>
 
-              {/* 代码区 */}
+              {/* 代码区 — 精致的终端输出模拟 */}
               <div className="bg-ink-800/90 p-5 sm:p-6 overflow-x-auto">
-                <pre className="font-mono text-sm leading-relaxed">
-                  <code className="text-yuanbao-300/80">{current.code}</code>
-                </pre>
+                <div className="font-mono text-sm leading-relaxed space-y-1">
+                  {/* 蓝色路径提示符 */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-400">
+                      {current.lang === 'powershell' ? 'PS C:\\Users\\admin>' : '$ ~'}
+                    </span>
+                  </div>
+                  {/* 绿色 echo 文本 — 命令本身 */}
+                  <code className="block text-yuanbao-300/90 my-1 font-medium">{current.code}</code>
+                  {/* 模拟命令输出 */}
+                  <div className="pt-2 space-y-0.5 border-t border-white/[0.04] mt-2">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-3.5 h-3.5 text-yuanbao-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-yuanbao-400">正在下载 Ydsz Worker...</span>
+                    </div>
+                    <div className="text-white/40 pl-5.5">
+                      [━━━━━━━━━━━━━━━━━━━━] 100% ████████████
+                    </div>
+                    <div className="text-white/30">
+                    <span className="text-yuanbao-500">  ✓</span> 安装完成！运行 <span className="text-blue-300">ydsz-worker run</span> 启动服务
+                    </div>
+                    <div className="text-white/25">
+                    <span className="text-yuanbao-500">  →</span> 访问 http://localhost:8080 进入工作台
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -481,7 +638,7 @@ function WhyChoose() {
         <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
           {REASONS.map((reason, idx) => (
             <Reveal key={reason.num} delay={idx * 100}>
-              <div className="card-glass p-7 sm:p-8 relative overflow-hidden group hover:bg-white/[0.05] transition-all duration-300 h-full">
+              <div className="card-glass p-7 sm:p-8 relative overflow-hidden group hover:bg-white/[0.05] transition-all duration-300 h-full border-l-2 border-l-yuanbao-500/30 hover:border-l-yuanbao-500">
                 {/* 大编号背景水印 */}
                 <span className="absolute -top-3 -right-2 text-[100px] sm:text-[120px] font-black text-white/[0.015] leading-none select-none pointer-events-none group-hover:text-white/[0.03] transition-all duration-500">
                   {reason.num}
@@ -518,7 +675,7 @@ function WhyChoose() {
 }
 
 /* ═══════════════════════════════════════════════
-   Section 6: 桌面宠物
+   Section 6: 桌面宠物 — 精致 SVG 小猫 + 显示器
    ═══════════════════════════════════════════════ */
 function DesktopPet() {
   return (
@@ -557,17 +714,13 @@ function DesktopPet() {
             </div>
           </Reveal>
 
-          {/* 右侧吉祥物 */}
+          {/* 右侧 SVG 图形：小猫 + 显示器 */}
           <Reveal delay={200} direction="left">
             <div className="relative">
               <div className="absolute -inset-8 bg-yuanbao-500/[0.06] rounded-full blur-[60px] -z-10" />
               <div className="card-glass p-3 relative border border-white/[0.08]">
                 <div className="absolute inset-0 bg-gradient-to-br from-yuanbao-500/[0.06] via-transparent to-yuanbao-600/[0.03] rounded-2xl" />
-                <img
-                  src="/mascot-peek.webp"
-                  alt="桌面宠物"
-                  className="w-full h-auto rounded-xl object-contain animate-float relative"
-                />
+                <CatMonitorGraphic />
               </div>
             </div>
           </Reveal>
@@ -731,18 +884,25 @@ function CTA() {
 }
 
 /* ═══════════════════════════════════════════════
-   HomePage — 组合所有 section
+   HomePage — 组合所有 section（含 SectionDivider）
    ═══════════════════════════════════════════════ */
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <SectionDivider variant="dots" />
       <ChannelTags />
+      <SectionDivider variant="line" />
       <ExpertRoles />
+      <SectionDivider variant="wave" />
       <QuickStart />
+      <SectionDivider variant="dots" />
       <WhyChoose />
+      <SectionDivider variant="curve" />
       <DesktopPet />
+      <SectionDivider variant="line" />
       <FAQ />
+      <SectionDivider variant="arrow" />
       <CTA />
     </>
   )
