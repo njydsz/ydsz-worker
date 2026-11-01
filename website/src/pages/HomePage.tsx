@@ -398,14 +398,14 @@ const TABS = [
     id: 'quick',
     label: 'Windows (PowerShell)',
     icon: '⚡',
-    code: 'irm https://raw.githubusercontent.com/ydsz-buddy/ydsz-worker/main/scripts/install.ps1 | iex',
+    code: 'irm https://raw.githubusercontent.com/njydsz/ydsz-worker/main/scripts/install.ps1 | iex',
     lang: 'powershell',
   },
   {
     id: 'unix',
     label: 'macOS / Linux',
     icon: '💻',
-    code: 'curl -fsSL https://raw.githubusercontent.com/ydsz-buddy/ydsz-worker/main/scripts/install.sh | bash',
+    code: 'curl -fsSL https://raw.githubusercontent.com/njydsz/ydsz-worker/main/scripts/install.sh | bash',
     lang: 'bash',
   },
   {

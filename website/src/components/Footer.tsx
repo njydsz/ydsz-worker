@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 const FOOTER_LINKS = {
   产品: [
     { label: '概览', href: '/' },
-    { label: '专家市场', href: '/experts' },
-    { label: '插件市场', href: '/plugins' },
+    { label: '市场生态', href: '/marketplace' },
     { label: '更新日志', href: '/changelog' },
+    { label: '产品文档', href: '/docs' },
   ],
   资源: [
-    { label: '产品文档', href: 'https://gitee.com/njydsz/ydsz-worker/blob/main/docs' },
+    { label: '产品文档', href: '/docs' },
     { label: 'API 参考', href: 'https://gitee.com/njydsz/ydsz-worker/blob/main/docs/api.md' },
     { label: '架构设计', href: 'https://gitee.com/njydsz/ydsz-worker/blob/main/docs/architecture.md' },
     { label: '示例项目', href: 'https://gitee.com/njydsz/ydsz-worker/tree/main/examples' },
@@ -78,15 +78,28 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
-                    {link.href.startsWith('/') ? (
-                      <Link to={link.href} className="text-sm text-white/40 hover:text-yuanbao-400 transition-colors">
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm text-white/40 hover:text-yuanbao-400 transition-colors">
-                        {link.label}
-                      </a>
-                    )}
+                    {link.href.startsWith('#')
+                      ? <span className="text-sm text-white/40">{link.label}</span>
+                      : link.href.startsWith('/')
+                        ? (
+                          <Link
+                            to={link.href}
+                            className="text-sm text-white/40 hover:text-yuanbao-400 transition-colors"
+                          >
+                            {link.label}
+                          </Link>
+                        )
+                        : (
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-white/40 hover:text-yuanbao-400 transition-colors"
+                          >
+                            {link.label}
+                          </a>
+                        )
+                    }
                   </li>
                 ))}
               </ul>
