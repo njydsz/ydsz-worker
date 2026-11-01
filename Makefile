@@ -17,8 +17,6 @@ SHELL := /bin/bash
 REPO_ROOT     := $(shell pwd)
 DASHBOARD_DIR := $(REPO_ROOT)/dashboard
 DASHBOARD_DEST := $(REPO_ROOT)/src/ydsz/dashboard
-MARKET_DIR     := $(REPO_ROOT)/market
-MARKET_DEST    := $(REPO_ROOT)/src/ydsz/market
 DIST_DIR      := $(REPO_ROOT)/dist
 
 # PyPI repository (override: make publish PYPI_REPO=testpypi)
@@ -42,10 +40,9 @@ help:
 	@echo "Usage: make <target>"
 	@echo ""
 @echo "Build targets:"
-@echo "  build            Build frontend + market + Python wheel (full package)"
+@echo "  build            Build frontend + Python wheel (full package)"
 @echo "  build-frontend   Build React dashboard only → $(DASHBOARD_DEST)"
-@echo "  build-market     Build standalone marketplace only → $(MARKET_DEST)"
-@echo "  build-wheel      Build Python wheel only (assumes frontends built)"
+@echo "  build-wheel      Build Python wheel only (assumes frontend built)"
 	@echo ""
 	@echo "Publish targets:"
 	@echo "  publish          Build + upload to PyPI (PYPI_TOKEN or prompt)"
@@ -54,7 +51,6 @@ help:
 	@echo "Development targets:"
 @echo "  dev              Start frontend + backend dev servers"
 @echo "  dev-frontend     Start Vite dev server only"
-@echo "  dev-market       Start Market Vite dev server only"
 @echo "  dev-backend      Start ydsz-worker run only"
 	@echo ""
 	@echo "Online-deps targets (local Ydsz Worker source + PyPI harness components):"
@@ -94,7 +90,7 @@ help:
 # ─── Build ───────────────────────────────────────────────────────────────────
 
 .PHONY: build
-build: build-frontend build-market build-wheel
+build: build-frontend build-wheel
 
 .PHONY: build-frontend
 build-frontend:
@@ -103,14 +99,6 @@ build-frontend:
 	@echo "[build-frontend] Building dashboard (output: $(DASHBOARD_DEST))..."
 	cd $(DASHBOARD_DIR) && NODE_ENV=production NODE_OPTIONS="--max-old-space-size=2048" npm run build
 	@echo "[build-frontend] Done."
-
-.PHONY: build-market
-build-market:
-	@echo "[build-market] Installing npm dependencies..."
-	cd $(MARKET_DIR) && npm ci
-	@echo "[build-market] Building standalone marketplace (output: $(MARKET_DEST))..."
-	cd $(MARKET_DIR) && NODE_ENV=production NODE_OPTIONS="--max-old-space-size=2048" npm run build
-	@echo "[build-market] Done.""
 
 .PHONY: build-wheel
 build-wheel:
@@ -178,10 +166,6 @@ dev:
 .PHONY: dev-frontend
 dev-frontend:
 	cd $(DASHBOARD_DIR) && npm run dev
-
-.PHONY: dev-market
-dev-market:
-	cd $(MARKET_DIR) && npm run dev
 
 .PHONY: dev-backend
 dev-backend:
@@ -334,7 +318,6 @@ clean:
 	@echo "[clean] Removing build artifacts..."
 	rm -rf $(DIST_DIR)/*
 	rm -rf $(DASHBOARD_DIR)/dist
-	rm -rf $(MARKET_DIR)/dist
 	rm -rf $(REPO_ROOT)/build
 	rm -rf $(REPO_ROOT)/*.egg-info
 	rm -rf $(REPO_ROOT)/src/*.egg-info

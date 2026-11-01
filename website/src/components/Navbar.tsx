@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_LINKS = [
   { label: '概览', href: '/', match: /^(\/|#.*)$/ },
@@ -53,7 +54,7 @@ export default function Navbar() {
         scrolled ? 'bg-ink-900/80 backdrop-blur-xl border-b border-white/[0.06]' : ''
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
+      <nav id="navbar" className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
           <img src="/logo-vertical.svg" alt="Ydsz Worker" className="h-8" />
@@ -71,7 +72,7 @@ export default function Navbar() {
               className={`px-3.5 py-2 text-sm rounded-lg transition-all duration-200 ${
                 isActive(link.match)
                   ? 'text-yuanbao-400 bg-yuanbao-500/[0.08]'
-                  : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
+                  : 'text-white/50 hover:text-white/80 hover:bg-white/[0.04]'
               }`}
             >
               {link.label}
@@ -104,6 +105,9 @@ export default function Navbar() {
               </a>
             ))}
           </div>
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {/* Install Button */}
           <a

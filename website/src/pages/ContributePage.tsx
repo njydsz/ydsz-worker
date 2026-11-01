@@ -85,7 +85,7 @@ const TRACKS = [
 const STEPS = [
   {
     title: 'Fork 仓库',
-    desc: '访问 github.com/ydsz-buddy/ydsz-worker 并 Fork 到你自己的账号。',
+    desc: '访问 gitee.com/njydsz/ydsz-worker 并 Fork 到你自己的账号。',
   },
   {
     title: '选择任务',

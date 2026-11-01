@@ -116,7 +116,6 @@ include = [
 	"src/ydsz/**/*.sh",
 	"src/ydsz/**/*.png",
 	"src/ydsz/dashboard/**/*",
-	"src/ydsz/market/**/*",
 	"src/ydsz/infra/agents/experts/library/**/*",
 	"src/ydsz/infra/agents/plugins/bundled/**/*",
 	"src/ydsz/infra/agents/subagents/library/**/*",
@@ -125,7 +124,6 @@ include = [
 ]
 artifacts = [
 	"src/ydsz/dashboard/**/*",
-	"src/ydsz/market/**/*",
 ]
 
 [tool.ruff]
@@ -149,7 +147,6 @@ ignore_missing_imports = true
 files = ["src/ydsz"]
 exclude = [
 	"src/ydsz/dashboard/",
-	"src/ydsz/market/",
 	"src/ydsz/infra/agents/experts/library/",
 	"src/ydsz/infra/agents/plugins/bundled/",
 	"src/ydsz/infra/agents/subagents/library/",

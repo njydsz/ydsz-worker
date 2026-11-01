@@ -35,9 +35,4 @@ COMMANDS: dict[str, tuple[str, str, str]] = {
     "bridge": (".commands.bridge", "bridge", "Manage remote Ydsz Worker bridge peers."),
     "acp": (".commands.acp", "acp_cmd", "Run Ydsz Worker agent as ACP server (stdio)."),
     "plugin": (".commands.plugin", "plugin", "Install and manage plugins."),
-    "market": (
-        ".commands.market",
-        "market",
-        "Run the standalone public marketplace (no auth).",
-    ),
 }
