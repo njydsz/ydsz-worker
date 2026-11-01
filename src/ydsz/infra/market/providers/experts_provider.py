@@ -115,9 +115,9 @@ class ExpertsProvider(MarketProvider):
         return self._detail_bundled(identity, locale=locale)
 
     def _detail_bundled(self, identity: str, *, locale: str | None) -> MarketDetail:
-        from ydsz.infra.agents.experts.catalog import discover_seed_paths
+        from ydsz.infra.agents.experts.catalog import default_library_root, discover_seed_paths
 
-        paths = discover_seed_paths()
+        paths = discover_seed_paths(default_library_root())
         match = next((p for p in paths if p.stem == identity or p.name == identity), None)
         if match is None:
             raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, f"expert not found: {identity}")
@@ -193,10 +193,11 @@ class ExpertsProvider(MarketProvider):
     ) -> InstallReceipt:
         from ydsz.infra.agents.experts.catalog import (
             build_create_spec_from_expert,
+            default_library_root,
             discover_seed_paths,
         )
 
-        paths = discover_seed_paths()
+        paths = discover_seed_paths(default_library_root())
         match = next((p for p in paths if p.stem == identity), None)
         if match is None:
             raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, identity)
@@ -262,10 +263,11 @@ class ExpertsProvider(MarketProvider):
         try:
             from ydsz.infra.agents.experts.catalog import (
                 build_create_spec_from_expert,
+                default_library_root,
                 discover_seed_paths,
             )
 
-            paths = discover_seed_paths()
+            paths = discover_seed_paths(default_library_root())
         except ImportError:
             return ()
 

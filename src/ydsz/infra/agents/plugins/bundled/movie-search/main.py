@@ -9,7 +9,7 @@ from urllib.parse import quote
 import httpx
 from ydsz_harness.plugins import PluginContext
 
-_UA = "Ydsz Worker-movie-search/0.1.0 (https://github.com/ydsz-buddy)"
+_UA = "Ydsz Worker-movie-search/0.1.0 (https://gitee.com/njydsz)"
 
 
 def _payload(data: dict[str, Any], text: str) -> str:

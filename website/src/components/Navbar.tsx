@@ -20,7 +20,7 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    label: '微信',
+    label: 'Discord',
     href: '#',
     icon: (
       <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="https://gitee.com/njydsz/ydsz-worker/blob/main/docs"
+            href="https://gitee.com/njydsz/ydsz-worker/tree/main/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3.5 py-2 text-sm text-white/60 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all duration-200"
@@ -107,7 +107,7 @@ export default function Navbar() {
 
           {/* Install Button */}
           <a
-            href="https://gitee.com/njydsz/ydsz-worker#quick-start"
+            href="https://gitee.com/njydsz/ydsz-worker"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-4 py-2 bg-yuanbao-500 hover:bg-yuanbao-400 text-ink-900 font-semibold text-sm rounded-lg transition-all shadow-md shadow-yuanbao-500/20 hover:shadow-yuanbao-500/40"
@@ -153,7 +153,7 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="https://gitee.com/njydsz/ydsz-worker/blob/main/docs"
+              href="https://gitee.com/njydsz/ydsz-worker/tree/main/docs"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-3 text-white/80 hover:text-white hover:bg-white/[0.04] rounded-lg transition-colors"

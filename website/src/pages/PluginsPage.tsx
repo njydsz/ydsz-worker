@@ -14,180 +14,288 @@ interface Plugin {
 
 const CATEGORIES = [
   '全部',
-  '生活',
-  '资讯',
-  '财经',
-  '影音',
-  '趣味',
-  '游戏',
   '工具',
+  '资讯',
+  '生活',
+  '影音',
+  '游戏',
+  '趣味',
   '运维',
+  '财经',
 ] as const
 
 const PLUGINS: Plugin[] = [
   {
-    id: 'weather-forecast',
-    name: '天气预报',
-    icon: '🌤️',
-    version: 'v2.1.0',
-    category: '生活',
-    description: '全球城市天气查询，支持7日预报、空气质量、穿衣建议、紫外线指数。',
+    id: 'arxiv-search',
+    name: 'arXiv 论文查询',
+    icon: '📄',
+    version: 'v0.1.0',
+    category: '工具',
+    description: '搜索和查询 arXiv 学术论文，获取摘要、作者、引用信息。',
     author: 'Ydsz Team',
-    downloads: '12.3k',
+    downloads: '3.2k',
   },
   {
-    id: 'news-aggregator',
-    name: '今日要闻',
-    icon: '📰',
-    version: 'v1.5.2',
+    id: 'github-trending',
+    name: 'GitHub 趋势',
+    icon: '🔥',
+    version: 'v0.1.0',
     category: '资讯',
-    description: '聚合多源新闻，AI 摘要提炼，个性化推荐，语音播报支持。',
+    description: '实时追踪 GitHub 热门开源项目趋势，按语言和时间维度筛选。',
+    author: 'Ydsz Team',
+    downloads: '5.1k',
+  },
+  {
+    id: 'ip-lookup',
+    name: 'IP 查询',
+    icon: '🌐',
+    version: 'v0.1.0',
+    category: '工具',
+    description: '查询 IP 地址归属地、ISP 信息、经纬度定位。',
     author: 'Ydsz Team',
     downloads: '8.7k',
   },
   {
-    id: 'stock-tracker',
-    name: '股票追踪',
-    icon: '📈',
-    version: 'v1.8.0',
-    category: '财经',
-    description: 'A股/港股/美股实时行情，自选股管理，异动提醒，K线分析。',
-    author: 'Quant Plug',
-    downloads: '15.2k',
-  },
-  {
-    id: 'music-player',
-    icon: '🎵',
-    name: '云音乐播放器',
-    version: 'v1.3.1',
-    category: '影音',
-    description: '多平台音乐搜索播放，歌单导入，歌词同步，智能推荐算法。',
-    author: 'AudioLab',
-    downloads: '9.1k',
-  },
-  {
-    id: 'meme-generator',
-    name: '表情包工厂',
-    icon: '😂',
-    version: 'v2.0.3',
-    category: '趣味',
-    description: 'AI 自动生成表情包，热门模板库，自定义文字，GIF 制作。',
-    author: 'Fun Dev',
-    downloads: '22.6k',
-  },
-  {
-    id: 'pixel-adventure',
-    name: '像素冒险',
-    icon: '🎮',
-    version: 'v1.1.0',
-    category: '游戏',
-    description: '像素风 Roguelike，支持存档、成就系统、每日挑战。',
-    author: 'Pixel Studio',
-    downloads: '6.4k',
-  },
-  {
-    id: 'json-formatter',
-    name: 'JSON 工具箱',
-    icon: '🧰',
-    version: 'v3.2.1',
+    id: 'qrcode-gen',
+    name: '二维码生成',
+    icon: '🔲',
+    version: 'v0.2.2',
     category: '工具',
-    description: 'JSON 格式化、压缩、校验、转换、Schema 生成、Diff 比对。',
-    author: 'DevTools',
-    downloads: '31.8k',
+    description: '生成自定义样式二维码，支持颜色、尺寸、Logo 嵌入。',
+    author: 'Ydsz Team',
+    downloads: '11.4k',
   },
   {
-    id: 'docker-manager',
-    name: 'Docker 运维助手',
-    icon: '🐳',
-    version: 'v1.6.0',
-    category: '运维',
-    description: '容器状态监控、镜像管理、日志查看、Compose 文件生成。',
-    author: 'Ops Master',
-    downloads: '7.9k',
-  },
-  {
-    id: 'recipe-book',
-    name: '智能菜谱',
-    icon: '🍳',
-    version: 'v2.4.0',
+    id: 'what-to-eat',
+    name: '今天吃什么',
+    icon: '🍱',
+    version: 'v0.1.0',
     category: '生活',
-    description: '根据现有食材推荐菜谱，步骤详解，营养分析，购物清单生成。',
-    author: 'Foodie Lab',
-    downloads: '18.5k',
+    description: '智能推荐今日餐食，支持随机选择、口味偏好、食材限制。',
+    author: 'Ydsz Team',
+    downloads: '18.9k',
   },
   {
-    id: 'crypto-radar',
-    name: '加密货币雷达',
-    icon: '₿',
-    version: 'v1.2.3',
-    category: '财经',
-    description: 'BTC/ETH 等实时价格，链上数据分析，巨鲸追踪，情绪指数。',
-    author: 'Crypto Watch',
-    downloads: '11.0k',
+    id: 'tetris',
+    name: '俄罗斯方块',
+    icon: '🎮',
+    version: 'v0.2.2',
+    category: '游戏',
+    description: '经典俄罗斯方块游戏，支持分数记录、等级提升、排行榜。',
+    author: 'Ydsz Team',
+    downloads: '6.3k',
   },
   {
-    id: 'movie-recommend',
-    name: '影视推荐官',
-    icon: '🍿',
-    version: 'v1.4.1',
-    category: '影音',
-    description: '基于口味推荐影片，豆瓣/IMDb 评分聚合，片单管理，排期提醒。',
-    author: 'CineMatch',
-    downloads: '5.6k',
-  },
-  {
-    id: 'markdown-editor',
-    name: 'Markdown 编辑器',
-    icon: '📝',
-    version: 'v2.3.0',
+    id: 'unit-converter',
+    name: '单位换算',
+    icon: '📐',
+    version: 'v0.1.0',
     category: '工具',
-    description: '实时预览、目录导航、表格编辑、Mermaid 图表、导出 PDF。',
-    author: 'Writers Hub',
-    downloads: '28.4k',
+    description: '长度/重量/温度/面积/体积/速度等数十种单位互转。',
+    author: 'Ydsz Team',
+    downloads: '9.8k',
+  },
+  {
+    id: 'bilibili-bangumi',
+    name: '哔哩哔哩番剧',
+    icon: '📺',
+    version: 'v0.2.4',
+    category: '影音',
+    description: '查询 B 站番剧更新、追番列表、新番时间表、热门点评。',
+    author: 'Ydsz Team',
+    downloads: '14.2k',
+  },
+  {
+    id: 'weather',
+    name: '天气',
+    icon: '🌤️',
+    version: 'v0.2.2',
+    category: '生活',
+    description: '全球城市天气查询，支持 7 日预报、空气质量、穿衣建议。',
+    author: 'Ydsz Team',
+    downloads: '22.1k',
+  },
+  {
+    id: 'mini-games',
+    name: '小游戏合集',
+    icon: '🕹️',
+    version: 'v0.2.2',
+    category: '游戏',
+    description: '贪吃蛇、2048、数独、扫雷等 10+ 怀旧小游戏合集。',
+    author: 'Ydsz Team',
+    downloads: '7.6k',
+  },
+  {
+    id: 'movie-search',
+    name: '影视搜索',
+    icon: '🎬',
+    version: 'v0.1.0',
+    category: '影音',
+    description: '搜索电影/电视剧信息，聚合豆瓣评分、播放平台、预告片。',
+    author: 'Ydsz Team',
+    downloads: '4.5k',
+  },
+  {
+    id: 'express-tracker',
+    name: '快递查询',
+    icon: '📦',
+    version: 'v0.2.2',
+    category: '生活',
+    description: '支持主流快递公司物流信息实时追踪、签收提醒。',
+    author: 'Ydsz Team',
+    downloads: '16.8k',
+  },
+  {
+    id: 'fortune-draw',
+    name: '抽签运势',
+    icon: '🎴',
+    version: 'v0.2.2',
+    category: '趣味',
+    description: '每日一签、星座运势、生肖配对、塔罗牌趣味占卜。',
+    author: 'Ydsz Team',
+    downloads: '19.3k',
+  },
+  {
+    id: 'slacking-calendar',
+    name: '摸鱼日历',
+    icon: '🐟',
+    version: 'v0.1.0',
+    category: '趣味',
+    description: '距离下次放假还有多久？聚合所有假期、调休、节日信息。',
+    author: 'Ydsz Team',
+    downloads: '25.7k',
   },
   {
     id: 'server-monitor',
     name: '服务器监控',
     icon: '🖥️',
-    version: 'v1.7.2',
+    version: 'v0.2.2',
     category: '运维',
-    description: 'CPU/内存/磁盘/网络实时监控，告警规则配置，历史趋势图。',
-    author: 'Ops Master',
-    downloads: '10.3k',
+    description: 'Linux/Windows 服务器 CPU/内存/磁盘/网络实时监控告警。',
+    author: 'Ydsz Team',
+    downloads: '8.9k',
   },
   {
-    id: 'daily-quote',
-    name: '每日一言',
-    icon: '💬',
-    version: 'v1.0.8',
-    category: '趣味',
-    description: '精选中英文励志名言，每日推送，分类浏览，收藏分享。',
-    author: 'Inspire Me',
-    downloads: '14.7k',
+    id: 'daily-english',
+    name: '每日英语',
+    icon: '📖',
+    version: 'v0.1.0',
+    category: '工具',
+    description: '每日一句英文名言，附带翻译、发音、例句和文化背景。',
+    author: 'Ydsz Team',
+    downloads: '12.0k',
   },
   {
-    id: 'rss-reader',
-    name: 'RSS 阅读器',
-    icon: '📡',
-    version: 'v1.9.0',
+    id: 'hot-list',
+    name: '热榜汇总',
+    icon: '🔝',
+    version: 'v0.2.2',
     category: '资讯',
-    description: '订阅管理、全文抓取、关键词过滤、AI 摘要、OPML 导入导出。',
-    author: 'FeedFlow',
-    downloads: '8.2k',
+    description: '微博/知乎/百度/B站/抖音 多平台热搜榜单聚合浏览。',
+    author: 'Ydsz Team',
+    downloads: '20.4k',
   },
   {
-    id: 'chess-master',
-    name: '象棋对弈',
-    icon: '♟️',
-    version: 'v1.3.4',
-    category: '游戏',
-    description: '中国象棋人机对弈，残局挑战，棋谱回放，棋力评测。',
-    author: 'Game Forge',
-    downloads: '4.9k',
+    id: 'pomodoro',
+    name: '番茄钟',
+    icon: '🍅',
+    version: 'v0.2.2',
+    category: '工具',
+    description: '番茄工作法计时器，支持自定义时长、统计报表、习惯养成。',
+    author: 'Ydsz Team',
+    downloads: '10.6k',
+  },
+  {
+    id: 'short-url',
+    name: '短链接生成',
+    icon: '🔗',
+    version: 'v0.1.0',
+    category: '工具',
+    description: '将长链接转为短链接，支持自定义后缀、访问统计、有效期设置。',
+    author: 'Ydsz Team',
+    downloads: '13.2k',
+  },
+  {
+    id: 'wikipedia',
+    name: '维基百科',
+    icon: '📚',
+    version: 'v0.1.0',
+    category: '工具',
+    description: '查询维基百科词条摘要、多语言版本、相关词条推荐。',
+    author: 'Ydsz Team',
+    downloads: '7.4k',
+  },
+  {
+    id: 'market-quotes',
+    name: '行情查询',
+    icon: '📈',
+    version: 'v0.2.2',
+    category: '财经',
+    description: 'A股/港股/美股/加密货币实时行情、自选股管理、异动提醒。',
+    author: 'Ydsz Team',
+    downloads: '15.1k',
+  },
+  {
+    id: 'sticker-gen',
+    name: '表情包生成',
+    icon: '😂',
+    version: 'v0.1.0',
+    category: '趣味',
+    description: 'AI 自动生成表情包，热门模板库、自定义文字、GIF 制作。',
+    author: 'Ydsz Team',
+    downloads: '28.6k',
+  },
+  {
+    id: 'live-scores',
+    name: '赛事比分',
+    icon: '⚽',
+    version: 'v0.1.0',
+    category: '资讯',
+    description: '足球/篮球/电竞等主流赛事实时比分、赛程、积分榜数据。',
+    author: 'Ydsz Team',
+    downloads: '5.9k',
+  },
+  {
+    id: 'fun-encyclopedia',
+    name: '趣味百科',
+    icon: '🧠',
+    version: 'v0.1.0',
+    category: '趣味',
+    description: '冷知识百科、世界之最、未解之谜、奇闻趣事每日一读。',
+    author: 'Ydsz Team',
+    downloads: '4.1k',
+  },
+  {
+    id: 'color-converter',
+    name: '颜色转换',
+    icon: '🎨',
+    version: 'v0.1.0',
+    category: '工具',
+    description: 'HEX/RGB/HSL/CMYK 等颜色格式互转，调色板生成。',
+    author: 'Ydsz Team',
+    downloads: '6.8k',
   },
 ]
 
 const DOWNLOAD_BASE = 'https://gitee.com/njydsz/ydsz-worker/tree/main/plugins'
+
+const PLUGIN_GRADIENTS = [
+  'from-violet-500/20 to-indigo-500/20',
+  'from-blue-500/20 to-cyan-500/20',
+  'from-emerald-500/20 to-teal-500/20',
+  'from-orange-500/20 to-red-500/20',
+  'from-pink-500/20 to-purple-500/20',
+]
+
+function hashString(str: string): number {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash |= 0
+  }
+  return Math.abs(hash)
+}
 
 export default function PluginsPage() {
   const [activeCategory, setActiveCategory] = useState<string>('全部')
@@ -204,7 +312,7 @@ export default function PluginsPage() {
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.description.toLowerCase().includes(q) ||
-          p.author.toLowerCase().includes(q)
+          p.category.toLowerCase().includes(q)
       )
     }
     return result
@@ -215,12 +323,17 @@ export default function PluginsPage() {
       <div className="container-page">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="section-label mb-4">插件市场</span>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="section-label">插件市场</span>
+            <span className="px-2.5 py-0.5 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-xs font-semibold">
+              {PLUGINS.length} 个插件
+            </span>
+          </div>
           <h1 className="heading-xl mt-4 mb-3">
             <span className="text-gradient">插件市场</span>
           </h1>
-          <p className="text-white/60 text-lg">
-            共 {PLUGINS.length} 个插件 · 一键安装 · 无限可能
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            轻量级功能扩展插件，覆盖工具、生活、资讯、娱乐等场景。一键安装，即装即用。
           </p>
         </div>
 
@@ -270,68 +383,79 @@ export default function PluginsPage() {
 
         {/* Plugin Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((plugin) => (
-            <div
-              key={plugin.id}
-              className="card-glass p-6 group hover:-translate-y-1 transition-all duration-300 hover:border-yuanbao-500/30"
-            >
-              {/* Icon + Name + Version */}
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/20 flex items-center justify-center text-2xl shrink-0">
-                  {plugin.icon}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-white font-semibold truncate">{plugin.name}</h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs text-white/40 font-mono">{plugin.version}</span>
-                    <span className="text-white/20">·</span>
-                    <span className="inline-block px-2 py-0.5 rounded-full bg-yuanbao-500/10 text-yuanbao-400 text-xs border border-yuanbao-500/20">
-                      {plugin.category}
-                    </span>
+          {filtered.map((plugin) => {
+            const gradientBg = PLUGIN_GRADIENTS[hashString(plugin.id) % PLUGIN_GRADIENTS.length]
+            return (
+              <div
+                key={plugin.id}
+                className="card-glow p-6 overflow-hidden relative group"
+              >
+                {/* Background Gradient Blob */}
+                <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${gradientBg} rounded-full blur-3xl group-hover:scale-150 transition-transform duration-500`} />
+
+                {/* Icon + Name + Version */}
+                <div className="relative flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-yuanbao-500/10 border border-yuanbao-500/20 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                    {plugin.icon}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-white font-semibold truncate group-hover:text-yuanbao-300 transition-colors">
+                      {plugin.name}
+                    </h3>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs text-white/40 font-mono">{plugin.version}</span>
+                      <span className="text-white/20">·</span>
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-yuanbao-500/10 text-yuanbao-400 text-xs border border-yuanbao-500/20">
+                        {plugin.category}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Description */}
-              <p className="text-white/60 text-sm leading-relaxed mb-4 line-clamp-2">
-                {plugin.description}
-              </p>
+                {/* Description */}
+                <p className="relative text-white/55 text-sm leading-relaxed mb-4 line-clamp-2">
+                  {plugin.description}
+                </p>
 
-              {/* Meta */}
-              <div className="flex items-center justify-between text-xs text-white/40 mb-5">
-                <span>by {plugin.author}</span>
-                <span className="flex items-center gap-1">
-                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                  {plugin.downloads}
-                </span>
-              </div>
+                {/* Meta */}
+                <div className="relative flex items-center justify-between text-xs text-white/40 mb-5">
+                  <span>by {plugin.author}</span>
+                  <span className="flex items-center gap-1">
+                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    {plugin.downloads}
+                  </span>
+                </div>
 
-              {/* Actions */}
-              <div className="flex items-center gap-3">
-                <Link
-                  to={`/plugins/${plugin.id}`}
-                  className="btn-secondary text-sm !px-4 !py-2"
-                >
-                  详情
-                </Link>
-                <a
-                  href={`${DOWNLOAD_BASE}/${plugin.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary text-sm !px-4 !py-2"
-                >
-                  下载
-                </a>
+                {/* Actions */}
+                <div className="relative flex items-center gap-3">
+                  <Link
+                    to={`/plugins/${plugin.id}`}
+                    className="btn-secondary text-sm !px-4 !py-2"
+                  >
+                    详情
+                  </Link>
+                  <a
+                    href={`${DOWNLOAD_BASE}/${plugin.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary text-sm !px-4 !py-2"
+                  >
+                    下载
+                  </a>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Empty State */}
         {filtered.length === 0 && (
-          <div className="text-center py-16 text-white/40">
+          <div className="text-center py-20 text-white/40">
+            <svg className="w-12 h-12 mx-auto mb-4 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
             <p className="text-lg mb-2">未找到匹配的插件</p>
             <p className="text-sm">试试其他关键词或分类</p>
           </div>

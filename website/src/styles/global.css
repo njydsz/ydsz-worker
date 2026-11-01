@@ -60,6 +60,15 @@
   .glow-dot {
     @apply w-2 h-2 rounded-full bg-yuanbao-400 shadow-lg shadow-yuanbao-400/50;
   }
+
+  .card-glow {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-2xl transition-all duration-300;
+  }
+
+  .card-glow:hover {
+    @apply border-yuanbao-500/30 shadow-xl shadow-yuanbao-500/10;
+    transform: translateY(-4px);
+  }
 }
 
 @layer utilities {
@@ -71,4 +80,120 @@
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
+}
+
+/* ── Section 标题装饰 ── */
+.section-heading {
+  @apply relative inline-block;
+}
+.section-heading::after {
+  content: '';
+  @apply absolute -bottom-3 left-0 w-16 h-1 rounded-full bg-gradient-to-r from-yuanbao-400 to-yuanbao-600;
+}
+
+/* ── 标签底线 ── */
+.heading-underline {
+  background-image: linear-gradient(120deg, rgba(34,197,94,0.25) 0%, rgba(34,197,94,0.08) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.35em;
+  background-position: 0 88%;
+  padding: 0 2px;
+}
+
+/* ── 波浪 SVG 分割线 ── */
+.wave-divider {
+  width: 100%;
+  height: 60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C360,60 720,0 1080,30 C1260,45 1380,30 1440,30 L1440,60 L0,60 Z' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* ── 卡片梯度边框（hover 时发光） ── */
+.card-glow {
+  @apply relative bg-ink-800/40 border border-white/[0.06] rounded-2xl overflow-hidden transition-all duration-500;
+}
+.card-glow::before {
+  content: '';
+  @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 pointer-events-none;
+  background: linear-gradient(135deg, rgba(34,197,94,0.15) 0%, transparent 50%, rgba(34,197,94,0.05) 100%);
+  padding: 1px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.card-glow:hover::before {
+  @apply opacity-100;
+}
+.card-glow:hover {
+  @apply border-yuanbao-500/20;
+  box-shadow: 0 0 40px -10px rgba(34,197,94,0.15);
+  transform: translateY(-3px);
+}
+
+/* ── 代码块语法高亮模拟 ── */
+.code-block {
+  @apply bg-ink-900/80 rounded-xl border border-white/[0.08] font-mono text-sm overflow-x-auto;
+}
+.code-line {
+  @apply flex items-start px-4 py-0.5;
+}
+.code-line:hover {
+  @apply bg-white/[0.02];
+}
+.code-prompt {
+  @apply text-yuanbao-500 mr-2 select-none;
+}
+.code-comment {
+  @apply text-white/25 italic;
+}
+.code-string {
+  @apply text-yellow-300/80;
+}
+.code-cmd {
+  @apply text-white/80;
+}
+
+/* ── 浮动动画（吉祥物） ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%      { transform: translateY(-8px) rotate(1deg); }
+  50%      { transform: translateY(-14px) rotate(0deg); }
+  75%      { transform: translateY(-8px) rotate(-1deg); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── 光晕呼吸 ── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.3); }
+  50%      { box-shadow: 0 0 0 18px rgba(34,197,94,0); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── 渐入动画 ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+
+/* ── 滚动揭示（配合 IntersectionObserver 使用） ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

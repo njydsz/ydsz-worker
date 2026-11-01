@@ -1,11 +1,10 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Tabs, Typography, Space, Input, Radio, Pagination, Empty, Spin, Grid } from "antd";
-import { ShoppingBag, Bot, Puzzle, Plug, Download, Sparkles, ExternalLink } from "lucide-react";
+import { ShoppingBag, Bot, Puzzle, Plug, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { MarketCard } from "../components/MarketCard";
 import { useMarketList } from "../hooks/useMarketList";
 import { useMarketCategories } from "../hooks/useMarketCategories";
-import { useInstalledTab } from "../hooks/useInstalledTab";
 import type { MarketItem } from "../api/market";
 
 const { Title, Text } = Typography;
@@ -131,37 +130,6 @@ function MarketTypeTab({ type, query, onDetail }: { type: string; query: string;
         </div>
       )}
     </Space>
-  );
-}
-
-/** Installed tab. */
-function InstalledTab(_props: { query: string }) {
-  const { t } = useTranslation();
-  const { items, loading } = useInstalledTab();
-
-  if (loading) return <div style={{ padding: 80, textAlign: "center" }}><Spin size="large" /></div>;
-  if (!items.length) {
-    return (
-      <Empty
-        image={Empty.PRESENTED_IMAGE_SIMPLE}
-        description={
-          <Space direction="vertical" size={4}>
-            <Text type="secondary">{t("market.empty.installed_empty")}</Text>
-            <Text type="secondary" style={{ fontSize: 12 }}>
-              <a href={DASHBOARD_URL} target="_blank" rel="noopener">
-                {t("auth.go_to_dashboard")} <ExternalLink size={12} />
-              </a>
-            </Text>
-          </Space>
-        }
-      />
-    );
-  }
-
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
-      <pre style={{ fontSize: 12 }}>{JSON.stringify(items.slice(0, 3), null, 2)}</pre>
-    </div>
   );
 }
 
