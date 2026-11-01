@@ -70,7 +70,7 @@ metadata:
 | ↔️ | ACP | `ydsz-worker acp` 服务 IDE；对话里委派外部编程 Agent |
 | 💻 | 终端 / 浏览器 AI+ | 浏览器里的交互式 Shell，以及无头 Chromium 会话 |
 | 🖥️ | 远程桌面 | 控制台看屏和键鼠，覆盖 Linux / Windows / macOS |
-| 🪟 | 桌面客户端 | Windows / macOS / Linux，以及飞牛（FnOS）安装包 |
+| 🪟 | 桌面客户端 | Windows / macOS / Linux |
 | 🏠 | 自托管 | 单进程 `ydsz-worker run`，数据在 `~/.ydsz-worker/` |
 
 底层是 Python 3.12+、FastAPI，Agent 运行时为 Ydsz Worker Harness（ydsz-harness），IM 桥接为 Ydsz Worker Gateway（ydsz-gateway）。不依赖外部消息队列。
@@ -111,7 +111,6 @@ metadata:
 | 远程手机 | https://worker.njydsz.com/docs/guide/guides/remote-phone |
 | 备份与恢复 | https://worker.njydsz.com/docs/guide/guides/backup-restore |
 | 忘记 / 重置密码 | https://worker.njydsz.com/docs/guide/guides/reset-password |
-| 飞牛 NAS（FnOS） | https://worker.njydsz.com/docs/guide/guides/fnos |
 | 从 LightClaw 迁移 | https://worker.njydsz.com/docs/guide/guides/migrate-from-lightclaw |
 | macOS 提示未签名 | https://worker.njydsz.com/docs/guide/guides/macos-unsigned-app |
 | 配置文件 | https://worker.njydsz.com/docs/guide/configuration/config-file |

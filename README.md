@@ -51,7 +51,7 @@ Talk to agents through the Web Dashboard, Feishu, DingTalk, WeCom, QQ, WeChat, a
 | 💻 | **Terminal AI+** | Interactive shell in the browser — AI-assisted command execution and troubleshooting |
 | 🌐 | **Browser AI+** | Headless Chromium sessions for web automation, screenshots, and remote browsing |
 | 🖥️ | **Remote desktop** | Live screen and input from the dashboard on Linux, Windows, and macOS |
-| 🪟 | **Desktop client** | Native Windows / macOS / Linux apps (and FnOS packages) alongside the web dashboard |
+| 🪟 | **Desktop client** | Native Windows / macOS / Linux apps alongside the web dashboard |
 | 🏠 | **Self-hosted** | Dashboard, CLI, IM channels, and cron in one `ydsz-worker run` — all data under `~/.ydsz-worker/` |
 
 ## 📌 Overview
@@ -108,7 +108,7 @@ Ydsz Worker routes every surface — Web UI, IM, and cron — through one in-pro
 
 ### Surfaces
 - **Web dashboard** — chat, experts / teams, connectors, channels, cron, knowledge, plugins, settings
-- **Desktop client** — native apps for Windows / macOS / Linux; FnOS packages for NAS
+- **Desktop client** — native apps for Windows / macOS / Linux
 - **CLI** — `ydsz-worker run`, `ydsz-worker chats`, `ydsz-worker acp`, admin commands
 - **HTTP/SSE/WebSocket API** — full programmatic access
 - **Remote desktop** — dashboard control of the host desktop session
@@ -195,8 +195,6 @@ After installation, open a **new terminal** or reload your shell. The installer 
 | Windows | `YdszDesktop-windows-amd64-<version>.exe` (64-bit) / `YdszDesktop-windows-arm64-<version>.exe` (ARM64) — NSIS installer |
 | macOS | `YdszDesktop-darwin-arm64-<version>.dmg` (Apple Silicon) / `YdszDesktop-darwin-amd64-<version>.dmg` (Intel) |
 | Linux | `YdszDesktop-linux-amd64-<version>.tar.gz` / `YdszDesktop-linux-arm64-<version>.tar.gz` |
-| FnOS NAS | `YdszFnOS-docker-<version>.fpk` (recommended on ARM) / `YdszFnOS-native-<version>.fpk` (x86_64) / `YdszFnOS-native-arm64-<version>.fpk` — install via App Center |
-
 **Alternative — PyPI** (if you already manage Python yourself):
 
 ```bash

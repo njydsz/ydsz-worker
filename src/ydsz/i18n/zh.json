@@ -942,8 +942,6 @@
   },
   "update": {
     "completed": "已升级到 {version}。",
-    "fpk_completed": "已升级到 {version}，请在应用中心重启服务以加载新版。",
-    "fpk_target_missing": "FPK site-packages 目录不存在：{path}",
     "version_unavailable": "安装程序已结束，但无法确认已安装的 云顶数字工作台 版本。",
     "version_mismatch": "安装程序已结束，但已安装版本 {actual} 与目标版本 {expected} 不一致。",
     "version_not_newer": "安装程序已结束，但已安装版本 {actual} 不高于原版本 {previous}。"

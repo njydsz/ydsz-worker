@@ -100,15 +100,12 @@ scripts/dev-local-link.sh
 .tools/
 .tools-sdk/
 
-# Local fnpack CLI (build-fpk.sh) and FPK scratch dirs
+# Local fnpack CLI scratch dirs (no longer used; kept for stale checkouts)
 .verify/fnpack
 .verify/fnpack.exe
 .verify/fnpack.partial
 .verify/fnpack.exe.partial
 .buildtmp.*/
-
-# FnOS native FPK install target (CI / local pack scratch; do not vendor)
-fnos/native/app/site-packages/
 
 # Local agent planning docs (not for upstream)
 docs/superpowers/

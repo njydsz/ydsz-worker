@@ -1,0 +1,201 @@
+export type Locale = 'zh' | 'en'
+
+/**
+ * Flat translation keys. Each key is unique across the whole site.
+ * Grouped by prefix: nav., hero., ch., expert., qs., why., desk., faq., cta.
+ */
+export const translations: Record<Locale, Record<string, string>> = {
+  zh: {
+    // ── Nav ──
+    'nav.overview': '产品概览',
+    'nav.marketplace': '市场生态',
+    'nav.contribute': '开源贡献',
+    'nav.changelog': '更新日志',
+    'nav.docs': '产品文档',
+    'nav.search': '搜索',
+
+    // ── Hero ──
+    'hero.badge': 'v1.0 正式发布 · 多 Agent 专家架构',
+    'hero.title1': '会思考，能干活',
+    'hero.title2': '陪企业成长的智能伙伴',
+    'hero.subtitle': '自托管企业 AI 平台 — 多专家协作、7 大 IM 通道、操控电脑、定时任务、浏览器自动化，数据不出门',
+    'hero.cta_primary': '快速开始',
+    'hero.cta_secondary': '阅读文档',
+
+    // ── Channels ──
+    'ch.heading': '全 IM 通道覆盖 · 你习惯的聊天方式我们都支持',
+
+    // ── Expert Roles ──
+    'expert.badge': '换个专家来干活',
+    'expert.title': '一键切换专业角色',
+    'expert.subtitle': '写周报叫来分析师，查资料换成研究员 —— 换角色不用换环境',
+    'expert.ops_name': '运维工程师',
+    'expert.ops_desc': '精通 Linux、K8s、Docker、数据库、网络诊断，7×24 自动化巡检',
+    'expert.research_name': '研究分析师',
+    'expert.research_desc': '全网信息搜集、多源交叉验证、结构化输出',
+    'expert.office_name': '办公自动化',
+    'expert.office_desc': 'Word、Excel、PPT、PDF 全套文档技能，批量处理不在话下',
+    'expert.life_name': '育儿管家',
+    'expert.life_desc': '记录疫苗、辅食、里程碑，所有建议带可验证来源',
+
+    // ── Quick Start ──
+    'qs.badge': '三步上手',
+    'qs.title': '不用先搞复杂环境',
+    'qs.subtitle': '选一种你喜欢的方式，粘贴下面命令，其他的事情我们来搞定',
+    'qs.copied': '已复制',
+    'qs.copy': '复制',
+    'qs.downloading': '正在下载 Ydsz Worker...',
+    'qs.install_done': '安装完成！运行 ydsz-worker run 启动服务',
+    'qs.visit_prompt': '访问 http://localhost:8080 进入工作台',
+
+    // ── Why Choose ──
+    'why.badge': '为什么选择我们',
+    'why.title': '数据留在家里，能力连接全世界',
+    'why.subtitle': '自托管不是限制，是对你的数据主权的尊重',
+    'why.r1_title': '一次部署，人人有专属助手',
+    'why.r1_desc': '一台机器跑一套服务，家人和同事各有一个只记得自己事情的助手。写周报叫来分析师，查资料换成研究员。',
+    'why.r2_title': '接上你每天在用的那些账号',
+    'why.r2_desc': '腾讯文档、Notion、邮箱、日历......授权一次，之后一句「把今天会议的结论整理进文档」就够了。',
+    'why.r3_title': '和你的编辑器、终端搭伙',
+    'why.r3_desc': '不抢你手上的 Cursor 和命令行：复杂改动通过 ACP 派给专业编程 Agent，你只负责验收结果。',
+    'why.r4_title': '它真的会用电脑',
+    'why.r4_desc': '终端里敲命令、浏览器里点按钮填表单、顺手截图留证据 —— 你说目标，它自己动手，卡住了才回来问你。',
+    'why.stat_im': 'IM 通道',
+    'why.stat_mbti': 'MBTI 人格',
+    'why.stat_connectors': '连接器',
+    'why.stat_experts': '自定义专家',
+
+    // ── Desktop Pet ──
+    'desk.badge': '桌面伙伴',
+    'desk.title': '不只是工具，更是陪伴',
+    'desk.desc': '内置可爱的桌面宠物，在你忙碌时安静守候，在你需要时随时出现。它不只是你的 AI 助手，更是桌面上的一位小伙伴 —— 实时感知任务状态、主动提醒、多种互动反馈，让工作不那么枯燥。',
+    'desk.f1': '原生桌面客户端，托盘常驻',
+    'desk.f2': '实时感知任务状态，主动提醒',
+    'desk.f3': '多种互动反馈，陪伴不单调',
+    'desk.f4': '支持自定义形象与行为',
+    'desk.explore': '探索专家',
+
+    // ── FAQ ──
+    'faq.badge': '常见问题',
+    'faq.title': '你想知道的答案都在这里',
+    'faq.q1': '云顶数字工作台是开源的吗？',
+    'faq.a1': '是的。完全开源项目，基于 MIT 协议，你可以自由使用、修改和分发。所有数据留存在你自己的服务器上。',
+    'faq.q2': '数据会存储在哪里？',
+    'faq.a2': '默认存储在运行服务器的 ~/.ydsz-worker/ 目录下（SQLite WAL 模式）。你也可以配置为 PostgreSQL。工作区文件支持本地磁盘、Docker 沙箱、COS/S3 等后端存储。',
+    'faq.q3': '如何创建新的专家角色？',
+    'faq.a3': '在控制台的「专家」页面，你可以从内置模板创建（运维工程师、研究分析师、办公专家等），也可以从社区导入。每位专家拥有独立的工作区、凭证和配置。',
+    'faq.q4': '和 ChatGPT / 文心一言有什么区别？',
+    'faq.a4': '云顶数字工作台是自托管平台 —— 你的对话和文件从不上传到任何第三方。它不仅能聊天，还能操控电脑（浏览器自动化、终端命令）、执行定时任务，并通过 IM 通道在你习惯的工具中与你交互。',
+    'faq.q5': 'ACP 是什么？和 MCP 有什么区别？',
+    'faq.a5': 'ACP（Agent Client Protocol）是把你的 IDE / 终端 AI 工具接入云顶数字工作台的桥梁。入站模式：外部工具（Cursor、OpenCode 等）可以调用你的专家。出站模式：把编程任务委派给外部 Agent。MCP 是连接外部服务（数据库、API、SaaS）的协议，两者互补。',
+    'faq.q6': '知识库支持哪些格式？',
+    'faq.a6': '支持 Markdown、纯文本、PDF、Word (.docx)、Excel (.xlsx/.csv)、PPT (.pptx)、代码文件等。支持 OCR 识别扫描件，内置向量检索和关键词检索双引擎。',
+    'faq.q7': 'Connector 连接器能接哪些平台？',
+    'faq.a7': '内置 50+ 连接器，覆盖 IM 类（飞书、钉钉、企业微信、QQ、微信）、文档类（腾讯文档、Notion、语雀、Obsidian）、API 类（企查查、OpenAlex、天气、股票行情）。还支持自定义 MCP 连接器接入任何第三方服务。',
+    'faq.q8': 'AgentTeams 怎么用？',
+    'faq.a8': '多专家协作功能（目前 Beta）。你创建一个「协调者」专家，它会自动把复杂任务拆解、分发给多个「成员」专家并行执行。比如"帮我调研竞品"会分发给资料搜集者、分析者、报告撰写者三位专家协同完成。',
+
+    // ── CTA ──
+    'cta.title': '准备好开启智能协作了吗？',
+    'cta.subtitle': '一分钟安装，即刻拥有一个真正属于你的 AI 团队成员。自托管、MIT 开源、完全掌控。',
+    'cta.primary': '立即开始',
+    'cta.secondary': '参与贡献',
+  },
+
+  en: {
+    // ── Nav ──
+    'nav.overview': 'Overview',
+    'nav.marketplace': 'Marketplace',
+    'nav.contribute': 'Contribute',
+    'nav.changelog': 'Changelog',
+    'nav.docs': 'Docs',
+    'nav.search': 'Search',
+
+    // ── Hero ──
+    'hero.badge': 'v1.0 Officially Released · Multi-Agent Expert Architecture',
+    'hero.title1': 'Thinks. Works.',
+    'hero.title2': 'Your enterprise AI partner that grows with you',
+    'hero.subtitle': 'Self-hosted enterprise AI — multi-agent experts, 7 IM channels, desktop control, cron jobs, browser automation. Your data never leaves.',
+    'hero.cta_primary': 'Quick Start',
+    'hero.cta_secondary': 'Read Docs',
+
+    // ── Channels ──
+    'ch.heading': 'All IM Channels Covered · Works in Whatever Chat App You Prefer',
+
+    // ── Expert Roles ──
+    'expert.badge': 'Switch Experts, Switch Capabilities',
+    'expert.title': 'One Click to Switch Roles',
+    'expert.subtitle': 'Analyst for weekly reports, researcher for fact-checking — switch roles without switching context',
+    'expert.ops_name': 'DevOps Engineer',
+    'expert.ops_desc': 'Linux, K8s, Docker, databases, network diagnostics, 24/7 automated inspection',
+    'expert.research_name': 'Research Analyst',
+    'expert.research_desc': 'Web-wide information gathering, multi-source verification, structured output',
+    'expert.office_name': 'Office Automation',
+    'expert.office_desc': 'Full document suite: Word, Excel, PPT, PDF — batch processing made easy',
+    'expert.life_name': 'Parenting Assistant',
+    'expert.life_desc': 'Track vaccines, feeding, milestones — all advice with verifiable sources',
+
+    // ── Quick Start ──
+    'qs.badge': 'Three Steps to Start',
+    'qs.title': 'No Complex Setup Required',
+    'qs.subtitle': 'Pick your preferred method, paste the command, we handle the rest',
+    'qs.copied': 'Copied',
+    'qs.copy': 'Copy',
+    'qs.downloading': 'Downloading Ydsz Worker...',
+    'qs.install_done': 'Installation complete! Run ydsz-worker run to start',
+    'qs.visit_prompt': 'Visit http://localhost:8080 to open the dashboard',
+
+    // ── Why Choose ──
+    'why.badge': 'Why Choose Us',
+    'why.title': 'Data at Home, Capabilities Worldwide',
+    'why.subtitle': 'Self-hosting is not a limitation — it respects your data sovereignty',
+    'why.r1_title': 'One Deployment, A Personal Assistant for Everyone',
+    'why.r1_desc': 'One service, personal assistants for each colleague. Analyst for reports, researcher for fact-checking.',
+    'why.r2_title': 'Connect the Accounts You Use Daily',
+    'why.r2_desc': 'Tencent Docs, Notion, email, calendar... Authorize once, then just say "organize meeting notes into the doc."',
+    'why.r3_title': 'Befriends Your Editor & Terminal',
+    'why.r3_desc': 'Doesn\'t take over your Cursor or terminal: delegates complex changes via ACP to a programming Agent, you just review.',
+    'why.r4_title': 'It Actually Uses Your Computer',
+    'why.r4_desc': 'Runs terminal commands, clicks browser buttons, fills forms, takes screenshots — you state the goal, it does the work, asks when stuck.',
+    'why.stat_im': 'IM Channels',
+    'why.stat_mbti': 'MBTI Types',
+    'why.stat_connectors': 'Connectors',
+    'why.stat_experts': 'Custom Experts',
+
+    // ── Desktop Pet ──
+    'desk.badge': 'Desktop Companion',
+    'desk.title': 'More Than a Tool — A Companion',
+    'desk.desc': 'A charming desktop pet waits quietly while you\'re busy, ready when you need it. Not just an AI assistant — a companion on your desktop that senses task progress, proactively notifies, and brings interaction to your workflow.',
+    'desk.f1': 'Native desktop client, stays in system tray',
+    'desk.f2': 'Real-time task monitoring, proactive alerts',
+    'desk.f3': 'Rich interactive feedback, never monotonous',
+    'desk.f4': 'Customizable appearance and behavior',
+    'desk.explore': 'Explore Experts',
+
+    // ── FAQ ──
+    'faq.badge': 'FAQ',
+    'faq.title': 'Answers to Your Questions',
+    'faq.q1': 'Is Ydsz Worker open source?',
+    'faq.a1': 'Yes. Fully open source under MIT license. Use, modify, and distribute freely. All data stays on your own server.',
+    'faq.q2': 'Where is the data stored?',
+    'faq.a2': 'By default, ~/.ydsz-worker/ on the server (SQLite WAL mode). PostgreSQL also supported. Workspaces can use local disk, Docker sandbox, COS/S3, etc.',
+    'faq.q3': 'How to create a new expert role?',
+    'faq.a3': 'On the Expert page, create from built-in templates (DevOps, Analyst, Office, etc.) or import from community. Each expert gets its own workspace, credentials, and config.',
+    'faq.q4': 'How is this different from ChatGPT / ERNIE Bot?',
+    'faq.a4': 'Ydsz Worker is self-hosted — your conversations and files never touch third parties. Beyond chatting, it controls your computer (browser automation, terminal), runs cron jobs, and interacts via IM channels in your favorite tools.',
+    'faq.q5': 'What is ACP? How does it differ from MCP?',
+    'faq.a5': 'ACP (Agent Client Protocol) bridges your IDE/terminal AI tools with Ydsz Worker. Inbound: external tools (Cursor, OpenCode) call your experts. Outbound: delegate coding tasks to external agents. MCP connects to external services — they complement each other.',
+    'faq.q6': 'What formats does the knowledge base support?',
+    'faq.a6': 'Supports Markdown, plain text, PDF, Word (.docx), Excel (.xlsx/.csv), PPT (.pptx), code files, etc. OCR for scanned docs, with both vector search and keyword search.',
+    'faq.q7': 'What platforms do Connectors support?',
+    'faq.a7': '50+ built-in connectors: IM (Feishu, DingTalk, WeCom, QQ, WeChat), docs (Tencent Docs, Notion, Yuque, Obsidian), APIs (Qcc, OpenAlex, weather, stocks). Custom MCP connectors for any third-party service.',
+    'faq.q8': 'How does AgentTeams work?',
+    'faq.a8': 'Multi-agent collaboration (Beta). Create a "Coordinator" expert that breaks down complex tasks and distributes them to member experts for parallel execution. E.g., "research competitors" dispatches to a searcher, analyst, and writer.',
+
+    // ── CTA ──
+    'cta.title': 'Ready to Start Smart Collaboration?',
+    'cta.subtitle': 'One-minute install for a truly personal AI team member. Self-hosted, MIT open source, fully under your control.',
+    'cta.primary': 'Get Started',
+    'cta.secondary': 'Contribute',
+  },
+}

@@ -1,14 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import ThemeToggle from './ThemeToggle'
-
-const NAV_LINKS = [
-  { label: '产品概览', href: '/', match: /^(\/|#.*)$/ },
-  { label: '市场生态', href: '/marketplace', match: /^\/marketplace/ },
-  { label: '开源贡献', href: '/contribute', match: /^\/contribute/ },
-  { label: '更新日志', href: '/changelog', match: /^\/changelog/ },
-  { label: '产品文档', href: '/docs', match: /^\/docs/ },
-]
+import { useLanguage } from '../context/LanguageContext'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const SOCIAL_LINKS = [
   {
@@ -39,6 +32,7 @@ interface NavbarProps {
 export default function Navbar({ onSearchOpen }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { locale, t } = useLanguage()
   const location = useLocation()
 
   useEffect(() => {
@@ -50,6 +44,14 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
   useEffect(() => {
     setMobileMenuOpen(false)
   }, [location.pathname])
+
+  const NAV_LINKS = [
+    { label: t('overview'), href: '/', match: /^(\/|#.*)$/ },
+    { label: t('marketplace'), href: '/marketplace', match: /^\/marketplace/ },
+    { label: t('contribute'), href: '/contribute', match: /^\/contribute/ },
+    { label: t('changelog'), href: '/changelog', match: /^\/changelog/ },
+    { label: t('docs'), href: '/docs', match: /^\/docs/ },
+  ]
 
   const isActive = (match: RegExp) => match.test(location.pathname)
 
@@ -63,9 +65,15 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
           <img src="/logo-appicon.png" alt="Ydsz Worker" className="h-8 w-8 rounded-lg" />
-          <span className="text-lg font-bold text-white tracking-tight hidden sm:inline">
-            云顶<span className="text-yuanbao-400">数字工作台</span>
-          </span>
+          {locale === 'zh' ? (
+            <span className="text-lg font-bold tracking-tight hidden sm:inline">
+              云顶数字<span className="text-yuanbao-400">工作台</span>
+            </span>
+          ) : (
+            <span className="text-lg font-bold tracking-tight hidden sm:inline">
+              Ydsz<span className="text-yuanbao-400"> Worker</span>
+            </span>
+          )}
         </Link>
 
         {/* Desktop Nav */}
@@ -96,7 +104,7 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span className="hidden md:inline">搜索</span>
+              <span className="hidden md:inline">{t('search')}</span>
               <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/[0.06] border border-white/[0.08] text-white/30">
                 ⌘K
               </kbd>
@@ -119,21 +127,8 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
             ))}
           </div>
 
-          {/* Theme Toggle */}
-          <ThemeToggle />
-
-          {/* Install Button */}
-          <a
-            href="https://github.com/njydsz/ydsz-worker/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-yuanbao-500 hover:bg-yuanbao-400 text-ink-900 font-semibold text-sm rounded-lg transition-all shadow-md shadow-yuanbao-500/20 hover:shadow-yuanbao-500/40"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            下载
-          </a>
+          {/* Language Switcher */}
+          <LanguageSwitcher />
 
           {/* Mobile menu button */}
           <button

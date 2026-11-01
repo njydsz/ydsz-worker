@@ -280,7 +280,6 @@ def test_run_upgrade_restores_launcher_only_on_failure(
     success: bool,
 ) -> None:
     monkeypatch.setattr("ydsz.infra.setup.self_update._is_windows", lambda: True)
-    monkeypatch.delenv("YDSZ_FPK_SITE_PACKAGES", raising=False)
     script_dir = _fake_windows_scripts(tmp_path)
     monkeypatch.setattr(
         "ydsz.infra.setup.self_update.resolve_venv_python",
@@ -414,7 +413,6 @@ def test_run_managed_upgrade_uses_ranked_indexes(
 ) -> None:
     from ydsz.infra.setup import self_update
 
-    monkeypatch.delenv("YDSZ_FPK_SITE_PACKAGES", raising=False)
     monkeypatch.setattr(self_update, "detect_installer", lambda: "uv")
     monkeypatch.setattr(self_update, "resolve_venv_python", lambda: "/venv/bin/python")
     monkeypatch.setattr(self_update, "get_local_version", lambda: "1.0.0")
@@ -474,7 +472,7 @@ def test_get_version_in_dir_does_not_use_other_installs(tmp_path: Path, has_meta
     assert self_update.get_version_in_dir(sys.executable, str(tmp_path)) is None
 
 
-@pytest.mark.parametrize("target_env", ["YDSZ_GREEN_PACKAGES", "YDSZ_FPK_SITE_PACKAGES"])
+@pytest.mark.parametrize("target_env", ["YDSZ_GREEN_PACKAGES"])
 @pytest.mark.parametrize(
     "versions",
     [
@@ -490,7 +488,6 @@ def test_target_versions_load_package_despite_stale_metadata(
     from ydsz.infra.setup import self_update
 
     monkeypatch.delenv("YDSZ_GREEN_PACKAGES", raising=False)
-    monkeypatch.delenv("YDSZ_FPK_SITE_PACKAGES", raising=False)
     monkeypatch.setenv(target_env, str(tmp_path))
     for version in versions:
         _write_ydsz_metadata(tmp_path, version)
@@ -841,7 +838,6 @@ def test_pip_target_upgrade_with_stale_metadata_succeeds_without_retry(
     from ydsz.infra.setup import self_update
 
     monkeypatch.setenv("YDSZ_GREEN_PACKAGES", str(tmp_path))
-    monkeypatch.delenv("YDSZ_FPK_SITE_PACKAGES", raising=False)
     _write_ydsz_metadata(tmp_path, "1.0.2b4")
     _write_ydsz_package(tmp_path, "1.0.2b4")
     monkeypatch.setattr(self_update, "detect_installer", lambda: "pip")
@@ -983,39 +979,9 @@ def test_legacy_pip_fallback_window_is_shared_across_mirrors(
 
 
 @pytest.mark.parametrize("locale", ["en", "zh"])
-@pytest.mark.parametrize("actual", [None, "1.0.2b4", "1.0.2b3", "1.0.2b5", "1.0.2b6"])
-def test_fpk_verification_uses_target_and_rejects_missing_or_wrong_versions(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, locale: str, actual: str | None
-) -> None:
-    from ydsz.i18n import tr
-    from ydsz.infra.setup import self_update
-
-    monkeypatch.setattr(self_update.time, "sleep", lambda _: None)
-    if actual:
-        _write_ydsz_metadata(tmp_path, actual)
-        _write_ydsz_package(tmp_path, actual)
-    if actual == "1.0.2b5":
-        _write_ydsz_metadata(tmp_path, "1.0.2b4")
-    result = self_update._verify_fpk_upgrade(
-        "1.0.2b4", str(tmp_path), sys.executable, [], version="1.0.2b5", locale=locale
-    )
-    assert result.success is (actual == "1.0.2b5")
-    assert result.installed_version == actual
-    if result.success:
-        assert result.message == tr("update.fpk_completed", locale, version=actual)
-    elif actual is None:
-        assert result.error == tr("update.version_unavailable", locale)
-    else:
-        assert result.error == tr(
-            "update.version_mismatch", locale, actual=actual, expected="1.0.2b5"
-        )
-
-
-@pytest.mark.parametrize("locale", ["en", "zh"])
-@pytest.mark.parametrize("fpk", [False, True])
 @pytest.mark.parametrize("actual", ["1.0.2b5", "1.0.2b6"])
 def test_upgrade_keeps_locale_bundle_when_installer_replaces_resources(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, locale: str, fpk: bool, actual: str
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, locale: str, actual: str
 ) -> None:
     from ydsz.i18n import loader
     from ydsz.infra.setup import self_update
@@ -1034,7 +1000,6 @@ def test_upgrade_keeps_locale_bundle_when_installer_replaces_resources(
     target = tmp_path / "packages"
     target.mkdir()
     monkeypatch.setenv("YDSZ_GREEN_PACKAGES", str(target))
-    monkeypatch.setenv("YDSZ_FPK_SITE_PACKAGES", str(target) if fpk else "")
     monkeypatch.setattr(loader.resources, "files", lambda _: bundles)
     monkeypatch.setattr(self_update, "get_local_version", lambda: "1.0.2b4")
     monkeypatch.setattr(self_update, "get_version_in_dir", lambda *args, **kwargs: actual)
@@ -1062,8 +1027,7 @@ def test_upgrade_keeps_locale_bundle_when_installer_replaces_resources(
         messages = original[locale]["update"]
         if result.success:
             assert result.installed_version == actual
-            key = "fpk_completed" if fpk else "completed"
-            assert result.message == messages[key].format(version=actual)
+            assert result.message == messages["completed"].format(version=actual)
         else:
             assert (
                 messages["version_mismatch"].format(actual=actual, expected="1.0.2b5")
@@ -1075,14 +1039,11 @@ def test_upgrade_keeps_locale_bundle_when_installer_replaces_resources(
 
 @pytest.mark.parametrize("locale", ["en", "zh"])
 @pytest.mark.parametrize("target", ["1.0.2b4", "1.0.2b3"])
-@pytest.mark.parametrize("fpk", [True, False])
 def test_run_upgrade_rejects_non_newer_target_before_changes(
-    monkeypatch: pytest.MonkeyPatch, locale: str, target: str, fpk: bool
+    monkeypatch: pytest.MonkeyPatch, locale: str, target: str
 ) -> None:
     from ydsz.i18n import tr
     from ydsz.infra.setup import self_update
-
-    monkeypatch.setenv("YDSZ_FPK_SITE_PACKAGES", "fpk-target" if fpk else "")
     monkeypatch.setattr(self_update, "get_local_version", lambda: "1.0.2b4")
 
     def unexpected(*args: object, **kwargs: object) -> None:

@@ -51,7 +51,7 @@
 | 💻 | **终端 AI+** | 浏览器内交互式 Shell，AI 辅助命令执行与排障 |
 | 🌐 | **浏览器 AI+** | 基于 Chromium 的无头浏览器会话，支持网页自动化、截图与远程操控 |
 | 🖥️ | **远程桌面** | 控制台内实时看屏与键鼠操控，跨 Linux / Windows / macOS |
-| 🪟 | **桌面客户端** | Windows / macOS / Linux 原生应用，另有飞牛（FnOS）安装包 |
+| 🪟 | **桌面客户端** | Windows / macOS / Linux 原生应用 |
 | 🏠 | **完全自托管** | 一条命令运行控制台、CLI、IM 通道与定时任务，所有数据在你手中 |
 
 ## 📌 概述
@@ -108,7 +108,7 @@
 
 ### 使用入口
 - **Web 控制台** — 对话、专家 / 团队、连接器、通道、定时任务、知识库、插件、设置
-- **桌面客户端** — Windows / macOS / Linux 原生应用；飞牛（FnOS）安装包
+- **桌面客户端** — Windows / macOS / Linux 原生应用
 - **CLI** — `ydsz-worker run`、`ydsz-worker chats`、`ydsz-worker acp`、管理命令
 - **HTTP/SSE/WebSocket API** — 完整的程序化访问能力
 - **远程桌面** — 在控制台操控本机桌面会话
@@ -195,8 +195,6 @@ install.bat
 | Windows | `YdszDesktop-windows-amd64-<version>.exe` / `YdszDesktop-windows-arm64-<version>.exe` |
 | macOS | `YdszDesktop-darwin-arm64-<version>.dmg` / `YdszDesktop-darwin-amd64-<version>.dmg` |
 | Linux | `YdszDesktop-linux-amd64-<version>.tar.gz` / `YdszDesktop-linux-arm64-<version>.tar.gz` |
-| 飞牛 NAS（FnOS） | `YdszFnOS-docker-<version>.fpk` / `YdszFnOS-native-<version>.fpk` / `YdszFnOS-native-arm64-<version>.fpk` |
-
 **备选 — PyPI**（若你已自行管理 Python 环境）：
 
 ```bash

@@ -15,7 +15,7 @@ from typing import Any
 
 _INSTALL_TIMEOUT_S = 300.0
 _VERSION_RE = re.compile(r"(\d+\.\d+\.\d+(?:[-+][\w.]+)?)")
-# fnOS / 容器里 Ydsz Worker 常以非 root 用户运行，npm 全局目录（/usr/local）不可写，
+# 容器里 Ydsz Worker 常以非 root 用户运行，npm 全局目录（/usr/local）不可写，
 # 此时降级到用户级目录安装，目录名沿用 npm 官方推荐的 ~/.npm-global。
 _NPM_USER_PREFIX_NAME = ".npm-global"
 
@@ -150,7 +150,7 @@ def _prepend_path(bin_dir: str) -> None:
 def ensure_cli_path() -> str:
     """Prepend user-level bin dirs to the in-process PATH.
 
-    Ydsz Worker 在 fnOS 上常以非 root 用户运行，``/usr/local`` 下的 npm 全局目录
+    Ydsz Worker 在容器内常以非 root 用户运行，``/usr/local`` 下的 npm 全局目录
     不可写，安装会降级到用户级目录（~/.npm-global）。Obsidian CLI 在系统
     bin 不可写时同样落到 ``~/.local/bin``。这里确保这些目录进入进程 PATH，
     使 ``shutil.which`` 与后续 CLI 子进程调用都能找到命令。
@@ -402,7 +402,7 @@ def install_connector_cli(kind: str) -> dict[str, Any]:
             f"未找到 npm，请先在 Ydsz Worker 主机安装 Node.js，然后执行：{status['install_command']}",
         )
 
-    # npm 全局目录（默认 /usr/local）不可写时（fnOS/容器内非 root 用户），
+    # npm 全局目录（默认 /usr/local）不可写时（容器内非 root 用户），
     # 自动降级到用户级目录 ~/.npm-global 安装，避免 EACCES 导致安装失败。
     prefix, _ = _npm_prefix_info(npm)
     install_args = [npm, "install", "-g"]

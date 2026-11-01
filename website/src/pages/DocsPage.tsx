@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
+import { useState, useEffect, useRef, useCallback, type ReactNode, type RefObject } from 'react'
 import { Link } from 'react-router-dom'
 import SectionDivider from '../components/SectionDivider'
 import DashboardMock from '../components/DashboardMock'
@@ -50,7 +50,6 @@ const NAV_SECTIONS: NavSection[] = [
       { label: '桌面客户端', href: '#desktop', id: 'desktop' },
       { label: 'pip 安装', href: '#pip-install', id: 'pip-install' },
       { label: 'Docker 部署', href: '#docker', id: 'docker' },
-      { label: '飞牛 FnOS', href: '#fnos', id: 'fnos' },
       { label: '系统要求', href: '#requirements', id: 'requirements' },
     ],
   },
@@ -148,8 +147,7 @@ function CtaCard({
     const id = href.replace('#', '')
     const el = document.getElementById(id)
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80
-      window.scrollTo({ top, behavior: 'smooth' })
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
@@ -204,8 +202,10 @@ export default function DocsPage() {
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
-  // 滚动监听 — 高亮当前 section
+  // 滚动监听 — 高亮当前 section (监听内容容器而非 window)
   useEffect(() => {
+    const container = contentRef.current
+    if (!container) return
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((e) => e.isIntersecting)
@@ -216,9 +216,9 @@ export default function DocsPage() {
           setActiveSection(top.target.id)
         }
       },
-      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+      { root: container, rootMargin: '-10% 0px -50% 0px', threshold: 0 }
     )
-    const sections = contentRef.current?.querySelectorAll('[data-doc-section]')
+    const sections = container.querySelectorAll('[data-doc-section]')
     sections?.forEach((s) => observer.observe(s))
     return () => observer.disconnect()
   }, [])
@@ -236,10 +236,11 @@ export default function DocsPage() {
   }
 
   const scrollToSection = useCallback((id: string) => {
+    const container = contentRef.current
     const el = document.getElementById(id)
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80
-      window.scrollTo({ top, behavior: 'smooth' })
+    if (container && el) {
+      const top = el.offsetTop - 24
+      container.scrollTo({ top, behavior: 'smooth' })
       setMobileNavOpen(false)
     }
   }, [])
@@ -265,10 +266,7 @@ export default function DocsPage() {
   }, [activeSection, currentSectionGroup, collapsedSections])
 
   return (
-    <div className="min-h-screen bg-ink-900 pt-14">
-      {/* 滚动进度条 (P2-11) */}
-      <ReadingProgressBar />
-
+    <div className="h-screen bg-ink-900 pt-14 flex flex-col overflow-hidden">
       {/* 搜索弹窗 (P0-2) */}
       <SearchModal
         isOpen={searchOpen}
@@ -365,10 +363,10 @@ export default function DocsPage() {
       </div>
 
       {/* ── 三栏布局：侧栏 + 正文 + TOC ── */}
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 flex gap-6 py-6">
+      <div className="flex-1 min-h-0 overflow-hidden max-w-[1400px] mx-auto px-4 lg:px-8 flex gap-6 py-6">
         {/* ── 左侧 Sidebar ── */}
-        <aside className="w-56 xl:w-60 shrink-0 hidden lg:block">
-          <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-thin pb-8">
+        <aside className="w-56 xl:w-60 shrink-0 hidden lg:flex flex-col overflow-hidden">
+          <div className="flex-1 overflow-y-auto scrollbar-thin pb-8 min-h-0">
             {/* Logo */}
             <div className="flex items-center gap-2.5 mb-5 px-2">
               <img src="/logo-appicon.png" alt="Ydsz Worker" className="h-6 w-6 rounded-md" />
@@ -442,7 +440,9 @@ export default function DocsPage() {
         </aside>
 
         {/* ── 中间正文 ── */}
-        <main ref={contentRef} className="flex-1 min-w-0">
+        <main ref={contentRef} className="flex-1 min-w-0 overflow-y-auto scrollbar-thin relative">
+          {/* 滚动进度条 (P2-11) — 内容区顶部 */}
+          <ReadingProgressBar scrollRef={contentRef as RefObject<HTMLElement | null>} />
           <article className="max-w-3xl mx-auto">
             {/* ═══ Section: 简介 ═══ */}
             <div id="intro" data-doc-section className="mb-16">
@@ -501,7 +501,7 @@ export default function DocsPage() {
                     />
                     <FeatureCard
                       icon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg>}
-                      title="能协作"
+                      title="自由协作"
                       desc="多 Agent 团队协作，ACP 协议支持跨平台 Agent 通信。专家系统让每个 Agent 各司其职，共同完成复杂目标。"
                     />
                     <FeatureCard
@@ -511,12 +511,12 @@ export default function DocsPage() {
                     />
                     <FeatureCard
                       icon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75H18a2.25 2.25 0 002.25-2.25V6A2.25 2.25 0 0018 3.75h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z" /></svg>}
-                      title="自由集成"
+                      title="任意集成"
                       desc="MCP 网关支持接入任意工具，连接器架构让你轻松对接第三方 OAuth 服务。开放式插件生态，随时扩展能力。"
                     />
                     <FeatureCard
                       icon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" /></svg>}
-                      title="成长陪伴"
+                      title="自主进化"
                       desc="记忆系统跨会话保持上下文，MBTI 人格系统让 Agent 风格与你匹配。越用越懂你，成为你的数字工作搭子。"
                     />
                   </div>
@@ -760,9 +760,9 @@ uv tool install ydsz-worker`}
         </main>
 
         {/* ── 右侧 TOC (P0-1) ── */}
-        <aside className="w-52 shrink-0 hidden xl:block">
-          <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pb-8">
-            <TableOfContents items={TOC_ITEMS} />
+        <aside className="w-52 shrink-0 hidden xl:flex flex-col overflow-hidden">
+          <div className="flex-1 overflow-y-auto scrollbar-thin pb-8 min-h-0">
+            <TableOfContents items={TOC_ITEMS} scrollContainerRef={contentRef as RefObject<HTMLElement | null>} />
 
             {/* 页内锚点链接 */}
             <div className="mt-8 pt-4 border-t border-white/[0.06]">
@@ -780,7 +780,7 @@ uv tool install ydsz-worker`}
                   在 Gitee 查看源码
                 </a>
                 <button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  onClick={() => contentRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
                   className="flex items-center gap-2 text-[13px] text-white/45 hover:text-yuanbao-400 transition-colors"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">

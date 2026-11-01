@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, type RefObject } from 'react'
 
 interface TocItem {
   id: string
@@ -9,43 +9,64 @@ interface TocItem {
 interface TableOfContentsProps {
   items: TocItem[]
   sticky?: boolean
+  /** 滚动容器 ref，若为 undefined 则使用 window */
+  scrollContainerRef?: RefObject<HTMLElement | null>
 }
 
-/** 右侧页内目录 — 滚动高亮 + 点击跳转 */
-export default function TableOfContents({ items, sticky = true }: TableOfContentsProps) {
+/** 右侧页内目录 — 滚动高亮 + 点击跳转 (适配容器或 window 滚动) */
+export default function TableOfContents({ items, sticky = true, scrollContainerRef }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>(items[0]?.id ?? '')
 
   useEffect(() => {
+    const scrollEl = scrollContainerRef?.current ?? window
     const handleScroll = () => {
       let currentId = items[0]?.id ?? ''
       for (const item of items) {
         const el = document.getElementById(item.id)
         if (el) {
-          const rect = el.getBoundingClientRect()
-          if (rect.top <= 120) {
-            currentId = item.id
+          let top: number
+          if (scrollContainerRef?.current) {
+            top = el.offsetTop - scrollContainerRef.current.offsetTop
+            const containerScrollTop = scrollContainerRef.current.scrollTop
+            if (top <= containerScrollTop + 100) {
+              currentId = item.id
+            }
+          } else {
+            top = el.getBoundingClientRect().top
+            if (top <= 120) {
+              currentId = item.id
+            }
           }
         }
       }
       setActiveId(currentId)
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    scrollEl.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [items])
+    return () => scrollEl.removeEventListener('scroll', handleScroll)
+  }, [items, scrollContainerRef])
 
   const handleClick = useCallback((id: string) => {
-    const el = document.getElementById(id)
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80
-      window.scrollTo({ top, behavior: 'smooth' })
+    if (scrollContainerRef?.current) {
+      const container = scrollContainerRef.current
+      const el = document.getElementById(id)
+      if (el) {
+        const top = el.offsetTop - container.offsetTop - 24
+        container.scrollTo({ top, behavior: 'smooth' })
+      }
+    } else {
+      const el = document.getElementById(id)
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80
+        window.scrollTo({ top, behavior: 'smooth' })
+      }
     }
-  }, [])
+  }, [scrollContainerRef])
 
   if (items.length === 0) return null
 
   return (
-    <div className={sticky ? 'sticky top-24' : ''}>
+    <div className={sticky ? 'sticky top-0' : ''}>
       <div className="flex items-center gap-2 mb-4 px-1">
         <svg className="w-3.5 h-3.5 text-yuanbao-400/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h7" />

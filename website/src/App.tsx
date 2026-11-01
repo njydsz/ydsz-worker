@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { LanguageProvider } from './context/LanguageContext'
 import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
 import MarketplacePage from './pages/MarketplacePage'
@@ -14,16 +15,18 @@ export default function App() {
   }, [])
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout onSearchOpen={handleSearchOpen} />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/marketplace" element={<MarketplacePage />} />
-          <Route path="/contribute" element={<ContributePage />} />
-          <Route path="/changelog" element={<ChangelogPage />} />
-          <Route path="/docs" element={<DocsPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout onSearchOpen={handleSearchOpen} />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/marketplace" element={<MarketplacePage />} />
+            <Route path="/contribute" element={<ContributePage />} />
+            <Route path="/changelog" element={<ChangelogPage />} />
+            <Route path="/docs" element={<DocsPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   )
 }

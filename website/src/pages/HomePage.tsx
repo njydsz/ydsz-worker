@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import { useLanguage } from '../context/LanguageContext'
 import DashboardMock from '../components/DashboardMock'
 import SectionDivider from '../components/SectionDivider'
 
@@ -142,6 +143,7 @@ function CopySuccessIcon() {
    Section 1: Hero
    ═══════════════════════════════════════════════ */
 function Hero() {
+  const { t } = useLanguage()
   return (
     <section id="overview" className="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
       {/* 背景装饰光晕 */}
@@ -160,7 +162,7 @@ function Hero() {
               className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-yuanbao-500/[0.07] border border-yuanbao-500/20 text-yuanbao-400 text-sm font-medium mb-8 hover:bg-yuanbao-500/[0.12] hover:border-yuanbao-500/30 transition-all duration-300 group"
             >
               <span className="glow-dot animate-pulse" />
-              <span>v1.0 正式发布 · 多 Agent 专家架构</span>
+              <span>{t('badge')}</span>
               <svg className="w-3.5 h-3.5 -translate-x-0.5 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
@@ -169,17 +171,16 @@ function Hero() {
 
           {/* 主标题 */}
           <Reveal delay={100}>
-            <h1 className="heading-xl text-balance mb-5">
-              <span className="block">会思考，能干活</span>
-              <span className="block text-gradient mt-1">陪企业成长的智能伙伴</span>
+              <h1 className="heading-xl text-balance mb-5">
+              <span className="block">{t('title1')}</span>
+              <span className="block text-gradient mt-1">{t('title2')}</span>
             </h1>
           </Reveal>
 
           {/* 副标题 */}
           <Reveal delay={200}>
             <p className="text-base sm:text-lg text-white/55 max-w-xl mx-auto mb-10 text-balance leading-relaxed">
-              自托管企业 AI 平台 — 多专家协作、7 大 IM 通道、<br className="hidden sm:inline" />
-              操控电脑、定时任务、浏览器自动化，数据不出门
+              {t('subtitle')}
             </p>
           </Reveal>
 
@@ -190,13 +191,13 @@ function Hero() {
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                快速开始
+                {t('cta_primary')}
               </a>
               <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="btn-secondary text-base px-7 py-3.5">
                 <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                 </svg>
-                阅读文档
+                {t('cta_secondary')}
               </a>
             </div>
           </Reveal>
@@ -257,12 +258,13 @@ const CHANNELS = [
 ]
 
 function ChannelTags() {
+  const { t } = useLanguage()
   return (
     <section className="py-14 border-y border-white/[0.04]">
       <div className="container-page">
         <Reveal>
           <p className="text-center text-white/30 text-sm font-medium mb-8 tracking-wide">
-            全 IM 通道覆盖 · 你习惯的聊天方式我们都支持
+            {t('heading')}
           </p>
         </Reveal>
         <Reveal delay={100}>
@@ -287,10 +289,10 @@ function ChannelTags() {
    Section 3: 换个专家来干活
    ═══════════════════════════════════════════════ */
 const ROLES = [
-  { name: '运维工程师', desc: '精通 Linux、K8s、Docker、数据库、网络诊断，7×24 自动化巡检', emoji: '🐧', color: 'from-blue-500/25 to-blue-600/8', borderColor: 'border-blue-500/20' },
-  { name: '研究分析师', desc: '全网信息搜集、多源交叉验证、长河图式结构化输出', emoji: '📊', color: 'from-orange-500/25 to-orange-600/8', borderColor: 'border-orange-500/20' },
-  { name: '办公自动化', desc: 'Word、Excel、PPT、PDF 全套文档技能，批量处理不在话下', emoji: '📑', color: 'from-purple-500/25 to-purple-600/8', borderColor: 'border-purple-500/20' },
-  { name: '育儿管家', desc: '记录疫苗、辅食、里程碑，所有建议带可验证来源', emoji: '👶', color: 'from-pink-500/25 to-pink-600/8', borderColor: 'border-pink-500/20' },
+  { nameKey: 'expert.ops_name', descKey: 'expert.ops_desc', emoji: '🐧', color: 'from-blue-500/25 to-blue-600/8', borderColor: 'border-blue-500/20' },
+  { nameKey: 'expert.research_name', descKey: 'expert.research_desc', emoji: '📊', color: 'from-orange-500/25 to-orange-600/8', borderColor: 'border-orange-500/20' },
+  { nameKey: 'expert.office_name', descKey: 'expert.office_desc', emoji: '📑', color: 'from-purple-500/25 to-purple-600/8', borderColor: 'border-purple-500/20' },
+  { nameKey: 'expert.life_name', descKey: 'expert.life_desc', emoji: '👶', color: 'from-pink-500/25 to-pink-600/8', borderColor: 'border-pink-500/20' },
 ]
 
 const CAPABILITIES = [
@@ -303,6 +305,7 @@ const CAPABILITIES = [
 ]
 
 function ExpertRoles() {
+  const { t } = useLanguage()
   const [activeRole, setActiveRole] = useState(0)
 
   return (
@@ -312,10 +315,10 @@ function ExpertRoles() {
       <div className="container-page">
         <Reveal>
           <div className="text-center mb-16">
-            <span className="section-label mb-4">换个专家来干活</span>
-            <h2 className="heading-lg mt-4">一键切换专业角色</h2>
+            <span className="section-label mb-4">{t('expert.badge')}</span>
+            <h2 className="heading-lg mt-4">{t('expert.title')}</h2>
             <p className="text-white/50 mt-4 max-w-lg mx-auto">
-              写周报叫来分析师，查资料换成研究员 —— 换角色不用换环境
+              {t('expert.subtitle')}
             </p>
           </div>
         </Reveal>
@@ -326,7 +329,7 @@ function ExpertRoles() {
             <div className="space-y-3">
               {ROLES.map((role, idx) => (
                 <button
-                  key={role.name}
+                  key={role.nameKey}
                   onClick={() => setActiveRole(idx)}
                   className={`relative w-full flex items-center gap-4 p-4 rounded-xl text-left transition-all duration-300 group border-l-2 ${
                     activeRole === idx
@@ -341,9 +344,9 @@ function ExpertRoles() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className={`font-semibold transition-colors ${activeRole === idx ? 'text-white' : 'text-white/75'}`}>
-                      {role.name}
+                      {t(role.nameKey)}
                     </div>
-                    <div className="text-sm text-white/40 mt-0.5 truncate">{role.desc}</div>
+                    <div className="text-sm text-white/40 mt-0.5 truncate">{t(role.descKey)}</div>
                   </div>
                   <svg
                     className={`w-5 h-5 flex-shrink-0 transition-all duration-300 ${
@@ -364,8 +367,8 @@ function ExpertRoles() {
               <div className={`absolute inset-0 bg-gradient-to-br ${ROLES[activeRole].color} rounded-3xl blur-xl opacity-30`} />
               <div className="relative card-glass p-10 sm:p-12 text-center min-h-[280px] flex flex-col items-center justify-center border border-white/[0.08]">
                 <div className="text-7xl mb-5 animate-float">{ROLES[activeRole].emoji}</div>
-                <h3 className="text-2xl font-bold text-white mb-2">{ROLES[activeRole].name}</h3>
-                <p className="text-white/50 text-sm max-w-xs mx-auto leading-relaxed">{ROLES[activeRole].desc}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{t(ROLES[activeRole].nameKey)}</h3>
+                <p className="text-white/50 text-sm max-w-xs mx-auto leading-relaxed">{t(ROLES[activeRole].descKey)}</p>
               </div>
             </div>
           </Reveal>
@@ -428,10 +431,10 @@ const PLATFORM_SUPPORT = [
   { icon: '🪟', label: 'Windows' },
   { icon: '🍎', label: 'macOS' },
   { icon: '🐧', label: 'Linux' },
-  { icon: '📦', label: 'FnOS' },
 ]
 
 function QuickStart() {
+  const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState('quick')
   const [copied, setCopied] = useState(false)
   const current = TABS.find((t) => t.id === activeTab)!
@@ -463,10 +466,10 @@ function QuickStart() {
       <div className="container-page">
         <Reveal>
           <div className="text-center mb-16">
-            <span className="section-label mb-4">三步上手</span>
-            <h2 className="heading-lg mt-4">不用先搞复杂环境</h2>
+            <span className="section-label mb-4">{t('qs.badge')}</span>
+            <h2 className="heading-lg mt-4">{t('qs.title')}</h2>
             <p className="text-white/50 mt-4 max-w-lg mx-auto">
-              选一种你喜欢的方式，粘贴下面命令，其他的事情我们来搞定
+              {t('qs.subtitle')}
             </p>
           </div>
         </Reveal>
@@ -514,7 +517,7 @@ function QuickStart() {
                   {copied ? (
                     <span className="flex items-center gap-1.5">
                       <CopySuccessIcon />
-                      <span className="hidden sm:inline">已复制</span>
+                      <span className="hidden sm:inline">{t('qs.copied')}</span>
                       <span className="sm:hidden">✓</span>
                     </span>
                   ) : (
@@ -522,7 +525,7 @@ function QuickStart() {
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
                       </svg>
-                      <span className="hidden sm:inline">复制</span>
+                      <span className="hidden sm:inline">{t('qs.copy')}</span>
                     </span>
                   )}
                 </button>
@@ -545,16 +548,16 @@ function QuickStart() {
                       <svg className="w-3.5 h-3.5 text-yuanbao-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <span className="text-yuanbao-400">正在下载 Ydsz Worker...</span>
+                      <span className="text-yuanbao-400">{t('qs.downloading')}</span>
                     </div>
                     <div className="text-white/40 pl-5.5">
                       [━━━━━━━━━━━━━━━━━━━━] 100% ████████████
                     </div>
                     <div className="text-white/30">
-                    <span className="text-yuanbao-500">  ✓</span> 安装完成！运行 <span className="text-blue-300">ydsz-worker run</span> 启动服务
+                    <span className="text-yuanbao-500">  ✓</span> {t('qs.install_done')}
                     </div>
                     <div className="text-white/25">
-                    <span className="text-yuanbao-500">  →</span> 访问 http://localhost:8080 进入工作台
+                    <span className="text-yuanbao-500">  →</span> {t('qs.visit_prompt')}
                     </div>
                   </div>
                 </div>
@@ -583,42 +586,43 @@ function QuickStart() {
 const REASONS = [
   {
     num: '01',
-    title: '一次部署，人人有专属助手',
-    desc: '一台机器跑一套服务，家人和同事各有一个只记得自己事情的助手。写周报叫来分析师，查资料换成研究员。',
+    titleKey: 'why.r1_title',
+    descKey: 'why.r1_desc',
     icon: '⚡',
     tag: '多用户',
   },
   {
     num: '02',
-    title: '接上你每天在用的那些账号',
-    desc: '腾讯文档、Notion、邮箱、日历......授权一次，之后一句「把今天会议的结论整理进文档」就够了。',
+    titleKey: 'why.r2_title',
+    descKey: 'why.r2_desc',
     icon: '🔗',
     tag: '连接器',
   },
   {
     num: '03',
-    title: '和你的编辑器、终端搭伙',
-    desc: '不抢你手上的 Cursor 和命令行：复杂改动通过 ACP 派给专业编程 Agent，你只负责验收结果。',
+    titleKey: 'why.r3_title',
+    descKey: 'why.r3_desc',
     icon: '💻',
     tag: 'ACP',
   },
   {
     num: '04',
-    title: '它真的会用电脑',
-    desc: '终端里敲命令、浏览器里点按钮填表单、顺手截图留证据 —— 你说目标，它自己动手，卡住了才回来问你。',
+    titleKey: 'why.r4_title',
+    descKey: 'why.r4_desc',
     icon: '🎯',
     tag: '自动化',
   },
 ]
 
 const STATS = [
-  { value: '7', suffix: '通道', label: 'IM 通道' },
-  { value: '16', suffix: '型', label: 'MBTI 人格' },
-  { value: '50', suffix: '+', label: '连接器' },
-  { value: '∞', suffix: '', label: '自定义专家' },
+  { value: '7', suffix: '通道', labelKey: 'why.stat_im' },
+  { value: '16', suffix: '型', labelKey: 'why.stat_mbti' },
+  { value: '50', suffix: '+', labelKey: 'why.stat_connectors' },
+  { value: '∞', suffix: '', labelKey: 'why.stat_experts' },
 ]
 
 function WhyChoose() {
+  const { t } = useLanguage()
   return (
     <section id="why" className="py-24 lg:py-28 relative">
       <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-yuanbao-600/[0.02] rounded-full blur-[100px] -z-10" />
@@ -626,10 +630,10 @@ function WhyChoose() {
       <div className="container-page">
         <Reveal>
           <div className="text-center mb-16">
-            <span className="section-label mb-4">为什么选择我们</span>
-            <h2 className="heading-lg mt-4">数据留在家里，能力连接全世界</h2>
+            <span className="section-label mb-4">{t('why.badge')}</span>
+            <h2 className="heading-lg mt-4">{t('why.title')}</h2>
             <p className="text-white/50 mt-4 max-w-lg mx-auto">
-              自托管不是限制，是对你的数据主权的尊重
+              {t('why.subtitle')}
             </p>
           </div>
         </Reveal>
@@ -648,8 +652,8 @@ function WhyChoose() {
                     <span className="text-2xl">{reason.icon}</span>
                     <span className="text-[11px] text-yuanbao-400/60 font-mono uppercase tracking-widest">{reason.tag}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2.5">{reason.title}</h3>
-                  <p className="text-white/45 text-sm leading-relaxed">{reason.desc}</p>
+                  <h3 className="text-lg font-bold text-white mb-2.5">{t(reason.titleKey)}</h3>
+                  <p className="text-white/45 text-sm leading-relaxed">{t(reason.descKey)}</p>
                 </div>
               </div>
             </Reveal>
@@ -660,11 +664,11 @@ function WhyChoose() {
         <Reveal delay={200}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mt-14">
             {STATS.map((stat) => (
-              <div key={stat.label} className="card-glass p-5 sm:p-6 text-center group hover:bg-white/[0.05] transition-all duration-300">
+              <div key={stat.labelKey} className="card-glass p-5 sm:p-6 text-center group hover:bg-white/[0.05] transition-all duration-300">
                 <div className="text-2xl sm:text-3xl font-bold text-gradient mb-1 font-mono">
                   {stat.value}<span className="text-lg">{stat.suffix}</span>
                 </div>
-                <div className="text-[11px] text-white/35 font-medium uppercase tracking-wider">{stat.label}</div>
+                <div className="text-[11px] text-white/35 font-medium uppercase tracking-wider">{t(stat.labelKey)}</div>
               </div>
             ))}
           </div>
@@ -678,6 +682,7 @@ function WhyChoose() {
    Section 6: 桌面宠物 — 精致 SVG 小猫 + 显示器
    ═══════════════════════════════════════════════ */
 function DesktopPet() {
+  const { t } = useLanguage()
   return (
     <section className="py-24 lg:py-28 relative overflow-hidden">
       <div className="container-page">
@@ -685,19 +690,17 @@ function DesktopPet() {
           {/* 左侧描述 */}
           <Reveal direction="right">
             <div>
-              <span className="section-label mb-4">桌面伙伴</span>
-              <h2 className="heading-lg mt-4 mb-6">不只是工具，更是陪伴</h2>
+              <span className="section-label mb-4">{t('desk.badge')}</span>
+              <h2 className="heading-lg mt-4 mb-6">{t('desk.title')}</h2>
               <p className="text-white/50 leading-relaxed mb-8">
-                内置可爱的桌面宠物，在你忙碌时安静守候，在你需要时随时出现。
-                它不只是你的 AI 助手，更是桌面上的一位小伙伴 ——
-                实时感知任务状态、主动提醒、多种互动反馈，让工作不那么枯燥。
+                {t('desk.desc')}
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  '原生桌面客户端，托盘常驻',
-                  '实时感知任务状态，主动提醒',
-                  '多种互动反馈，陪伴不单调',
-                  '支持自定义形象与行为',
+                  t('desk.f1'),
+                  t('desk.f2'),
+                  t('desk.f3'),
+                  t('desk.f4'),
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-white/55 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-yuanbao-400 flex-shrink-0 shadow-sm shadow-yuanbao-400/50" />
@@ -706,7 +709,7 @@ function DesktopPet() {
                 ))}
               </ul>
               <Link to="/experts" className="btn-primary text-sm">
-                探索专家
+                {t('desk.explore')}
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
@@ -734,41 +737,18 @@ function DesktopPet() {
    Section 7: FAQ 手风琴
    ═══════════════════════════════════════════════ */
 const FAQ_ITEMS = [
-  {
-    q: '云顶数字工作台是开源的吗？',
-    a: '是的。完全开源项目，基于 MIT 协议，你可以自由使用、修改和分发。所有数据留存在你自己的服务器上。',
-  },
-  {
-    q: '数据会存储在哪里？',
-    a: '默认存储在运行服务器的 ~/.ydsz-worker/ 目录下（SQLite WAL 模式）。你也可以配置为 PostgreSQL。工作区文件支持本地磁盘、Docker 沙箱、COS/S3 等后端存储。',
-  },
-  {
-    q: '如何创建新的专家角色？',
-    a: '在控制台的「专家」页面，你可以从内置模板创建（运维工程师、研究分析师、办公专家等），也可以从社区导入。每位专家拥有独立的工作区、凭证和配置。',
-  },
-  {
-    q: '和 ChatGPT / 文心一言有什么区别？',
-    a: '云顶数字工作台是自托管平台 —— 你的对话和文件从不上传到任何第三方。它不仅能聊天，还能操控电脑（浏览器自动化、终端命令）、执行定时任务，并通过 IM 通道在你习惯的工具中与你交互。',
-  },
-  {
-    q: 'ACP 是什么？和 MCP 有什么区别？',
-    a: 'ACP（Agent Client Protocol）是把你的 IDE / 终端 AI 工具接入云顶数字工作台的桥梁。入站模式：外部工具（Cursor、OpenCode 等）可以调用你的专家。出站模式：把编程任务委派给外部 Agent。MCP 是连接外部服务（数据库、API、SaaS）的协议，两者互补。',
-  },
-  {
-    q: '知识库支持哪些格式？',
-    a: '支持 Markdown、纯文本、PDF、Word (.docx)、Excel (.xlsx/.csv)、PPT (.pptx)、代码文件等。支持 OCR 识别扫描件，内置向量检索和关键词检索双引擎。',
-  },
-  {
-    q: 'Connector 连接器能接哪些平台？',
-    a: '内置 50+ 连接器，覆盖 IM 类（飞书、钉钉、企业微信、QQ、微信）、文档类（腾讯文档、Notion、语雀、Obsidian）、API 类（企查查、OpenAlex、天气、股票行情）。还支持自定义 MCP 连接器接入任何第三方服务。',
-  },
-  {
-    q: 'AgentTeams 怎么用？',
-    a: '多专家协作功能（目前 Beta）。你创建一个「协调者」专家，它会自动把复杂任务拆解、分发给多个「成员」专家并行执行。比如"帮我调研竞品"会分发给资料搜集者、分析者、报告撰写者三位专家协同完成。',
-  },
+  { qKey: 'faq.q1', aKey: 'faq.a1' },
+  { qKey: 'faq.q2', aKey: 'faq.a2' },
+  { qKey: 'faq.q3', aKey: 'faq.a3' },
+  { qKey: 'faq.q4', aKey: 'faq.a4' },
+  { qKey: 'faq.q5', aKey: 'faq.a5' },
+  { qKey: 'faq.q6', aKey: 'faq.a6' },
+  { qKey: 'faq.q7', aKey: 'faq.a7' },
+  { qKey: 'faq.q8', aKey: 'faq.a8' },
 ]
 
 function FAQ() {
+  const { t } = useLanguage()
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
@@ -776,8 +756,8 @@ function FAQ() {
       <div className="container-page">
         <Reveal>
           <div className="text-center mb-16">
-            <span className="section-label mb-4">常见问题</span>
-            <h2 className="heading-lg mt-4">你想知道的答案都在这里</h2>
+            <span className="section-label mb-4">{t('faq.badge')}</span>
+            <h2 className="heading-lg mt-4">{t('faq.title')}</h2>
           </div>
         </Reveal>
 
@@ -799,7 +779,7 @@ function FAQ() {
                     className="w-full flex items-center justify-between p-5 text-left group"
                   >
                     <span className={`font-medium text-sm transition-colors pr-4 ${isOpen ? 'text-white' : 'text-white/75'}`}>
-                      {item.q}
+                      {t(item.qKey)}
                     </span>
                     <span className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                       isOpen
@@ -817,7 +797,7 @@ function FAQ() {
                     }`}
                   >
                     <p className="px-5 pb-5 text-white/50 text-sm leading-relaxed">
-                      {item.a}
+                      {t(item.aKey)}
                     </p>
                   </div>
                 </div>
@@ -834,6 +814,7 @@ function FAQ() {
    Section 8: CTA 底部横幅
    ═══════════════════════════════════════════════ */
 function CTA() {
+  const { t } = useLanguage()
   return (
     <section className="py-24 lg:py-28">
       <div className="container-page">
@@ -855,21 +836,20 @@ function CTA() {
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                准备好开启智能协作了吗？
+                {t('cta.title')}
               </h2>
               <p className="text-white/50 max-w-lg mx-auto mb-8 leading-relaxed">
-                一分钟安装，即刻拥有一个真正属于你的 AI 团队成员。
-                自托管、MIT 开源、完全掌控。
+                {t('cta.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
                 <a href="#quickstart" className="btn-primary text-base px-7 py-3.5">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  立即开始
+                  {t('cta.primary')}
                 </a>
                 <Link to="/contribute" className="btn-secondary text-base px-7 py-3.5">
-                  参与贡献
+                  {t('cta.secondary')}
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
