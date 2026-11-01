@@ -185,6 +185,25 @@ export default function DocsPage() {
   const [activeSection, setActiveSection] = useState<string>('intro')
   const contentRef = useRef<HTMLDivElement>(null)
 
+  // 监听 Navbar 搜索事件
+  useEffect(() => {
+    const handler = () => setSearchOpen(true)
+    window.addEventListener('ydsz:open-search', handler)
+    return () => window.removeEventListener('ydsz:open-search', handler)
+  }, [])
+
+  // Cmd+K 文档内搜索触发
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setSearchOpen(true)
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [])
+
   // 滚动监听 — 高亮当前 section
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -352,7 +371,7 @@ export default function DocsPage() {
           <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-thin pb-8">
             {/* Logo */}
             <div className="flex items-center gap-2.5 mb-5 px-2">
-              <img src="/logo-vertical.svg" alt="Ydsz Worker" className="h-6" />
+              <img src="/logo-appicon.png" alt="Ydsz Worker" className="h-6 w-6 rounded-md" />
               <span className="text-sm font-bold text-white/80 tracking-tight">产品文档</span>
             </div>
 

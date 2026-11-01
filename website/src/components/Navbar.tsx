@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 
@@ -51,22 +51,6 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
     setMobileMenuOpen(false)
   }, [location.pathname])
 
-  // Cmd+K / Ctrl+K 触发搜索
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault()
-        onSearchOpen?.()
-      }
-    },
-    [onSearchOpen]
-  )
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [handleKeyDown])
-
   const isActive = (match: RegExp) => match.test(location.pathname)
 
   return (
@@ -78,7 +62,7 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
       <nav id="navbar" className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-          <img src="/logo-vertical.svg" alt="Ydsz Worker" className="h-8" />
+          <img src="/logo-appicon.png" alt="Ydsz Worker" className="h-8 w-8 rounded-lg" />
           <span className="text-lg font-bold text-white tracking-tight hidden sm:inline">
             云顶<span className="text-yuanbao-400">数字工作台</span>
           </span>

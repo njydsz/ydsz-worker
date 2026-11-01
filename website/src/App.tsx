@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
@@ -8,8 +8,10 @@ import ChangelogPage from './pages/ChangelogPage'
 import DocsPage from './pages/DocsPage'
 
 export default function App() {
-  const [searchOpen, setSearchOpen] = useState(false)
-  const handleSearchOpen = useCallback(() => setSearchOpen(true), [])
+  const handleSearchOpen = useCallback(() => {
+    const event = new CustomEvent('ydsz:open-search')
+    window.dispatchEvent(event)
+  }, [])
 
   return (
     <BrowserRouter>
