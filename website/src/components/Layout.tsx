@@ -4,7 +4,11 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import BackgroundDecorations from './BackgroundDecorations'
 
-export default function Layout() {
+interface LayoutProps {
+  onSearchOpen?: () => void
+}
+
+export default function Layout({ onSearchOpen }: LayoutProps) {
   const { pathname } = useLocation()
 
   // Scroll to top on route change
@@ -12,10 +16,13 @@ export default function Layout() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [pathname])
 
+  // 只在文档页启用搜索
+  const isDocs = pathname === '/docs'
+
   return (
     <div className="min-h-screen bg-ink-900 overflow-x-hidden flex flex-col">
       <BackgroundDecorations />
-      <Navbar />
+      <Navbar onSearchOpen={isDocs ? onSearchOpen : undefined} />
       <main className="relative flex-1">
         <Outlet />
       </main>

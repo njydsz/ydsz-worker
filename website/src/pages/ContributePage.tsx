@@ -171,7 +171,7 @@ export default function ContributePage() {
           </div>
 
           {/* Leaderboard cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 max-w-7xl mx-auto">
             {leaderboard.map((entry) => (
               <div
                 key={entry.rank}

@@ -141,114 +141,128 @@ const CATEGORY_MAP: Record<TabKey, readonly string[]> = {
    ═══════════════════════════════════════════ */
 
 const GRADIENTS = [
-  { light: '#34d399', mid: '#22c55e' },
-  { light: '#4ade80', mid: '#16a34a' },
-  { light: '#a3e635', mid: '#84cc16' },
-  { light: '#2dd4bf', mid: '#0d9488' },
-  { light: '#6ee7b7', mid: '#34d399' },
-  { light: '#86efac', mid: '#4ade80' },
+  { base: '#0f2e1a', accent: '#22c55e' },   // emerald green
+  { base: '#0f2820', accent: '#16a34a' },   // forest green
+  { base: '#1a2e0f', accent: '#84cc16' },   // lime green
+  { base: '#0f2e2a', accent: '#0d9488' },   // teal
+  { base: '#0f2028', accent: '#0ea5e9' },   // sky blue
+  { base: '#1a1a2e', accent: '#8b5cf6' },   // violet
 ]
 
 /* ═══════════════════════════════════════════
    SVG sub-components
    ═══════════════════════════════════════════ */
 
-/** Card top decoration — 6 refined patterns, cyclic by index */
+/** Card top decoration — 6 rich visible patterns */
 function CardDecoration({ index }: { index: number }) {
-  const color = GRADIENTS[index % GRADIENTS.length].light
-  const patternIndex = index % 6
+  const { base, accent } = GRADIENTS[index % GRADIENTS.length]
+  const pIdx = index % 6
 
   const patterns = [
-    // 0: Soft orbs constellation
-    <svg key="p0" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
+    // 0: Glowing orb top-right + dot grid
+    <svg key="p0" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
       <defs>
-        <linearGradient id={`mg-0-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.32" />
-          <stop offset="60%" stopColor={color} stopOpacity="0.12" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.04" />
-        </linearGradient>
-        <radialGradient id={`orb-0a-${index}`} cx="85%" cy="30%">
-          <stop offset="0%" stopColor="white" stopOpacity="0.07" />
-          <stop offset="100%" stopColor="white" stopOpacity="0" />
+        <radialGradient id={`bg-${index}-0`} cx="80%" cy="0%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.22" />
+          <stop offset="100%" stopColor={base} stopOpacity="0" />
         </radialGradient>
       </defs>
-      <rect width="400" height="72" fill={`url(#mg-0-${index})`} />
-      <circle cx="340" cy="18" r="48" fill={`url(#orb-0a-${index})`} />
-      <circle cx="60" cy="56" r="28" fill="black" opacity="0.12" />
-    </svg>,
-
-    // 1: Diagonal hatch + glow top-right
-    <svg key="p1" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id={`mg-1-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.28" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.05" />
-        </linearGradient>
-      </defs>
-      <rect width="400" height="72" fill={`url(#mg-1-${index})`} />
-      {[0, 1, 2, 3, 4].map((i) => (
-        <line key={i} x1={80 + i * 75} y1="0" x2={120 + i * 75} y2="72" stroke="white" strokeWidth="0.4" opacity="0.07" />
+      <rect width="380" height="80" fill={base} />
+      <rect width="380" height="80" fill={`url(#bg-${index}-0)`} />
+      {[40, 90, 140, 190, 240, 290, 340].map((x) => (
+        <circle key={x} cx={x} cy={60} r="1.2" fill="white" opacity="0.06" />
       ))}
-      <circle cx="340" cy="16" r="32" fill="white" opacity="0.035" />
+      {[65, 125, 185, 245, 305].map((x) => (
+        <circle key={x} cx={x} cy={42} r="0.8" fill="white" opacity="0.04" />
+      ))}
     </svg>,
 
-    // 2: Triangular silhouette
-    <svg key="p2" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
+    // 1: Diagonal light streak
+    <svg key="p1" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
       <defs>
-        <linearGradient id={`mg-2-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.25" />
-          <stop offset="50%" stopColor={color} stopOpacity="0.12" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.04" />
+        <linearGradient id={`lg-${index}-1`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.15" />
+          <stop offset="50%" stopColor={base} stopOpacity="0.8" />
+          <stop offset="100%" stopColor={base} stopOpacity="0" />
         </linearGradient>
       </defs>
-      <rect width="400" height="72" fill={`url(#mg-2-${index})`} />
-      <polygon points="0,72 50,12 100,72" fill="white" opacity="0.03" />
-      <polygon points="320,72 370,5 420,72" fill="black" opacity="0.07" />
+      <rect width="380" height="80" fill={base} />
+      <polygon points="200,0 380,0 380,80 280,80" fill={`url(#lg-${index}-1)`} />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <line key={i} x1={220 + i * 35} y1="0" x2={280 + i * 35} y2="80" stroke={accent} strokeWidth="0.5" opacity="0.08" />
+      ))}
     </svg>,
 
-    // 3: Flowing waves
-    <svg key="p3" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
+    // 2: Triangular mountains
+    <svg key="p2" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
       <defs>
-        <linearGradient id={`mg-3-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.06" />
+        <linearGradient id={`tg-${index}-2`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.12" />
+          <stop offset="100%" stopColor={base} stopOpacity="0" />
         </linearGradient>
       </defs>
-      <rect width="400" height="72" fill={`url(#mg-3-${index})`} />
-      <path d="M0,42 Q100,10 200,36 T400,28" stroke="white" strokeWidth="0.8" fill="none" opacity="0.09" />
-      <path d="M0,58 Q120,28 240,50 T400,40" stroke="white" strokeWidth="0.5" fill="none" opacity="0.05" />
+      <rect width="380" height="80" fill={base} />
+      <polygon points="0,80 80,20 160,80" fill={accent} opacity="0.07" />
+      <polygon points="100,80 200,10 300,80" fill={accent} opacity="0.05" />
+      <polygon points="260,80 340,30 380,65 380,80" fill={accent} opacity="0.06" />
+      <rect width="380" height="80" fill={`url(#tg-${index}-2)`} />
     </svg>,
 
-    // 4: Diamond grid
-    <svg key="p4" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
+    // 3: Wave lines
+    <svg key="p3" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
       <defs>
-        <linearGradient id={`mg-4-${index}`} x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.06" />
+        <linearGradient id={`wg-${index}-3`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
+          <stop offset="100%" stopColor={base} stopOpacity="0" />
         </linearGradient>
       </defs>
-      <rect width="400" height="72" fill={`url(#mg-4-${index})`} />
-      <rect x="330" y="8" width="36" height="36" rx="3" transform="rotate(45 348 26)" fill="white" opacity="0.04" />
-      <rect x="35" y="22" width="20" height="20" rx="2" transform="rotate(45 45 32)" fill="black" opacity="0.07" />
+      <rect width="380" height="80" fill={base} />
+      <rect width="380" height="80" fill={`url(#wg-${index}-3)`} />
+      <path d="M0,50 Q95,15 190,45 T380,35" stroke={accent} strokeWidth="1.2" fill="none" opacity="0.15" />
+      <path d="M0,65 Q100,30 200,55 T380,50" stroke={accent} strokeWidth="0.8" fill="none" opacity="0.08" />
     </svg>,
 
-    // 5: Scatter geometry
-    <svg key="p5" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
+    // 4: Diamond accent grid
+    <svg key="p4" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
       <defs>
-        <linearGradient id={`mg-5-${index}`} x1="100%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.25" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.06" />
-        </linearGradient>
+        <radialGradient id={`dg-${index}-4`} cx="20%" cy="20%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
+          <stop offset="100%" stopColor={base} stopOpacity="0" />
+        </radialGradient>
       </defs>
-      <rect width="400" height="72" fill={`url(#mg-5-${index})`} />
-      <polygon points="0,72 40,18 80,72" fill="white" opacity="0.03" />
-      <polygon points="300,72 345,6 390,72" fill="white" opacity="0.04" />
+      <rect width="380" height="80" fill={base} />
+      <rect width="380" height="80" fill={`url(#dg-${index}-4)`} />
+      {[30, 80, 130, 180, 230, 280, 330].map((x) =>
+        [20, 40, 60].map((y) => (
+          <rect key={`${x}-${y}`} x={x} y={y} width="3" height="3" rx="0.5" transform={`rotate(45 ${x+1.5} ${y+1.5})`} fill={accent} opacity="0.08" />
+        ))
+      )}
+      <rect x="310" y="12" width="40" height="40" rx="4" transform="rotate(45 330 32)" fill={accent} opacity="0.06" />
+    </svg>,
+
+    // 5: Circular constellation
+    <svg key="p5" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
+      <defs>
+        <radialGradient id={`cg-${index}-5`} cx="70%" cy="30%">
+          <stop offset="0%" stopColor={accent} stopOpacity="0.2" />
+          <stop offset="100%" stopColor={base} stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="380" height="80" fill={base} />
+      <rect width="380" height="80" fill={`url(#cg-${index}-5)`} />
+      <circle cx="300" cy="25" r="22" stroke={accent} strokeWidth="1" fill="none" opacity="0.12" />
+      <circle cx="300" cy="25" r="12" stroke={accent} strokeWidth="0.8" fill="none" opacity="0.08" />
+      <circle cx="300" cy="25" r="2" fill={accent} opacity="0.2" />
+      {[60, 130, 200, 270].map((x) => (
+        <circle key={x} cx={x} cy={55 + (x % 20)} r="1.5" fill="white" opacity="0.05" />
+      ))}
     </svg>,
   ]
 
   return (
-    <div className="card-head-decoration">
-      {patterns[patternIndex]}
+    <div className="absolute top-0 left-0 right-0 h-[44px] overflow-hidden">
+      {patterns[pIdx]}
+      <div className="absolute bottom-0 left-0 right-0 h-[20px]" style={{ background: `linear-gradient(to top, #0f1714 0%, transparent 100%)` }} />
     </div>
   )
 }
@@ -481,26 +495,28 @@ export default function MarketplacePage() {
               <div className="card-top-line opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Card content */}
-              <div className="relative px-5 pb-5 pt-[52px]">
-                {/* Avatar icon */}
-                <div className="card-avatar">
-                  <span className="relative z-10 drop-shadow-sm">{item.name.charAt(0)}</span>
-                </div>
-
-                {/* Name + badges */}
-                <div className="mb-2.5">
-                  <h3 className="text-white font-semibold text-[15px] leading-snug group-hover:text-yuanbao-300 transition-colors duration-300">
-                    {item.name}
-                  </h3>
-                  <div className="flex items-center gap-1.5 mt-1.5">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-yuanbao-500/10 text-yuanbao-400 text-[11px] font-medium leading-none border border-yuanbao-500/15">
-                      {item.category}
-                    </span>
-                    {item.badge && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-white/[0.04] text-white/55 text-[11px] font-medium leading-none border border-white/[0.07]">
-                        {item.badge}
+              <div className="relative px-5 pb-5 pt-4">
+                {/* Row: avatar + title/badges side by side */}
+                <div className="flex items-center gap-3 mb-3">
+                  {/* Avatar — in flow, not absolute */}
+                  <div className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-white font-bold text-base border-2 border-[#0f1714] shadow-lg" style={{ background: 'linear-gradient(135deg, #4ade80 0%, #16a34a 100%)', boxShadow: '0 4px 12px -2px rgba(34,197,94,0.4), 0 2px 6px -2px rgba(0,0,0,0.2)' }}>
+                    <span className="drop-shadow-sm">{item.name.charAt(0)}</span>
+                  </div>
+                  {/* Title + badges */}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-white font-semibold text-[15px] leading-snug truncate group-hover:text-yuanbao-300 transition-colors duration-300">
+                      {item.name}
+                    </h3>
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-yuanbao-500/10 text-yuanbao-400 text-[11px] font-medium leading-none border border-yuanbao-500/15">
+                        {item.category}
                       </span>
-                    )}
+                      {item.badge && (
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-white/[0.04] text-white/55 text-[11px] font-medium leading-none border border-white/[0.07]">
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 

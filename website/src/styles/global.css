@@ -132,7 +132,35 @@
   transform: translateY(-3px);
 }
 
-/* ── 代码块语法高亮模拟 ── */
+/* ── 精致代码块 SyntaxHighlighter ── */
+.code-line-row {
+  @apply whitespace-pre;
+}
+.code-line-row:hover {
+  @apply bg-white/[0.02];
+}
+.code-line-number {
+  @apply text-[13px] leading-[1.7] font-mono;
+}
+
+/* 语法 token 高亮 */
+.token-comment {
+  @apply text-white/25 italic;
+}
+.token-keyword {
+  @apply text-blue-400/90 font-medium;
+}
+.token-string {
+  @apply text-amber-300/80;
+}
+.token-attr {
+  @apply text-cyan-300/80;
+}
+.token-prompt {
+  @apply text-yuanbao-500/70;
+}
+
+/* 旧代码块样式保留（兼容 DashboardMock 内嵌代码） */
 .code-block {
   @apply bg-ink-900/80 rounded-xl border border-white/[0.08] font-mono text-sm overflow-x-auto;
 }
@@ -344,3 +372,15 @@
 .section-shadow-top {
   box-shadow: 0 -10px 40px -10px rgba(34,197,94,0.04);
 }
+
+/* ─── 表格排版 (P1-8) ─── */
+table { border-collapse: collapse; }
+thead th { @apply text-xs font-semibold uppercase tracking-wider; }
+tbody tr { @apply transition-colors duration-150; }
+td, th { @apply align-top; }
+
+/* ─── 自定义滚动条 (侧栏+TOC) ─── */
+.scrollbar-thin::-webkit-scrollbar { width: 4px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { @apply bg-white/[0.08] rounded-full; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { @apply bg-white/[0.15]; }

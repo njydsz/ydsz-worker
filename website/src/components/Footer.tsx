@@ -110,7 +110,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/30">
-            Copyleft &copy; {new Date().getFullYear()} 云顶数字工作台 (Ydsz Worker). MIT License.
+            Copyleft &copy; {new Date().getFullYear()} 南京云顶数字科技有限公司. MIT License.
           </p>
           <p className="text-xs text-white/20">
             Built with ❤️ for the open-source community

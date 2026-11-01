@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 
@@ -31,7 +31,12 @@ const SOCIAL_LINKS = [
   },
 ]
 
-export default function Navbar() {
+interface NavbarProps {
+  onSearchOpen?: () => void
+  searchItems?: Array<{ id: string; title: string; section: string; sectionGroup: string }>
+}
+
+export default function Navbar({ onSearchOpen }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
@@ -46,6 +51,22 @@ export default function Navbar() {
     setMobileMenuOpen(false)
   }, [location.pathname])
 
+  // Cmd+K / Ctrl+K 触发搜索
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        onSearchOpen?.()
+      }
+    },
+    [onSearchOpen]
+  )
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown])
+
   const isActive = (match: RegExp) => match.test(location.pathname)
 
   return (
@@ -57,9 +78,9 @@ export default function Navbar() {
       <nav id="navbar" className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-          <img src="/logo-appicon.png" alt="Ydsz Worker" className="h-8 w-8 rounded-lg" />
+          <img src="/logo-vertical.svg" alt="Ydsz Worker" className="h-8" />
           <span className="text-lg font-bold text-white tracking-tight hidden sm:inline">
-            云顶数字<span className="text-yuanbao-400">工作台</span>
+            云顶<span className="text-yuanbao-400">数字工作台</span>
           </span>
         </Link>
 
@@ -81,9 +102,25 @@ export default function Navbar() {
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
+          {/* Search Trigger — 文档页显示 */}
+          {onSearchOpen && (
+            <button
+              onClick={onSearchOpen}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-white/40 text-sm hover:text-white/70 hover:border-yuanbao-500/20 transition-all"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span className="hidden md:inline">搜索</span>
+              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/[0.06] border border-white/[0.08] text-white/30">
+                ⌘K
+              </kbd>
+            </button>
+          )}
+
           {/* Social */}
-          <div className="hidden sm:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {SOCIAL_LINKS.map((link) => (
               <a
                 key={link.label}
