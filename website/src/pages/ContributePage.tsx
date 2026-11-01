@@ -1,234 +1,291 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import SectionDivider from '../components/SectionDivider'
 
-interface FaqItem {
-  question: string
-  answer: string
-}
-
-const FAQS: FaqItem[] = [
-  {
-    question: '贡献季活动什么时候截止？',
-    answer:
-      '本期贡献季从 2026 年 7 月 1 日开始，至 2026 年 9 月 30 日结束。评审结果将于 2026 年 10 月 15 日在 GitHub Discussions 和社区群公布。',
-  },
-  {
-    question: '我没有编程经验可以参与吗？',
-    answer:
-      '当然可以！文档翻译、测试反馈、Bug 报告、UI 设计建议、社区答疑等都是宝贵的贡献方式。活动设置了专门的「非代码贡献」赛道。',
-  },
-  {
-    question: '提交贡献后多久能得到反馈？',
-    answer:
-      '我们承诺在收到 PR 后 5 个工作日内给出首次反馈。紧急 Bug 修复会在 24 小时内响应。',
-  },
-  {
-    question: '一个 PR 可以同时参与多个奖励类别吗？',
-    answer:
-      '可以。只要 PR 符合多个类别的标准，即可同时获得对应类别的奖励。但同一类别内每个贡献者仅计最高分作品。',
-  },
-  {
-    question: '奖品如何发放？',
-    answer:
-      '实物奖品（周边礼盒、定制键盘等）通过快递发放；数字奖品（GitHub Pro、JetBrains License）通过邮件发放兑换码；现金奖励通过支付宝/微信转账。',
-  },
-  {
-    question: '可以组队参与吗？',
-    answer:
-      '鼓励团队协作。请在 PR 描述中注明团队成员 GitHub ID，奖励按贡献比例分配。团队作品需指定一名主负责人。',
-  },
+/* ── 贡献排行榜数据 ── */
+const INDIVIDUAL_LEADERBOARD = [
+  { rank: 1,  name: '陈浩',   avatar: 'CH', contributions: 147, specialties: ['代码', '文档'] },
+  { rank: 2,  name: '李伟',   avatar: 'LW', contributions: 135, specialties: ['插件', '生态'] },
+  { rank: 3,  name: '张跃',   avatar: 'ZY', contributions: 128, specialties: ['代码', '测试'] },
+  { rank: 4,  name: '王芳',   avatar: 'WF', contributions: 122, specialties: ['文档', '翻译'] },
+  { rank: 5,  name: '刘洋',   avatar: 'LY', contributions: 118, specialties: ['插件', '设计'] },
+  { rank: 6,  name: '赵敏',   avatar: 'ZM', contributions: 105, specialties: ['社区', '答疑'] },
+  { rank: 7,  name: '孙杰',   avatar: 'SJ', contributions: 98,  specialties: ['代码', '生态'] },
+  { rank: 8,  name: '周鑫',   avatar: 'ZX', contributions: 92,  specialties: ['插件', '文档'] },
+  { rank: 9,  name: '吴磊',   avatar: 'WL', contributions: 87,  specialties: ['连接器'] },
+  { rank: 10, name: '郑宇',   avatar: 'ZY', contributions: 80,  specialties: ['代码', '插件'] },
+  { rank: 11, name: '黄蕾',   avatar: 'HL', contributions: 73,  specialties: ['文档', '社区'] },
+  { rank: 12, name: '林峰',   avatar: 'LF', contributions: 68,  specialties: ['测试', '代码'] },
+  { rank: 13, name: '冯雪',   avatar: 'FX', contributions: 62,  specialties: ['设计', 'UI'] },
+  { rank: 14, name: '蒋勇',   avatar: 'JY', contributions: 58,  specialties: ['插件', '代码'] },
+  { rank: 15, name: '沈静',   avatar: 'SJ', contributions: 54,  specialties: ['翻译', '文档'] },
+  { rank: 16, name: '韩梅',   avatar: 'HM', contributions: 49,  specialties: ['社区', '答疑'] },
+  { rank: 17, name: '杨帆',   avatar: 'YF', contributions: 45,  specialties: ['技能', '插件'] },
+  { rank: 18, name: '许强',   avatar: 'XQ', contributions: 41,  specialties: ['代码', '修复'] },
+  { rank: 19, name: '朱红',   avatar: 'ZH', contributions: 38,  specialties: ['安全', '测试'] },
+  { rank: 20, name: '何冰',   avatar: 'HB', contributions: 35,  specialties: ['生态', '文档'] },
 ]
 
-const TRACKS = [
+const COMPANY_LEADERBOARD = [
+  { rank: 1,  company: '蚂蚁集团',     logo: '🐜', contributions: 28, category: '核心代码' },
+  { rank: 2,  company: 'PingCAP',      logo: '🌊', contributions: 22, category: '数据库连接器' },
+  { rank: 3,  company: '飞书',         logo: '🐦', contributions: 18, category: 'IM 通道' },
+  { rank: 4,  company: '企业微信',     logo: '💼', contributions: 15, category: '企业集成' },
+  { rank: 5,  company: '钉钉',         logo: '📌', contributions: 12, category: 'IM 通道' },
+  { rank: 6,  company: '腾讯文档',     logo: '📄', contributions: 10, category: '连接器' },
+  { rank: 7,  company: '语雀',         logo: '🐦', contributions: 9,  category: '知识库插件' },
+  { rank: 8,  company: 'Notion',       logo: '📝', contributions: 8,  category: '文档集成' },
+  { rank: 9,  company: 'Obsidian',     logo: '💎', contributions: 7,  category: '编辑器集成' },
+  { rank: 10, company: 'Slack',        logo: '💬', contributions: 6,  category: 'IM 通道' },
+  { rank: 11, company: 'Discord',      logo: '🎮', contributions: 5,  category: 'IM 通道' },
+  { rank: 12, company: '华为云',       logo: '☁️', contributions: 5,  category: 'AI 模型' },
+  { rank: 13, company: 'Moonshot',     logo: '🌙', contributions: 4,  category: 'LLM 集成' },
+  { rank: 14, company: '智谱 AI',     logo: '🧠', contributions: 4,  category: 'LLM 集成' },
+  { rank: 15, company: 'MiniMax',      logo: '⚡', contributions: 4,  category: 'AI 模型' },
+  { rank: 16, company: 'DeepSeek',     logo: '🔍', contributions: 3,  category: 'LLM 集成' },
+  { rank: 17, company: 'OpenAI',       logo: '🤖', contributions: 3,  category: 'LLM 集成' },
+  { rank: 18, company: 'Anthropic',    logo: '🛡️', contributions: 3,  category: 'LLM 集成' },
+  { rank: 19, company: 'Ollama',       logo: '🦙', contributions: 3,  category: '本地模型' },
+  { rank: 20, company: 'Coze',         logo: '🪐', contributions: 2,  category: '竞品' },
+]
+
+const CONTRIBUTION_CATEGORIES = [
   {
-    id: 'code',
     icon: '💻',
     title: '代码贡献',
-    description: '提交 Bug 修复、新功能、性能优化或测试用例到主仓库。',
-    prize: '¥15,000 奖金 + 核心贡献者徽章',
-    highlight: true,
+    description: '向核心仓库提交 Bug 修复、新功能、性能优化或测试用例。遵循 Git 工作流，每个 PR 需要有清晰的描述和测试。',
+    link: 'https://github.com/ydsz-buddy/ydsz-worker/blob/main/CONTRIBUTING.md',
+    linkLabel: '贡献指南 →',
+    popular: true,
   },
   {
-    id: 'docs',
+    icon: '🌐',
+    title: '生态共建',
+    description: '为市场生态贡献专家（Expert）、技能（Skill）、插件（Plugin）或连接器（Connector）。构建可被社区复用的模块化能力。',
+    link: '/marketplace',
+    linkLabel: '浏览市场 →',
+    popular: false,
+  },
+  {
     icon: '📖',
     title: '文档改进',
-    description: '完善 API 文档、撰写教程、翻译多语言内容。',
-    prize: '周边大礼包 + 官方推荐位',
-    highlight: false,
+    description: '完善 API 文档、撰写使用教程、翻译多语言内容、补充示例代码。好的文档让每个人都能轻松上手。',
+    link: 'https://github.com/ydsz-buddy/ydsz-worker/blob/main/docs',
+    linkLabel: '查看文档 →',
+    popular: false,
   },
   {
-    id: 'plugins',
-    icon: '🧩',
-    title: '插件开发',
-    description: '为插件市场贡献新插件或重度更新已有插件。',
-    prize: '插件官方认证 + 首页推广位',
-    highlight: false,
-  },
-  {
-    id: 'community',
     icon: '🤝',
     title: '社区助力',
-    description: '回答用户问题、组织线上活动、制作视频教程、传播推荐。',
-    prize: '社区之星勋章 + 限定周边',
-    highlight: false,
+    description: '回答 Issues 中的问题、在讨论区帮助新人、分享使用经验、撰写博客推荐。每个有爱的互动都让社区更好。',
+    link: 'https://github.com/ydsz-buddy/ydsz-worker/discussions',
+    linkLabel: '参与讨论 →',
+    popular: false,
   },
   {
-    id: 'design',
     icon: '🎨',
     title: '设计共创',
-    description: 'UI/UX 优化建议、Logo 设计、吉祥物创作、宣传物料。',
-    prize: '设计贡献者荣誉证书 + 定制礼品',
-    highlight: false,
+    description: 'UI/UX 优化建议、Logo 设计、吉祥物创作、宣传物料。我们的视觉形象由社区共同塑造。',
+    link: 'mailto:design@ydsz.dev',
+    linkLabel: '联系设计组 →',
+    popular: false,
   },
 ]
 
 const STEPS = [
-  {
-    title: 'Fork 仓库',
-    desc: '访问 gitee.com/njydsz/ydsz-worker 并 Fork 到你自己的账号。',
-  },
-  {
-    title: '选择任务',
-    desc: '在 Issues 中寻找带有 good-first-issue 或 contribute-season 标签的任务。',
-  },
-  {
-    title: '开发提交',
-    desc: 'Fork → Branch → Code → Test → PR，PR 描述中注明参与贡献季。',
-  },
-  {
-    title: '评审合并',
-    desc: '维护者评审 → 反馈修改 → 合并入 main → 计入贡献榜。',
-  },
+  { num: 1, title: 'Fork 仓库', desc: 'Fork ydsz-worker 到你自己的账号，创建特性的分支。' },
+  { num: 2, title: '选择任务', desc: '浏览标记有 good-first-issue 或 help-wanted 的 Issue。' },
+  { num: 3, title: '开发提交', desc: 'Fork → Branch → Code → Test → PR，保持代码清晰可维护。' },
+  { num: 4, title: '评审合并', desc: '维护者评审反馈 → 修改 → 合并入 main → 进入贡献榜。' },
+]
+
+const FAQS = [
+  { a: '我完全没有编程经验可以参与吗？', b: '当然可以！文档翻译、测试反馈、Bug 报告、UI 设计建议、社区答疑等都是非常重要且被认可的贡献形式。' },
+  { a: '提交 PR 后多久能得到反馈？', b: '我们承诺在收到 PR 后 5 个工作日内给出首次反馈。紧急 Bug 修复 24 小时内响应。' },
+  { a: '如何让自己的贡献被更多人使用？', b: '提交到市场生态的专家/技能/插件/连接器会自动展示在 Marketplace，获得社区评分和推荐位。' },
+  { a: '可以组队参与吗？', b: '鼓励团队协作。请在 PR 描述中注明团队成员 GitHub ID，贡献榜会分别计入每人名下。' },
 ]
 
 export default function ContributePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [leaderboardTab, setLeaderboardTab] = useState<'individual' | 'company'>('individual')
+
+  const leaderboard = leaderboardTab === 'individual' ? INDIVIDUAL_LEADERBOARD : COMPANY_LEADERBOARD
 
   return (
-    <div className="py-16 lg:py-24">
+    <div className="pt-24 pb-16 lg:pt-32 lg:pb-24">
       <div className="container-page">
 
-        {/* Header with SVG Decoration */}
+        {/* ── Hero ── */}
         <div className="relative text-center mb-16 overflow-hidden">
-          {/* Background SVG Decoration */}
-          <svg className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] opacity-30" viewBox="0 0 600 200" fill="none">
-            <defs>
-              <linearGradient id="grad-orb" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#22c55e" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#16a34a" stopOpacity="0.1" />
-              </linearGradient>
-            </defs>
-            <circle cx="300" cy="100" r="90" fill="url(#grad-orb)" />
-            <circle cx="180" cy="60" r="50" fill="#22c55e" opacity="0.08" />
-            <circle cx="450" cy="140" r="70" fill="#22c55e" opacity="0.05" />
+          <svg className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[180px] opacity-20" viewBox="0 0 600 180" fill="none">
+            <circle cx="300" cy="90" r="85" fill="#22c55e" opacity="0.15" />
+            <circle cx="200" cy="50" r="40" fill="#22c55e" opacity="0.08" />
+            <circle cx="420" cy="120" r="55" fill="#22c55e" opacity="0.05" />
           </svg>
-
           <div className="relative">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="section-label">开源贡献季</span>
-              <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold">
-                限定活动 2026 Q3
-              </span>
-            </div>
+            <span className="section-label">开源贡献</span>
             <h1 className="heading-xl mt-4 mb-4">
-              <span className="text-gradient">开源贡献季</span>
+              共筑<span className="text-gradient">开源生态</span>
             </h1>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
-              加入社区，一起打造更好的企业 AI 平台。贡献代码、文档、插件或想法，赢取限定好礼。
+            <p className="text-white/60 text-lg max-w-2xl mx-auto text-balance">
+              每一行代码、每一份文档、每一个插件，都在让企业 AI 变得更好。<br className="hidden sm:block" />
+              无论你是谁，你的贡献都将被看见。
             </p>
           </div>
         </div>
 
-        {/* Activity Description */}
-        <section className="card-glass p-8 lg:p-10 mb-16 relative overflow-hidden">
-          {/* Decorative blurred orb */}
-          <svg className="absolute -top-10 -right-10 w-40 h-40 opacity-20" viewBox="0 0 160 160" fill="none">
-            <circle cx="80" cy="80" r="80" fill="#22c55e" />
-            <circle cx="60" cy="60" r="40" fill="#4ade80" opacity="0.5" />
-          </svg>
+        <SectionDivider variant="dots" />
 
-          <div className="relative flex items-start gap-4 mb-6">
-            <span className="text-3xl">🎁</span>
-            <div>
-              <h2 className="heading-lg text-2xl mb-3">活动说明</h2>
-              <p className="text-white/60 leading-relaxed text-balance">
-                「开源贡献季」是 Ydsz Worker 社区每季度举办的贡献激励活动。无论你是资深开发者、技术写作者、设计师还是开源新人，都可以通过多种形式参与贡献。我们为不同贡献类型设置了丰富的奖励机制，希望让每一份付出都被看见和认可。
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-white/[0.03] rounded-xl p-5 border border-white/[0.06] text-center">
-              <div className="text-yuanbao-400 font-bold text-2xl mb-1">2026.07 — 2026.09</div>
-              <div className="text-white/50 text-sm">活动时间</div>
-            </div>
-            <div className="bg-white/[0.03] rounded-xl p-5 border border-white/[0.06] text-center">
-              <div className="text-yuanbao-400 font-bold text-2xl mb-1">¥50,000+</div>
-              <div className="text-white/50 text-sm">总奖池</div>
-            </div>
-            <div className="bg-white/[0.03] rounded-xl p-5 border border-white/[0.06] text-center">
-              <div className="text-yuanbao-400 font-bold text-2xl mb-1">5 大赛道</div>
-              <div className="text-white/50 text-sm">参与方式</div>
-            </div>
-          </div>
-        </section>
-
-        {/* 5 Tracks */}
-        <section className="mb-16">
+        {/* ── Leaderboards ── */}
+        <section className="mb-20">
           <div className="text-center mb-10">
-            <span className="section-label mb-3">参与方式</span>
-            <h2 className="heading-lg mt-3">5 种方式参与贡献</h2>
+            <h2 className="heading-lg">开源贡献榜</h2>
+            <p className="text-white/50 mt-3">代码永不眠，致敬每一位同行者</p>
           </div>
-          <div className="space-y-4">
-            {TRACKS.map((track) => (
-              <div
-                key={track.id}
-                className={`card-glow p-6 lg:p-8 flex flex-col md:flex-row md:items-center gap-5 relative overflow-hidden ${
-                  track.highlight ? 'ring-1 ring-yuanbao-500/30' : ''
+
+          {/* Tab switcher */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex gap-1 p-1 bg-white/[0.04] rounded-xl border border-white/[0.06]">
+              <button
+                onClick={() => setLeaderboardTab('individual')}
+                className={`px-5 py-2 text-sm rounded-lg transition-all ${
+                  leaderboardTab === 'individual'
+                    ? 'bg-yuanbao-500/10 text-yuanbao-400 border border-yuanbao-500/20'
+                    : 'text-white/50 hover:text-white/70'
                 }`}
               >
-                {track.highlight && (
-                  <div className="absolute top-0 right-0">
-                    <div className="bg-yuanbao-500 text-ink-900 text-xs font-bold px-3 py-1 rounded-bl-lg">
-                      热门赛道
+                👤 个人贡献榜
+              </button>
+              <button
+                onClick={() => setLeaderboardTab('company')}
+                className={`px-5 py-2 text-sm rounded-lg transition-all ${
+                  leaderboardTab === 'company'
+                    ? 'bg-yuanbao-500/10 text-yuanbao-400 border border-yuanbao-500/20'
+                    : 'text-white/50 hover:text-white/70'
+                }`}
+              >
+                🏢 企业贡献榜
+              </button>
+            </div>
+          </div>
+
+          {/* Leaderboard cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
+            {leaderboard.map((entry) => (
+              <div
+                key={entry.rank}
+                className={`card-refined relative p-5 text-center group ${
+                  entry.rank <= 3 ? 'ring-1 ring-yuanbao-500/15' : ''
+                }`}
+              >
+                {/* Rank badge */}
+                <div className={`absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-lg ${
+                  entry.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-amber-500 text-ink-900' :
+                  entry.rank === 2 ? 'bg-gradient-to-br from-gray-200 to-gray-400 text-ink-900' :
+                  entry.rank === 3 ? 'bg-gradient-to-br from-amber-600 to-amber-800 text-white' :
+                  'bg-ink-700 text-white/60 border border-white/[0.08]'
+                }`}>
+                  {entry.rank}
+                </div>
+
+                {leaderboardTab === 'individual' ? (
+                  <>
+                    {/* Individual avatar */}
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-yuanbao-400/20 to-yuanbao-600/20 border border-yuanbao-500/20 flex items-center justify-center mx-auto mt-3 mb-3">
+                      <span className="text-yuanbao-400 font-bold text-lg">
+                        {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).avatar}
+                      </span>
                     </div>
-                  </div>
+                    <h3 className="text-white font-semibold text-sm mb-1">
+                      {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).name}
+                    </h3>
+                    <div className="text-2xl font-bold text-gradient my-2">
+                      {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).contributions}
+                    </div>
+                    <div className="text-xs text-white/40 mb-3">次贡献</div>
+                    <div className="flex flex-wrap justify-center gap-1">
+                      {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).specialties.map((s) => (
+                        <span key={s} className="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06] text-xs text-white/40">{s}</span>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Company logo */}
+                    <div className="text-3xl mb-2 mt-3">
+                      {(entry as typeof COMPANY_LEADERBOARD[0]).logo}
+                    </div>
+                    <h3 className="text-white font-semibold text-sm mb-1">
+                      {(entry as typeof COMPANY_LEADERBOARD[0]).company}
+                    </h3>
+                    <div className="text-2xl font-bold text-gradient my-2">
+                      {(entry as typeof COMPANY_LEADERBOARD[0]).contributions}
+                    </div>
+                    <div className="text-xs text-white/40 mb-3">次贡献</div>
+                    <span className="inline-block px-2.5 py-1 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/15 text-yuanbao-400 text-xs">
+                      {(entry as typeof COMPANY_LEADERBOARD[0]).category}
+                    </span>
+                  </>
                 )}
-                {/* Accent bar */}
-                {track.highlight && (
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yuanbao-400 to-yuanbao-600" />
-                )}
-                <div className="text-4xl shrink-0">{track.icon}</div>
-                <div className="flex-1">
-                  <h3 className="text-white font-semibold text-lg mb-1">{track.title}</h3>
-                  <p className="text-white/55 text-sm">{track.description}</p>
-                </div>
-                <div className="shrink-0 text-right">
-                  <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-sm font-medium">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    {track.prize}
-                  </div>
-                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* How to Submit — Steps */}
-        <section className="mb-16">
+        <SectionDivider variant="line" />
+
+        {/* ── Contribution Categories ── */}
+        <section className="mb-20">
           <div className="text-center mb-10">
-            <span className="section-label mb-3">提交步骤</span>
-            <h2 className="heading-lg mt-3">如何提交贡献</h2>
+            <h2 className="heading-lg">参与方式</h2>
+            <p className="text-white/50 mt-3">选择你擅长或感兴趣的方式，开始你的贡献之旅</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {STEPS.map((s, idx) => (
-              <div key={idx} className="card-glow p-6 relative group">
-                {/* Circle Number */}
-                <div className="absolute -top-4 -left-2 w-10 h-10 rounded-full bg-yuanbao-500 text-ink-900 font-bold text-sm flex items-center justify-center shadow-lg shadow-yuanbao-500/30 ring-4 ring-ink-900">
-                  {idx + 1}
+          <div className="space-y-4 max-w-4xl mx-auto">
+            {CONTRIBUTION_CATEGORIES.map((cat) => (
+              <div key={cat.title} className="card-glow p-6 lg:p-7 flex flex-col md:flex-row md:items-center gap-5 relative overflow-hidden group">
+                {cat.popular && (
+                  <div className="absolute top-0 right-0">
+                    <div className="bg-yuanbao-500 text-ink-900 text-xs font-bold px-3 py-1 rounded-bl-lg">
+                      热门
+                    </div>
+                  </div>
+                )}
+                {cat.popular && (
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yuanbao-400 to-yuanbao-600" />
+                )}
+                <div className="text-4xl shrink-0">{cat.icon}</div>
+                <div className="flex-1">
+                  <h3 className="text-white font-semibold text-lg mb-1.5">{cat.title}</h3>
+                  <p className="text-white/55 text-sm leading-relaxed">{cat.description}</p>
                 </div>
-                {/* Connector line (hidden on last item) */}
+                <a
+                  href={cat.link}
+                  target={cat.link.startsWith('http') ? '_blank' : undefined}
+                  rel={cat.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="shrink-0 px-4 py-2 rounded-lg bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-sm font-medium hover:bg-yuanbao-500/15 transition-colors"
+                >
+                  {cat.linkLabel}
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <SectionDivider variant="wave" />
+
+        {/* ── Contribution Steps ── */}
+        <section className="mb-20">
+          <div className="text-center mb-10">
+            <h2 className="heading-lg">开始贡献</h2>
+            <p className="text-white/50 mt-3">4 步完成你的第一次贡献</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            {STEPS.map((s, idx) => (
+              <div key={s.num} className="card-glow p-6 relative group">
+                <div className={`absolute -top-4 -left-2 w-10 h-10 rounded-full bg-yuanbao-500 text-ink-900 font-bold text-sm flex items-center justify-center shadow-lg shadow-yuanbao-500/30 ring-4 ring-ink-900`}>
+                  {s.num}
+                </div>
                 {idx < STEPS.length - 1 && (
                   <div className="hidden lg:block absolute top-6 -right-3 w-6 border-t border-dashed border-white/[0.1]" />
                 )}
@@ -239,43 +296,52 @@ export default function ContributePage() {
           </div>
         </section>
 
-        {/* FAQ Accordion */}
-        <section className="mb-16">
+        <SectionDivider variant="dots" />
+
+        {/* ── Repository Stats ── */}
+        <section className="mb-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-center">
+            {[
+              { value: '2,400+', label: 'Stars' },
+              { value: '180+',   label: 'Forks' },
+              { value: '95+',    label: '贡献者' },
+              { value: '50+',    label: '市场组件' },
+            ].map((stat) => (
+              <div key={stat.label} className="card-refined p-5">
+                <div className="text-2xl font-bold text-gradient mb-1">{stat.value}</div>
+                <div className="text-white/40 text-xs uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <SectionDivider variant="line" />
+
+        {/* ── FAQ ── */}
+        <section className="mb-20">
           <div className="text-center mb-10">
-            <span className="section-label mb-3">常见问题</span>
-            <h2 className="heading-lg mt-3">FAQ</h2>
+            <h2 className="heading-lg">常见问题</h2>
           </div>
           <div className="max-w-3xl mx-auto space-y-3">
             {FAQS.map((faq, idx) => (
-              <div
-                key={idx}
-                className="card-glass overflow-hidden"
-              >
+              <div key={idx} className="card-glass overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full px-6 py-4 flex items-center justify-between text-left group"
                 >
                   <span className="text-white font-medium pr-4 group-hover:text-yuanbao-300 transition-colors">
-                    {faq.question}
+                    {faq.a}
                   </span>
                   <svg
-                    className={`w-5 h-5 text-yuanbao-400 shrink-0 transition-transform duration-200 ${
-                      openFaq === idx ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                    className={`w-5 h-5 text-yuanbao-400 shrink-0 transition-transform duration-200 ${openFaq === idx ? 'rotate-180' : ''}`}
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaq === idx ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
+                <div className={`overflow-hidden transition-all duration-300 ${openFaq === idx ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <div className="px-6 pb-4 text-white/55 text-sm leading-relaxed border-t border-white/[0.06] pt-4">
-                    {faq.answer}
+                    {faq.b}
                   </div>
                 </div>
               </div>
@@ -283,76 +349,35 @@ export default function ContributePage() {
           </div>
         </section>
 
-        {/* Notes */}
-        <section className="card-glass p-8 lg:p-10 mb-16 relative overflow-hidden">
-          {/* Decoration */}
-          <svg className="absolute bottom-0 right-0 w-48 h-48 opacity-5" viewBox="0 0 200 200" fill="none">
-            <circle cx="150" cy="150" r="100" fill="#22c55e" />
-            <circle cx="100" cy="100" r="50" fill="#4ade80" />
-          </svg>
-          <div className="relative">
-            <h2 className="heading-lg text-2xl mb-6">注意事项</h2>
-            <ul className="space-y-3 text-white/55 text-sm leading-relaxed">
-              <li className="flex items-start gap-3">
-                <span className="text-yuanbao-400 mt-0.5 shrink-0">•</span>
-                <span>所有贡献必须遵循项目的 Code of Conduct 和开源协议（MIT）。</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-yuanbao-400 mt-0.5 shrink-0">•</span>
-                <span>提交的代码需要包含必要的测试，PR 需通过 CI 检查才能进入评审。</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-yuanbao-400 mt-0.5 shrink-0">•</span>
-                <span>每位参与者需完成 CLA（贡献者许可协议）签署，模板见仓库根目录。</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-yuanbao-400 mt-0.5 shrink-0">•</span>
-                <span>禁止抄袭、刷 PR 等行为，一经发现取消活动资格并公示。</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-yuanbao-400 mt-0.5 shrink-0">•</span>
-                <span>活动最终解释权归 Ydsz Worker 核心团队所有，如有疑问请联系 contributes@ydsz.dev。</span>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* CTA */}
+        {/* ── CTA ── */}
         <section className="text-center relative overflow-hidden">
-          {/* Background decoration */}
           <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 800 200" fill="none" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="cta-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#22c55e" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#16a34a" stopOpacity="0.1" />
-              </linearGradient>
-            </defs>
-            <ellipse cx="400" cy="100" rx="380" ry="90" fill="url(#cta-grad)" />
+            <ellipse cx="400" cy="100" rx="380" ry="90" fill="#22c55e" opacity="0.4" />
           </svg>
-
           <div className="relative">
             <h2 className="heading-lg mb-4">准备好开始贡献了吗？</h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              加入我们的 GitHub 社区，浏览 Issues，提交你的第一个 PR。
+              加入我们的 GitHub 社区，浏览 Issues，提交你的第一个 PR 或市场组件。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://gitee.com/njydsz/ydsz-worker"
+                href="https://github.com/ydsz-buddy/ydsz-worker"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
                 前往 GitHub
               </a>
-              <Link to="/experts" className="btn-secondary">
-                浏览专家市场
+              <Link to="/marketplace" className="btn-secondary">
+                浏览市场生态
               </Link>
             </div>
           </div>
         </section>
+
       </div>
     </div>
   )

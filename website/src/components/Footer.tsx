@@ -48,7 +48,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <img src="/logo-vertical.svg" alt="Ydsz Worker" className="h-7" />
+              <img src="/logo-appicon.png" alt="Ydsz Worker" className="h-7 w-7 rounded-lg" />
               <span className="text-base font-bold text-white">云顶数字工作台</span>
             </Link>
             <p className="text-sm text-white/40 leading-relaxed mb-4">

@@ -153,95 +153,102 @@ const GRADIENTS = [
    SVG sub-components
    ═══════════════════════════════════════════ */
 
-/** Card top decoration — 6 patterns, cyclic by index */
+/** Card top decoration — 6 refined patterns, cyclic by index */
 function CardDecoration({ index }: { index: number }) {
   const color = GRADIENTS[index % GRADIENTS.length].light
   const patternIndex = index % 6
 
   const patterns = [
-    // 0: Orbs + fade
-    <svg key="p0" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+    // 0: Soft orbs constellation
+    <svg key="p0" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
       <defs>
         <linearGradient id={`mg-0-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.45" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.1" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.32" />
+          <stop offset="60%" stopColor={color} stopOpacity="0.12" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.04" />
         </linearGradient>
+        <radialGradient id={`orb-0a-${index}`} cx="85%" cy="30%">
+          <stop offset="0%" stopColor="white" stopOpacity="0.07" />
+          <stop offset="100%" stopColor="white" stopOpacity="0" />
+        </radialGradient>
       </defs>
-      <rect width="400" height="90" fill={`url(#mg-0-${index})`} />
-      <circle cx="320" cy="20" r="55" fill="white" opacity="0.06" />
-      <circle cx="320" cy="20" r="30" fill="white" opacity="0.04" />
-      <circle cx="80" cy="70" r="35" fill="black" opacity="0.15" />
+      <rect width="400" height="72" fill={`url(#mg-0-${index})`} />
+      <circle cx="340" cy="18" r="48" fill={`url(#orb-0a-${index})`} />
+      <circle cx="60" cy="56" r="28" fill="black" opacity="0.12" />
     </svg>,
-    // 1: Diagonal lines
-    <svg key="p1" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+
+    // 1: Diagonal hatch + glow top-right
+    <svg key="p1" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
       <defs>
         <linearGradient id={`mg-1-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.4" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.08" />
-        </linearGradient>
-      </defs>
-      <rect width="400" height="90" fill={`url(#mg-1-${index})`} />
-      {[0, 1, 2, 3, 4, 5].map((i) => (
-        <line key={i} x1={50 + i * 70} y1="0" x2={90 + i * 70} y2="90" stroke="white" strokeWidth="0.5" opacity="0.08" />
-      ))}
-      <circle cx="50" cy="45" r="25" fill="white" opacity="0.04" />
-    </svg>,
-    // 2: Triangles
-    <svg key="p2" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id={`mg-2-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.35" />
-          <stop offset="50%" stopColor={color} stopOpacity="0.15" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.28" />
           <stop offset="100%" stopColor={color} stopOpacity="0.05" />
         </linearGradient>
       </defs>
-      <rect width="400" height="90" fill={`url(#mg-2-${index})`} />
-      <polygon points="20,90 65,15 110,90" fill="white" opacity="0.04" />
-      <polygon points="330,90 375,5 420,90" fill="black" opacity="0.08" />
+      <rect width="400" height="72" fill={`url(#mg-1-${index})`} />
+      {[0, 1, 2, 3, 4].map((i) => (
+        <line key={i} x1={80 + i * 75} y1="0" x2={120 + i * 75} y2="72" stroke="white" strokeWidth="0.4" opacity="0.07" />
+      ))}
+      <circle cx="340" cy="16" r="32" fill="white" opacity="0.035" />
     </svg>,
-    // 3: Waves
-    <svg key="p3" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+
+    // 2: Triangular silhouette
+    <svg key="p2" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={`mg-2-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.25" />
+          <stop offset="50%" stopColor={color} stopOpacity="0.12" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.04" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="72" fill={`url(#mg-2-${index})`} />
+      <polygon points="0,72 50,12 100,72" fill="white" opacity="0.03" />
+      <polygon points="320,72 370,5 420,72" fill="black" opacity="0.07" />
+    </svg>,
+
+    // 3: Flowing waves
+    <svg key="p3" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
       <defs>
         <linearGradient id={`mg-3-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.4" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.08" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.06" />
         </linearGradient>
       </defs>
-      <rect width="400" height="90" fill={`url(#mg-3-${index})`} />
-      <path d="M0,55 Q100,15 200,45 T400,35" stroke="white" strokeWidth="1" fill="none" opacity="0.1" />
-      <path d="M0,75 Q150,35 300,65 T400,45" stroke="white" strokeWidth="0.8" fill="none" opacity="0.06" />
-      <circle cx="200" cy="40" r="20" fill="white" opacity="0.03" />
+      <rect width="400" height="72" fill={`url(#mg-3-${index})`} />
+      <path d="M0,42 Q100,10 200,36 T400,28" stroke="white" strokeWidth="0.8" fill="none" opacity="0.09" />
+      <path d="M0,58 Q120,28 240,50 T400,40" stroke="white" strokeWidth="0.5" fill="none" opacity="0.05" />
     </svg>,
-    // 4: Diamonds
-    <svg key="p4" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+
+    // 4: Diamond grid
+    <svg key="p4" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
       <defs>
         <linearGradient id={`mg-4-${index}`} x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.4" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.1" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.06" />
         </linearGradient>
       </defs>
-      <rect width="400" height="90" fill={`url(#mg-4-${index})`} />
-      <rect x="320" y="10" width="48" height="48" rx="4" transform="rotate(45 344 34)" fill="white" opacity="0.05" />
-      <rect x="40" y="30" width="28" height="28" rx="2" transform="rotate(45 54 44)" fill="black" opacity="0.08" />
+      <rect width="400" height="72" fill={`url(#mg-4-${index})`} />
+      <rect x="330" y="8" width="36" height="36" rx="3" transform="rotate(45 348 26)" fill="white" opacity="0.04" />
+      <rect x="35" y="22" width="20" height="20" rx="2" transform="rotate(45 45 32)" fill="black" opacity="0.07" />
     </svg>,
-    // 5: Scatter triangles
-    <svg key="p5" className="absolute inset-0 w-full h-full" viewBox="0 0 400 90" preserveAspectRatio="none">
+
+    // 5: Scatter geometry
+    <svg key="p5" className="absolute inset-0 w-full h-full" viewBox="0 0 400 72" preserveAspectRatio="none">
       <defs>
         <linearGradient id={`mg-5-${index}`} x1="100%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={color} stopOpacity="0.35" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.08" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.25" />
+          <stop offset="100%" stopColor={color} stopOpacity="0.06" />
         </linearGradient>
       </defs>
-      <rect width="400" height="90" fill={`url(#mg-5-${index})`} />
-      <polygon points="0,90 55,25 110,90" fill="white" opacity="0.04" />
-      <polygon points="290,90 340,8 390,90" fill="white" opacity="0.05" />
+      <rect width="400" height="72" fill={`url(#mg-5-${index})`} />
+      <polygon points="0,72 40,18 80,72" fill="white" opacity="0.03" />
+      <polygon points="300,72 345,6 390,72" fill="white" opacity="0.04" />
     </svg>,
   ]
 
   return (
-    <div className="absolute top-0 left-0 right-0 h-[90px] overflow-hidden">
+    <div className="card-head-decoration">
       {patterns[patternIndex]}
-      <div className="absolute bottom-0 left-0 right-0 h-[45px] bg-gradient-to-t from-ink-900 to-transparent" />
     </div>
   )
 }
@@ -261,7 +268,7 @@ function AuthorAvatarSvg() {
 function SearchIcon() {
   return (
     <svg
-      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30"
+      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/25"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -387,32 +394,32 @@ export default function MarketplacePage() {
     <div className="py-16 lg:py-24">
       <div className="container-page">
         {/* ═══ Header ═══ */}
-        <div className="text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-3">
             <span className="section-label">市场生态</span>
-            <span className="px-2.5 py-0.5 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-xs font-semibold">
+            <span className="px-2.5 py-0.5 rounded-md bg-yuanbao-500/10 border border-yuanbao-500/15 text-yuanbao-400 text-[11px] font-semibold">
               {totalCount} 个条目
             </span>
           </div>
-          <h1 className="heading-xl mt-4 mb-3">
+          <h1 className="heading-xl mt-3 mb-2">
             <span className="text-gradient">市场生态</span>
           </h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto mt-4">
+          <p className="text-white/55 text-base max-w-xl mx-auto mt-3">
             专家、技能、插件、连接器四位一体的智能体生态市场。即装即用，持续扩展。
           </p>
         </div>
 
         {/* ═══ Tab bar ═══ */}
-        <div className="flex items-center justify-center mb-10">
-          <div className="inline-flex bg-white/[0.04] border border-white/[0.08] rounded-xl p-1.5 gap-1">
+        <div className="flex items-center justify-center mb-7">
+          <div className="inline-flex bg-ink-800/30 border border-white/[0.06] rounded-xl p-1 gap-0.5">
             {TABS.map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => handleTabChange(tab.key)}
-                className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-5 py-2 rounded-lg text-[13px] font-medium transition-all duration-250 ${
                   activeTab === tab.key
-                    ? 'bg-yuanbao-500/10 text-yuanbao-400 shadow-sm'
-                    : 'text-white/60 hover:text-white hover:bg-white/[0.05]'
+                    ? 'bg-yuanbao-500/12 text-yuanbao-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]'
+                    : 'text-white/55 hover:text-white/80 hover:bg-white/[0.03]'
                 }`}
               >
                 {tab.label}
@@ -422,16 +429,16 @@ export default function MarketplacePage() {
         </div>
 
         {/* ═══ Filter Row: category pills + search ═══ */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-10">
-          <div className="flex flex-wrap gap-2 flex-1">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-3 mb-7">
+          <div className="flex flex-wrap gap-1.5 flex-1">
             {CATEGORY_MAP[activeTab]?.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`tag-pill text-[12px] px-3 py-1.5 ${
                   activeCategory === cat
-                    ? 'bg-yuanbao-500/10 text-yuanbao-400 border border-yuanbao-500/30 shadow-sm shadow-yuanbao-500/10'
-                    : 'bg-white/[0.05] text-white/70 hover:bg-white/[0.1] hover:text-white border border-white/[0.08]'
+                    ? 'tag-pill-active shadow-sm shadow-yuanbao-500/8'
+                    : ''
                 }`}
               >
                 {cat}
@@ -439,19 +446,19 @@ export default function MarketplacePage() {
             ))}
           </div>
 
-          <div className="relative lg:w-72">
+          <div className="relative lg:w-60">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="按名称、关键词或分类搜索..."
-              className="w-full px-4 py-2.5 pl-10 pr-8 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white placeholder-white/35 text-sm focus:outline-none focus:border-yuanbao-500/50 focus:ring-1 focus:ring-yuanbao-500/25 transition-all"
+              placeholder="搜索..."
+              className="w-full px-3 py-2 pl-8 pr-7 rounded-lg bg-ink-800/30 border border-white/[0.07] text-white placeholder-white/25 text-[13px] focus:outline-none focus:border-yuanbao-500/40 focus:ring-2 focus:ring-yuanbao-500/10 transition-all duration-200"
             />
             <SearchIcon />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded text-white/25 hover:text-white/60 hover:bg-white/[0.06] transition-all"
                 aria-label="清除搜索"
               >
                 <ClearIcon />
@@ -461,33 +468,36 @@ export default function MarketplacePage() {
         </div>
 
         {/* ═══ Card Grid ═══ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((item, cardIndex) => (
             <div
               key={`${item._type}-${item.id}`}
-              className="card-refined p-0 overflow-hidden group cursor-default"
+              className="card-market relative p-0 overflow-hidden group cursor-default"
             >
               {/* Top SVG decoration */}
               <CardDecoration index={cardIndex} />
 
+              {/* Top gradient line (revealed on hover) */}
+              <div className="card-top-line opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
               {/* Card content */}
-              <div className="relative pt-14 px-6 pb-6">
+              <div className="relative px-5 pb-5 pt-[52px]">
                 {/* Avatar icon */}
-                <div className="absolute -top-6 left-6 w-12 h-12 rounded-xl bg-gradient-to-br from-yuanbao-400 to-yuanbao-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-yuanbao-500/30 border-2 border-ink-900">
-                  {item.name.charAt(0)}
+                <div className="card-avatar">
+                  <span className="relative z-10 drop-shadow-sm">{item.name.charAt(0)}</span>
                 </div>
 
                 {/* Name + badges */}
-                <div className="mb-3">
-                  <h3 className="text-white font-semibold text-base group-hover:text-yuanbao-300 transition-colors">
+                <div className="mb-2.5">
+                  <h3 className="text-white font-semibold text-[15px] leading-snug group-hover:text-yuanbao-300 transition-colors duration-300">
                     {item.name}
                   </h3>
-                  <div className="flex items-center gap-2 mt-1.5">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-yuanbao-500/10 text-yuanbao-400 text-xs border border-yuanbao-500/20">
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-yuanbao-500/10 text-yuanbao-400 text-[11px] font-medium leading-none border border-yuanbao-500/15">
                       {item.category}
                     </span>
                     {item.badge && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/[0.05] text-white/60 text-xs border border-white/[0.08]">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-white/[0.04] text-white/55 text-[11px] font-medium leading-none border border-white/[0.07]">
                         {item.badge}
                       </span>
                     )}
@@ -495,22 +505,19 @@ export default function MarketplacePage() {
                 </div>
 
                 {/* Description */}
-                <p className="text-white/55 text-sm leading-relaxed mb-5 line-clamp-2">
+                <p className="text-white/50 text-[13px] leading-[1.65] mb-4 line-clamp-2">
                   {item.description}
                 </p>
 
-                {/* Separator */}
-                <div className="h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent mb-4" />
-
-                {/* Bottom row: author + downloads */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 min-w-0">
+                {/* Bottom row: author + downloads + CTA */}
+                <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/[0.05]">
+                  <div className="flex items-center gap-1.5 min-w-0">
                     <AuthorAvatarSvg />
-                    <span className="text-xs text-white/40 truncate">{item.author}</span>
+                    <span className="text-[11px] text-white/35 truncate">{item.author}</span>
                   </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    <span className="flex items-center gap-1 text-xs text-white/40">
-                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="flex items-center gap-1 text-[11px] text-white/35 tabular-nums">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
                       {item.downloads}
@@ -519,9 +526,9 @@ export default function MarketplacePage() {
                       href={`${DOWNLOAD_URLS[item._type]}/${item.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-yuanbao-500 hover:bg-yuanbao-400 text-ink-900 text-xs font-semibold rounded-lg transition-all shadow-sm hover:shadow-md hover:shadow-yuanbao-500/20"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-medium border border-yuanbao-500/25 text-yuanbao-400 hover:bg-yuanbao-500 hover:text-ink-900 transition-all duration-250 shadow-sm hover:shadow-md hover:shadow-yuanbao-500/20"
                     >
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                       下载
@@ -535,10 +542,10 @@ export default function MarketplacePage() {
 
         {/* ═══ Empty state ═══ */}
         {filtered.length === 0 && (
-          <div className="text-center py-20">
+          <div className="text-center py-24">
             <EmptyStateSvg />
-            <p className="text-lg text-white/50 mb-2">未找到匹配的条目</p>
-            <p className="text-sm text-white/35">尝试修改关键词或切换分类重新查找</p>
+            <p className="text-base text-white/45 mt-5 mb-1.5">未找到匹配的条目</p>
+            <p className="text-[13px] text-white/30">尝试修改关键词或切换分类重新查找</p>
           </div>
         )}
 

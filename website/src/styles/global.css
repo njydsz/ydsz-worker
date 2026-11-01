@@ -265,6 +265,54 @@
     0 4px 16px -4px rgba(0,0,0,0.2);
 }
 
+/* ─── 市场卡片专用样式 ─── */
+.card-market {
+  @apply bg-[#0f1714] border border-white/[0.06] rounded-2xl overflow-hidden;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-market::before {
+  content: '';
+  @apply absolute inset-x-0 top-0 h-[1px] opacity-0 transition-opacity duration-500;
+  background: linear-gradient(90deg, transparent 0%, rgba(34,197,94,0.4) 50%, transparent 100%);
+}
+.card-market:hover {
+  @apply border-white/[0.1];
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 1px rgba(34,197,94,0.04),
+    0 12px 40px -8px rgba(34,197,94,0.06),
+    0 8px 24px -4px rgba(0,0,0,0.3);
+}
+.card-market:hover::before {
+  @apply opacity-100;
+}
+
+/* ─── 市场卡片顶部装饰区（缩放到 72px） ──═ */
+.card-head-decoration {
+  @apply absolute top-0 left-0 right-0 overflow-hidden;
+  height: 72px;
+}
+.card-head-decoration::after {
+  content: '';
+  @apply absolute bottom-0 left-0 right-0;
+  height: 36px;
+  background: linear-gradient(to top, #0f1714 0%, transparent 100%);
+}
+
+/* ─── 市场卡片头像（悬浮于装饰区与内容区交界） ──═ */
+.card-avatar {
+  @apply absolute left-5 w-11 h-11 rounded-xl flex items-center justify-center text-white font-bold text-base border-2 border-[#0f1714] shadow-lg;
+  top: 18px;
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+  box-shadow: 0 4px 12px -2px rgba(34,197,94,0.4), 0 2px 6px -2px rgba(0,0,0,0.2);
+}
+
+/* ─── 市场卡片顶部渐变细线 ──═ */
+.card-top-line {
+  @apply absolute top-0 left-0 right-0 h-[2px];
+  background: linear-gradient(90deg, transparent 0%, rgba(34,197,94,0.3) 25%, rgba(34,197,94,0.15) 50%, rgba(34,197,94,0.3) 75%, transparent 100%);
+}
+
 /* ─── Tag pill 精致化 ─── */
 .tag-pill {
   @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium transition-all duration-300;

@@ -246,7 +246,7 @@ export default function DocsPage() {
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto scrollbar-thin">
             {/* Logo / 品牌 */}
             <div className="flex items-center gap-2.5 mb-6 px-2">
-              <img src="/logo-vertical.svg" alt="Ydsz Worker" className="h-7" />
+              <img src="/logo-appicon.png" alt="Ydsz Worker" className="h-7 w-7 rounded-lg" />
               <span className="text-base font-bold text-white tracking-tight">
                 产品文档
               </span>
