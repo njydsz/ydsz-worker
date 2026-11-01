@@ -109,21 +109,23 @@ packages = ["src/ydsz"]
 
 [tool.hatch.build]
 include = [
-    "src/ydsz/**/*.py",
-    "src/ydsz/**/*.json",
-    "src/ydsz/**/*.md",
-    "src/ydsz/**/*.sql",
-    "src/ydsz/**/*.sh",
-    "src/ydsz/**/*.png",
-    "src/ydsz/dashboard/**/*",
-    "src/ydsz/infra/agents/experts/library/**/*",
-    "src/ydsz/infra/agents/plugins/bundled/**/*",
-    "src/ydsz/infra/agents/subagents/library/**/*",
-    "src/ydsz/infra/agents/subagents/divisions.json",
-    "src/ydsz/infra/desktop/scripts/**/*",
+	"src/ydsz/**/*.py",
+	"src/ydsz/**/*.json",
+	"src/ydsz/**/*.md",
+	"src/ydsz/**/*.sql",
+	"src/ydsz/**/*.sh",
+	"src/ydsz/**/*.png",
+	"src/ydsz/dashboard/**/*",
+	"src/ydsz/market/**/*",
+	"src/ydsz/infra/agents/experts/library/**/*",
+	"src/ydsz/infra/agents/plugins/bundled/**/*",
+	"src/ydsz/infra/agents/subagents/library/**/*",
+	"src/ydsz/infra/agents/subagents/divisions.json",
+	"src/ydsz/infra/desktop/scripts/**/*",
 ]
 artifacts = [
-    "src/ydsz/dashboard/**/*",
+	"src/ydsz/dashboard/**/*",
+	"src/ydsz/market/**/*",
 ]
 
 [tool.ruff]
@@ -146,10 +148,11 @@ strict = true
 ignore_missing_imports = true
 files = ["src/ydsz"]
 exclude = [
-    "src/ydsz/dashboard/",
-    "src/ydsz/infra/agents/experts/library/",
-    "src/ydsz/infra/agents/plugins/bundled/",
-    "src/ydsz/infra/agents/subagents/library/",
+	"src/ydsz/dashboard/",
+	"src/ydsz/market/",
+	"src/ydsz/infra/agents/experts/library/",
+	"src/ydsz/infra/agents/plugins/bundled/",
+	"src/ydsz/infra/agents/subagents/library/",
 ]
 
 [[tool.mypy.overrides]]

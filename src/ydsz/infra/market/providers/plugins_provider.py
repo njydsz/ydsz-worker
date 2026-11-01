@@ -10,7 +10,6 @@ import logging
 import shutil
 from typing import Any
 
-from ydsz.infra.market.constants import MarketSource
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import (
     InstallReceipt,
@@ -20,8 +19,8 @@ from ydsz.infra.market.models import (
     MarketItem,
     MarketListResult,
 )
-from ydsz.infra.market.providers import register_provider
 from ydsz.infra.market.providers.base import MarketProvider
+from ydsz.infra.market.providers.registry import register_provider
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +54,7 @@ class PluginsProvider(MarketProvider):
         if category:
             all_plugins = [p for p in all_plugins if p.get("category") == category]
         total = len(all_plugins)
-        page = all_plugins[offset:offset + limit]
+        page = all_plugins[offset : offset + limit]
         items = tuple(_plugin_dict_to_item(d, locale) for d in page)
         return MarketListResult(items, total, limit, offset, sort, category)
 
@@ -73,7 +72,8 @@ class PluginsProvider(MarketProvider):
         q = query.strip().lower()
         if q:
             all_plugins = [
-                p for p in all_plugins
+                p
+                for p in all_plugins
                 if q in p.get("name", "").lower()
                 or q in p.get("description", "").lower()
                 or q in p.get("id", "").lower()
@@ -82,7 +82,7 @@ class PluginsProvider(MarketProvider):
         if category:
             all_plugins = [p for p in all_plugins if p.get("category") == category]
         total = len(all_plugins)
-        page = all_plugins[offset:offset + limit]
+        page = all_plugins[offset : offset + limit]
         items = tuple(_plugin_dict_to_item(d, locale) for d in page)
         return MarketListResult(items, total, limit, offset, sort, category)
 
@@ -120,14 +120,20 @@ class PluginsProvider(MarketProvider):
         return await self._install_bundled(identity, target=target, user_id=user_id)
 
     async def _install_bundled(
-        self, identity: str, *, target: InstallTarget, user_id: int,
+        self,
+        identity: str,
+        *,
+        target: InstallTarget,
+        user_id: int,
     ) -> InstallReceipt:
         from ydsz.infra.agents.plugins.manager import bundled_plugin_dir
+
         src = bundled_plugin_dir(identity)
         if not src or not src.is_dir():
             raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, identity)
 
         from ydsz.infra.utils.paths import PathLayout
+
         layout = PathLayout()
         dest = layout.plugins_dir / identity
         if dest.exists():
@@ -143,7 +149,7 @@ class PluginsProvider(MarketProvider):
             market_item=MarketItem(
                 market_id=f"plugin:{identity}",
                 type="plugin",
-                source=MarketSource["ILTIN"],
+                source="ILTIN",
                 identity=identity,
                 name=identity,
                 installed=True,
@@ -159,6 +165,7 @@ class PluginsProvider(MarketProvider):
         """Scan bundled plugins directory. Cached at class level."""
         try:
             from ydsz.infra.agents.plugins.manager import bundled_plugins
+
             return list(bundled_plugins())
         except ImportError:
             return []
@@ -167,14 +174,18 @@ class PluginsProvider(MarketProvider):
 # ── Dict → MarketItem ────────────────────────────────────────────────────
 def _plugin_dict_to_item(d: dict[str, Any], locale: str | None = None) -> MarketItem:
     raw_name = d.get("name", d.get("id", ""))
-    name = raw_name.get(locale or "zh", "") if isinstance(raw_name, dict) else (raw_name or d.get("id", ""))
+    name = (
+        raw_name.get(locale or "zh", "")
+        if isinstance(raw_name, dict)
+        else (raw_name or d.get("id", ""))
+    )
     raw_desc = d.get("description", "")
     desc = raw_desc.get(locale or "zh", "") if isinstance(raw_desc, dict) else (raw_desc or "")
 
     return MarketItem(
         market_id=f"plugin:{d['id']}",
         type="plugin",
-        source=MarketSource["ILTIN"],
+        source="ILTIN",
         identity=d["id"],
         name=name,
         description=desc,

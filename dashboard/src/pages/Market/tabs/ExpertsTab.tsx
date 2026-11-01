@@ -19,7 +19,7 @@ export const ExpertsTab: React.FC = () => {
   const { items, total, loading } = useMarketList("expert", {
     category: category || undefined, sort, pageSize,
   });
-  const { installing, install } = useMarketInstall();
+  const { install } = useMarketInstall();
 
   const handleInstall = useCallback((item: MarketItem) => {
     let name = item.name;

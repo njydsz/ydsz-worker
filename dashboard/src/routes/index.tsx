@@ -99,17 +99,19 @@ export const pathToKey: Record<string, string> = {
 /**
  * Pages that should fill the entire content area without padding/scroll wrapper.
  */
-export const FULLSCREEN_PATHS = new Set([
+export const FULLSCREEN_PATHS = new Set<string>([
   "/workbench",
   "/workbench/terminal",
   "/workbench/browser",
   "/chat",
+  "/market",
   "/remote-desktop",
   "/remote-desktop/desktop",
   "/remote-desktop/phone",
   "/remote-desktop/phone/screen",
   "/remote-desktop/phone/shell",
   "/remote-phone",
+  "/onboarding",
 ]);
 
 /**
@@ -214,6 +216,9 @@ export const routeConfigs: RouteConfig[] = [
   },
   { path: "/workspace", element: <Navigate to="/experts" replace /> },
 
+  // Market (standalone marketplace)
+  { path: "/market", element: <MarketPage /> },
+
   // Settings
   { path: "/admin/models", element: <ModelsPage /> },
 
@@ -236,7 +241,6 @@ export const routeConfigs: RouteConfig[] = [
   { path: "/admin/agents", element: <Navigate to="/admin/users" replace /> },
   { path: "/admin/plugins", element: <AdminPluginsPage /> },
   { path: "/admin/advanced", element: <AdvancedSettingsPage /> },
-  { path: "/market", element: <MarketPage /> },
   { path: "/admin/security", element: <AdminSecurityPage /> },
   {
     path: "/admin/voice",

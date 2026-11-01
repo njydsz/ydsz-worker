@@ -50,8 +50,12 @@ class SearchService:
         # Cache lookup.
         if len(query) >= 2:
             cache_key = self._cache.make_key(
-                query=query, types=tuple(types), category=category,
-                sort=sort, locale=locale or "zh", page=page,
+                query=query,
+                types=tuple(types),
+                category=category,
+                sort=sort,
+                locale=locale or "zh",
+                page=page,
             )
             cached = await self._cache.get(cache_key)
             if cached is not None:
@@ -64,8 +68,12 @@ class SearchService:
                 provider = get_provider(t)
                 tasks[t] = asyncio.create_task(
                     provider.search(
-                        query, category=category, sort=sort,
-                        limit=limit, offset=0, locale=locale,
+                        query,
+                        category=category,
+                        sort=sort,
+                        limit=limit,
+                        offset=0,
+                        locale=locale,
                     )
                 )
             except Exception as exc:
@@ -104,7 +112,7 @@ class SearchService:
             all_items.sort(key=lambda i: i.updated_at or "", reverse=True)
 
         total = len(all_items)
-        page_items = all_items[offset:offset + limit]
+        page_items = all_items[offset : offset + limit]
 
         output = {
             "items": [_item_to_dict(i) for i in page_items],

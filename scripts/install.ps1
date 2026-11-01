@@ -20,7 +20,7 @@ $YdszHome = if ($env:YDSZ_HOME) { $env:YDSZ_HOME } else { Join-Path $HOME ".ydsz
 $YdszVenv = Join-Path $YdszHome "venv"
 $YdszBin = Join-Path $YdszHome "bin"
 $PythonVersion = "3.12"
-$YdszRepo = if ($env:YDSZ_REPO) { $env:YDSZ_REPO } else { "https://github.com/ydsz-buddy/ydsz-worker.git" }
+$YdszRepo = if ($env:YDSZ_REPO) { $env:YDSZ_REPO } else { "https://gitee.com/njydsz/ydsz-worker.git" }
 
 function Write-Info { param([string]$Message) Write-Host "[ydsz] " -ForegroundColor Green  -NoNewline; Write-Host $Message }
 function Write-Warn { param([string]$Message) Write-Host "[ydsz] " -ForegroundColor Yellow -NoNewline; Write-Host $Message }

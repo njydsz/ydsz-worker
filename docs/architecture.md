@@ -1,6 +1,6 @@
 # Architecture
 
-Ydsz Worker 是云顶数字工作台 — 会思考，会干活，陪企业成长的智能伙伴。它是自托管的多用户、多智能体 AI 助手平台，以单一 Python 进程交付，将 LangGraph 对话运行时、IM Channel Gateway（即时通讯渠道管线）和 React 前端整合为一个可安装包，内置 CLI、HTTP/WebSocket API 与 Web 控制台。
+Ydsz Worker 是云顶数字工作台 — 会思考，能干活，陪企业成长的智能伙伴。它是自托管的多用户、多智能体 AI 助手平台，以单一 Python 进程交付，将 LangGraph 对话运行时、IM Channel Gateway（即时通讯渠道管线）和 React 前端整合为一个可安装包，内置 CLI、HTTP/WebSocket API 与 Web 控制台。
 
 > 寻找面向贡献者的导航指南（模块边界、变更流程、硬性约束）？参见仓库根目录的 [AGENTS.md](../AGENTS.md)。本文档是面向人类的架构概览，AGENTS.md 是面向 AI 助手的开发手册。
 

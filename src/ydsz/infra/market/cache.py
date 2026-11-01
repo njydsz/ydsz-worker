@@ -52,6 +52,7 @@ class SearchCache:
         # Database fallback (shared across workers).
         try:
             from ydsz.infra.db.services import SharedServices
+
             db = SharedServices.instance().db if SharedServices.instance() else None
         except Exception:
             db = None
@@ -104,6 +105,7 @@ class SearchCache:
         # DB persist.
         try:
             from ydsz.infra.db.services import SharedServices
+
             db = SharedServices.instance().db if SharedServices.instance() else None
         except Exception:
             db = None
@@ -138,6 +140,7 @@ class SearchCache:
         self._hot.clear()
         try:
             from ydsz.infra.db.services import SharedServices
+
             db = SharedServices.instance().db if SharedServices.instance() else None
             if db is not None:
                 db.execute("DELETE FROM market_search_cache")

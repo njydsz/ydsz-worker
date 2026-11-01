@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Pagination, Modal, Form, Input, Select } from "antd";
+import { Pagination, Modal, Form, Input } from "antd";
 import { useTranslation } from "react-i18next";
 import { useMarketList } from "../hooks/useMarketList";
 import { useMarketCategories } from "../hooks/useMarketCategories";
@@ -19,7 +19,7 @@ export const ConnectorsTab: React.FC = () => {
   const { items, total, loading } = useMarketList("connector", {
     category: category || undefined, sort, pageSize,
   });
-  const { installing, install } = useMarketInstall();
+  const { install } = useMarketInstall();
 
   const handleAuthorize = useCallback((item: MarketItem) => {
     Modal.confirm({

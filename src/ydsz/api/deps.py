@@ -28,7 +28,7 @@ ACCESS_TOKEN_RESPONSE_HEADER = "X-Ydsz-Access-Token"
 _SLIDING_RENEW_REMAINING_FRACTION = 1 / 3
 
 
-# Paths that bypass JWT middleware (setup wizard, health, login).
+# Paths that bypass JWT middleware (setup wizard, health, login, public market).
 _JWT_EXEMPT_PREFIXES = (
     "/api/setup/",
     "/api/health/",
@@ -37,6 +37,8 @@ _JWT_EXEMPT_PREFIXES = (
     "/api/internal/mcp/",
     # Short-lived download links: the unguessable token is the credential.
     "/api/downloads/link/",
+    # Marketplace: public browse/search/detail/installed (read-only surface).
+    "/api/market/",
 )
 _JWT_EXEMPT_EXACT = (
     "/api/health",
@@ -168,6 +170,27 @@ async def current_user(
     if not raw:
         raise YdszError(ErrorCode.AUTH_FAILED, "missing credentials")
     return resolve_user_from_token(server, raw)
+
+
+async def optional_user(
+    request: Request,
+    server: YdszServer = Depends(get_server),
+    authorization: str | None = Header(None),
+    access_token: str | None = Query(None),
+) -> User | None:
+    """Like ``current_user`` but returns None instead of raising when the
+    request carries no / invalid credentials. Used by public-read endpoints
+    such as the marketplace list/search/detail routes."""
+    cached = getattr(request.state, "ydsz_user", None)
+    if cached is not None:
+        return cast("User", cached)
+    raw = extract_raw_token(authorization=authorization, access_token=access_token)
+    if not raw:
+        return None
+    try:
+        return resolve_user_from_token(server, raw)
+    except Exception:
+        return None
 
 
 def require_permission(key: str) -> Callable[..., Awaitable[User]]:

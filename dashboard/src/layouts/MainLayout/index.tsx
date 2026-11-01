@@ -250,7 +250,7 @@ export default function MainLayout() {
               position: "relative",
               flexShrink: 0,
               alignSelf: "stretch",
-              display: "flex",
+              display: currentPath === "/market" ? "none" : "flex",
               minHeight: 0,
             }}
           >

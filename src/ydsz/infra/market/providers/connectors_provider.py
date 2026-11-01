@@ -1,33 +1,67 @@
-"""Connectors provider — wraps :mod:`ydsz.infra.connectors.catalog`.
-
-Reads the bundled ``catalog.json`` presets, enriches with installation
-state from the connector_instances table.
-"""
+"""Connectors provider — wraps catalog + Live JSON endpoints."""
 
 from __future__ import annotations
 
 import logging
 from typing import Any
 
-from ydsz.infra.market.constants import MarketSource
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import (
     InstallReceipt,
-    InstallTarget,
     MarketAuthor,
     MarketDetail,
     MarketItem,
     MarketListResult,
 )
-from ydsz.infra.market.providers import register_provider
 from ydsz.infra.market.providers.base import MarketProvider
+from ydsz.infra.market.providers.registry import register_provider
 
 logger = logging.getLogger(__name__)
 
 
-class ConnectorsProvider(MarketProvider):
-    """Connector catalog marketplace."""
+def _localized(obj: Any, locale: str | None = None) -> str:
+    """Extract a display string from a possibly-localized value."""
+    if obj is None:
+        return ""
+    if isinstance(obj, str):
+        return obj
+    if isinstance(obj, dict):
+        loc = (locale or "zh").lower()
+        for k in (loc, "zh", "en"):
+            v = obj.get(k)
+            if v:
+                return str(v)
+        return str(obj) or ""
+    loc = (locale or "zh").lower()
+    for attr in (loc, "zh", "en"):
+        v = getattr(obj, attr, None)
+        if v:
+            return str(v)
+    return ""
 
+
+def _to_dict(entry: Any) -> dict[str, Any]:
+    """Normalize a catalog entry (dict or dataclass) to a plain dict."""
+    if isinstance(entry, dict):
+        return entry
+    return {
+        "kind": getattr(entry, "kind", ""),
+        "name": _localized(getattr(entry, "name", "")),
+        "description": _localized(getattr(entry, "description", "")),
+        "auth_kind": str(getattr(entry, "auth_kind", "")),
+        "doc_url": getattr(entry, "doc_url", "") or "",
+        "icon": getattr(entry, "icon", "") or "",
+        "color": getattr(entry, "color", "") or "",
+        "category": str(getattr(entry, "category", "")),
+        "phase": str(getattr(entry, "phase", "available")),
+        "mcp_mode": str(getattr(entry, "mcp_mode", "")),
+        "quick_auth_url": getattr(entry, "quick_auth_url", None),
+        "supports_quick_auth": bool(getattr(entry, "quick_auth_url", None)),
+        "author": "ILTIN",
+    }
+
+
+class ConnectorsProvider(MarketProvider):
     @property
     def market_type(self) -> str:
         return "connector"
@@ -42,59 +76,67 @@ class ConnectorsProvider(MarketProvider):
 
     @property
     def supported_sorts(self) -> list[str]:
-        # connectors 没有真正的评分/下载量排序，退化为 by-name
         return ["relevance"]
 
-    # ── Browse / search ───────────────────────────────────────────────────
-    async def list_items(
-        self,
-        *,
-        category: str | None,
-        sort: str,
-        limit: int,
-        offset: int,
-        locale: str | None,
-    ) -> MarketListResult:
-        all_entries = self._list_catalog()
-        if category:
-            all_entries = [e for e in all_entries if e.get("category") == category]
-        total = len(all_entries)
-        page = all_entries[offset:offset + limit]
-        items = tuple(_entry_to_item(e, locale) for e in page)
-        return MarketListResult(items, total, limit, offset, sort, category)
+    # ── helpers ─────────────────────────────────────────────────────────
+    def _entries(self) -> list[dict[str, Any]]:
+        try:
+            from ydsz.infra.connectors import catalog as mod
 
-    async def search(
+            raw = mod.list_catalog()
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("catalog load failed: %s", exc)
+            return []
+        return [_to_dict(e) for e in raw]
+
+    def _page(
         self,
-        query: str,
+        entries: list[dict],
         *,
         category: str | None,
         sort: str,
         limit: int,
         offset: int,
         locale: str | None,
+        query: str | None = None,
     ) -> MarketListResult:
-        all_entries = self._list_catalog()
-        q = query.strip().lower()
-        if q:
-            all_entries = [
-                e for e in all_entries
-                if q in e.get("name", "").lower()
-                or q in e.get("description", "").lower()
-                or q in e.get("kind", "").lower()
+        if category:
+            entries = [e for e in entries if e.get("category") == category]
+        if query:
+            q = query.strip().lower()
+            entries = [
+                e
+                for e in entries
+                if q in str(e.get("name", "")).lower()
+                or q in str(e.get("description", "")).lower()
+                or q in str(e.get("kind", "")).lower()
             ]
-        if category:
-            all_entries = [e for e in all_entries if e.get("category") == category]
-        total = len(all_entries)
-        page = all_entries[offset:offset + limit]
-        items = tuple(_entry_to_item(e, locale) for e in page)
+        total = len(entries)
+        items = tuple(_item_from_dict(e, locale) for e in entries[offset : offset + limit])
         return MarketListResult(items, total, limit, offset, sort, category)
 
-    async def detail(self, identity: str, *, locale: str | None = None, **kw: Any) -> MarketDetail:
-        all_entries = self._list_catalog()
-        match = next((e for e in all_entries if e.get("kind") == identity), None)
+    # ── interface ─────────────────────────────────────────────────────
+    async def list_items(self, *, category, sort, limit, offset, locale, **kw):
+        return self._page(
+            self._entries(), category=category, sort=sort, limit=limit, offset=offset, locale=locale
+        )
+
+    async def search(self, query, *, category, sort, limit, offset, locale, **kw):
+        return self._page(
+            self._entries(),
+            category=category,
+            sort=sort,
+            limit=limit,
+            offset=offset,
+            locale=locale,
+            query=query,
+        )
+
+    async def detail(self, identity, *, locale=None, **kw):
+        match = next((e for e in self._entries() if e.get("kind") == identity), None)
         if match is None:
             raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, identity)
-        item = _entry_to_item(match, locale)
+        item = _item_from_dict(match, locale)
         meta = item.__dict__.copy()
         return MarketDetail(
             **meta,
@@ -104,29 +146,19 @@ class ConnectorsProvider(MarketProvider):
                 "auth_kind": match.get("auth_kind"),
                 "mcp_mode": match.get("mcp_mode"),
                 "phase": match.get("phase", "available"),
-                "supports_quick_auth": match.get("supports_quick_auth", False),
-                "oauth_mode": match.get("oauth_mode"),
-                "credential_fields": match.get("credential_fields", []),
+                "supports_quick_auth": match.get("supports_quick_auth"),
                 "quick_auth_url": match.get("quick_auth_url"),
             },
         )
 
-    # ── Install ──────────────────────────────────────────────────────────
-    async def install(
-        self,
-        identity: str,
-        *,
-        target: InstallTarget,
-        user_id: int,
-        **opts: Any,
-    ) -> InstallReceipt:
+    async def install(self, identity, *, target, user_id, **opts):
         if not opts.get("credentials"):
             raise MarketError(
-                MarketErrorCode.INVALID_TARGET,
-                "connector install requires credentials ( authorize )",
+                MarketErrorCode.INVALID_TARGET, "connector install requires credentials"
             )
         from ydsz.infra.connectors.builder import build_connector_instance
-        instance = await build_connector_instance(
+
+        inst = await build_connector_instance(
             kind=identity,
             display_name=opts.get("instance_name", identity),
             credentials=opts["credentials"],
@@ -137,7 +169,7 @@ class ConnectorsProvider(MarketProvider):
             market_item=MarketItem(
                 market_id=f"connector:{identity}",
                 type="connector",
-                source=MarketSource["ILTIN"],
+                source="ILTIN",
                 identity=identity,
                 name=identity,
                 installed=True,
@@ -145,50 +177,28 @@ class ConnectorsProvider(MarketProvider):
             ),
             target=target,
             installed_version="1.0.0",
-            metadata={"instance_id": instance.get("id")},
+            metadata={"instance_id": inst.get("id")},
         )
 
-    # ── Catalog scan ──────────────────────────────────────────────────
-    def _list_catalog(self) -> list[dict[str, Any]]:
-        try:
-            from ydsz.infra.connectors.catalog import list_catalog
-            return [e if isinstance(e, dict) else e.__dict__ for e in list_catalog()]
-        except ImportError:
-            return []
 
-
-# ── Catalog entry → MarketItem ────────────────────────────────────────────
-def _entry_to_item(e: dict[str, Any], locale: str | None = None) -> MarketItem:
-    raw_name = e.get("name", e.get("kind", ""))
-    name = raw_name if isinstance(raw_name, str) else raw_name.get(locale or "zh", e.get("kind", ""))
-    raw_desc = e.get("description", "")
-    desc = raw_desc if isinstance(raw_desc, str) else raw_desc.get(locale or "zh", "")
-
+def _item_from_dict(e: dict[str, Any], locale: str | None) -> MarketItem:
     return MarketItem(
         market_id=f"connector:{e.get('kind', '')}",
         type="connector",
-        source=MarketSource["ILTIN"],
+        source="ILTIN",
         identity=e.get("kind", ""),
-        name=name,
-        description=desc,
-        icon_url=e.get("icon"),
+        name=str(e.get("name") or ""),
+        description=str(e.get("description") or ""),
+        icon_url=e.get("icon") or None,
         icon_name="plug",
-        color=e.get("color"),
+        color=e.get("color") or None,
         version="1.0.0",
         author=MarketAuthor(name=e.get("author", "ILTIN")),
         category=e.get("category", "other"),
-        tags=tuple(e.get("tags", ())),
-        installed=False,  # caller fills
-        source_url=e.get("doc_url"),
-        metadata={
-            "auth_kind": e.get("auth_kind"),
-            "mcp_mode": e.get("mcp_mode"),
-            "phase": e.get("phase", "available"),
-            "supports_quick_auth": e.get("supports_quick_auth"),
-            "credential_fields": e.get("credential_fields"),
-        },
+        tags=tuple(t for t in [e.get("category")] if t),
+        installed=False,
+        source_url=e.get("doc_url") or None,
     )
 
 
-# ── Register ──────────────────────────────────────────────────────────────
 register_provider("connector", ConnectorsProvider)

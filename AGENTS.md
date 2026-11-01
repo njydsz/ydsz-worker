@@ -35,7 +35,7 @@ Navigation guide for AI coding agents working in this repository.
 ## 2. What this is
 
 **Ydsz Worker** (云顶数字工作台) — self-hosted enterprise AI assistant platform (multi-user, multi-agent).
-Tagline: "会思考，会干活，陪企业成长的智能伙伴" — it thinks, it works, it grows with your enterprise.
+Tagline: "会思考，能干活，陪企业成长的智能伙伴" — it thinks, it works, it grows with your enterprise.
 One Python wheel: FastAPI backend + React dashboard + Click CLI.
 No external queue. No required services beyond an LLM provider.
 

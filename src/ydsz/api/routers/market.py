@@ -19,7 +19,7 @@ from typing import Any, Literal
 
 from fastapi import APIRouter, Depends, Query, Request
 
-from ydsz.api.deps import current_user, get_server
+from ydsz.api.deps import current_user, get_server, optional_user
 from ydsz.infra.market.constants import DEFAULT_LIMIT, MARKET_ITEM_TYPES, MAX_LIMIT
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import InstallTarget
@@ -37,12 +37,24 @@ def _manager(request: Request) -> Any:
     server = get_server(request)
     db = getattr(server.services, "db", None)
     from ydsz.infra.market.manager import MarketManager
+
     return MarketManager(db=db)
 
 
 # ── helpers ─────────────────────────────────────────────────────────────────
+# URL-facing aliases (plural) map to internal singular type constants.
+_TYPE_ALIAS: dict[str, str] = {
+    "skills": "skill",
+    "experts": "expert",
+    "plugins": "plugin",
+    "connectors": "connector",
+}
+
+
 def _resolve_type(type: str) -> str:
     t = type.strip().lower()
+    # Accept both singular and plural URL aliases.
+    t = _TYPE_ALIAS.get(t, t)
     if t not in _MARKET_TYPE_CHOICES:
         raise MarketError(
             MarketErrorCode.UNSUPPORTED_TYPE,
@@ -70,7 +82,7 @@ async def market_search(
     sort: str = Query(default="relevance", description="relevance|downloads|rating|newest"),
     limit: int = Query(default=DEFAULT_LIMIT, ge=1, le=MAX_LIMIT),
     offset: int = Query(default=0, ge=0),
-    user: Any = Depends(current_user),
+    user: Any = Depends(optional_user),
 ) -> dict[str, Any]:
     """Aggregated search across capability markets."""
     locale = resolve_request_locale(request)
@@ -81,9 +93,12 @@ async def market_search(
         type_filter = [t.strip() for t in types.split(",") if t.strip() in _MARKET_TYPE_CHOICES]
 
     return await mgr.search(
-        q, type_filter,
-        category=category, sort=sort,
-        limit=_resolve_limit(limit), offset=offset,
+        q,
+        type_filter,
+        category=category,
+        sort=sort,
+        limit=_resolve_limit(limit),
+        offset=offset,
         locale=locale,
     )
 
@@ -98,7 +113,7 @@ async def market_list(
     sort: str = Query(default="relevance"),
     limit: int = Query(default=DEFAULT_LIMIT, ge=1, le=MAX_LIMIT),
     offset: int = Query(default=0, ge=0),
-    user: Any = Depends(current_user),
+    user: Any = Depends(optional_user),
 ) -> dict[str, Any]:
     """Browse or search within one market type."""
     t = _resolve_type(type)
@@ -109,10 +124,15 @@ async def market_list(
         # Delegate to provider search.
         p = mgr.provider(t)
         result = await p.search(
-            q, category=category, sort=sort,
-            limit=_resolve_limit(limit), offset=offset, locale=locale,
+            q,
+            category=category,
+            sort=sort,
+            limit=_resolve_limit(limit),
+            offset=offset,
+            locale=locale,
         )
         from ydsz.infra.market.search import _item_to_dict
+
         return {
             "items": [_item_to_dict(i) for i in result.items],
             "total": result.total,
@@ -124,8 +144,12 @@ async def market_list(
         }
 
     return await mgr.browse(
-        t, category=category, sort=sort,
-        limit=_resolve_limit(limit), offset=offset, locale=locale,
+        t,
+        category=category,
+        sort=sort,
+        limit=_resolve_limit(limit),
+        offset=offset,
+        locale=locale,
     )
 
 
@@ -135,7 +159,7 @@ async def market_detail(
     request: Request,
     type: str,
     identity: str,
-    user: Any = Depends(current_user),
+    user: Any = Depends(optional_user),
 ) -> dict[str, Any]:
     """Full detail for the right-side drawer."""
     t = _resolve_type(type)
@@ -198,13 +222,19 @@ async def market_installed(
     request: Request,
     limit: int = Query(default=DEFAULT_LIMIT, ge=1, le=MAX_LIMIT),
     offset: int = Query(default=0, ge=0),
-    user: Any = Depends(current_user),
+    user: Any = Depends(optional_user),
 ) -> dict[str, Any]:
-    """Return all market items this user has installed."""
+    """Return all market items this user has installed.  Unauthenticated users
+    receive an empty list rather than an error — the marketplace page is
+    public-first."""
     mgr = _manager(request)
+    if user is None:
+        return {"items": [], "total": 0, "limit": _resolve_limit(limit), "offset": offset}
     user_id = _resolve_user_id(user)
     items = await mgr.installed(
-        user_id=user_id, limit=_resolve_limit(limit), offset=offset,
+        user_id=user_id,
+        limit=_resolve_limit(limit),
+        offset=offset,
     )
     return {"items": items, "total": len(items), "limit": _resolve_limit(limit), "offset": offset}
 
@@ -214,7 +244,7 @@ async def market_installed(
 async def market_categories(
     request: Request,
     type: str,
-    user: Any = Depends(current_user),
+    user: Any = Depends(optional_user),
 ) -> dict[str, Any]:
     """Return category facets for filter bar."""
     t = _resolve_type(type)

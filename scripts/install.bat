@@ -8,7 +8,7 @@ if defined YDSZ_HOME (set "YDSZ_HOME=%YDSZ_HOME%") else (set "YDSZ_HOME=%USERPRO
 set "YDSZ_VENV=%YDSZ_HOME%\venv"
 set "YDSZ_BIN=%YDSZ_HOME%\bin"
 set "PYTHON_VERSION=3.12"
-if defined YDSZ_REPO (set "YDSZ_REPO=%YDSZ_REPO%") else (set "YDSZ_REPO=https://github.com/ydsz-buddy/ydsz-worker.git")
+if defined YDSZ_REPO (set "YDSZ_REPO=%YDSZ_REPO%") else (set "YDSZ_REPO=https://gitee.com/njydsz/ydsz-worker.git")
 
 set "ARG_VERSION="
 set "ARG_FROM_SOURCE=0"

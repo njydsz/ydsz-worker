@@ -42,15 +42,15 @@ class MarketItem:
     describe the *catalog*; installation state belongs to the install layer.
     """
 
-    market_id: str                           # "{type}:{identity}" — global unique
-    type: MarketItemType                     # skill | expert | plugin | connector
+    market_id: str  # "{type}:{identity}" — global unique
+    type: MarketItemType  # skill | expert | plugin | connector
     source: MarketSource
-    identity: str                            # provider-native id (slug/kind/...)
+    identity: str  # provider-native id (slug/kind/...)
     name: str
     description: str = ""
     icon_url: str | None = None
-    icon_name: str | None = None             # lucide icon fallback name
-    color: str | None = None                 # hex or named color
+    icon_name: str | None = None  # lucide icon fallback name
+    color: str | None = None  # hex or named color
     version: str = ""
     author: MarketAuthor | None = None
     category: str = ""
@@ -105,8 +105,8 @@ class AggregatedSearchResult:
 class InstallTarget:
     """Where to install a capability."""
 
-    type: InstallTargetType                  # agent | package | plugin_dir | connector_instance
-    id: str                                  # agent_id, package_id, plugin_dir, instance_id
+    type: InstallTargetType  # agent | package | plugin_dir | connector_instance
+    id: str  # agent_id, package_id, plugin_dir, instance_id
 
 
 # ── Install receipt ────────────────────────────────────────────────────────
@@ -117,7 +117,7 @@ class InstallReceipt:
     market_item: MarketItem
     target: InstallTarget
     installed_version: str
-    snapshot_id: str | None = None           # for rollback
+    snapshot_id: str | None = None  # for rollback
     logs: tuple[str, ...] = ()
 
 
@@ -138,5 +138,5 @@ class UpdateInfo:
 class CachedSearch:
     """Serialised cached search result (store in market_search_cache.results_json)."""
 
-    market_ids: tuple[str, ...] = ()         # full MarketItem JSON would be huge; store ids only
+    market_ids: tuple[str, ...] = ()  # full MarketItem JSON would be huge; store ids only
     total: int = 0

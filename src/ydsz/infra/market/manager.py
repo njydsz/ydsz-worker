@@ -78,8 +78,11 @@ class MarketManager:
         """Browse one market type."""
         p = self.provider(type)
         result = await p.list_items(
-            category=category, sort=sort,
-            limit=limit, offset=offset, locale=locale,
+            category=category,
+            sort=sort,
+            limit=limit,
+            offset=offset,
+            locale=locale,
         )
         return {
             "items": [_item_to_dict(i) for i in result.items],
@@ -104,8 +107,13 @@ class MarketManager:
     ) -> dict[str, Any]:
         """Cross-type aggregated search."""
         return await self._search.search(
-            query, types, category=category, sort=sort,
-            limit=limit, offset=offset, locale=locale,
+            query,
+            types,
+            category=category,
+            sort=sort,
+            limit=limit,
+            offset=offset,
+            locale=locale,
         )
 
     async def detail(
@@ -133,8 +141,11 @@ class MarketManager:
         """Install one capability.  Returns serialised receipt."""
         p = self.provider(type)
         receipt = await self._install.execute(
-            provider=p, identity=identity, target=target,
-            user_id=user_id, **opts,
+            provider=p,
+            identity=identity,
+            target=target,
+            user_id=user_id,
+            **opts,
         )
         # Invalidate search cache after install.
         with contextlib.suppress(Exception):
@@ -153,8 +164,12 @@ class MarketManager:
     ) -> dict[str, Any]:
         p = self.provider(type)
         receipt = await self._install.update(
-            provider=p, identity=identity, installed=installed,
-            target=target, user_id=user_id, **opts,
+            provider=p,
+            identity=identity,
+            installed=installed,
+            target=target,
+            user_id=user_id,
+            **opts,
         )
         with contextlib.suppress(Exception):
             await self._search._cache.invalidate()
@@ -170,7 +185,9 @@ class MarketManager:
     ) -> list[dict[str, Any]]:
         """Return installed items across all types for one user."""
         return await self._install.installed_across_types(
-            user_id=user_id, limit=limit, offset=offset,
+            user_id=user_id,
+            limit=limit,
+            offset=offset,
         )
 
     async def check_updates(
@@ -182,7 +199,8 @@ class MarketManager:
         """Check updates for all installed items of a given type."""
         p = self.provider(type)
         installed = await p.installed_list(
-            user_id=user_id, db=self._db,
+            user_id=user_id,
+            db=self._db,
         )
         results = []
         for inst in installed:
@@ -193,12 +211,14 @@ class MarketManager:
                 db=self._db,
             )
             if info is not None:
-                results.append({
-                    "market_id": info.market_id,
-                    "installed_version": info.installed_version,
-                    "latest_version": info.latest_version,
-                    "changelog": info.changelog,
-                })
+                results.append(
+                    {
+                        "market_id": info.market_id,
+                        "installed_version": info.installed_version,
+                        "latest_version": info.latest_version,
+                        "changelog": info.changelog,
+                    }
+                )
         return results
 
     # ── Categories ─────────────────────────────────────────────────────

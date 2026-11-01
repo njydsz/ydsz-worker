@@ -9,7 +9,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from ydsz.infra.market.constants import MarketSource
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import (
     InstallReceipt,
@@ -20,8 +19,8 @@ from ydsz.infra.market.models import (
     MarketListResult,
     UpdateInfo,
 )
-from ydsz.infra.market.providers import register_provider
 from ydsz.infra.market.providers.base import MarketProvider
+from ydsz.infra.market.providers.registry import register_provider
 
 logger = logging.getLogger(__name__)
 
@@ -62,7 +61,6 @@ class SkillsProvider(MarketProvider):
     ) -> MarketListResult:
         try:
             from ydsz.infra.skills.skillhub_market import (
-                SkillHubMarketError,
                 fetch_skillhub_rankings,
             )
         except ImportError:
@@ -75,9 +73,9 @@ class SkillsProvider(MarketProvider):
                 limit=limit,
                 offset=offset,
             )
-        except SkillHubMarketError as exc:
+        except Exception as exc:  # noqa: BLE001
             logger.warning("SkillHub list failed: %s", exc)
-            return MarketListResult((), 0, limit, offset, sort)
+            return MarketListResult((), 0, limit, offset, sort, category)
 
         items = tuple(_raw_to_item(r, locale) for r in raw)
         if category:
@@ -166,9 +164,11 @@ class SkillsProvider(MarketProvider):
         version = "0.0.0"
         if target.type == "agent":
             from ydsz.infra.skills.skill_transfer import install_package_to_workspace
+
             install_package_to_workspace(pkg_path, target.id, user_id=user_id)
         elif target.type == "package":
             from ydsz.infra.skills.skill_package_store import SkillPackageStore
+
             store = SkillPackageStore()
             version = store.ingest(pkg_path, created_by=str(user_id))
         else:
@@ -181,7 +181,7 @@ class SkillsProvider(MarketProvider):
             market_item=MarketItem(
                 market_id=f"skill:{identity}",
                 type="skill",
-                source=MarketSource["ILTIN"],
+                source="ILTIN",
                 identity=identity,
                 name=identity,
                 installed=True,
@@ -202,6 +202,7 @@ class SkillsProvider(MarketProvider):
     ) -> UpdateInfo | None:
         try:
             from ydsz.infra.skills.skillhub_market import fetch_skillhub_detail
+
             raw = fetch_skillhub_detail(identity)
         except Exception:
             return None
@@ -223,13 +224,15 @@ def _raw_to_item(raw: dict[str, Any], locale: str | None = None) -> MarketItem:
     raw_name = raw.get("name", "")
     name = raw_name.get(locale or "zh", "") if isinstance(raw_name, dict) else (raw_name or slug)
     raw_desc = raw.get("description", raw.get("summary", ""))
-    description = raw_desc.get(locale or "zh", "") if isinstance(raw_desc, dict) else (raw_desc or "")
+    description = (
+        raw_desc.get(locale or "zh", "") if isinstance(raw_desc, dict) else (raw_desc or "")
+    )
     raw_author = raw.get("author")
 
     return MarketItem(
         market_id=f"skill:{slug}",
         type="skill",
-        source=MarketSource["ILTIN"],
+        source="ILTIN",
         identity=slug,
         name=name,
         description=description,
@@ -239,7 +242,9 @@ def _raw_to_item(raw: dict[str, Any], locale: str | None = None) -> MarketItem:
         author=MarketAuthor(
             name=raw_author.get("name", ""),
             url=raw_author.get("url"),
-        ) if raw_author else None,
+        )
+        if raw_author
+        else None,
         category=raw.get("category", "other"),
         tags=tuple(raw.get("tags", ())),
         rating=raw.get("rating"),

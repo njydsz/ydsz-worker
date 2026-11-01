@@ -188,7 +188,7 @@ install.bat
 
 After installation, open a **new terminal** or reload your shell. The installer places `ydsz-worker` on your PATH via `~/.ydsz-worker/bin`. See [scripts/README.md](scripts/README.md) for all install options.
 
-**Desktop app** (GUI, no terminal) — grab the artifact for your platform from [GitHub Releases](https://github.com/njydsz/ydsz-worker/releases/latest):
+**Desktop app** (GUI, no terminal) — grab the artifact for your platform from [GitHub Releases](https://gitee.com/njydsz/ydsz-worker/releases/latest):
 
 | Platform | Artifact |
 |----------|----------|

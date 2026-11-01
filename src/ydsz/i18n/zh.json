@@ -999,7 +999,7 @@
     "title_subtitle": "发现并安装技能、专家、插件、连接器",
     "search": {
       "placeholder": "搜索市场...",
-      "no_results": "未找到 \"{query}\" 相关结果",
+      "no_results": "未找到结果",
       "no_results_hint": "尝试其他关键词或浏览分类",
       "clear": "清除",
       "filters": "筛选"
@@ -1013,7 +1013,7 @@
     },
     "filters": {
       "category": "分类",
-      "all_category": "全部分类",
+      "all_category": "全部",
       "sort": "排序",
       "sort_relevance": "相关度",
       "sort_downloads": "安装量",
@@ -1036,7 +1036,7 @@
       "install": "安装",
       "installing": "安装中...",
       "update": "更新",
-      "updating": "更新中...",
+      "updating": "Updating...",
       "submit": "提交到市场",
       "connect": "连接",
       "disconnect": "断开",

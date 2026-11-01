@@ -15,6 +15,15 @@ Public surface::
 
 from ydsz.infra.market.install import InstallService
 from ydsz.infra.market.manager import MarketManager
+
+# Import each provider module to trigger its register_provider() call.
+# This MUST happen before any get_provider() / all_providers() call.
+from ydsz.infra.market.providers import (  # noqa: F401
+    connectors_provider,
+    experts_provider,
+    plugins_provider,
+    skills_provider,
+)
 from ydsz.infra.market.search import SearchService
 
 __all__ = [

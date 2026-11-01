@@ -87,9 +87,7 @@ class MarketProvider(ABC):
 
         Subclasses MUST override to provide rich drawer content.
         """
-        raise NotImplementedError(
-            f"detail() not implemented for {self.market_type}"
-        )
+        raise NotImplementedError(f"detail() not implemented for {self.market_type}")
 
     # ── Install ──────────────────────────────────────────────────────────
     @abstractmethod

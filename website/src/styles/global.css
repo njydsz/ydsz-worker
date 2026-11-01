@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ink-900 text-white font-sans;
+  }
+
+  ::selection {
+    @apply bg-yuanbao-500/30 text-yuanbao-200;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-yuanbao-500 hover:bg-yuanbao-400 text-ink-900 font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-yuanbao-500/25 hover:shadow-yuanbao-500/40;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-white/15 hover:border-yuanbao-500/50 text-white hover:text-yuanbao-300 font-medium rounded-xl transition-all duration-200 backdrop-blur-sm;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-white/70 hover:text-white transition-colors duration-200;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-sm font-medium;
+  }
+
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white;
+  }
+
+  .heading-lg {
+    @apply text-3xl sm:text-4xl font-bold tracking-tight text-white;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-yuanbao-300 via-yuanbao-400 to-yuanbao-500;
+  }
+
+  .card-glass {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-2xl;
+  }
+
+  .glow-dot {
+    @apply w-2 h-2 rounded-full bg-yuanbao-400 shadow-lg shadow-yuanbao-400/50;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}

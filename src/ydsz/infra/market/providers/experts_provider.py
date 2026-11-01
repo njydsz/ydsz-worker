@@ -9,7 +9,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from ydsz.infra.market.constants import MarketSource
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import (
     InstallReceipt,
@@ -19,8 +18,8 @@ from ydsz.infra.market.models import (
     MarketItem,
     MarketListResult,
 )
-from ydsz.infra.market.providers import register_provider
 from ydsz.infra.market.providers.base import MarketProvider
+from ydsz.infra.market.providers.registry import register_provider
 
 logger = logging.getLogger(__name__)
 
@@ -59,6 +58,7 @@ class ExpertsProvider(MarketProvider):
                 SkillHubMarketError,
                 browse_skillsets,
             )
+
             skillhub_items, _scenes = browse_skillsets(query="", scene=category or "")
             skillhub_market = tuple(_skillhub_to_item(s, locale) for s in skillhub_items)
         except SkillHubMarketError as exc:
@@ -74,7 +74,7 @@ class ExpertsProvider(MarketProvider):
         total = len(all_items)
 
         # Pagination.
-        items = all_items[offset:offset + limit]
+        items = all_items[offset : offset + limit]
         return MarketListResult(tuple(items), total, limit, offset, sort, category)
 
     async def search(
@@ -96,6 +96,7 @@ class ExpertsProvider(MarketProvider):
                 SkillHubMarketError,
                 browse_skillsets,
             )
+
             skillhub_items, _ = browse_skillsets(query=query, scene=category or "")
             skillhub_market = tuple(_skillhub_to_item(s, locale) for s in skillhub_items)
         except SkillHubMarketError:
@@ -104,7 +105,7 @@ class ExpertsProvider(MarketProvider):
         published = self._list_published(query=query, locale=locale)
 
         all_items = bundled + skillhub_market + published
-        items = all_items[offset:offset + limit]
+        items = all_items[offset : offset + limit]
         return MarketListResult(tuple(items), len(all_items), limit, offset, sort, category)
 
     async def detail(self, identity: str, *, locale: str | None = None, **kw: Any) -> MarketDetail:
@@ -115,6 +116,7 @@ class ExpertsProvider(MarketProvider):
 
     def _detail_bundled(self, identity: str, *, locale: str | None) -> MarketDetail:
         from ydsz.infra.agents.experts.catalog import discover_seed_paths
+
         paths = discover_seed_paths()
         match = next((p for p in paths if p.stem == identity or p.name == identity), None)
         if match is None:
@@ -124,13 +126,14 @@ class ExpertsProvider(MarketProvider):
             build_create_spec_from_expert,
             preview_paths_from_expert_dir,
         )
+
         spec = build_create_spec_from_expert(match)
         files = preview_paths_from_expert_dir(match)
 
         return MarketDetail(
             market_id=f"expert:{identity}",
             type="expert",
-            source=MarketSource["ILTIN"],
+            source="ILTIN",
             identity=identity,
             name=spec.name,
             description=spec.description,
@@ -142,6 +145,7 @@ class ExpertsProvider(MarketProvider):
             SkillHubMarketError,
             fetch_skillset,
         )
+
         slug = identity.removeprefix("skillhub-skillset-")
         try:
             skillset = fetch_skillset(slug)
@@ -180,12 +184,18 @@ class ExpertsProvider(MarketProvider):
         return await self._install_bundled(identity, target=target, user_id=user_id, **opts)
 
     async def _install_bundled(
-        self, identity: str, *, target: InstallTarget, user_id: int, **opts: Any,
+        self,
+        identity: str,
+        *,
+        target: InstallTarget,
+        user_id: int,
+        **opts: Any,
     ) -> InstallReceipt:
         from ydsz.infra.agents.experts.catalog import (
             build_create_spec_from_expert,
             discover_seed_paths,
         )
+
         paths = discover_seed_paths()
         match = next((p for p in paths if p.stem == identity), None)
         if match is None:
@@ -193,13 +203,14 @@ class ExpertsProvider(MarketProvider):
         spec = build_create_spec_from_expert(match)
 
         from ydsz.infra.agents.experts.market_creation import create_agent_from_expert_spec
+
         agent_id = await create_agent_from_expert_spec(spec, owner_id=user_id)
 
         return InstallReceipt(
             market_item=MarketItem(
                 market_id=f"expert:{identity}",
                 type="expert",
-                source=MarketSource["ILTIN"],
+                source="ILTIN",
                 identity=identity,
                 name=spec.name,
                 installed=True,
@@ -211,14 +222,23 @@ class ExpertsProvider(MarketProvider):
         )
 
     async def _install_skillhub(
-        self, identity: str, *, target: InstallTarget, user_id: int, **opts: Any,
+        self,
+        identity: str,
+        *,
+        target: InstallTarget,
+        user_id: int,
+        **opts: Any,
     ) -> InstallReceipt:
         slug = identity.removeprefix("skillhub-skillset-")
         from ydsz.infra.agents.experts.market_creation import create_agent_from_skillhub_skillset
+
         name = opts.get("name") or slug
         description = opts.get("description") or ""
         agent_id = await create_agent_from_skillhub_skillset(
-            slug, user_id=user_id, name=name, description=description,
+            slug,
+            user_id=user_id,
+            name=name,
+            description=description,
         )
         return InstallReceipt(
             market_item=MarketItem(
@@ -236,12 +256,15 @@ class ExpertsProvider(MarketProvider):
         )
 
     # ── Helpers ─────────────────────────────────────────────────────────
-    def _list_bundled(self, *, query: str | None = None, locale: str | None = None) -> tuple[MarketItem, ...]:
+    def _list_bundled(
+        self, *, query: str | None = None, locale: str | None = None
+    ) -> tuple[MarketItem, ...]:
         try:
             from ydsz.infra.agents.experts.catalog import (
                 build_create_spec_from_expert,
                 discover_seed_paths,
             )
+
             paths = discover_seed_paths()
         except ImportError:
             return ()
@@ -251,22 +274,26 @@ class ExpertsProvider(MarketProvider):
             spec = build_create_spec_from_expert(p)
             if query and query.lower() not in f"{spec.name} {spec.description}".lower():
                 continue
-            items.append(MarketItem(
-                market_id=f"expert:{spec.identity}",
-                type="expert",
-                source=MarketSource["ILTIN"],
-                identity=spec.identity,
-                name=spec.name,
-                description=spec.description,
-                icon_url=getattr(spec, "icon_url", None),
-                icon_name=getattr(spec, "icon_name", "bot"),
-                color=getattr(spec, "color", None),
-                author=MarketAuthor(name=getattr(spec, "author", "ILTIN")),
-                installed=False,  # caller fills
-            ))
+            items.append(
+                MarketItem(
+                    market_id=f"expert:{spec.identity}",
+                    type="expert",
+                    source="ILTIN",
+                    identity=spec.identity,
+                    name=spec.name,
+                    description=spec.description,
+                    icon_url=getattr(spec, "icon_url", None),
+                    icon_name=getattr(spec, "icon_name", "bot"),
+                    color=getattr(spec, "color", None),
+                    author=MarketAuthor(name=getattr(spec, "author", "ILTIN")),
+                    installed=False,  # caller fills
+                )
+            )
         return tuple(items)
 
-    def _list_published(self, *, query: str | None = None, locale: str | None = None) -> tuple[MarketItem, ...]:
+    def _list_published(
+        self, *, query: str | None = None, locale: str | None = None
+    ) -> tuple[MarketItem, ...]:
         # Deferred — when published_experts table is queried by market manager.
         return ()
 

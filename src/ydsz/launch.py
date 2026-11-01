@@ -161,6 +161,55 @@ async def run_foreground(
             await srv.stop()
 
 
+async def run_market_foreground(
+    *,
+    host: str | None = None,
+    port: int | None = None,
+    log_level: str | None = None,
+    dashboard_url: str = "",
+    cors_origins: list[str] | None = None,
+) -> None:
+    """Boot only the public Marketplace — no JWT, no setup, no dashboard.
+
+    Runs on ``port`` (default 8090) so it can coexist with the main Ydzz
+    Worker on 8088.  CORS is configured explicitly because the marketplace
+    is meant to be embedded into the official website on a different origin.
+    """
+    import uvicorn
+
+    from ydsz.api.market_app import build_market_app
+
+    srv = YdszServer()
+    await srv.start()
+    cfg = srv.services.config if srv.services is not None else srv.config
+    bind_host = host or "0.0.0.0"
+    bind_port = port or 8090
+    level = (log_level or (cfg.log_level if cfg else "info")).lower()
+
+    app = build_market_app(srv, dashboard_url=dashboard_url, cors_origins=cors_origins)
+
+    config = uvicorn.Config(
+        app,
+        host=bind_host,
+        port=bind_port,
+        log_level=level,
+        workers=1,
+        reload=False,
+    )
+    server = uvicorn.Server(config)
+    logger.info("Market standalone listening on http://%s:%s", bind_host, bind_port)
+
+    try:
+        await server.serve()
+    finally:
+        await srv.stop()
+
+
 def run_foreground_blocking(**kwargs: Any) -> None:
     """Sync entry for Click commands and tests."""
     asyncio.run(run_foreground(**kwargs))
+
+
+def run_market_foreground_blocking(**kwargs: Any) -> None:
+    """Sync entry for ``ydsz-worker market``."""
+    asyncio.run(run_market_foreground(**kwargs))
