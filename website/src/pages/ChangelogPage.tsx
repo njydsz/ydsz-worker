@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { useLanguage } from '../context/LanguageContext'
 
 interface ChangeItem {
   text: string
 }
 
 interface ChangeGroup {
-  label: string
+  labelKey: string
   icon: string
   color: string
   items: ChangeItem[]
@@ -27,7 +28,7 @@ const VERSIONS: VersionEntry[] = [
     summary: '官方网站上线、多页面路由支持、安装脚本修正与启动器优化。',
     groups: [
       {
-        label: '新增',
+        labelKey: 'cl.new',
         icon: '✨',
         color: 'yuanbao',
         items: [
@@ -37,7 +38,7 @@ const VERSIONS: VersionEntry[] = [
         ],
       },
       {
-        label: '变更',
+        labelKey: 'cl.change',
         icon: '🔄',
         color: 'blue',
         items: [
@@ -47,7 +48,7 @@ const VERSIONS: VersionEntry[] = [
         ],
       },
       {
-        label: '修复',
+        labelKey: 'cl.fix',
         icon: '🐛',
         color: 'red',
         items: [
@@ -57,7 +58,7 @@ const VERSIONS: VersionEntry[] = [
         ],
       },
       {
-        label: '安全',
+        labelKey: 'cl.security',
         icon: '🔒',
         color: 'amber',
         items: [
@@ -74,7 +75,7 @@ const VERSIONS: VersionEntry[] = [
     summary: '多页面视觉精致化、专家插件市场、全局动效升级。',
     groups: [
       {
-        label: '新增',
+        labelKey: 'cl.new',
         icon: '✨',
         color: 'yuanbao',
         items: [
@@ -84,7 +85,7 @@ const VERSIONS: VersionEntry[] = [
         ],
       },
       {
-        label: '变更',
+        labelKey: 'cl.change',
         icon: '🔄',
         color: 'blue',
         items: [
@@ -94,7 +95,7 @@ const VERSIONS: VersionEntry[] = [
         ],
       },
       {
-        label: '修复',
+        labelKey: 'cl.fix',
         icon: '🐛',
         color: 'red',
         items: [
@@ -111,7 +112,7 @@ const VERSIONS: VersionEntry[] = [
     summary: '独立 website 模块拆分、基础路由架构、单页应用升级。',
     groups: [
       {
-        label: '新增',
+        labelKey: 'cl.new',
         icon: '✨',
         color: 'yuanbao',
         items: [
@@ -121,7 +122,7 @@ const VERSIONS: VersionEntry[] = [
         ],
       },
       {
-        label: '变更',
+        labelKey: 'cl.change',
         icon: '🔄',
         color: 'blue',
         items: [
@@ -130,7 +131,7 @@ const VERSIONS: VersionEntry[] = [
         ],
       },
       {
-        label: '修复',
+        labelKey: 'cl.fix',
         icon: '🐛',
         color: 'red',
         items: [
@@ -174,6 +175,7 @@ const COLOR_MAP: Record<string, { bg: string; border: string; text: string; badg
 }
 
 export default function ChangelogPage() {
+  const { t } = useLanguage()
   const [activeVersion, setActiveVersion] = useState<string>(VERSIONS[0].version)
 
   const current = VERSIONS.find((v) => v.version === activeVersion) ?? VERSIONS[0]
@@ -184,12 +186,12 @@ export default function ChangelogPage() {
       <div className="container-page">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="section-label mb-4">更新日志</span>
+          <span className="section-label mb-4">{t('cl.title')}</span>
           <h1 className="heading-xl mt-4 mb-3">
             <span className="text-gradient">Changelog</span>
           </h1>
           <p className="text-white/60 text-lg">
-            Ydsz Worker 的所有版本变更记录，持续迭代完善中。
+            {t('cl.subtitle')}
           </p>
         </div>
 
@@ -234,7 +236,7 @@ export default function ChangelogPage() {
                         activeVersion === v.version ? 'text-white/50' : 'text-white/30 group-hover:text-white/50'
                       }`}
                     >
-                      {v.codename} · {v.groups.reduce((n, g) => n + g.items.length, 0)} 项变更
+                      {v.codename} · {v.groups.reduce((n, g) => n + g.items.length, 0)} {t('cl.changes_count')}
                     </div>
                   </button>
                 ))}
@@ -284,10 +286,10 @@ export default function ChangelogPage() {
                 {current.groups.map((group) => {
                   const colors = COLOR_MAP[group.color] ?? COLOR_MAP.yuanbao
                   return (
-                    <div key={group.label}>
+                    <div key={group.labelKey}>
                       <div className="flex items-center gap-2 mb-4">
                         <span className="text-lg">{group.icon}</span>
-                        <h3 className={`font-semibold ${colors.text}`}>{group.label}</h3>
+                        <h3 className={`font-semibold ${colors.text}`}>{t(group.labelKey)}</h3>
                         <span className={`px-2 py-0.5 rounded-full text-xs border ${colors.badge}`}>
                           {group.items.length}
                         </span>

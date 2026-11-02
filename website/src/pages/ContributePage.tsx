@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SectionDivider from '../components/SectionDivider'
+import { useLanguage } from '../context/LanguageContext'
 
 /* ── 贡献排行榜数据 ── */
 const INDIVIDUAL_LEADERBOARD = [
@@ -52,61 +53,62 @@ const COMPANY_LEADERBOARD = [
 const CONTRIBUTION_CATEGORIES = [
   {
     icon: '💻',
-    title: '代码贡献',
-    description: '向核心仓库提交 Bug 修复、新功能、性能优化或测试用例。遵循 Git 工作流，每个 PR 需要有清晰的描述和测试。',
+    titleKey: '代码贡献',
+    descKey: '向核心仓库提交 Bug 修复、新功能、性能优化或测试用例。遵循 Git 工作流，每个 PR 需要有清晰的描述和测试。',
     link: 'https://github.com/ydsz-buddy/ydsz-worker/blob/main/CONTRIBUTING.md',
-    linkLabel: '贡献指南 →',
+    linkLabelKey: '贡献指南 →',
     popular: true,
   },
   {
     icon: '🌐',
-    title: '生态共建',
-    description: '为市场生态贡献专家（Expert）、技能（Skill）、插件（Plugin）或连接器（Connector）。构建可被社区复用的模块化能力。',
+    titleKey: '生态共建',
+    descKey: '为市场生态贡献专家（Expert）、技能（Skill）、插件（Plugin）或连接器（Connector）。构建可被社区复用的模块化能力。',
     link: '/marketplace',
-    linkLabel: '浏览市场 →',
+    linkLabelKey: '浏览市场 →',
     popular: false,
   },
   {
     icon: '📖',
-    title: '文档改进',
-    description: '完善 API 文档、撰写使用教程、翻译多语言内容、补充示例代码。好的文档让每个人都能轻松上手。',
+    titleKey: '文档改进',
+    descKey: '完善 API 文档、撰写使用教程、翻译多语言内容、补充示例代码。好的文档让每个人都能轻松上手。',
     link: 'https://github.com/ydsz-buddy/ydsz-worker/blob/main/docs',
-    linkLabel: '查看文档 →',
+    linkLabelKey: '查看文档 →',
     popular: false,
   },
   {
     icon: '🤝',
-    title: '社区助力',
-    description: '回答 Issues 中的问题、在讨论区帮助新人、分享使用经验、撰写博客推荐。每个有爱的互动都让社区更好。',
+    titleKey: '社区助力',
+    descKey: '回答 Issues 中的问题、在讨论区帮助新人、分享使用经验、撰写博客推荐。每个有爱的互动都让社区更好。',
     link: 'https://github.com/ydsz-buddy/ydsz-worker/discussions',
-    linkLabel: '参与讨论 →',
+    linkLabelKey: '参与讨论 →',
     popular: false,
   },
   {
     icon: '🎨',
-    title: '设计共创',
-    description: 'UI/UX 优化建议、Logo 设计、吉祥物创作、宣传物料。我们的视觉形象由社区共同塑造。',
+    titleKey: '设计共创',
+    descKey: 'UI/UX 优化建议、Logo 设计、吉祥物创作、宣传物料。我们的视觉形象由社区共同塑造。',
     link: 'mailto:design@ydsz.dev',
-    linkLabel: '联系设计组 →',
+    linkLabelKey: '联系设计组 →',
     popular: false,
   },
 ]
 
 const STEPS = [
-  { num: 1, title: 'Fork 仓库', desc: 'Fork ydsz-worker 到你自己的账号，创建特性的分支。' },
-  { num: 2, title: '选择任务', desc: '浏览标记有 good-first-issue 或 help-wanted 的 Issue。' },
-  { num: 3, title: '开发提交', desc: 'Fork → Branch → Code → Test → PR，保持代码清晰可维护。' },
-  { num: 4, title: '评审合并', desc: '维护者评审反馈 → 修改 → 合并入 main → 进入贡献榜。' },
+  { num: 1, titleKey: 'contrib.steps.s1', descKey: 'contrib.steps.s1_desc' },
+  { num: 2, titleKey: 'contrib.steps.s2', descKey: 'contrib.steps.s2_desc' },
+  { num: 3, titleKey: 'contrib.steps.s3', descKey: 'contrib.steps.s3_desc' },
+  { num: 4, titleKey: 'contrib.steps.s4', descKey: 'contrib.steps.s4_desc' },
 ]
 
 const FAQS = [
-  { a: '我完全没有编程经验可以参与吗？', b: '当然可以！文档翻译、测试反馈、Bug 报告、UI 设计建议、社区答疑等都是非常重要且被认可的贡献形式。' },
-  { a: '提交 PR 后多久能得到反馈？', b: '我们承诺在收到 PR 后 5 个工作日内给出首次反馈。紧急 Bug 修复 24 小时内响应。' },
-  { a: '如何让自己的贡献被更多人使用？', b: '提交到市场生态的专家/技能/插件/连接器会自动展示在 Marketplace，获得社区评分和推荐位。' },
-  { a: '可以组队参与吗？', b: '鼓励团队协作。请在 PR 描述中注明团队成员 GitHub ID，贡献榜会分别计入每人名下。' },
+  { aKey: 'contrib.faq.q1', bKey: 'contrib.faq.a1' },
+  { aKey: 'contrib.faq.q2', bKey: 'contrib.faq.a2' },
+  { aKey: 'contrib.faq.q3', bKey: 'contrib.faq.a3' },
+  { aKey: 'contrib.faq.q4', bKey: 'contrib.faq.a4' },
 ]
 
 export default function ContributePage() {
+  const { t } = useLanguage()
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [leaderboardTab, setLeaderboardTab] = useState<'individual' | 'company'>('individual')
 
@@ -124,13 +126,12 @@ export default function ContributePage() {
             <circle cx="420" cy="120" r="55" fill="#22c55e" opacity="0.05" />
           </svg>
           <div className="relative">
-            <span className="section-label">开源贡献</span>
+            <span className="section-label">{t('contrib.hero.badge')}</span>
             <h1 className="heading-xl mt-4 mb-4">
-              共筑<span className="text-gradient">开源生态</span>
+              {t('contrib.hero.title1')}<span className="text-gradient">{t('contrib.hero.title2')}</span>
             </h1>
             <p className="text-white/60 text-lg max-w-2xl mx-auto text-balance">
-              每一行代码、每一份文档、每一个插件，都在让企业 AI 变得更好。<br className="hidden sm:block" />
-              无论你是谁，你的贡献都将被看见。
+              {t('contrib.hero.desc')}
             </p>
           </div>
         </div>
@@ -140,8 +141,8 @@ export default function ContributePage() {
         {/* ── Leaderboards ── */}
         <section className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="heading-lg">开源贡献榜</h2>
-            <p className="text-white/50 mt-3">代码永不眠，致敬每一位同行者</p>
+            <h2 className="heading-lg">{t('contrib.lb.title')}</h2>
+            <p className="text-white/50 mt-3">{t('contrib.lb.subtitle')}</p>
           </div>
 
           {/* Tab switcher */}
@@ -155,7 +156,7 @@ export default function ContributePage() {
                     : 'text-white/50 hover:text-white/70'
                 }`}
               >
-                👤 个人贡献榜
+                👤 {t('contrib.lb.individual')}
               </button>
               <button
                 onClick={() => setLeaderboardTab('company')}
@@ -165,7 +166,7 @@ export default function ContributePage() {
                     : 'text-white/50 hover:text-white/70'
                 }`}
               >
-                🏢 企业贡献榜
+                🏢 {t('contrib.lb.company')}
               </button>
             </div>
           </div>
@@ -203,7 +204,7 @@ export default function ContributePage() {
                     <div className="text-2xl font-bold text-gradient my-2">
                       {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).contributions}
                     </div>
-                    <div className="text-xs text-white/40 mb-3">次贡献</div>
+                    <div className="text-xs text-white/40 mb-3">{t('contrib.lb.contributions')}</div>
                     <div className="flex flex-wrap justify-center gap-1">
                       {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).specialties.map((s) => (
                         <span key={s} className="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06] text-xs text-white/40">{s}</span>
@@ -222,7 +223,7 @@ export default function ContributePage() {
                     <div className="text-2xl font-bold text-gradient my-2">
                       {(entry as typeof COMPANY_LEADERBOARD[0]).contributions}
                     </div>
-                    <div className="text-xs text-white/40 mb-3">次贡献</div>
+                    <div className="text-xs text-white/40 mb-3">{t('contrib.lb.contributions')}</div>
                     <span className="inline-block px-2.5 py-1 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/15 text-yuanbao-400 text-xs">
                       {(entry as typeof COMPANY_LEADERBOARD[0]).category}
                     </span>
@@ -238,16 +239,16 @@ export default function ContributePage() {
         {/* ── Contribution Categories ── */}
         <section className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="heading-lg">参与方式</h2>
-            <p className="text-white/50 mt-3">选择你擅长或感兴趣的方式，开始你的贡献之旅</p>
+            <h2 className="heading-lg">{t('contrib.cats.title')}</h2>
+            <p className="text-white/50 mt-3">{t('contrib.cats.subtitle')}</p>
           </div>
           <div className="space-y-4 max-w-4xl mx-auto">
             {CONTRIBUTION_CATEGORIES.map((cat) => (
-              <div key={cat.title} className="card-glow p-6 lg:p-7 flex flex-col md:flex-row md:items-center gap-5 relative overflow-hidden group">
+              <div key={cat.titleKey} className="card-glow p-6 lg:p-7 flex flex-col md:flex-row md:items-center gap-5 relative overflow-hidden group">
                 {cat.popular && (
                   <div className="absolute top-0 right-0">
                     <div className="bg-yuanbao-500 text-ink-900 text-xs font-bold px-3 py-1 rounded-bl-lg">
-                      热门
+                      {t('contrib.cats.popular')}
                     </div>
                   </div>
                 )}
@@ -256,8 +257,8 @@ export default function ContributePage() {
                 )}
                 <div className="text-4xl shrink-0">{cat.icon}</div>
                 <div className="flex-1">
-                  <h3 className="text-white font-semibold text-lg mb-1.5">{cat.title}</h3>
-                  <p className="text-white/55 text-sm leading-relaxed">{cat.description}</p>
+                  <h3 className="text-white font-semibold text-lg mb-1.5">{t(cat.titleKey)}</h3>
+                  <p className="text-white/55 text-sm leading-relaxed">{t(cat.descKey)}</p>
                 </div>
                 <a
                   href={cat.link}
@@ -265,7 +266,7 @@ export default function ContributePage() {
                   rel={cat.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="shrink-0 px-4 py-2 rounded-lg bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-sm font-medium hover:bg-yuanbao-500/15 transition-colors"
                 >
-                  {cat.linkLabel}
+                  {t(cat.linkLabelKey)}
                 </a>
               </div>
             ))}
@@ -277,8 +278,8 @@ export default function ContributePage() {
         {/* ── Contribution Steps ── */}
         <section className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="heading-lg">开始贡献</h2>
-            <p className="text-white/50 mt-3">4 步完成你的第一次贡献</p>
+            <h2 className="heading-lg">{t('contrib.steps.title')}</h2>
+            <p className="text-white/50 mt-3">{t('contrib.steps.subtitle')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
             {STEPS.map((s, idx) => (
@@ -289,8 +290,8 @@ export default function ContributePage() {
                 {idx < STEPS.length - 1 && (
                   <div className="hidden lg:block absolute top-6 -right-3 w-6 border-t border-dashed border-white/[0.1]" />
                 )}
-                <h3 className="text-white font-semibold mt-3 mb-2">{s.title}</h3>
-                <p className="text-white/55 text-sm leading-relaxed">{s.desc}</p>
+                <h3 className="text-white font-semibold mt-3 mb-2">{t(s.titleKey)}</h3>
+                <p className="text-white/55 text-sm leading-relaxed">{t(s.descKey)}</p>
               </div>
             ))}
           </div>
@@ -304,12 +305,12 @@ export default function ContributePage() {
             {[
               { value: '2,400+', label: 'Stars' },
               { value: '180+',   label: 'Forks' },
-              { value: '95+',    label: '贡献者' },
-              { value: '50+',    label: '市场组件' },
+              { value: '95+',    labelKey: 'contrib.stats.contributors' },
+              { value: '50+',    labelKey: 'contrib.stats.components' },
             ].map((stat) => (
-              <div key={stat.label} className="card-refined p-5">
+              <div key={stat.labelKey || stat.label} className="card-refined p-5">
                 <div className="text-2xl font-bold text-gradient mb-1">{stat.value}</div>
-                <div className="text-white/40 text-xs uppercase tracking-wider">{stat.label}</div>
+                <div className="text-white/40 text-xs uppercase tracking-wider">{stat.labelKey ? t(stat.labelKey) : stat.label}</div>
               </div>
             ))}
           </div>
@@ -320,7 +321,7 @@ export default function ContributePage() {
         {/* ── FAQ ── */}
         <section className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="heading-lg">常见问题</h2>
+            <h2 className="heading-lg">{t('contrib.faq.title')}</h2>
           </div>
           <div className="max-w-3xl mx-auto space-y-3">
             {FAQS.map((faq, idx) => (
@@ -330,7 +331,7 @@ export default function ContributePage() {
                   className="w-full px-6 py-4 flex items-center justify-between text-left group"
                 >
                   <span className="text-white font-medium pr-4 group-hover:text-yuanbao-300 transition-colors">
-                    {faq.a}
+                    {t(faq.aKey)}
                   </span>
                   <svg
                     className={`w-5 h-5 text-yuanbao-400 shrink-0 transition-transform duration-200 ${openFaq === idx ? 'rotate-180' : ''}`}
@@ -341,7 +342,7 @@ export default function ContributePage() {
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ${openFaq === idx ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <div className="px-6 pb-4 text-white/55 text-sm leading-relaxed border-t border-white/[0.06] pt-4">
-                    {faq.b}
+                    {t(faq.bKey)}
                   </div>
                 </div>
               </div>
@@ -355,9 +356,9 @@ export default function ContributePage() {
             <ellipse cx="400" cy="100" rx="380" ry="90" fill="#22c55e" opacity="0.4" />
           </svg>
           <div className="relative">
-            <h2 className="heading-lg mb-4">准备好开始贡献了吗？</h2>
+            <h2 className="heading-lg mb-4">{t('contrib.cta.title')}</h2>
             <p className="text-white/60 mb-8 max-w-xl mx-auto">
-              加入我们的 GitHub 社区，浏览 Issues，提交你的第一个 PR 或市场组件。
+              {t('contrib.cta.desc')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
@@ -369,10 +370,10 @@ export default function ContributePage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
-                前往 GitHub
+                {t('contrib.cta.github')}
               </a>
               <Link to="/marketplace" className="btn-secondary">
-                浏览市场生态
+                {t('contrib.cta.market')}
               </Link>
             </div>
           </div>

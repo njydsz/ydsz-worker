@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import SectionDivider from '../components/SectionDivider'
+import { useLanguage } from '../context/LanguageContext'
 
 /* ═══════════════════════════════════════════
    Types
@@ -341,15 +342,15 @@ const DOWNLOAD_URLS: Record<string, string> = {
 
 interface TabDef {
   key: TabKey
-  label: string
+  labelKey: string
 }
 
 const TABS: TabDef[] = [
-  { key: 'all', label: '全部' },
-  { key: 'experts', label: '专家' },
-  { key: 'skills', label: '技能' },
-  { key: 'plugins', label: '插件' },
-  { key: 'connectors', label: '连接器' },
+  { key: 'all', labelKey: 'market.tab.all' },
+  { key: 'experts', labelKey: 'market.tab.experts' },
+  { key: 'skills', labelKey: 'market.tab.skills' },
+  { key: 'plugins', labelKey: 'market.tab.plugins' },
+  { key: 'connectors', labelKey: 'market.tab.connectors' },
 ]
 
 /* ═══════════════════════════════════════════
@@ -357,6 +358,7 @@ const TABS: TabDef[] = [
    ═══════════════════════════════════════════ */
 
 export default function MarketplacePage() {
+  const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState<TabKey>('all')
   const [activeCategory, setActiveCategory] = useState<string>('全部')
   const [searchQuery, setSearchQuery] = useState('')
@@ -410,16 +412,16 @@ export default function MarketplacePage() {
         {/* ═══ Header ═══ */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <span className="section-label">市场生态</span>
+            <span className="section-label">{t('market.hero.badge')}</span>
             <span className="px-2.5 py-0.5 rounded-md bg-yuanbao-500/10 border border-yuanbao-500/15 text-yuanbao-400 text-[11px] font-semibold">
-              {totalCount} 个条目
+              {totalCount} {t('market.hero.entries')}
             </span>
           </div>
           <h1 className="heading-xl mt-3 mb-2">
-            <span className="text-gradient">市场生态</span>
+            <span className="text-gradient">{t('market.hero.title')}</span>
           </h1>
           <p className="text-white/55 text-base max-w-xl mx-auto mt-3">
-            专家、技能、插件、连接器四位一体的智能体生态市场。即装即用，持续扩展。
+            {t('market.hero.subtitle')}
           </p>
         </div>
 
@@ -436,7 +438,7 @@ export default function MarketplacePage() {
                     : 'text-white/55 hover:text-white/80 hover:bg-white/[0.03]'
                 }`}
               >
-                {tab.label}
+                {t(tab.labelKey)}
               </button>
             ))}
           </div>
@@ -547,7 +549,7 @@ export default function MarketplacePage() {
                       <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
-                      下载
+                      {t('market.download')}
                     </a>
                   </div>
                 </div>
@@ -560,8 +562,8 @@ export default function MarketplacePage() {
         {filtered.length === 0 && (
           <div className="text-center py-24">
             <EmptyStateSvg />
-            <p className="text-base text-white/45 mt-5 mb-1.5">未找到匹配的条目</p>
-            <p className="text-[13px] text-white/30">尝试修改关键词或切换分类重新查找</p>
+            <p className="text-base text-white/45 mt-5 mb-1.5">{t('market.empty.title')}</p>
+            <p className="text-[13px] text-white/30">{t('market.empty.desc')}</p>
           </div>
         )}
 
@@ -572,13 +574,13 @@ export default function MarketplacePage() {
               <SectionDivider variant="line" />
             </div>
             <div className="text-center mt-10">
-              <p className="text-white/50 text-sm mb-6">或前往独立分类页面查看更多</p>
+              <p className="text-white/50 text-sm mb-6">{t('market.sub_links')}</p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link to="/experts" className="btn-secondary text-sm">
-                  专家市场 →
+                  {t('market.explore')}
                 </Link>
                 <Link to="/plugins" className="btn-secondary text-sm">
-                  插件市场 →
+                  {t('market.plugins_link')}
                 </Link>
               </div>
             </div>

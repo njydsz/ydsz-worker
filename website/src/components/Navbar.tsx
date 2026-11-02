@@ -46,11 +46,11 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
   }, [location.pathname])
 
   const NAV_LINKS = [
-    { label: t('overview'), href: '/', match: /^(\/|#.*)$/ },
-    { label: t('marketplace'), href: '/marketplace', match: /^\/marketplace/ },
-    { label: t('contribute'), href: '/contribute', match: /^\/contribute/ },
-    { label: t('changelog'), href: '/changelog', match: /^\/changelog/ },
-    { label: t('docs'), href: '/docs', match: /^\/docs/ },
+    { label: t('nav.overview'), href: '/', match: /^(\/|#.*)$/ },
+    { label: t('nav.marketplace'), href: '/marketplace', match: /^\/marketplace/ },
+    { label: t('nav.contribute'), href: '/contribute', match: /^\/contribute/ },
+    { label: t('nav.changelog'), href: '/changelog', match: /^\/changelog/ },
+    { label: t('nav.docs'), href: '/docs', match: /^\/docs/ },
   ]
 
   const isActive = (match: RegExp) => match.test(location.pathname)
@@ -104,7 +104,7 @@ export default function Navbar({ onSearchOpen }: NavbarProps) {
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span className="hidden md:inline">{t('search')}</span>
+              <span className="hidden md:inline">{t('nav.search')}</span>
               <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/[0.06] border border-white/[0.08] text-white/30">
                 ⌘K
               </kbd>
