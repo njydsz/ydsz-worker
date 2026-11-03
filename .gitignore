@@ -71,14 +71,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 dashboard/dist/
-src/octop/dashboard/**
-src/octop/dashboard/assets/*
-!src/octop/dashboard/__init__.py
-!src/octop/dashboard/.gitkeep
+src/ydsz/dashboard/**
+src/ydsz/dashboard/assets/*
+!src/ydsz/dashboard/__init__.py
+!src/ydsz/dashboard/.gitkeep
 
 # Ship Meituan pt-passport runtime; override global node_modules/ ignore.
-!src/octop/infra/agents/experts/library/meituan-living-assistant/skills/meituan-deals/scripts/node_modules/
-!src/octop/infra/agents/experts/library/meituan-living-assistant/skills/meituan-deals/scripts/node_modules/**
+!src/ydsz/infra/agents/experts/library/meituan-living-assistant/skills/meituan-deals/scripts/node_modules/
+!src/ydsz/infra/agents/experts/library/meituan-living-assistant/skills/meituan-deals/scripts/node_modules/**
 
 # Local databases
 *.sqlite

@@ -168,12 +168,12 @@ def test_build_upgrade_command_prerelease_flags(
     uv_cmd = build_upgrade_command("uv", python, allow_prerelease=True, version="0.9.34b1")
     assert uv_cmd is not None
     assert uv_cmd[uv_cmd.index("--prerelease") + 1] == "allow"
-    assert "ydsz==0.9.34b1" in uv_cmd
+    assert "ydsz-worker==0.9.34b1" in uv_cmd
     monkeypatch.setattr("ydsz.infra.setup.self_update.has_pip", lambda _: True)
     pip_cmd = build_upgrade_command("pip", python, allow_prerelease=True, version="0.9.34b1")
     assert pip_cmd is not None
     assert "--pre" in pip_cmd
-    assert "ydsz==0.9.34b1" in pip_cmd
+    assert "ydsz-worker==0.9.34b1" in pip_cmd
 
 
 def test_portable_upgrade_prefers_bundled_uv(
@@ -214,12 +214,12 @@ def test_build_upgrade_command_pins_stable_without_pre(
     python = "/home/user/.ydsz/venv/bin/python"
     uv_cmd = build_upgrade_command("uv", python, version="0.9.33")
     assert uv_cmd is not None
-    assert "ydsz==0.9.33" in uv_cmd
+    assert "ydsz-worker==0.9.33" in uv_cmd
     assert "--prerelease" not in uv_cmd
     monkeypatch.setattr("ydsz.infra.setup.self_update.has_pip", lambda _: True)
     pip_cmd = build_upgrade_command("pip", python, version="0.9.33")
     assert pip_cmd is not None
-    assert "ydsz==0.9.33" in pip_cmd
+    assert "ydsz-worker==0.9.33" in pip_cmd
     assert "--pre" not in pip_cmd
 
 
@@ -465,9 +465,9 @@ def test_get_version_in_dir_does_not_use_other_installs(tmp_path: Path, has_meta
     from ydsz.infra.setup import self_update
 
     if has_metadata:
-        metadata = tmp_path / "Ydsz-1.0.2b4.dist-info" / "METADATA"
+        metadata = tmp_path / "ydsz_worker-1.0.2b4.dist-info" / "METADATA"
         metadata.parent.mkdir()
-        metadata.write_text("Name: Ydsz\nVersion: 1.0.2b4\n", encoding="utf-8")
+        metadata.write_text("Name: ydsz-worker\nVersion: 1.0.2b4\n", encoding="utf-8")
 
     assert self_update.get_version_in_dir(sys.executable, str(tmp_path)) is None
 
@@ -498,9 +498,9 @@ def test_target_versions_load_package_despite_stale_metadata(
 
 
 def _write_ydsz_metadata(target: Path, version: str) -> None:
-    metadata = target / f"Ydsz-{version}.dist-info" / "METADATA"
+    metadata = target / f"ydsz_worker-{version}.dist-info" / "METADATA"
     metadata.parent.mkdir(parents=True)
-    metadata.write_text(f"Name: Ydsz\nVersion: {version}\n", encoding="utf-8")
+    metadata.write_text(f"Name: ydsz-worker\nVersion: {version}\n", encoding="utf-8")
 
 
 def _write_ydsz_package(target: Path, version: str) -> None:
@@ -519,7 +519,8 @@ def _write_upgrade_wheel(directory: Path, metadata: str | None = None) -> Path:
     wheel = directory / "ydsz-worker-1.0.2b5-py3-none-any.whl"
     with zipfile.ZipFile(wheel, "w") as archive:
         archive.writestr(
-            "ydsz-worker-1.0.2b5.dist-info/METADATA", metadata or "Name: Ydsz\nVersion: 1.0.2b5\n"
+            "ydsz-worker-1.0.2b5.dist-info/METADATA",
+            metadata or "Name: ydsz-worker\nVersion: 1.0.2b5\n",
         )
     return wheel
 
@@ -636,7 +637,7 @@ def test_application_only_checks_target_dependency_closure(
         requirement = "absent>=1; python_version < '0'"
     elif scenario == "direct-url":
         requirement = "upgrade-dep @ https://example.com/dep.whl"
-    release = f"Name: Ydsz\nVersion: 1.0.2b5\nRequires-Dist: {requirement}\n"
+    release = f"Name: ydsz-worker\nVersion: 1.0.2b5\nRequires-Dist: {requirement}\n"
     metadata("ydsz", "1.0.2b4", ["old-absent-dep>=1"])
     if scenario != "missing":
         metadata(
@@ -664,10 +665,10 @@ def test_application_only_checks_target_dependency_closure(
     "metadata",
     [
         "Name: other\nVersion: 1.0.2b5\n",
-        "Name: Ydsz\nVersion: 1.0.2b6\n",
-        "Name: Ydsz\nVersion: broken\n",
-        "Name: Ydsz\n",
-        "Name: Ydsz\nVersion: 1.0.2b5\nVersion: 1.0.2b4\n",
+        "Name: ydsz-worker\nVersion: 1.0.2b6\n",
+        "Name: ydsz-worker\nVersion: broken\n",
+        "Name: ydsz-worker\n",
+        "Name: ydsz-worker\nVersion: 1.0.2b5\nVersion: 1.0.2b4\n",
     ],
 )
 def test_preflight_rejects_wrong_or_ambiguous_release(tmp_path: Path, metadata: str) -> None:
@@ -689,7 +690,7 @@ def test_preflight_rejects_unreadable_wheel(tmp_path: Path, broken: str) -> None
             pass
     else:
         with zipfile.ZipFile(wheel, "a") as archive:
-            archive.writestr("other.dist-info/METADATA", "Name: Ydsz\nVersion: 1.0.2b5\n")
+            archive.writestr("other.dist-info/METADATA", "Name: ydsz-worker\nVersion: 1.0.2b5\n")
     assert not self_update._target_dependencies_satisfied(tmp_path, wheel)
 
 
@@ -723,7 +724,7 @@ def test_legacy_pip_fast_path_falls_back_and_verifies_full_install(
             calls.append(("download", timeout))
             directory = Path(cmd[cmd.index("--dest") + 1])
             downloads.append(directory)
-            release = "Name: Ydsz\nVersion: 1.0.2b5\n"
+            release = "Name: ydsz-worker\nVersion: 1.0.2b5\n"
             if failure == "dependency":
                 release += "Requires-Dist: missing-upgrade-dependency>=1\n"
             _write_upgrade_wheel(directory, release)
@@ -825,7 +826,7 @@ def test_verify_green_upgrade_reads_only_target(
 
     metadata = tmp_path / "ydsz-worker-1.0.2b5.dist-info" / "METADATA"
     metadata.parent.mkdir()
-    metadata.write_text("Name: Ydsz\nVersion: 1.0.2b5\n", encoding="utf-8")
+    metadata.write_text("Name: ydsz-worker\nVersion: 1.0.2b5\n", encoding="utf-8")
     _write_ydsz_package(tmp_path, "1.0.2b5")
     installed = self_update._verify_upgrade("1.0.2b4", sys.executable, [], version="1.0.2b5")
     assert installed.success
@@ -858,7 +859,7 @@ def test_pip_target_upgrade_with_stale_metadata_succeeds_without_retry(
         if "download" in cmd:
             assert kwargs["timeout"] == 90
             assert "--no-deps" in cmd and "--only-binary=:all:" in cmd
-            assert "--pre" in cmd and cmd[-1] == "Ydsz==1.0.2b5"
+            assert "--pre" in cmd and cmd[-1] == "ydsz-worker==1.0.2b5"
             assert self_update.get_local_version() == "1.0.2b4"
             directory = Path(cmd[cmd.index("--dest") + 1])
             downloads.append(directory)
@@ -951,7 +952,7 @@ def test_legacy_pip_fallback_window_is_shared_across_mirrors(
             elapsed += 80
             _write_upgrade_wheel(
                 Path(cmd[cmd.index("--dest") + 1]),
-                "Name: Ydsz\nVersion: 1.0.2b5\nRequires-Dist: missing-upgrade-dependency>=1\n",
+                "Name: ydsz-worker\nVersion: 1.0.2b5\nRequires-Dist: missing-upgrade-dependency>=1\n",
             )
             return 0, ""
         assert "--no-deps" not in cmd
@@ -1044,6 +1045,7 @@ def test_run_upgrade_rejects_non_newer_target_before_changes(
 ) -> None:
     from ydsz.i18n import tr
     from ydsz.infra.setup import self_update
+
     monkeypatch.setattr(self_update, "get_local_version", lambda: "1.0.2b4")
 
     def unexpected(*args: object, **kwargs: object) -> None:
@@ -1118,7 +1120,7 @@ def test_cold_target_install_budget_preserves_regular_timeout(
         if "download" in cmd:
             _write_upgrade_wheel(
                 Path(cmd[cmd.index("--dest") + 1]),
-                "Name: Ydsz\nVersion: 1.0.2b5\nRequires-Dist: absent>=1\n",
+                "Name: ydsz-worker\nVersion: 1.0.2b5\nRequires-Dist: absent>=1\n",
             )
         return (
             (0, "")

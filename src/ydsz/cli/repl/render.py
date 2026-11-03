@@ -315,13 +315,10 @@ def print_slash_help(*, locale: str = "zh", include_hitl_approval: bool = False)
 
 
 def print_welcome(*, agent_id: str, model: str, session_key: str, thread_id: str | None) -> None:
-    from importlib.metadata import version as pkg_version
+    from ydsz.version import app_version
 
     console = Console()
-    try:
-        ver = pkg_version("ydsz")
-    except Exception:
-        ver = "unknown"
+    ver = app_version()
     console.print(f"  [bold green]Ydsz Worker[/] [dim]v{ver}[/] — interactive chat")
     console.print(f"  [dim]Agent: {agent_id}  Model: {model or 'default'}[/]")
     console.print(f"  [dim]Session: {session_key}[/]", end="")

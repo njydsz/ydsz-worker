@@ -97,6 +97,105 @@ function CatMonitorGraphic() {
 }
 
 /* ───────────────────────────────────────────────
+   截图画廊卡片 — CSS 模拟不同页面
+   ─────────────────────────────────────────────── */
+type GalleryKind = 'chat' | 'expert' | 'kb'
+
+function GalleryCard({ kind, title, subtitle }: { kind: GalleryKind; title: string; subtitle: string }) {
+  return (
+    <div className="group relative rounded-xl overflow-hidden border border-white/[0.08] bg-ink-800 shadow-lg shadow-black/20 hover:border-yuanbao-500/30 hover:shadow-yuanbao-500/[0.06] transition-all duration-300 hover:-translate-y-1">
+      {/* 模拟窗口栏 */}
+      <div className="flex items-center gap-1.5 px-3 py-2 bg-ink-900/80 border-b border-white/[0.05]">
+        <div className="w-2 h-2 rounded-full bg-red-500/50" />
+        <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+        <div className="w-2 h-2 rounded-full bg-green-500/50" />
+      </div>
+      {/* 模拟页面内容 */}
+      <div className="p-3 space-y-2">
+        {kind === 'chat' && (
+          <>
+            <div className="flex items-start gap-2">
+              <div className="w-6 h-6 rounded-full bg-yuanbao-500/20 flex-shrink-0" />
+              <div className="flex-1 space-y-1.5">
+                <div className="h-2 w-3/4 rounded bg-white/[0.08]" />
+                <div className="h-2 w-1/2 rounded bg-white/[0.05]" />
+              </div>
+            </div>
+            <div className="flex items-start gap-2 flex-row-reverse">
+              <div className="w-6 h-6 rounded-full bg-yuanbao-500/30 flex-shrink-0" />
+              <div className="flex-1 space-y-1.5">
+                <div className="h-2 w-2/3 rounded bg-yuanbao-500/20" />
+                <div className="h-2 w-1/3 rounded bg-yuanbao-500/10" />
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <div className="w-6 h-6 rounded-full bg-yuanbao-500/20 flex-shrink-0" />
+              <div className="flex-1 space-y-1.5">
+                <div className="h-2 w-full rounded bg-white/[0.08]" />
+                <div className="h-2 w-4/5 rounded bg-white/[0.05]" />
+              </div>
+            </div>
+          </>
+        )}
+        {kind === 'expert' && (
+          <>
+            <div className="flex items-center gap-2 pb-1">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-yuanbao-500/30 to-yuanbao-600/10 flex items-center justify-center text-sm">🐧</div>
+              <div className="space-y-1 flex-1">
+                <div className="h-2 w-2/3 rounded bg-white/[0.1]" />
+                <div className="h-1.5 w-1/3 rounded bg-white/[0.05]" />
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <div className="h-1.5 w-full rounded bg-white/[0.06]" />
+              <div className="h-1.5 w-5/6 rounded bg-white/[0.06]" />
+              <div className="h-1.5 w-4/6 rounded bg-white/[0.06]" />
+            </div>
+            <div className="flex gap-1.5 pt-1">
+              <div className="h-4 w-12 rounded-md bg-yuanbao-500/20" />
+              <div className="h-4 w-12 rounded-md bg-white/[0.05]" />
+              <div className="h-4 w-12 rounded-md bg-white/[0.05]" />
+            </div>
+          </>
+        )}
+        {kind === 'kb' && (
+          <>
+            <div className="flex items-center gap-1.5 pb-1">
+              <div className="h-3 flex-1 rounded bg-white/[0.06]" />
+              <div className="h-3 w-8 rounded bg-yuanbao-500/25" />
+            </div>
+            <div className="grid grid-cols-3 gap-1.5">
+              <div className="h-10 rounded bg-white/[0.04] border border-white/[0.06]" />
+              <div className="h-10 rounded bg-yuanbao-500/[0.08] border border-yuanbao-500/15" />
+              <div className="h-10 rounded bg-white/[0.04] border border-white/[0.06]" />
+            </div>
+            <div className="space-y-1.5 pt-1">
+              <div className="h-1.5 w-full rounded bg-white/[0.06]" />
+              <div className="h-1.5 w-2/3 rounded bg-white/[0.06]" />
+            </div>
+          </>
+        )}
+      </div>
+      {/* 标签 */}
+      <div className="px-3 pb-3">
+        <div className="text-xs font-semibold text-white/80">{title}</div>
+        <div className="text-[11px] text-white/35 mt-0.5">{subtitle}</div>
+      </div>
+    </div>
+  )
+}
+
+function ScreenshotGallery() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+      <GalleryCard kind="chat" title="对话工作台" subtitle="和专家多轮对话，随时切换人格" />
+      <GalleryCard kind="expert" title="专家广场" subtitle="挑选、组合、自定义你的专家" />
+      <GalleryCard kind="kb" title="知识库" subtitle="上传文档，让回答基于你的资料" />
+    </div>
+  )
+}
+
+/* ───────────────────────────────────────────────
    SVG: Dashboard 四个角 L 形装饰标记
    ─────────────────────────────────────────────── */
 function CornerMarkers() {
@@ -152,81 +251,79 @@ function Hero() {
       <div className="absolute bottom-0 -right-[200px] w-[500px] h-[500px] bg-yuanbao-400/[0.02] rounded-full blur-[100px] -z-10" />
 
       <div className="container-page">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge 横幅 */}
-          <Reveal>
-            <a
-              href={GITHUB}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-yuanbao-500/[0.07] border border-yuanbao-500/20 text-yuanbao-400 text-sm font-medium mb-8 hover:bg-yuanbao-500/[0.12] hover:border-yuanbao-500/30 transition-all duration-300 group"
-            >
-              <span className="glow-dot animate-pulse" />
-              <span>{t('hero.badge')}</span>
-              <svg className="w-3.5 h-3.5 -translate-x-0.5 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-          </Reveal>
+        {/* 上方：左侧文字 + 右侧产品区并排 */}
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
+          {/* 左侧：文字区 */}
+          <div className="text-left">
+            <Reveal>
+              <a
+                href={GITHUB}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-yuanbao-500/[0.07] border border-yuanbao-500/20 text-yuanbao-400 text-sm font-medium mb-6 hover:bg-yuanbao-500/[0.12] hover:border-yuanbao-500/30 transition-all duration-300 group"
+              >
+                <span className="glow-dot animate-pulse" />
+                <span>{t('hero.badge')}</span>
+                <svg className="w-3.5 h-3.5 -translate-x-0.5 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </Reveal>
 
-          {/* 主标题 */}
-          <Reveal delay={100}>
+            <Reveal delay={100}>
               <h1 className="heading-xl text-balance mb-5">
-              <span className="block">{t('hero.title1')}</span>
-              <span className="block text-gradient mt-1">{t('hero.title2')}</span>
-            </h1>
-          </Reveal>
+                <span className="block">{t('hero.title1')}</span>
+                <span className="block text-gradient mt-1">{t('hero.title2')}</span>
+              </h1>
+            </Reveal>
 
-          {/* 副标题 */}
-          <Reveal delay={200}>
-            <p className="text-base sm:text-lg text-white/55 max-w-xl mx-auto mb-10 text-balance leading-relaxed">
-              {t('hero.subtitle')}
-            </p>
-          </Reveal>
+            <Reveal delay={200}>
+              <p className="text-base sm:text-lg text-white/55 max-w-lg mb-8 text-balance leading-relaxed">
+                {t('hero.subtitle')}
+              </p>
+            </Reveal>
 
-          {/* CTA 按钮 */}
-          <Reveal delay={300}>
-            <div className="flex flex-col sm:flex-row gap-3.5 justify-center items-center mb-20">
-              <a href="#quickstart" className="btn-primary text-base px-7 py-3.5">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                {t('hero.cta_primary')}
-              </a>
-              <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="btn-secondary text-base px-7 py-3.5">
-                <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                </svg>
-                {t('hero.cta_secondary')}
-              </a>
-            </div>
-          </Reveal>
-
-          {/* 核心视觉区：吉祥物 + Dashboard 模拟 */}
-          <Reveal delay={400}>
-            <div className="relative max-w-5xl mx-auto">
-              {/* 中央发光 */}
-              <div className="absolute inset-0 flex items-center justify-center -z-10">
-                <div className="w-[700px] h-[400px] bg-yuanbao-500/[0.05] rounded-full blur-[120px]" />
+            <Reveal delay={300}>
+              <div className="flex flex-col sm:flex-row gap-3.5">
+                <a href="#quickstart" className="btn-primary text-base px-7 py-3.5">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  {t('hero.cta_primary')}
+                </a>
+                <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="btn-secondary text-base px-7 py-3.5">
+                  <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                  {t('hero.cta_secondary')}
+                </a>
               </div>
+            </Reveal>
+          </div>
+
+          {/* 右侧：产品区（吉祥物 w-32 + DashboardMock 放大） */}
+          <Reveal delay={200}>
+            <div className="relative">
+              {/* 产品区背后发光 */}
+              <div className="absolute -inset-6 bg-yuanbao-500/[0.06] rounded-full blur-[60px] -z-10" />
 
               {/* 角落 L 形装饰 */}
               <CornerMarkers />
 
-              <div className="card-glass p-2.5 shadow-2xl shadow-yuanbao-500/[0.04]">
+              <div className="card-glass p-2 shadow-2xl shadow-yuanbao-500/[0.04]">
                 <div className="rounded-xl overflow-hidden bg-ink-800 border border-white/[0.04]">
-                  <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 p-6 lg:p-10">
-                    {/* 吉祥物 */}
+                  <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6">
+                    {/* 吉祥物 — 缩小到 w-32 */}
                     <div className="flex-shrink-0 relative">
-                      <div className="absolute -inset-8 bg-yuanbao-500/10 rounded-full blur-[50px]" />
+                      <div className="absolute -inset-6 bg-yuanbao-500/10 rounded-full blur-[40px]" />
                       <img
                         src="/mascot-type.webp"
                         alt="Ydsz Worker 吉祥物"
-                        className="relative w-32 sm:w-40 lg:w-44 object-contain drop-shadow-2xl animate-float"
+                        className="relative w-32 object-contain drop-shadow-2xl animate-float"
                       />
                     </div>
 
-                    {/* Dashboard 模拟对话 */}
+                    {/* Dashboard 模拟对话 — 放大 */}
                     <div className="flex-1 w-full min-w-0">
                       <DashboardMock />
                     </div>
@@ -235,10 +332,17 @@ function Hero() {
               </div>
 
               {/* 底部渐变遮罩 */}
-              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-ink-900 via-ink-900/80 to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-ink-900/70 to-transparent pointer-events-none rounded-b-2xl" />
             </div>
           </Reveal>
         </div>
+
+        {/* 下方：截图画廊 */}
+        <Reveal delay={400}>
+          <div className="max-w-5xl mx-auto">
+            <ScreenshotGallery />
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -362,7 +466,7 @@ function ExpertRoles() {
           </Reveal>
 
           {/* 右侧：当前角色大预览 */}
-          <Reveal delay={200} direction="left">
+          <Reveal delay={200}>
             <div className="relative">
               <div className={`absolute inset-0 bg-gradient-to-br ${ROLES[activeRole].color} rounded-3xl blur-xl opacity-30`} />
               <div className="relative card-glass p-10 sm:p-12 text-center min-h-[280px] flex flex-col items-center justify-center border border-white/[0.08]">
@@ -431,6 +535,7 @@ const PLATFORM_SUPPORT = [
   { icon: '🪟', label: 'Windows' },
   { icon: '🍎', label: 'macOS' },
   { icon: '🐧', label: 'Linux' },
+  { icon: '🖥️', label: 'FnOS' },
 ]
 
 function QuickStart() {
@@ -534,14 +639,24 @@ function QuickStart() {
               {/* 代码区 — 精致的终端输出模拟 */}
               <div className="bg-ink-800/90 p-5 sm:p-6 overflow-x-auto">
                 <div className="font-mono text-sm leading-relaxed space-y-1">
+                  {/* 灰色注释：选择平台 */}
+                  <div className="text-white/25"># {current.lang === 'powershell' ? 'Windows PowerShell 一键安装' : current.id === 'docker' ? 'Docker 一行启动' : current.id === 'pip' ? 'pip 安装并启动' : 'macOS / Linux 一键安装'}</div>
                   {/* 蓝色路径提示符 */}
                   <div className="flex items-center gap-2">
                     <span className="text-blue-400">
                       {current.lang === 'powershell' ? 'PS C:\\Users\\admin>' : '$ ~'}
                     </span>
                   </div>
-                  {/* 绿色 echo 文本 — 命令本身 */}
-                  <code className="block text-yuanbao-300/90 my-1 font-medium">{current.code}</code>
+                  {/* 绿色命令 — URL 路径高亮为蓝色 */}
+                  <code className="block text-yuanbao-300/90 my-1 font-medium">
+                    {current.code.split(/(https?:\/\/[^\s|]+)/g).map((part, i) =>
+                      part.startsWith('http') ? (
+                        <span key={i} className="text-blue-300/80">{part}</span>
+                      ) : (
+                        <span key={i}>{part}</span>
+                      )
+                    )}
+                  </code>
                   {/* 模拟命令输出 */}
                   <div className="pt-2 space-y-0.5 border-t border-white/[0.04] mt-2">
                     <div className="flex items-center gap-2">
@@ -612,6 +727,13 @@ const REASONS = [
     icon: '🎯',
     tag: '自动化',
   },
+  {
+    num: '05',
+    titleKey: 'why.r5_title',
+    descKey: 'why.r5_desc',
+    icon: '🖥️',
+    tag: '桌面宠物',
+  },
 ]
 
 const STATS = [
@@ -638,8 +760,8 @@ function WhyChoose() {
           </div>
         </Reveal>
 
-        {/* 4 张编号卡片 */}
-        <div className="grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+        {/* 5 张编号卡片 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
           {REASONS.map((reason, idx) => (
             <Reveal key={reason.num} delay={idx * 100}>
               <div className="card-glass p-7 sm:p-8 relative overflow-hidden group hover:bg-white/[0.05] transition-all duration-300 h-full border-l-2 border-l-yuanbao-500/30 hover:border-l-yuanbao-500">
@@ -688,7 +810,7 @@ function DesktopPet() {
       <div className="container-page">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* 左侧描述 */}
-          <Reveal direction="right">
+          <Reveal>
             <div>
               <span className="section-label mb-4">{t('desk.badge')}</span>
               <h2 className="heading-lg mt-4 mb-6">{t('desk.title')}</h2>
@@ -718,7 +840,7 @@ function DesktopPet() {
           </Reveal>
 
           {/* 右侧 SVG 图形：小猫 + 显示器 */}
-          <Reveal delay={200} direction="left">
+          <Reveal delay={200}>
             <div className="relative">
               <div className="absolute -inset-8 bg-yuanbao-500/[0.06] rounded-full blur-[60px] -z-10" />
               <div className="card-glass p-3 relative border border-white/[0.08]">
@@ -752,8 +874,17 @@ function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-24 lg:py-28">
-      <div className="container-page">
+    <section id="faq" className="py-24 lg:py-28 relative overflow-hidden">
+      {/* 吉祥物装饰 — 右上角探头，浮动动画 */}
+      <div className="absolute top-8 right-4 sm:right-10 lg:right-20 -z-0 pointer-events-none select-none" aria-hidden="true">
+        <img
+          src="/mascot-peek.webp"
+          alt=""
+          className="w-24 sm:w-32 lg:w-40 object-contain drop-shadow-2xl animate-float opacity-80"
+        />
+      </div>
+
+      <div className="container-page relative z-10">
         <Reveal>
           <div className="text-center mb-16">
             <span className="section-label mb-4">{t('faq.badge')}</span>
@@ -824,8 +955,30 @@ function CTA() {
             <div className="absolute inset-0 bg-gradient-to-br from-yuanbao-500/[0.07] via-yuanbao-600/[0.03] to-transparent" />
             <div className="absolute top-0 right-0 w-72 h-72 bg-yuanbao-500/[0.08] rounded-full blur-[90px]" />
             <div className="absolute bottom-0 left-0 w-56 h-56 bg-yuanbao-600/[0.05] rounded-full blur-[70px]" />
+
+            {/* Octop 风格大 SVG 渐变光晕 */}
+            <svg className="absolute -top-1/3 -right-1/4 w-[720px] h-[720px] opacity-40 pointer-events-none" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="ctaGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#22c55e" stopOpacity="0.28" />
+                  <stop offset="45%" stopColor="#22c55e" stopOpacity="0.12" />
+                  <stop offset="100%" stopColor="#22c55e" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <circle cx="300" cy="300" r="300" fill="url(#ctaGlow)" />
+            </svg>
+            <svg className="absolute -bottom-1/2 -left-1/4 w-[560px] h-[560px] opacity-30 pointer-events-none" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="300" cy="300" r="300" fill="url(#ctaGlow)" />
+            </svg>
+
+            {/* Octop 风格波浪背景（底部两层） */}
+            <svg className="absolute bottom-0 left-0 w-full h-24 sm:h-32 pointer-events-none" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M0 64 C240 96 480 32 720 56 C960 80 1200 24 1440 56 L1440 120 L0 120 Z" fill="#22c55e" fillOpacity="0.06" />
+              <path d="M0 84 C240 112 480 56 720 76 C960 96 1200 48 1440 76 L1440 120 L0 120 Z" fill="#22c55e" fillOpacity="0.09" />
+            </svg>
+
             {/* 网格纹理 */}
-            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle,#fff_1px,transparent_1px)] bg-[length:24px_24px]" />
 
             <div className="relative p-10 sm:p-14 lg:p-16 text-center">
               {/* 装饰性小图标 */}

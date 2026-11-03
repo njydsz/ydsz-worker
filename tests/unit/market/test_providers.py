@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import pytest
 
-from ydsz.infra.market.constants import MARKET_ITEM_TYPES, MarketItemType
+from ydsz.infra.market.constants import MARKET_ITEM_TYPES
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.providers import (
     all_providers,
     get_provider,
     register_provider,
-    reset_registry,
 )
 from ydsz.infra.market.providers.base import MarketProvider
 
@@ -47,22 +46,32 @@ def test_register_custom_provider() -> None:
 
         async def list_items(self, **kw):
             from ydsz.infra.market.models import MarketListResult
+
             return MarketListResult((), 0, 20, 0, "relevance")
 
         async def search(self, *a, **kw):
             from ydsz.infra.market.models import MarketListResult
+
             return MarketListResult((), 0, 20, 0, "relevance")
 
         async def install(self, *a, **kw):
             from ydsz.infra.market.models import InstallReceipt, InstallTarget, MarketItem
+
             return InstallReceipt(
-                market_item=MarketItem(market_id="skill:fake", type="skill", source="ILTIN", identity="fake", name="Fake"),
+                market_item=MarketItem(
+                    market_id="skill:fake",
+                    type="skill",
+                    source="ILTIN",
+                    identity="fake",
+                    name="Fake",
+                ),
                 target=InstallTarget(type="agent", id="a"),
                 installed_version="1.0.0",
             )
 
     # Save + restore so we don't pollute other tests.
-    from ydsz.infra.market.providers import _provider_factories, _provider_instances
+    from ydsz.infra.market.providers.registry import _provider_factories, _provider_instances
+
     saved_factories = dict(_provider_factories)
     saved_instances = dict(_provider_instances)
 

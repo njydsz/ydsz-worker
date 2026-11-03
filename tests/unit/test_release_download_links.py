@@ -26,17 +26,17 @@ def test_render_download_section_matches_github_asset_names() -> None:
     mod = _load()
     body = mod.render_download_section("0.9.31")
     base = "https://github.com/TencentCloud/Ydsz Worker/releases/download/v0.9.31"
-    assert f"{base}/Ydsz Worker-desktop-windows-amd64-0.9.31.exe" in body
-    assert f"{base}/Ydsz Worker-desktop-windows-arm64-0.9.31.exe" in body
-    assert f"{base}/Ydsz Worker-portable-windows-amd64-0.9.31.zip" in body
-    assert f"{base}/Ydsz Worker-portable-windows-arm64-0.9.31.zip" in body
-    assert f"{base}/Ydsz Worker-desktop-darwin-arm64-0.9.31.dmg" in body
-    assert f"{base}/Ydsz Worker-desktop-darwin-amd64-0.9.31.dmg" in body
-    assert f"{base}/Ydsz Worker-portable-darwin-arm64-0.9.31.zip" in body
-    assert f"{base}/Ydsz Worker-portable-darwin-amd64-0.9.31.zip" in body
-    assert f"{base}/Ydsz Worker-desktop-linux-amd64-0.9.31.tar.gz" in body
-    assert f"{base}/Ydsz Worker-desktop-linux-arm64-0.9.31.tar.gz" in body
-    assert f"{base}/Ydsz Worker-portable-linux-amd64-0.9.31.zip" in body
-    assert f"{base}/Ydsz Worker-portable-linux-arm64-0.9.31.zip" in body
+    assert f"{base}/ydsz-worker-desktop-windows-amd64-0.9.31.exe" in body
+    assert f"{base}/ydsz-worker-desktop-windows-arm64-0.9.31.exe" in body
+    assert f"{base}/ydsz-worker-portable-windows-amd64-0.9.31.zip" in body
+    assert f"{base}/ydsz-worker-portable-windows-arm64-0.9.31.zip" in body
+    assert f"{base}/ydsz-worker-desktop-darwin-arm64-0.9.31.dmg" in body
+    assert f"{base}/ydsz-worker-desktop-darwin-amd64-0.9.31.dmg" in body
+    assert f"{base}/ydsz-worker-portable-darwin-arm64-0.9.31.zip" in body
+    assert f"{base}/ydsz-worker-portable-darwin-amd64-0.9.31.zip" in body
+    assert f"{base}/ydsz-worker-desktop-linux-amd64-0.9.31.tar.gz" in body
+    assert f"{base}/ydsz-worker-desktop-linux-arm64-0.9.31.tar.gz" in body
+    assert f"{base}/ydsz-worker-portable-linux-amd64-0.9.31.zip" in body
+    assert f"{base}/ydsz-worker-portable-linux-arm64-0.9.31.zip" in body
     assert "pip install" not in body
     assert "## Downloads" in body

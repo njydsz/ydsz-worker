@@ -4,14 +4,10 @@ from __future__ import annotations
 
 import click
 
+from ydsz.version import app_version
+
 
 @click.command("version")
 def version() -> None:
     """Show the installed ydsz-worker version."""
-    try:
-        from importlib.metadata import version as _v
-
-        v = _v("ydsz")
-    except Exception:
-        v = "unknown"
-    click.echo(f"ydsz-worker v{v}")
+    click.echo(f"ydsz-worker v{app_version()}")

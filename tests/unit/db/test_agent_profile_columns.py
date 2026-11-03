@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from tests.support.schema import EXPECTED_SCHEMA_VERSION
+
 from ydsz.infra.agents.settings.profile import (
     extract_profile_from_config,
     strip_profile_config,
@@ -118,7 +120,7 @@ def test_migration_007_backfills_profile_columns(tmp_path: Path) -> None:
     with pool.connect() as conn:
         version = conn.execute("SELECT version FROM _schema_version").fetchone()[0]
         row = conn.execute("SELECT * FROM agents WHERE agent_id = ?", ("ag1",)).fetchone()
-    assert version == 21
+    assert version == EXPECTED_SCHEMA_VERSION
     assert row["template_name"] == "general-assistant"
     assert row["icon_name"] == "zap"
     assert row["icon_url"] == "https://cdn.example.com/a.png"

@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 
-from ydsz.infra.market.models import InstallReceipt, InstallTarget, MarketAuthor, MarketDetail, MarketItem
+from ydsz.infra.market.models import (
+    InstallReceipt,
+    InstallTarget,
+    MarketDetail,
+    MarketItem,
+)
 
 
 def test_market_item_creation() -> None:

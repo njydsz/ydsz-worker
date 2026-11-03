@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tests.support.schema import EXPECTED_SCHEMA_VERSION
+
 from ydsz.infra.db.migrate import run_migrations
 from ydsz.infra.db.pool import SqlitePool
 from ydsz.infra.db.repos.threads import (
@@ -81,7 +83,7 @@ def test_migration_003_repairs_stored_hard_cuts(tmp_path: Path) -> None:
     with pool.connect() as conn:
         v = conn.execute("SELECT version FROM _schema_version").fetchone()[0]
         title = conn.execute("SELECT title FROM threads WHERE thread_id = ?", ("t1",)).fetchone()[0]
-    assert v == 21
+    assert v == EXPECTED_SCHEMA_VERSION
     assert title == "x" * 39 + "…"
     # Idempotent repair
     assert repair_all_legacy_thread_titles(pool) == 0

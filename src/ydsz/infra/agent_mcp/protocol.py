@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import json
 import logging
-from importlib.metadata import PackageNotFoundError, version
 from typing import TYPE_CHECKING, Any
 
 from mcp.shared.version import SUPPORTED_PROTOCOL_VERSIONS
 
 from ydsz.infra.errors import YdszError
+from ydsz.version import app_version
 
 if TYPE_CHECKING:
     from ydsz.infra.agent_mcp.service import AgentMcpGatewayService
@@ -19,10 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def _server_version() -> str:
-    try:
-        return version("ydsz")
-    except PackageNotFoundError:
-        return "0.0.0"
+    return app_version()
 
 
 TOOLS: list[dict[str, Any]] = [

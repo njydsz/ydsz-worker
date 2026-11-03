@@ -85,6 +85,39 @@ const TOC_ITEMS = [
   { id: 'screenshots-dashboard', text: 'Dashboard 概览', level: 2 },
   { id: 'screenshots-grid', text: '功能截图', level: 2 },
   { id: 'screenshots-video', text: '视频教程', level: 2 },
+  { id: 'concepts-agent', text: 'Agent', level: 3 },
+  { id: 'concepts-session', text: 'Session（会话）', level: 3 },
+  { id: 'concepts-thread', text: 'Thread（话题）', level: 3 },
+  { id: 'concepts-expert', text: 'Expert（专家）', level: 3 },
+  { id: 'concepts-mcp', text: 'MCP', level: 3 },
+  { id: 'concepts-workspace', text: 'Workspace', level: 3 },
+
+  // ── 安装指南 ──
+  { id: 'desktop-download', text: '下载与安装', level: 3 },
+  { id: 'desktop-requirements', text: '系统要求', level: 3 },
+  { id: 'pip-install-venv', text: '虚拟环境', level: 3 },
+  { id: 'docker-run', text: 'Docker 运行', level: 3 },
+  { id: 'docker-compose', text: 'Docker Compose', level: 3 },
+  { id: 'fnos-app-center', text: '应用中心安装', level: 3 },
+
+  // ── 核心概念 ──
+  { id: 'experts-create', text: '创建专家', level: 3 },
+  { id: 'experts-soul', text: 'SOUL 配置', level: 3 },
+  { id: 'multi-agent-teams', text: 'AgentTeams', level: 3 },
+  { id: 'multi-agent-dag', text: 'DAG 编排', level: 3 },
+  { id: 'knowledge-rag-upload', text: '文档上传', level: 3 },
+  { id: 'knowledge-rag-search', text: '语义搜索', level: 3 },
+
+  // ── 连接器 ──
+  { id: 'connectors-overview-arch', text: '架构与原理', level: 3 },
+  { id: 'builtin-connectors-list', text: '连接器列表', level: 3 },
+  { id: 'custom-connectors-mcp', text: 'MCP 协议', level: 3 },
+
+  // ── API 参考 ──
+  { id: 'rest-api-endpoints', text: '核心端点', level: 3 },
+  { id: 'rest-api-auth', text: '认证方式', level: 3 },
+  { id: 'sse-events', text: '事件类型', level: 3 },
+  { id: 'sse-subscribe', text: '订阅方式', level: 3 },
 ]
 
 /* ═══════════════════════════════════════════════
@@ -262,7 +295,7 @@ export default function DocsPage() {
               复制 Markdown
             </button>
             <a
-              href="https://gitee.com/njydsz/ydsz-worker/blob/main/website/src/pages/DocsPage.tsx"
+              href="https://github.com/ydsz-buddy/ydsz-worker/blob/main/website/src/pages/DocsPage.tsx"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 px-2 py-1 rounded text-[11px] text-white/35 hover:text-white/60 hover:bg-white/[0.04] border border-transparent hover:border-white/[0.08] transition-all"
@@ -318,8 +351,8 @@ export default function DocsPage() {
       {/* ── 三栏布局（侧栏、正文、目录） ── */}
       <div className="flex-1 min-h-0 overflow-hidden max-w-[1400px] mx-auto w-full px-4 lg:px-8 flex gap-8 py-5">
         {/* ── 左侧 Sidebar ── */}
-        <aside className="w-52 xl:w-56 shrink-0 hidden lg:block">
-          <div className="sticky top-5 pb-10">
+        <aside className="w-44 shrink-0 hidden sm:block overflow-y-auto scrollbar-thin pr-4">
+          <div className="pb-10">
             {/* 分组侧栏 */}
             <nav className="space-y-3.5">
               {NAV_SECTIONS.map((section) => {
@@ -376,7 +409,7 @@ export default function DocsPage() {
               {/* H1 + 操作 */}
               <div className="flex items-start justify-between gap-4 mb-6">
                 <h1 className="text-3xl font-extrabold text-white tracking-tight">
-                  Octop：自托管多用户 AI 助手
+                  云顶数字工作台：自托管多用户 AI 助手
                 </h1>
               </div>
 
@@ -389,7 +422,7 @@ export default function DocsPage() {
               <p className="text-white/55 text-[15px] leading-[1.85] mb-6">
                 云顶数字工作台跑在你自己的电脑或服务器上。装好之后，你在网页里和专家聊天；
                 也可以把同一个专家接到飞书、企业微信、钉钉、QQ、微信或 Telegram。
-                对话和凭据都留在这台机器的 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1.5 py-0.5 rounded text-[13px] font-mono">~/.ydsz-worker/</code>。
+                对话和凭据都留在这台机器的 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1.5 py-0.5 rounded text-[13px] font-mono">~/.ydsz/</code>。
               </p>
 
               {/* 嵌入式截图 (P0-3) */}
@@ -510,7 +543,7 @@ export default function DocsPage() {
                   <SyntaxCodeBlock
                     language="bash"
                     title="terminal"
-                    code={`ydsz-worker run\n\n# 输出：\n# ✓ Database initialized at ~/.ydsz-worker/data.db\n# ✓ Config file created at ~/.ydsz-worker/config.json\n# ➜ Dashboard: http://localhost:8080\n# ➜ API Docs:  http://localhost:8080/api/docs`}
+                    code={`ydsz-worker run\n\n# 输出：\n# ✓ Database initialized at ~/.ydsz/data.db\n# ✓ Config file created at ~/.ydsz/config.json\n# ➜ Dashboard: http://localhost:8080\n# ➜ API Docs:  http://localhost:8080/api/docs`}
                   />
                 </section>
 
@@ -690,10 +723,1046 @@ export default function DocsPage() {
               </div>
             </div>
 
+            {/* ═══ Section 桌面客户端 ═══ */}
+            <div id="desktop" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">桌面客户端</h1>
+              <p className="text-[13px] text-white/45 mb-8">一键安装，开箱即用</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                云顶数字工作台提供原生桌面客户端，支持 Windows、macOS 和 Linux 三大平台。
+                桌面客户端内置了完整的后端服务，无需额外配置 Python 环境或依赖，安装后即可使用。
+              </p>
+
+              <h2 id="desktop-download" className="text-base font-semibold text-white mb-3">下载与安装</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                访问 GitHub Releases 页面下载对应平台的安装包：
+              </p>
+              <SyntaxCodeBlock
+                language="bash"
+                title="下载链接"
+                code={`# GitHub Releases
+https://github.com/ydsz-buddy/ydsz-worker/releases
+
+# Windows — 下载 .exe 安装包
+# macOS — 下载 .dmg 文件（支持 Intel 和 Apple Silicon）
+# Linux — 下载 .AppImage 或 .deb 包`}
+              />
+
+              <div className="mt-4 space-y-3">
+                {[
+                  { step: 'Windows', detail: '下载 YdszWorker-Setup-x.y.z.exe，双击运行安装向导。安装完成后从开始菜单启动。' },
+                  { step: 'macOS', detail: '下载 YdszWorker-x.y.z.dmg，拖拽到 Applications 文件夹。首次启动需要在系统偏好设置中允许。' },
+                  { step: 'Linux', detail: '下载 .AppImage 文件，赋予执行权限（chmod +x）后直接运行。' },
+                ].map((item) => (
+                  <div key={item.step} className="flex items-start gap-3">
+                    <span className="shrink-0 px-2 py-0.5 rounded bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-[12px] font-medium">{item.step}</span>
+                    <p className="text-[13px] text-white/50 leading-relaxed">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              <h2 id="desktop-requirements" className="text-base font-semibold text-white mb-3 mt-8">系统要求</h2>
+              <div className="rounded-xl border border-white/[0.06] overflow-hidden my-4">
+                <table className="w-full text-[13px]">
+                  <thead>
+                    <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">平台</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">最低要求</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium hidden sm:table-cell">推荐配置</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/[0.04]">
+                    {[
+                      { p: 'Windows', min: 'Windows 10 64-bit, 4GB RAM', rec: 'Windows 11, 8GB RAM' },
+                      { p: 'macOS', min: 'macOS 12 (Monterey), 4GB RAM', rec: 'macOS 14 (Sonoma), 8GB RAM' },
+                      { p: 'Linux', min: 'Ubuntu 20.04 / Debian 11, 4GB RAM', rec: 'Ubuntu 22.04, 8GB RAM' },
+                    ].map((item) => (
+                      <tr key={item.p} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-4 py-2.5 text-yuanbao-400 font-medium">{item.p}</td>
+                        <td className="px-4 py-2.5 text-white/50">{item.min}</td>
+                        <td className="px-4 py-2.5 text-white/30 hidden sm:table-cell">{item.rec}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <Callout type="tip">
+                桌面客户端会自动管理后端进程，无需手动启动服务。所有数据存储在 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1 py-0.5 rounded text-[12px] font-mono">~/.ydsz/</code> 目录下。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('concepts')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  常见概念
+                </button>
+                <button onClick={() => scrollToSection('pip-install')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  pip 安装
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section pip 安装 ═══ */}
+            <div id="pip-install" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">pip 安装</h1>
+              <p className="text-[13px] text-white/45 mb-8">通过 Python 包管理器安装</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                云顶数字工作台要求 Python 3.12 或更高版本。推荐使用 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1.5 py-0.5 rounded text-[13px] font-mono">uv</code> 进行安装，
+                它比传统 pip 快 10 倍，且自动管理虚拟环境。
+              </p>
+
+              <SyntaxCodeBlock
+                language="bash"
+                title="使用 uv 安装（推荐）"
+                code={`# 安装 uv（如果尚未安装）
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 安装 ydsz-worker
+uv tool install ydsz-worker
+
+# 验证安装
+ydsz-worker --version`}
+              />
+
+              <div className="mt-4">
+                <SyntaxCodeBlock
+                  language="bash"
+                  title="使用 pip 安装"
+                  code={`# 需要 Python 3.12+
+pip install ydsz-worker
+
+# 验证安装
+ydsz-worker --version`}
+                />
+              </div>
+
+              <h2 id="pip-install-venv" className="text-base font-semibold text-white mb-3 mt-8">虚拟环境</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                如果你更倾向于手动管理虚拟环境，可以使用以下方式：
+              </p>
+              <SyntaxCodeBlock
+                language="bash"
+                title="手动创建虚拟环境"
+                code={`# 创建虚拟环境
+python -m venv ~/.venvs/ydsz
+
+# 激活虚拟环境
+source ~/.venvs/ydsz/bin/activate  # Linux/macOS
+# ~/.venvs/ydsz\\Scripts\\activate  # Windows
+
+# 安装
+pip install ydsz-worker
+
+# 运行
+ydsz-worker run`}
+              />
+
+              <Callout type="warning">
+                Windows 用户请注意：PowerShell 执行策略可能阻止脚本运行。如遇此问题，请执行 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1 py-0.5 rounded text-[12px] font-mono">Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code>。
+              </Callout>
+
+              <Callout type="info">
+                安装完成后，运行 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1 py-0.5 rounded text-[12px] font-mono">ydsz-worker run</code> 启动服务。首次启动会自动创建数据库和配置文件。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('desktop')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  桌面客户端
+                </button>
+                <button onClick={() => scrollToSection('docker')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  Docker 部署
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section Docker 部署 ═══ */}
+            <div id="docker" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">Docker 部署</h1>
+              <p className="text-[13px] text-white/45 mb-8">容器化部署，环境隔离，运维简单</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                云顶数字工作台提供官方 Docker 镜像，支持一键部署。容器化方式特别适合需要环境隔离、
+                快速扩容或在 Kubernetes 集群中运行的场景。
+              </p>
+
+              <h2 id="docker-run" className="text-base font-semibold text-white mb-3">Docker 运行</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                使用单条命令即可启动完整服务：
+              </p>
+              <SyntaxCodeBlock
+                language="bash"
+                title="docker run"
+                code={`docker run -d \\
+  --name ydsz-worker \\
+  -p 8080:8080 \\
+  -v ydsz-data:/root/.ydsz \\
+  --restart unless-stopped \\
+  ydszbuddy/ydsz-worker:latest`}
+              />
+
+              <div className="mt-4 space-y-2">
+                {[
+                  { flag: '-d', desc: '后台运行容器' },
+                  { flag: '--name ydsz-worker', desc: '指定容器名称，便于管理' },
+                  { flag: '-p 8080:8080', desc: '映射 HTTP 端口' },
+                  { flag: '-v ydsz-data:/root/.ydsz', desc: '持久化数据卷，存储对话和配置' },
+                  { flag: '--restart unless-stopped', desc: '容器异常退出时自动重启' },
+                ].map((item) => (
+                  <div key={item.flag} className="flex items-start gap-3 text-[13px]">
+                    <code className="shrink-0 text-yuanbao-400 bg-yuanbao-500/[0.08] px-1.5 py-0.5 rounded font-mono text-[12px]">{item.flag}</code>
+                    <span className="text-white/50">{item.desc}</span>
+                  </div>
+                ))}
+              </div>
+
+              <h2 id="docker-compose" className="text-base font-semibold text-white mb-3 mt-8">Docker Compose</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                对于需要自定义配置的场景，推荐使用 Docker Compose：
+              </p>
+              <SyntaxCodeBlock
+                language="yaml"
+                title="docker-compose.yml"
+                code={`version: '3.8'
+
+services:
+  ydsz-worker:
+    image: ydszbuddy/ydsz-worker:latest
+    container_name: ydsz-worker
+    ports:
+      - "8080:8080"
+    volumes:
+      - ydsz-data:/root/.ydsz
+    environment:
+      - YDSZ_DEFAULT_TIMEZONE=Asia/Shanghai
+      # - YDSZ_JWT_SECRET=your-secret-key
+    restart: unless-stopped
+
+volumes:
+  ydsz-data:`}
+              />
+
+              <Callout type="tip">
+                Docker 镜像支持 linux/amd64 和 linux/arm64 架构，可在 x86 服务器和树莓派等 ARM 设备上运行。
+              </Callout>
+
+              <Callout type="warning">
+                生产环境请务必修改 JWT 密钥。通过环境变量 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1 py-0.5 rounded text-[12px] font-mono">YDSZ_JWT_SECRET</code> 设置，避免使用默认值。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('pip-install')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  pip 安装
+                </button>
+                <button onClick={() => scrollToSection('fnos')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  飞牛 FnOS
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 飞牛 FnOS ═══ */}
+            <div id="fnos" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">飞牛 FnOS</h1>
+              <p className="text-[13px] text-white/45 mb-8">在 NAS 上部署云顶数字工作台</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                飞牛 OS（FnOS）是国产 NAS 操作系统，支持 Docker 容器。
+                你可以将云顶数字工作台部署在飞牛 NAS 上，让 AI 助手 24 小时在线，
+                随时随地通过手机或电脑访问。
+              </p>
+
+              <h2 id="fnos-app-center" className="text-base font-semibold text-white mb-3">应用中心安装</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                通过飞牛应用中心是最简单的安装方式：
+              </p>
+
+              <div className="space-y-3 mb-6">
+                {[
+                  { step: '1', title: '打开应用中心', desc: '登录飞牛 OS 管理界面，进入「应用中心」。' },
+                  { step: '2', title: '搜索应用', desc: '在搜索框中输入「ydsz-worker」或「云顶数字工作台」。' },
+                  { step: '3', title: '安装部署', desc: '点击安装，配置端口映射（默认 8080）和数据卷路径。' },
+                  { step: '4', title: '访问服务', desc: '安装完成后，通过 http://NAS-IP:8080 访问 Dashboard。' },
+                ].map((item) => (
+                  <div key={item.step} className="flex items-start gap-3.5">
+                    <div className="w-6 h-6 shrink-0 rounded-full bg-yuanbao-500/[0.08] border border-yuanbao-500/20 flex items-center justify-center">
+                      <span className="text-[12px] font-bold text-yuanbao-400">{item.step}</span>
+                    </div>
+                    <div>
+                      <p className="text-[14px] font-semibold text-white/85 mb-0.5">{item.title}</p>
+                      <p className="text-[13px] text-white/50">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4">
+                <SyntaxCodeBlock
+                  language="bash"
+                  title="手动 Docker Compose 安装"
+                  code={`# 在飞牛 SSH 中执行
+mkdir -p /vol1/1000/docker/ydsz-worker
+cd /vol1/1000/docker/ydsz-worker
+
+# 创建 docker-compose.yml 后启动
+docker-compose up -d
+
+# 查看日志
+docker-compose logs -f ydsz-worker`}
+                />
+              </div>
+
+              <Callout type="info">
+                飞牛 NAS 的 Docker 管理界面基于 Container Manager，你也可以在「容器」页面手动创建容器并填入镜像 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1 py-0.5 rounded text-[12px] font-mono">ydszbuddy/ydsz-worker:latest</code>。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('docker')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  Docker 部署
+                </button>
+                <button onClick={() => scrollToSection('requirements')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  系统要求
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 系统要求 ═══ */}
+            <div id="requirements" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">系统要求</h1>
+              <p className="text-[13px] text-white/45 mb-8">硬件与软件环境要求</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-6">
+                云顶数字工作台设计为轻量级自托管应用，对硬件要求不高。
+                以下为各部署方式的详细系统要求。
+              </p>
+
+              <h2 className="text-base font-semibold text-white mb-3">硬件要求</h2>
+              <div className="rounded-xl border border-white/[0.06] overflow-hidden my-4">
+                <table className="w-full text-[13px]">
+                  <thead>
+                    <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">资源</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">最低配置</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">推荐配置</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/[0.04]">
+                    {[
+                      { r: 'CPU', min: '2 核心', rec: '4 核心及以上' },
+                      { r: '内存', min: '4 GB', rec: '8 GB 及以上' },
+                      { r: '存储', min: '10 GB 可用空间', rec: '50 GB 及以上（含知识库）' },
+                      { r: '网络', min: '10 Mbps', rec: '100 Mbps 及以上' },
+                    ].map((item) => (
+                      <tr key={item.r} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-4 py-2.5 text-yuanbao-400 font-medium">{item.r}</td>
+                        <td className="px-4 py-2.5 text-white/50">{item.min}</td>
+                        <td className="px-4 py-2.5 text-white/30">{item.rec}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 className="text-base font-semibold text-white mb-3 mt-8">软件要求</h2>
+              <div className="rounded-xl border border-white/[0.06] overflow-hidden my-4">
+                <table className="w-full text-[13px]">
+                  <thead>
+                    <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">软件</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">版本要求</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium hidden sm:table-cell">备注</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/[0.04]">
+                    {[
+                      { s: 'Python', v: '3.12+', n: 'pip / uv 安装时需要' },
+                      { s: 'Docker', v: '20.10+', n: 'Docker 部署时需要' },
+                      { s: 'Docker Compose', v: '2.0+', n: 'Compose 部署时需要' },
+                      { s: 'SQLite', v: '内置', n: '默认数据库，无需安装' },
+                      { s: 'PostgreSQL', v: '13+', n: '可选，生产环境推荐' },
+                    ].map((item) => (
+                      <tr key={item.s} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-4 py-2.5 text-yuanbao-400 font-medium">{item.s}</td>
+                        <td className="px-4 py-2.5 text-white/50">{item.v}</td>
+                        <td className="px-4 py-2.5 text-white/30 hidden sm:table-cell">{item.n}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <Callout type="info">
+                支持在树莓派 4（4GB RAM）上运行基础功能。如需处理大模型推理或大量知识库检索，推荐使用 x86 服务器。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('fnos')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  飞牛 FnOS
+                </button>
+                <button onClick={() => scrollToSection('experts')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  专家系统
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 专家系统 ═══ */}
+            <div id="experts" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">专家系统</h1>
+              <p className="text-[13px] text-white/45 mb-8">创建、配置和管理你的 AI 专家</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                专家（Expert）是云顶数字工作台的核心抽象。每个专家是一个预配置的 Agent 模板，
+                内置了特定领域的 Tool Set、SOUL 人格定义和工作流。你可以基于内置模板快速创建专家，
+                也可以从零开始自定义。
+              </p>
+
+              <h2 id="experts-create" className="text-base font-semibold text-white mb-3">创建专家</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                在 Dashboard 中打开「专家」页面，点击「创建专家」。你可以选择：
+              </p>
+              <div className="space-y-3 mb-6">
+                {[
+                  { icon: '📦', title: '从模板创建', desc: '选择内置专家模板（周报、研究、代码等），一键生成预配置专家。' },
+                  { icon: '🔧', title: '从市场导入', desc: '浏览专家市场，导入社区分享的专家配置。' },
+                  { icon: '✨', title: '自定义创建', desc: '从零开始配置 SOUL、Tool Set、知识库和 IM 通道。' },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-start gap-3 rounded-lg border border-white/[0.06] bg-white/[0.02] px-4 py-3">
+                    <span className="text-lg flex-shrink-0">{item.icon}</span>
+                    <div>
+                      <h4 className="text-[13px] font-semibold text-white/85 mb-0.5">{item.title}</h4>
+                      <p className="text-[12px] text-white/45 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <h2 id="experts-soul" className="text-base font-semibold text-white mb-3 mt-8">SOUL 配置</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                SOUL 是专家的人格定义文件，采用 Markdown 格式。它定义了专家的沟通风格、
+                专业领域、行为准则和特殊指令。
+              </p>
+              <SyntaxCodeBlock
+                language="markdown"
+                title="SOUL.md 示例"
+                code={`# 角色定义
+你是一位资深的数据分析师，擅长从海量数据中提炼商业洞察。
+
+# 沟通风格
+- 简洁直接，避免冗长解释
+- 用数据说话，引用具体指标
+- 主动提出可行的建议
+
+# 专业领域
+- SQL 查询与优化
+- 数据可视化（Tableau / Grafana）
+- A/B 测试设计
+
+# 行为准则
+- 遇到不确定时明确说明
+- 拒绝执行可能危害数据安全的操作`}
+              />
+
+              <Callout type="tip">
+                SOUL 文件存储在 Workspace 的 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1 py-0.5 rounded text-[12px] font-mono">SOUL.md</code> 路径下。你可以随时通过 Dashboard 或 API 修改它，修改后立即生效。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('requirements')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  系统要求
+                </button>
+                <button onClick={() => scrollToSection('multi-agent')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  多 Agent 协作
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 多 Agent 协作 ═══ */}
+            <div id="multi-agent" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">多 Agent 协作</h1>
+              <p className="text-[13px] text-white/45 mb-8">AgentTeams 与 DAG 编排</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                云顶数字工作台支持多个 Agent 协同完成复杂任务。通过 AgentTeams 和 DAG 编排，
+                你可以构建「研究 Agent → 分析 Agent → 撰写 Agent」这样的流水线，
+                让每个 Agent 专注于自己擅长的环节。
+              </p>
+
+              <h2 id="multi-agent-teams" className="text-base font-semibold text-white mb-3">AgentTeams</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                AgentTeams 是一种松耦合的协作模式。一个「协调者」Agent 接收用户请求，
+                将子任务分派给团队中的其他 Agent，最后汇总结果。
+              </p>
+              <SyntaxCodeBlock
+                language="bash"
+                title="创建 AgentTeam"
+                code={`# 通过 Dashboard 创建 AgentTeam
+# 或使用 CLI：
+ydsz-worker agent create --name "研究团队" --role coordinator
+ydsz-worker agent create --name "数据分析师" --role specialist
+ydsz-worker agent create --name "报告撰写者" --role specialist
+
+# 组建团队
+ydsz-worker team create --name "研究流水线" \\
+  --coordinator "研究团队" \\
+  --members "数据分析师,报告撰写者"`}
+              />
+
+              <h2 id="multi-agent-dag" className="text-base font-semibold text-white mb-3 mt-8">DAG 编排</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                DAG（有向无环图）编排适合需要严格顺序控制的场景。你可以定义 Agent 之间的
+                依赖关系和数据流，确保前置任务完成后才启动后续任务。
+              </p>
+              <SyntaxCodeBlock
+                language="yaml"
+                title="pipeline.yaml 示例"
+                code={`name: 数据分析流水线
+agents:
+  - id: researcher
+    name: 研究员
+    tools: [web_search, file_reader]
+
+  - id: analyst
+    name: 分析师
+    depends_on: [researcher]
+    tools: [python, sql_query]
+
+  - id: writer
+    name: 撰稿人
+    depends_on: [analyst]
+    tools: [doc_writer]`}
+              />
+
+              <Callout type="info">
+                Agent 之间通过 ACP（Agent Communication Protocol）进行通信，支持跨平台、跨语言的 Agent 互操作。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('experts')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  专家系统
+                </button>
+                <button onClick={() => scrollToSection('knowledge-rag')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  知识库 RAG
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 知识库 RAG ═══ */}
+            <div id="knowledge-rag" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">知识库 RAG</h1>
+              <p className="text-[13px] text-white/45 mb-8">检索增强生成，让 AI 读懂你的文档</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                知识库是云顶数字工作台的 RAG（Retrieval-Augmented Generation）模块。
+                你可以上传 PDF、Word、Markdown 等格式的文档，系统会自动进行文本切分、
+                向量化索引，并在对话时基于语义搜索检索相关片段。
+              </p>
+
+              <h2 id="knowledge-rag-upload" className="text-base font-semibold text-white mb-3">文档上传</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                支持多种方式向知识库添加文档：
+              </p>
+              <div className="space-y-3 mb-6">
+                {[
+                  { method: 'Dashboard 上传', desc: '在「知识库」页面拖拽或选择文件，支持批量上传。' },
+                  { method: 'API 上传', desc: '通过 REST API 程序化上传，适合 CI/CD 集成。' },
+                  { method: 'CLI 导入', desc: '使用命令行工具从本地目录批量导入。' },
+                ].map((item) => (
+                  <div key={item.method} className="flex items-start gap-3">
+                    <span className="shrink-0 w-2 h-2 mt-1.5 rounded-full bg-yuanbao-500" />
+                    <div>
+                      <span className="text-[13px] font-medium text-white/80">{item.method}</span>
+                      <span className="text-[13px] text-white/50 ml-2">{item.desc}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <SyntaxCodeBlock
+                language="bash"
+                title="CLI 导入"
+                code={`# 导入整个目录
+ydsz-worker kb import ./docs --kb "产品手册"
+
+# 查看知识库列表
+ydsz-worker kb list
+
+# 查看文档索引状态
+ydsz-worker kb status --kb "产品手册"`}
+              />
+
+              <h2 id="knowledge-rag-search" className="text-base font-semibold text-white mb-3 mt-8">语义搜索</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                知识库使用向量检索引擎，支持自然语言查询。例如，你可以问「如何配置飞书通道」，
+                系统会返回最相关的文档片段，即使文档中没有完全匹配的关键词。
+              </p>
+              <SyntaxCodeBlock
+                language="python"
+                title="Python SDK 示例"
+                code={`import requests
+
+# 搜索知识库
+response = requests.post(
+    "http://localhost:8080/api/knowledge/search",
+    headers={"Authorization": "Bearer <token>"},
+    json={
+        "kb_id": "product-manual",
+        "query": "如何配置飞书通道",
+        "top_k": 5,
+    }
+)
+
+for result in response.json()["results"]:
+    print(f"[{result['score']:.2f}] {result['content'][:100]}")`}
+              />
+
+              <Callout type="tip">
+                知识库支持自动重建索引。当文档更新后，系统会在后台重新计算向量，无需手动干预。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('multi-agent')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  多 Agent 协作
+                </button>
+                <button onClick={() => scrollToSection('connectors-overview')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  连接器概述
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 连接器概述 ═══ */}
+            <div id="connectors-overview" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">连接器概述</h1>
+              <p className="text-[13px] text-white/45 mb-8">连接外部服务，扩展 Agent 能力边界</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                连接器是云顶数字工作台与外部服务之间的桥梁。通过连接器，Agent 可以调用第三方 API、
+                读取外部数据源、触发远程操作。所有连接器统一由 MCP 网关管理，提供标准化的工具注册和调用接口。
+              </p>
+
+              <h2 id="connectors-overview-arch" className="text-base font-semibold text-white mb-3">架构与原理</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                连接器的核心架构分为三层：
+              </p>
+              <div className="space-y-3 mb-6">
+                {[
+                  { layer: '协议层', desc: '定义统一的 MCP 协议接口，包括工具发现、参数校验和调用规范。' },
+                  { layer: '适配层', desc: '将不同第三方服务的 API 转换为标准 MCP 工具描述，处理认证和限流。' },
+                  { layer: '网关层', desc: 'MCP Gateway 负责路由分发、负载均衡和日志记录。' },
+                ].map((item) => (
+                  <div key={item.layer} className="flex items-start gap-3 rounded-lg border border-white/[0.06] bg-white/[0.02] px-4 py-3">
+                    <span className="shrink-0 px-2 py-0.5 rounded bg-yuanbao-500/10 border border-yuanbao-500/20 text-yuanbao-400 text-[12px] font-medium">{item.layer}</span>
+                    <p className="text-[13px] text-white/50 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+              <SyntaxCodeBlock
+                language="bash"
+                title="MCP 网关状态"
+                code={`# 查看已注册的 MCP 服务器
+ydsz-worker connector list
+
+# 测试连接器连通性
+ydsz-worker connector test --name "feishu"
+
+# 查看连接器日志
+ydsz-worker connector logs --name "feishu" --tail 100`}
+              />
+
+              <Callout type="info">
+                内置连接器覆盖主流 IM 平台、云存储、数据库、开发工具等类别，无需额外开发即可使用。如需对接自有系统，请参考「自定义连接器」章节。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('knowledge-rag')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  知识库 RAG
+                </button>
+                <button onClick={() => scrollToSection('builtin-connectors')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  内置连接器
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 内置连接器 ═══ */}
+            <div id="builtin-connectors" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">内置连接器</h1>
+              <p className="text-[13px] text-white/45 mb-8">50+ 预置连接器，覆盖主流服务</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                云顶数字工作台内置了 50+ 连接器，涵盖即时通讯、云存储、数据库、开发工具、
+                办公软件等多个类别。所有连接器均已通过测试，可直接在 Dashboard 中一键启用。
+              </p>
+
+              <h2 id="builtin-connectors-list" className="text-base font-semibold text-white mb-3">连接器列表</h2>
+              <div className="rounded-xl border border-white/[0.06] overflow-hidden my-4">
+                <table className="w-full text-[13px]">
+                  <thead>
+                    <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">分类</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">连接器</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium hidden sm:table-cell">功能</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/[0.04]">
+                    {[
+                      { cat: '即时通讯', name: '飞书 / 企业微信 / 钉钉 / QQ / 微信 / Telegram', func: '消息收发、群管理' },
+                      { cat: '云存储', name: '阿里云 OSS / 腾讯云 COS / AWS S3 / MinIO', func: '文件上传下载' },
+                      { cat: '数据库', name: 'PostgreSQL / MySQL / MongoDB / Redis', func: '数据查询与写入' },
+                      { cat: '开发工具', name: 'GitHub / GitLab / Jira / Linear', func: '代码与项目管理' },
+                      { cat: '办公软件', name: 'Notion / Confluence / 飞书文档', func: '文档读写' },
+                    ].map((item) => (
+                      <tr key={item.cat} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-4 py-2.5 text-yuanbao-400 font-medium whitespace-nowrap">{item.cat}</td>
+                        <td className="px-4 py-2.5 text-white/60">{item.name}</td>
+                        <td className="px-4 py-2.5 text-white/30 hidden sm:table-cell">{item.func}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <Callout type="tip">
+                连接器配置集中在 Dashboard 的「连接器」页面。每个连接器都有独立的配置向导，引导你完成 OAuth 授权或 API Key 填写。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('connectors-overview')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  连接器概述
+                </button>
+                <button onClick={() => scrollToSection('custom-connectors')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  自定义连接器
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section 自定义连接器 ═══ */}
+            <div id="custom-connectors" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">自定义连接器</h1>
+              <p className="text-[13px] text-white/45 mb-8">基于 MCP 协议开发自定义工具</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                当内置连接器无法满足需求时，你可以基于 MCP（Model Context Protocol）协议开发自定义连接器。
+                MCP 是一个开放协议，定义了 AI 模型与外部工具之间的标准化通信方式。
+              </p>
+
+              <h2 id="custom-connectors-mcp" className="text-base font-semibold text-white mb-3">MCP 协议</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                MCP 服务器通过 JSON-RPC 2.0 与 Ydsz Worker 通信。你需要实现以下核心方法：
+              </p>
+              <SyntaxCodeBlock
+                language="python"
+                title="MCP 服务器示例（Python）"
+                code={`from mcp.server import Server
+from mcp.types import Tool, TextContent
+
+app = Server("my-connector")
+
+@app.list_tools()
+async def list_tools() -> list[Tool]:
+    return [
+        Tool(
+            name="search_internal_db",
+            description="搜索内部数据库",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string"},
+                    "limit": {"type": "integer", "default": 10},
+                },
+                "required": ["query"],
+            },
+        )
+    ]
+
+@app.call_tool()
+async def call_tool(name: str, arguments: dict):
+    if name == "search_internal_db":
+        results = db.search(arguments["query"], arguments.get("limit", 10))
+        return [TextContent(type="text", text=results)]
+    raise ValueError(f"Unknown tool: {name}")`}
+              />
+
+              <div className="mt-4">
+                <SyntaxCodeBlock
+                  language="json"
+                  title="connector.json 配置"
+                  code={`{
+  "name": "my-custom-connector",
+  "display_name": "我的自定义连接器",
+  "description": "连接内部系统的自定义工具集",
+  "transport": "stdio",
+  "command": "python",
+  "args": ["-m", "my_connector.server"],
+  "env": {
+    "DB_HOST": "internal-db.example.com",
+    "DB_PORT": "5432"
+  }
+}`}
+                />
+              </div>
+
+              <Callout type="warning">
+                自定义连接器需要通过安全审核。提交连接器到市场前，请确保不包含硬编码的凭据或敏感信息。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('builtin-connectors')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  内置连接器
+                </button>
+                <button onClick={() => scrollToSection('rest-api')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  REST API
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section REST API ═══ */}
+            <div id="rest-api" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">REST API</h1>
+              <p className="text-[13px] text-white/45 mb-8">完整的 HTTP API 接口参考</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                云顶数字工作台提供 RESTful API，覆盖 Agent 管理、会话操作、知识库、定时任务等所有功能。
+                所有 API 均返回 JSON 格式数据，支持 JWT 认证。
+              </p>
+
+              <h2 id="rest-api-endpoints" className="text-base font-semibold text-white mb-3">核心端点</h2>
+              <div className="rounded-xl border border-white/[0.06] overflow-hidden my-4">
+                <table className="w-full text-[13px]">
+                  <thead>
+                    <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">方法</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">端点</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium hidden sm:table-cell">描述</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/[0.04]">
+                    {[
+                      { m: 'GET', e: '/api/agents', d: '列出所有 Agent' },
+                      { m: 'POST', e: '/api/agents', d: '创建新 Agent' },
+                      { m: 'GET', e: '/api/agents/{id}', d: '获取 Agent 详情' },
+                      { m: 'POST', e: '/api/chats/send', d: '发送消息' },
+                      { m: 'GET', e: '/api/chats/{id}', d: '获取会话历史' },
+                      { m: 'GET', e: '/api/knowledge/{id}/search', d: '知识库语义搜索' },
+                    ].map((item) => (
+                      <tr key={item.e + item.m} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-4 py-2.5"><span className={`inline-flex px-1.5 py-0.5 rounded text-[11px] font-bold ${item.m === 'GET' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-blue-500/10 text-blue-400'}`}>{item.m}</span></td>
+                        <td className="px-4 py-2.5 text-white/60 font-mono text-[12px]">{item.e}</td>
+                        <td className="px-4 py-2.5 text-white/30 hidden sm:table-cell">{item.d}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 id="rest-api-auth" className="text-base font-semibold text-white mb-3 mt-8">认证方式</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                所有 API 请求需要在 HTTP Header 中携带 JWT Token：
+              </p>
+              <SyntaxCodeBlock
+                language="bash"
+                title="API 调用示例"
+                code={`# 登录获取 Token
+curl -X POST http://localhost:8080/api/auth/login \\
+  -H "Content-Type: application/json" \\
+  -d '{"username":"admin","password":"your-password"}'
+
+# 使用 Token 调用 API
+curl http://localhost:8080/api/agents \\
+  -H "Authorization: Bearer <your-jwt-token>"
+
+# 发送消息
+curl -X POST http://localhost:8080/api/chats/send \\
+  -H "Authorization: Bearer <your-jwt-token>" \\
+  -H "Content-Type: application/json" \\
+  -d '{"agent_id":"main","message":"你好"}'`}
+              />
+
+              <Callout type="info">
+                API 文档的完整交互式版本可在 Dashboard 中访问 <code className="text-yuanbao-400 bg-yuanbao-500/[0.08] px-1 py-0.5 rounded text-[12px] font-mono">/api/docs</code>（基于 Scalar）。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('custom-connectors')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  自定义连接器
+                </button>
+                <button onClick={() => scrollToSection('sse')} className="group/doc flex items-center gap-1.5 text-[13px] text-yuanbao-400 hover:text-yuanbao-300 transition-colors">
+                  SSE 事件流
+                  <svg className="w-4 h-4 group-hover/doc:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* ═══ Section SSE 事件流 ═══ */}
+            <div id="sse" data-doc-section className="pt-12 mt-12 border-t border-white/[0.08]">
+              <h1 className="text-2xl font-extrabold text-white mb-2">SSE 事件流</h1>
+              <p className="text-[13px] text-white/45 mb-8">Server-Sent Events 实时推送</p>
+
+              <p className="text-white/55 text-[14px] leading-[1.85] mb-4">
+                对于需要实时更新的场景（如流式对话、工具执行进度），云顶数字工作台提供 SSE（Server-Sent Events）接口。
+                客户端通过 HTTP 长连接订阅事件流，服务端在事件产生时主动推送。
+              </p>
+
+              <h2 id="sse-events" className="text-base font-semibold text-white mb-3">事件类型</h2>
+              <div className="rounded-xl border border-white/[0.06] overflow-hidden my-4">
+                <table className="w-full text-[13px]">
+                  <thead>
+                    <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">事件名</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium">触发时机</th>
+                      <th className="text-left px-4 py-2.5 text-white/60 font-medium hidden sm:table-cell">数据格式</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/[0.04]">
+                    {[
+                      { e: 'message_start', t: 'Agent 开始回复', f: '{ thread_id, message_id }' },
+                      { e: 'message_delta', t: '流式文本块', f: '{ content, index }' },
+                      { e: 'tool_start', t: '工具调用开始', f: '{ tool_name, args }' },
+                      { e: 'tool_end', t: '工具调用结束', f: '{ tool_name, result }' },
+                      { e: 'message_end', t: 'Agent 回复完成', f: '{ message_id, usage }' },
+                    ].map((item) => (
+                      <tr key={item.e} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-4 py-2.5 text-yuanbao-400 font-mono text-[12px]">{item.e}</td>
+                        <td className="px-4 py-2.5 text-white/50">{item.t}</td>
+                        <td className="px-4 py-2.5 text-white/30 hidden sm:table-cell font-mono text-[12px]">{item.f}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 id="sse-subscribe" className="text-base font-semibold text-white mb-3 mt-8">订阅方式</h2>
+              <p className="text-white/55 text-[14px] leading-[1.8] mb-4">
+                使用标准 EventSource API 即可订阅：
+              </p>
+              <SyntaxCodeBlock
+                language="javascript"
+                title="JavaScript 客户端"
+                code={`const eventSource = new EventSource(
+  'http://localhost:8080/api/chats/stream?agent_id=main',
+  { headers: { 'Authorization': 'Bearer <token>' } }
+)
+
+eventSource.addEventListener('message_delta', (e) => {
+  const data = JSON.parse(e.data)
+  // 增量渲染到 UI
+  appendToMessage(data.content)
+})
+
+eventSource.addEventListener('message_end', (e) => {
+  const data = JSON.parse(e.data)
+  console.log('Token usage:', data.usage)
+  eventSource.close()
+})`}
+              />
+
+              <Callout type="warning">
+                SSE 连接在服务端有 30 分钟空闲超时限制。客户端需要实现自动重连逻辑，或在超时前发送心跳包。
+              </Callout>
+
+              <Callout type="tip">
+                生产环境推荐使用 SSE 替代轮询，可降低 90% 的无效请求量，显著减少服务器负载。
+              </Callout>
+
+              {/* 分页 */}
+              <div className="flex items-center justify-between mt-10 pt-5 border-t border-white/[0.06]">
+                <button onClick={() => scrollToSection('rest-api')} className="flex items-center gap-1 text-[13px] text-white/40 hover:text-white/65 transition-colors">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                  </svg>
+                  REST API
+                </button>
+                <button onClick={() => scrollToSection('intro')} className="group/doc flex items-center gap-1.5 text-[13px] text-white/50 hover:text-white/70 transition-colors">
+                  <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                  </svg>
+                  返回顶部
+                </button>
+              </div>
+            </div>
+
             {/* ── 底部 ── */}
             <div className="text-center py-8 border-t border-white/[0.05] mt-8">
               <p className="text-[12px] text-white/25">
-                本文档对应版本 v0.4.0 · 找不到所需内容？
+                本文档对应版本 v1.0.0 · 找不到所需内容？
                 <a href="https://github.com/ydsz-buddy/ydsz-worker/issues" className="text-yuanbao-400/70 hover:text-yuanbao-400 ml-1 underline underline-offset-2" target="_blank" rel="noopener noreferrer">
                   发起 Issue
                 </a>
@@ -703,14 +1772,14 @@ export default function DocsPage() {
         </main>
 
         {/* ── 右侧 TOC (P0-1) ── */}
-        <aside className="w-48 shrink-0 hidden xl:block">
-          <div className="sticky top-5">
+        <aside className="w-40 shrink-0 hidden md:block overflow-y-auto scrollbar-thin pr-4">
+          <div>
             <TableOfContents items={TOC_ITEMS} scrollContainerRef={contentRef as RefObject<HTMLElement | null>} />
 
             {/* 页内锚点 */}
             <div className="mt-6 pt-4 border-t border-white/[0.05] space-y-1.5">
               <a
-                href="https://gitee.com/njydsz/ydsz-worker"
+                href="https://github.com/ydsz-buddy/ydsz-worker"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-[12px] text-white/30 hover:text-yuanbao-400 transition-colors"
@@ -718,7 +1787,7 @@ export default function DocsPage() {
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
-                在 Gitee 查看源码
+                在 GitHub 查看源码
               </a>
               <button
                 onClick={() => contentRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}

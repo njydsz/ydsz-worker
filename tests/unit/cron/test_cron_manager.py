@@ -651,7 +651,7 @@ async def test_run_now_raises_for_unknown(tmp_path: Path) -> None:
 
 @pytest.mark.asyncio
 async def test_run_now_fires_job(tmp_path: Path) -> None:
-    """run_now() schedules an immediate async task via ensure_future."""
+    """run_now() schedules an immediate async task via create_task."""
     services = _make_services(tmp_path)
     aid, uid = _make_agent(services)
     gateway = _make_gateway()
@@ -665,10 +665,10 @@ async def test_run_now_fires_job(tmp_path: Path) -> None:
         prompt="run",
     )
 
-    with patch("ydsz.infra.cron.manager.asyncio.ensure_future") as mock_ef:
+    with patch("ydsz.infra.cron.manager.asyncio.create_task") as mock_ct:
         await mgr.run_now(cid)
-        mock_ef.assert_called_once()
-        coro = mock_ef.call_args[0][0]
+        mock_ct.assert_called_once()
+        coro = mock_ct.call_args[0][0]
         coro.close()  # clean up without awaiting
 
 

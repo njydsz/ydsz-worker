@@ -28,7 +28,13 @@ from ydsz.infra.utils.paths import PathLayout
 
 logger = logging.getLogger(__name__)
 
-_PACKAGE_NAME = "ydsz"
+# Distribution name on PyPI (see pyproject.toml [project] name). All URLs,
+# metadata lookups, and wheel/EXE name matches derive from this single value.
+_PACKAGE_NAME = "ydsz-worker"
+# Console-script stem registered in [project.scripts]. Windows launchers are
+# named after the script, not the distribution (``Scripts/ydsz.exe``), so the
+# stash glob must use this instead of ``_PACKAGE_NAME``.
+_CONSOLE_SCRIPT_STEM = "ydsz"
 _PYPI_URL = f"https://pypi.org/pypi/{_PACKAGE_NAME}/json"
 _PYPI_SIMPLE = "https://pypi.org/simple"
 _PYPI_UA = {"User-Agent": f"{_PACKAGE_NAME}-updater/1.0"}
@@ -143,29 +149,22 @@ def find_uv_executable() -> str:
 def get_local_version() -> str:
     """Return the installed ydsz-worker version.
 
-    Prefers ``importlib.metadata`` (works when installed as a distribution) and
-    falls back to ``ydsz.__version__`` (reliable in editable/dev mode and frozen
-    contexts such as PyInstaller / Tauri builds).  Only returns ``"0.0.0"`` when
-    neither source is available — the UI should treat it as "unknown".
+    When a green-packages overlay is present (Docker layered installs), probe
+    it first — that tree holds the actually-running distribution.  Otherwise
+    defer to :func:`ydsz.version.app_version`, which resolves the distribution
+    metadata and falls back to ``ydsz.__version__`` in editable/frozen contexts.
+    Only returns ``"0.0.0"`` when neither source is available — the UI should
+    treat it as "unknown".
     """
-    try:
-        from importlib.metadata import version
+    target = green_packages_dir()
+    if target is not None:
+        discovered = get_version_in_dir(sys.executable, str(target))
+        if discovered:
+            return discovered
 
-        target = green_packages_dir()
-        if target is not None:
-            discovered = get_version_in_dir(sys.executable, str(target))
-            if discovered:
-                return discovered
-        else:
-            return version(_PACKAGE_NAME)
-    except Exception:
-        pass
-    try:
-        from ydsz import __version__
+    from ydsz.version import app_version
 
-        return __version__
-    except Exception:
-        return "0.0.0"
+    return app_version()
 
 
 @dataclass
@@ -551,7 +550,7 @@ def stash_console_scripts(python_exe: str) -> list[tuple[Path, Path]]:
     script_dir = Path(python_exe).parent
     _purge_stale_stashes(script_dir)
     moved: list[tuple[Path, Path]] = []
-    for script in sorted(script_dir.glob(f"{_PACKAGE_NAME}*.exe")):
+    for script in sorted(script_dir.glob(f"{_CONSOLE_SCRIPT_STEM}*.exe")):
         stash = script.with_name(script.name + _STASH_SUFFIX)
         try:
             script.replace(stash)

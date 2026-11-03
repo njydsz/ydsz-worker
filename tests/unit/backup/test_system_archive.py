@@ -9,6 +9,7 @@ from io import BytesIO
 from pathlib import Path
 
 import pytest
+from tests.support.schema import EXPECTED_SCHEMA_VERSION
 
 from ydsz.config import DatabaseConfig
 from ydsz.infra.backup.manifest import MANIFEST_VERSION, BackupManifest
@@ -909,7 +910,7 @@ def _make_migration_backup(
         dest=dest,
         include_chats=True,
     )
-    # Rewrite Ydsz_version to signal a LightClaw migration backup.
+    # Rewrite ydsz_version to signal a LightClaw migration backup.
     members: dict[str, bytes] = {}
     with tarfile.open(dest, mode="r:gz") as tf:
         for m in tf.getmembers():
@@ -1088,7 +1089,7 @@ def test_migration_restore_remaps_ownership_to_admin_user_id_2(tmp_path: Path) -
 
 
 def test_migration_restore_via_none_autodetect(tmp_path: Path) -> None:
-    """preserve_users=None auto-detects the migration flag from Ydsz_version."""
+    """preserve_users=None auto-detects the migration flag from ydsz_version."""
     src_layout = PathLayout(tmp_path / "src")
     src_layout.root.mkdir()
     migration_archive = tmp_path / "migration-auto.tar.gz"
@@ -1177,7 +1178,7 @@ def test_restore_repairs_old_physical_schema_with_current_watermark(tmp_path: Pa
             "SELECT instance_id, shared FROM connectors WHERE instance_id = 'instance-1'"
         ).fetchone()
 
-    assert result["schema_version"] == 21
+    assert result["schema_version"] == EXPECTED_SCHEMA_VERSION
     assert "shared" in columns
     assert connector is not None
     assert connector["shared"] == 0
@@ -1231,7 +1232,7 @@ def test_refuse_newer_schema_backup_before_database_replace(
     assert excinfo.value.code == ErrorCode.BACKUP_SCHEMA_INCOMPATIBLE
     assert excinfo.value.details == {
         "archive_schema_version": 999,
-        "runtime_schema_version": 21,
+        "runtime_schema_version": EXPECTED_SCHEMA_VERSION,
     }
     with pool.connect() as conn:
         assert (

@@ -11,6 +11,7 @@ from langchain_core.messages import (
     messages_from_dict,
 )
 
+from ydsz.infra.backend.shell_output import decode_child_output
 from ydsz.infra.db.migrate import run_migrations
 from ydsz.infra.db.pool import SqlitePool
 from ydsz.infra.db.repos.agents import AgentRepo
@@ -500,7 +501,7 @@ async def test_state_update_does_not_replace_stream_error(archive):
         (await archive.page("t", limit=20, cursor=None, legacy_reader=no_anchor))["messages"]
     )
     error = next(
-        message for message in recovered if message.additional_kwargs.get("Ydsz_stream_error")
+        message for message in recovered if message.additional_kwargs.get("ydsz_stream_error")
     )
     assert "insufficient" in str(error.content).lower()
     assert any("partial" in str(message.content) for message in recovered)
@@ -826,7 +827,7 @@ async def test_dashboard_error_keeps_partial_tokens_and_error(archive):
     assert any("question" in text for text in texts)
     assert "partial answer" in texts
     error = next(
-        message for message in recovered if message.additional_kwargs.get("Ydsz_stream_error")
+        message for message in recovered if message.additional_kwargs.get("ydsz_stream_error")
     )
     assert "余额" in str(error.content) or "insufficient" in str(error.content).lower()
     assert archive.store.turn("t")["status"] == "failed"
@@ -995,10 +996,9 @@ asyncio.run(main())
     result = subprocess.run(
         [sys.executable, "-c", script, str(archive.messages._db.path), str(archive.store.path)],
         capture_output=True,
-        text=True,
         timeout=20,
     )
-    assert result.returncode == 0, result.stderr
+    assert result.returncode == 0, decode_child_output(result.stderr)
     assert "survives immediate exit" in json.dumps(_committed_messages(archive))
 
 

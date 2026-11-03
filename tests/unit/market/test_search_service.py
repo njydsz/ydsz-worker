@@ -14,12 +14,20 @@ from ydsz.infra.market.search import SearchService
 def test_cache_make_key_deterministic() -> None:
     """Same params yield the same key."""
     k1 = SearchCache.make_key(
-        query="gmail", types=("skill", "expert"),
-        category=None, sort="relevance", locale="zh", page=0,
+        query="gmail",
+        types=("skill", "expert"),
+        category=None,
+        sort="relevance",
+        locale="zh",
+        page=0,
     )
     k2 = SearchCache.make_key(
-        query="gmail", types=("skill", "expert"),
-        category=None, sort="relevance", locale="zh", page=0,
+        query="gmail",
+        types=("skill", "expert"),
+        category=None,
+        sort="relevance",
+        locale="zh",
+        page=0,
     )
     assert k1 == k2
     assert len(k1) == 64  # sha256 hex
@@ -28,12 +36,20 @@ def test_cache_make_key_deterministic() -> None:
 def test_cache_make_key_varies_with_input() -> None:
     """Different inputs yield different keys."""
     k1 = SearchCache.make_key(
-        query="gmail", types=("skill",),
-        category=None, sort="relevance", locale="zh", page=0,
+        query="gmail",
+        types=("skill",),
+        category=None,
+        sort="relevance",
+        locale="zh",
+        page=0,
     )
     k2 = SearchCache.make_key(
-        query="gmail", types=("skill", "expert"),
-        category=None, sort="relevance", locale="zh", page=0,
+        query="gmail",
+        types=("skill", "expert"),
+        category=None,
+        sort="relevance",
+        locale="zh",
+        page=0,
     )
     assert k1 != k2
 
@@ -44,12 +60,20 @@ async def test_search_service_aggregates_and_sorts_by_downloads() -> None:
     svc = SearchService()
 
     item_low = MarketItem(
-        market_id="skill:low", type="skill", source="ILTIN",
-        identity="low", name="Low", downloads=10,
+        market_id="skill:low",
+        type="skill",
+        source="ILTIN",
+        identity="low",
+        name="Low",
+        downloads=10,
     )
     item_high = MarketItem(
-        market_id="skill:high", type="skill", source="ILTIN",
-        identity="high", name="High", downloads=9999,
+        market_id="skill:high",
+        type="skill",
+        source="ILTIN",
+        identity="high",
+        name="High",
+        downloads=9999,
     )
 
     with patch("ydsz.infra.market.search.get_provider") as gp:
@@ -60,8 +84,12 @@ async def test_search_service_aggregates_and_sorts_by_downloads() -> None:
         gp.return_value = provider_mock
 
         result = await svc.search(
-            "test", ["skill"],
-            sort="downloads", limit=10, offset=0, locale="zh",
+            "test",
+            ["skill"],
+            sort="downloads",
+            limit=10,
+            offset=0,
+            locale="zh",
         )
 
     assert result["items"][0]["downloads"] == 9999

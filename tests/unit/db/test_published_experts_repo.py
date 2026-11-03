@@ -6,6 +6,7 @@ import sqlite3
 from pathlib import Path
 
 import pytest
+from tests.support.schema import EXPECTED_SCHEMA_VERSION
 
 from ydsz.infra.db.migrate import run_migrations
 from ydsz.infra.db.pool import SqlitePool
@@ -27,7 +28,7 @@ def test_published_experts_table_exists(db: SqlitePool) -> None:
         v = conn.execute("SELECT version FROM _schema_version").fetchone()[0]
         cols = {r["name"] for r in conn.execute("PRAGMA table_info(published_experts)").fetchall()}
     assert "published_experts" in names
-    assert v == 21
+    assert v == EXPECTED_SCHEMA_VERSION
     assert "published_expert_id" in cols
 
 

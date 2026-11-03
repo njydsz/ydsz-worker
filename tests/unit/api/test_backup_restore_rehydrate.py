@@ -23,7 +23,7 @@ async def test_restore_backup_file_rehydrates_providers_channels_and_cron(
     reload_cron = AsyncMock()
     restored: dict[str, Any] = {
         "schema_version": 1,
-        "Ydsz_version": "0.0.0",
+        "ydsz_version": "0.0.0",
         "agents": 1,
         "workspace_files": 2,
         "restore_config": True,
@@ -68,7 +68,7 @@ async def test_restore_backup_file_skips_rehydrate_without_runtime(
 ) -> None:
     restored: dict[str, Any] = {
         "schema_version": 1,
-        "Ydsz_version": "0.0.0",
+        "ydsz_version": "0.0.0",
         "agents": 0,
         "workspace_files": 0,
         "restore_config": False,

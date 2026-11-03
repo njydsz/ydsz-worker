@@ -48,39 +48,27 @@ class CronDeliveryCommand:
 
 
 class PreToolTextFilter:
-    """Withhold narration emitted before ordinary tool calls (issue #2384).
+    """Accumulate the visible text of a cron agent turn.
 
-    Cron agent turns must only deliver the final answer to IM: text streamed
-    before a regular tool call is internal planning and gets dropped at the
-    tool boundary. Dispatch wording preceding an ``ask_agent`` call (team
-    host delegating to a member) is preserved, as are turns that never call
-    tools at all.
+    Historically this withheld narration emitted before ordinary tool calls
+    (issue #2384); ``result()`` now returns every streamed token, so the class
+    is a plain accumulator. It remains in place because the delivery loop
+    observes every chunk type — keeping the wrapper makes that loop unchanged
+    and leaves a single seam for any future per-chunk filtering.
+
+    Tool chunks are accepted by ``observe()`` but carry no text of their own.
     """
 
-    ASK_AGENT_TOOL = "ask_agent"
-
     def __init__(self) -> None:
-        self._pending: list[str] = []
-        self._committed: list[str] = []
+        self._parts: list[str] = []
 
     def observe(self, chunk: dict[str, Any]) -> None:
         kind = chunk.get("type")
         if kind in ("token", "delta"):
-            self._pending.append(str(chunk.get("content") or chunk.get("text") or ""))
-        elif (
-            kind == "tool_result"
-            and self.ASK_AGENT_TOOL
-            in {str(getattr(m, "name", "") or "") for m in chunk.get("messages") or []}
-            or kind == "tool_call_chunk"
-            and str(chunk.get("name") or "") == self.ASK_AGENT_TOOL
-        ):
-            self._committed.extend(self._pending)
-            self._pending.clear()
+            self._parts.append(str(chunk.get("content") or chunk.get("text") or ""))
 
     def result(self) -> str:
-        self._committed.extend(self._pending)
-        self._pending.clear()
-        return "".join(self._committed)
+        return "".join(self._parts)
 
 
 class CronDeliveryService:

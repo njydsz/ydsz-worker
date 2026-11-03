@@ -123,7 +123,7 @@ def docker_boot() -> Iterator[Any]:
             "-e",
             "YDSZ_LOG_LEVEL=warning",
             "-v",
-            f"{volume}:/data/.ydsz",
+            f"{volume}:/data/.ydsz-worker",
         ]
         if password is not None:
             cmd.extend(["-e", f"YDSZ_DEFAULT_PASSWORD={password}"])
@@ -179,10 +179,10 @@ def test_docker_valid_password_creates_admin_and_serves(docker_boot: Any) -> Non
     assert login_status == 200, login
     assert login.get("access_token")
     assert (login.get("user") or {}).get("username") == "admin"
-    cred = _exec_text(name, "/data/.ydsz/credential.txt")
+    cred = _exec_text(name, "/data/.ydsz-worker/credential.txt")
     assert "Ydsz Worker Login Credential" in cred
     assert f"Password: {password}" in cred
-    wizard = _run(["docker", "exec", name, "test", "-f", "/data/.ydsz/ydsz-login.txt"])
+    wizard = _run(["docker", "exec", name, "test", "-f", "/data/.ydsz-worker/ydsz-login.txt"])
     assert wizard.returncode != 0
 
 
@@ -204,9 +204,9 @@ def test_docker_invalid_password_starts_setup_wizard(docker_boot: Any, password:
     # Setup lockdown blocks /api/auth/login before the route can emit SETUP_REQUIRED.
     assert login_status == 503, login
     assert login.get("setup_required") is True
-    hint = _exec_text(name, "/data/.ydsz/credential.txt")
+    hint = _exec_text(name, "/data/.ydsz-worker/credential.txt")
     assert "Setup Required" in hint
-    wizard = _exec_text(name, "/data/.ydsz/ydsz-login.txt").strip()
+    wizard = _exec_text(name, "/data/.ydsz-worker/ydsz-login.txt").strip()
     assert wizard
     logs = _run(["docker", "logs", name], timeout=20).stdout
     assert "未通过密码策略" in logs
@@ -223,7 +223,7 @@ def test_docker_unset_password_starts_setup_wizard(docker_boot: Any) -> None:
     assert setup["wizard_password_exists"] is True
     logs = _run(["docker", "logs", name], timeout=20).stdout
     assert "未设置 YDSZ_DEFAULT_PASSWORD" in logs
-    assert "Setup Required" in _exec_text(name, "/data/.ydsz/credential.txt")
+    assert "Setup Required" in _exec_text(name, "/data/.ydsz-worker/credential.txt")
     login_status, login = _http_json(
         name,
         "/api/auth/login",

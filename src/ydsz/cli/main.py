@@ -39,12 +39,9 @@ def _ensure_utf8_stdio(
 
 
 def _get_version() -> str:
-    try:
-        from importlib.metadata import version as pkg_version
+    from ydsz.version import app_version
 
-        return pkg_version("ydsz")
-    except Exception:
-        return "unknown"
+    return app_version()
 
 
 def _print_version(ctx: click.Context, _param: click.Parameter, value: bool) -> None:

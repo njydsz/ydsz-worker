@@ -28,6 +28,36 @@ _DESKTOP_PYTHON_PACKAGES = ("mss>=9.0", "pynput>=1.7", "pillow>=10.0")
 _SUBPROCESS_READ_CHUNK = 4096
 _SUBPROCESS_MAX_LINE = 512 * 1024
 _APT_LOCK_RE = re.compile(r"lock-frontend|dpkg.*lock", re.I)
+
+
+def _decode_child_output(data: bytes | str | None) -> str:
+    """Decode captured process output without trusting the console code page.
+
+    ``netstat`` on a Chinese Windows host prints cp936 bytes. With ``text=True``
+    and no explicit encoding Python decodes as UTF-8, and ``subprocess``'s
+    reader thread raises ``UnicodeDecodeError`` — surfacing as a broken probe
+    rather than "unknown". Try strict UTF-8, then the locale code page, then
+    GBK, and only then replacement characters. Mirrors
+    :func:`ydsz.infra.backend.shell_output.decode_child_output`.
+    """
+    if not data:
+        return ""
+    if isinstance(data, str):
+        return data
+    import locale
+
+    seen: set[str] = set()
+    for encoding in ("utf-8", locale.getpreferredencoding(False), "gbk"):
+        if not encoding or encoding.lower() in seen:
+            continue
+        seen.add(encoding.lower())
+        try:
+            return data.decode(encoding)
+        except (UnicodeDecodeError, LookupError):
+            continue
+    return data.decode("utf-8", errors="replace")
+
+
 _SCRIPT_LOG_RE = re.compile(
     r"(install\.sh|start\.sh|stop\.sh|Running /|Starting desktop services via /|Stopping desktop services via /)",
 )
@@ -205,7 +235,6 @@ def _listeners_on_port(port: int) -> list[str] | None:
             proc = subprocess.run(
                 ["ss", "-ltn", f"sport = :{port}"],
                 capture_output=True,
-                text=True,
                 timeout=3,
                 check=False,
             )
@@ -214,7 +243,7 @@ def _listeners_on_port(port: int) -> list[str] | None:
         if proc.returncode != 0:
             return None
         hosts: list[str] = []
-        for line in proc.stdout.splitlines():
+        for line in _decode_child_output(proc.stdout).splitlines():
             match = re.search(rf"LISTEN\s+\d+\s+\d+\s+(\S+):{port}\b", line)
             if match:
                 hosts.append(match.group(1))
@@ -225,7 +254,6 @@ def _listeners_on_port(port: int) -> list[str] | None:
             proc = subprocess.run(
                 ["netstat", "-ltn"],
                 capture_output=True,
-                text=True,
                 timeout=3,
                 check=False,
             )
@@ -235,7 +263,7 @@ def _listeners_on_port(port: int) -> list[str] | None:
             return None
         hosts = []
         suffix = f":{port}"
-        for line in proc.stdout.splitlines():
+        for line in _decode_child_output(proc.stdout).splitlines():
             if suffix not in line or "LISTEN" not in line:
                 continue
             parts = line.split()

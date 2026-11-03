@@ -7,7 +7,7 @@ from click.testing import CliRunner
 from ydsz.cli.main import cli
 
 
-def test_version_prints_orca_version() -> None:
+def test_version_prints_installed_version() -> None:
     runner = CliRunner()
     result = runner.invoke(cli, ["version"])
     assert result.exit_code == 0

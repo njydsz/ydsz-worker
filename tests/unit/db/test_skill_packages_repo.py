@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
+from tests.support.schema import EXPECTED_SCHEMA_VERSION
 
 from ydsz.infra.db.migrate import run_migrations
 from ydsz.infra.db.pool import SqlitePool
@@ -28,7 +29,7 @@ def test_skill_packages_table_exists(db: SqlitePool) -> None:
         v = conn.execute("SELECT version FROM _schema_version").fetchone()[0]
         cols = {r["name"] for r in conn.execute("PRAGMA table_info(skill_packages)").fetchall()}
     assert "skill_packages" in names
-    assert v == 21
+    assert v == EXPECTED_SCHEMA_VERSION
     assert "skill_package_id" in cols
 
 

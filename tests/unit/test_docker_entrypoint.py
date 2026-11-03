@@ -109,7 +109,7 @@ def test_entrypoint_rejects_passwords_that_miss_policy(password: str) -> None:
 @posix_only
 def test_seed_wizard_password_writes_volume_and_home_link(tmp_path: Path) -> None:
     home = tmp_path / "data"
-    ydsz_home = home / ".ydsz"
+    ydsz_home = home / ".ydsz-worker"
     home.mkdir()
     script = _source_helpers() + "\nydsz_seed_wizard_password\nydsz_write_setup_hint\n"
     result = _bash(
@@ -148,7 +148,7 @@ def _run_first_boot(
     args: str = "true",
 ) -> tuple[subprocess.CompletedProcess[str], Path]:
     home = tmp_path / "data"
-    ydsz_home = home / ".ydsz"
+    ydsz_home = home / ".ydsz-worker"
     home.mkdir(exist_ok=True)
     stub = (
         run_init
@@ -253,7 +253,7 @@ ydsz_run_init() {
 @posix_only
 def test_existing_db_skips_password_init(tmp_path: Path) -> None:
     home = tmp_path / "data"
-    ydsz_home = home / ".ydsz"
+    ydsz_home = home / ".ydsz-worker"
     ydsz_home.mkdir(parents=True)
     (ydsz_home / "ydsz.db").write_text("stub", encoding="utf-8")
     result, _ = _run_first_boot(tmp_path, password="GoodPass1")
@@ -301,7 +301,7 @@ exit 0
 
 
 def _init_marker(tmp_path: Path) -> Path:
-    return tmp_path / "data" / ".ydsz" / ".initialized"
+    return tmp_path / "data" / ".ydsz-worker" / ".initialized"
 
 
 def _run_entrypoint(
@@ -315,7 +315,10 @@ def _run_entrypoint(
     home = tmp_path / "data"
     stub_dir = tmp_path / "stub-bin"
     stub_dir.mkdir(exist_ok=True)
-    stub = stub_dir / "ydsz"
+    # The entrypoint invokes ``ydsz-worker init`` / ``ydsz-worker run``; the
+    # stub must carry that exact name to shadow the real CLI (otherwise the
+    # real server starts and collides on the port).
+    stub = stub_dir / "ydsz-worker"
     if not stub.exists():
         stub.write_text(_STUB_YDSZ, encoding="utf-8", newline="\n")
         stub.chmod(0o755)
@@ -325,7 +328,7 @@ def _run_entrypoint(
     env.update(
         {
             "HOME": str(home),
-            "YDSZ_HOME": str(home / ".ydsz"),
+            "YDSZ_HOME": str(home / ".ydsz-worker"),
             "PATH": str(stub_dir) + os.pathsep + env.get("PATH", ""),
             "YDSZ_STUB_LOG": str(log),
             "YDSZ_DEFAULT_PASSWORD": "Str0ngPass1",
@@ -358,7 +361,7 @@ def test_entrypoint_restart_skips_init_for_external_db(tmp_path: Path) -> None:
     assert first.returncode == 0, first.stderr
     assert any(call.startswith("init ") for call in calls), calls
     assert any(call.startswith("run --host") for call in calls), calls
-    assert not (tmp_path / "data" / ".ydsz" / "ydsz.db").exists()
+    assert not (tmp_path / "data" / ".ydsz-worker" / "ydsz.db").exists()
     assert _init_marker(tmp_path).is_file(), first.stdout
 
     second, calls = _run_entrypoint(tmp_path, extra_env=pg_env)
@@ -370,7 +373,7 @@ def test_entrypoint_restart_skips_init_for_external_db(tmp_path: Path) -> None:
 @bash_only
 def test_entrypoint_sqlite_install_skips_init_without_marker(tmp_path: Path) -> None:
     """Backward compat: an existing ydsz.infra.db still short-circuits the guard."""
-    ydsz_home = tmp_path / "data" / ".ydsz"
+    ydsz_home = tmp_path / "data" / ".ydsz-worker"
     ydsz_home.mkdir(parents=True)
     (ydsz_home / "ydsz.db").write_text("", encoding="utf-8")
 
@@ -383,7 +386,7 @@ def test_entrypoint_sqlite_install_skips_init_without_marker(tmp_path: Path) -> 
 @bash_only
 def test_entrypoint_adopts_existing_admin_without_rewriting_credentials(tmp_path: Path) -> None:
     """Upgrade path: init now no-ops on an already-bootstrapped DB; the credential card must survive."""
-    ydsz_home = tmp_path / "data" / ".ydsz"
+    ydsz_home = tmp_path / "data" / ".ydsz-worker"
     ydsz_home.mkdir(parents=True)
     credential = ydsz_home / "credential.txt"
     credential.write_text("ORIGINAL CREDENTIALS\n", encoding="utf-8")

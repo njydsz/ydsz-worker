@@ -138,8 +138,10 @@ const CATEGORY_MAP: Record<TabKey, readonly string[]> = {
 }
 
 /* ═══════════════════════════════════════════
-   Gradient palette (6 green tones, cyclic)
+   Emoji palette (cyclic) + Gradient palette (6 green tones, cyclic)
    ═══════════════════════════════════════════ */
+
+const EMOJI_MAP = ['🧠', '📊', '🎨', '🛠️', '🔍', '📚', '💡', '🌐', '⚡', '🎯']
 
 const GRADIENTS = [
   { base: '#0f2e1a', accent: '#22c55e' },   // emerald green
@@ -153,120 +155,6 @@ const GRADIENTS = [
 /* ═══════════════════════════════════════════
    SVG sub-components
    ═══════════════════════════════════════════ */
-
-/** Card top decoration — 6 rich visible patterns */
-function CardDecoration({ index }: { index: number }) {
-  const { base, accent } = GRADIENTS[index % GRADIENTS.length]
-  const pIdx = index % 6
-
-  const patterns = [
-    // 0: Glowing orb top-right + dot grid
-    <svg key="p0" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
-      <defs>
-        <radialGradient id={`bg-${index}-0`} cx="80%" cy="0%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.22" />
-          <stop offset="100%" stopColor={base} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <rect width="380" height="80" fill={base} />
-      <rect width="380" height="80" fill={`url(#bg-${index}-0)`} />
-      {[40, 90, 140, 190, 240, 290, 340].map((x) => (
-        <circle key={x} cx={x} cy={60} r="1.2" fill="white" opacity="0.06" />
-      ))}
-      {[65, 125, 185, 245, 305].map((x) => (
-        <circle key={x} cx={x} cy={42} r="0.8" fill="white" opacity="0.04" />
-      ))}
-    </svg>,
-
-    // 1: Diagonal light streak
-    <svg key="p1" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id={`lg-${index}-1`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.15" />
-          <stop offset="50%" stopColor={base} stopOpacity="0.8" />
-          <stop offset="100%" stopColor={base} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <rect width="380" height="80" fill={base} />
-      <polygon points="200,0 380,0 380,80 280,80" fill={`url(#lg-${index}-1)`} />
-      {[0, 1, 2, 3, 4].map((i) => (
-        <line key={i} x1={220 + i * 35} y1="0" x2={280 + i * 35} y2="80" stroke={accent} strokeWidth="0.5" opacity="0.08" />
-      ))}
-    </svg>,
-
-    // 2: Triangular mountains
-    <svg key="p2" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id={`tg-${index}-2`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.12" />
-          <stop offset="100%" stopColor={base} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <rect width="380" height="80" fill={base} />
-      <polygon points="0,80 80,20 160,80" fill={accent} opacity="0.07" />
-      <polygon points="100,80 200,10 300,80" fill={accent} opacity="0.05" />
-      <polygon points="260,80 340,30 380,65 380,80" fill={accent} opacity="0.06" />
-      <rect width="380" height="80" fill={`url(#tg-${index}-2)`} />
-    </svg>,
-
-    // 3: Wave lines
-    <svg key="p3" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id={`wg-${index}-3`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
-          <stop offset="100%" stopColor={base} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <rect width="380" height="80" fill={base} />
-      <rect width="380" height="80" fill={`url(#wg-${index}-3)`} />
-      <path d="M0,50 Q95,15 190,45 T380,35" stroke={accent} strokeWidth="1.2" fill="none" opacity="0.15" />
-      <path d="M0,65 Q100,30 200,55 T380,50" stroke={accent} strokeWidth="0.8" fill="none" opacity="0.08" />
-    </svg>,
-
-    // 4: Diamond accent grid
-    <svg key="p4" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
-      <defs>
-        <radialGradient id={`dg-${index}-4`} cx="20%" cy="20%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
-          <stop offset="100%" stopColor={base} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <rect width="380" height="80" fill={base} />
-      <rect width="380" height="80" fill={`url(#dg-${index}-4)`} />
-      {[30, 80, 130, 180, 230, 280, 330].map((x) =>
-        [20, 40, 60].map((y) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="3" height="3" rx="0.5" transform={`rotate(45 ${x+1.5} ${y+1.5})`} fill={accent} opacity="0.08" />
-        ))
-      )}
-      <rect x="310" y="12" width="40" height="40" rx="4" transform="rotate(45 330 32)" fill={accent} opacity="0.06" />
-    </svg>,
-
-    // 5: Circular constellation
-    <svg key="p5" className="absolute inset-0 w-full h-full" viewBox="0 0 380 80" preserveAspectRatio="none">
-      <defs>
-        <radialGradient id={`cg-${index}-5`} cx="70%" cy="30%">
-          <stop offset="0%" stopColor={accent} stopOpacity="0.2" />
-          <stop offset="100%" stopColor={base} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <rect width="380" height="80" fill={base} />
-      <rect width="380" height="80" fill={`url(#cg-${index}-5)`} />
-      <circle cx="300" cy="25" r="22" stroke={accent} strokeWidth="1" fill="none" opacity="0.12" />
-      <circle cx="300" cy="25" r="12" stroke={accent} strokeWidth="0.8" fill="none" opacity="0.08" />
-      <circle cx="300" cy="25" r="2" fill={accent} opacity="0.2" />
-      {[60, 130, 200, 270].map((x) => (
-        <circle key={x} cx={x} cy={55 + (x % 20)} r="1.5" fill="white" opacity="0.05" />
-      ))}
-    </svg>,
-  ]
-
-  return (
-    <div className="absolute top-0 left-0 right-0 h-[44px] overflow-hidden">
-      {patterns[pIdx]}
-      <div className="absolute bottom-0 left-0 right-0 h-[20px]" style={{ background: `linear-gradient(to top, #0f1714 0%, transparent 100%)` }} />
-    </div>
-  )
-}
 
 /** Author avatar SVG icon */
 function AuthorAvatarSvg() {
@@ -483,33 +371,32 @@ export default function MarketplacePage() {
           </div>
         </div>
 
-        {/* ═══ Card Grid ═══ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((item, cardIndex) => (
-            <div
-              key={`${item._type}-${item.id}`}
-              className="card-market relative p-0 overflow-hidden group cursor-default"
-            >
-              {/* Top SVG decoration */}
-              <CardDecoration index={cardIndex} />
-
-              {/* Top gradient line (revealed on hover) */}
-              <div className="card-top-line opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              {/* Card content */}
-              <div className="relative px-5 pb-5 pt-4">
-                {/* Row: avatar + title/badges side by side */}
-                <div className="flex items-center gap-3 mb-3">
-                  {/* Avatar — in flow, not absolute */}
-                  <div className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-white font-bold text-base border-2 border-[#0f1714] shadow-lg" style={{ background: 'linear-gradient(135deg, #4ade80 0%, #16a34a 100%)', boxShadow: '0 4px 12px -2px rgba(34,197,94,0.4), 0 2px 6px -2px rgba(0,0,0,0.2)' }}>
-                    <span className="drop-shadow-sm">{item.name.charAt(0)}</span>
+        {/* ═══ Card Grid — Octop 风格横向卡片 ═══ */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {filtered.map((item, cardIndex) => {
+            const { base, accent } = GRADIENTS[cardIndex % GRADIENTS.length]
+            return (
+              <div
+                key={`${item._type}-${item.id}`}
+                className="card-refined group cursor-default"
+              >
+                {/* Horizontal layout: avatar left, content right */}
+                <div className="flex items-start gap-4">
+                  {/* Left: circular avatar with gradient + emoji */}
+                  <div
+                    className="shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-2xl border border-white/[0.08] shadow-lg"
+                    style={{ background: `linear-gradient(135deg, ${base} 0%, ${accent} 100%)` }}
+                  >
+                    <span>{EMOJI_MAP[cardIndex % EMOJI_MAP.length]}</span>
                   </div>
-                  {/* Title + badges */}
+
+                  {/* Right: name + badges + stats + description + bottom row */}
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-white font-semibold text-[15px] leading-snug truncate group-hover:text-yuanbao-300 transition-colors duration-300">
-                      {item.name}
-                    </h3>
-                    <div className="flex items-center gap-1.5 mt-1">
+                    {/* Row 1: name + category badge + version badge */}
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="text-white font-semibold text-[15px] leading-snug group-hover:text-yuanbao-300 transition-colors duration-300">
+                        {item.name}
+                      </h3>
                       <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-yuanbao-500/10 text-yuanbao-400 text-[11px] font-medium leading-none border border-yuanbao-500/15">
                         {item.category}
                       </span>
@@ -519,43 +406,56 @@ export default function MarketplacePage() {
                         </span>
                       )}
                     </div>
-                  </div>
-                </div>
 
-                {/* Description */}
-                <p className="text-white/50 text-[13px] leading-[1.65] mb-4 line-clamp-2">
-                  {item.description}
-                </p>
+                    {/* Row 2: stats — downloads + author */}
+                    <div className="flex items-center gap-3 mt-1.5">
+                      <span className="flex items-center gap-1 text-[11px] text-white/40 tabular-nums">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        {item.downloads}
+                      </span>
+                      <span className="text-white/[0.15] text-[10px]">·</span>
+                      <span className="flex items-center gap-1 text-[11px] text-white/35 truncate">
+                        <AuthorAvatarSvg />
+                        {item.author}
+                      </span>
+                    </div>
 
-                {/* Bottom row: author + downloads + CTA */}
-                <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/[0.05]">
-                  <div className="flex items-center gap-1.5 min-w-0">
-                    <AuthorAvatarSvg />
-                    <span className="text-[11px] text-white/35 truncate">{item.author}</span>
-                  </div>
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className="flex items-center gap-1 text-[11px] text-white/35 tabular-nums">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                      {item.downloads}
-                    </span>
-                    <a
-                      href={`${DOWNLOAD_URLS[item._type]}/${item.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-medium border border-yuanbao-500/25 text-yuanbao-400 hover:bg-yuanbao-500 hover:text-ink-900 transition-all duration-250 shadow-sm hover:shadow-md hover:shadow-yuanbao-500/20"
-                    >
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                      </svg>
-                      {t('market.download')}
-                    </a>
+                    {/* Row 3: description (1-2 lines) */}
+                    <p className="text-white/50 text-[13px] leading-[1.65] mt-2 line-clamp-2">
+                      {item.description}
+                    </p>
+
+                    {/* Row 4: divider + detail link + download button */}
+                    <div className="flex items-center gap-3 mt-3 pt-3 border-t border-white/[0.05]">
+                      <Link
+                        to={`/market/${item._type}/${item.id}`}
+                        className="inline-flex items-center gap-1 text-[12px] text-white/40 hover:text-yuanbao-400 transition-colors duration-250"
+                      >
+                        详情
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                      <div className="flex-1" />
+                      <a
+                        href={`${DOWNLOAD_URLS[item._type]}/${item.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold bg-yuanbao-500 text-ink-900 hover:bg-yuanbao-400 transition-all duration-250 shadow-sm hover:shadow-md hover:shadow-yuanbao-500/20"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        {t('market.download')}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* ═══ Empty state ═══ */}
