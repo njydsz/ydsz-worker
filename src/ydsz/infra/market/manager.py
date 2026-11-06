@@ -10,9 +10,11 @@ import contextlib
 import logging
 from typing import Any
 
+from ydsz.infra.market.cache import SearchCache
 from ydsz.infra.market.constants import (
     DEFAULT_LIMIT,
     MARKET_ITEM_TYPES,
+    MarketSort,
 )
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.install import InstallService
@@ -40,12 +42,16 @@ class MarketManager:
         self,
         *,
         db: Any = None,
+        server: Any = None,
         install_service: InstallService | None = None,
         search_service: SearchService | None = None,
     ) -> None:
         self._db = db
+        self._server = server
         self._install = install_service or InstallService(db=db)
-        self._search = search_service or SearchService()
+        if search_service is None:
+            search_service = SearchService(SearchCache(db=db))
+        self._search = search_service
 
     # ── Properties ──────────────────────────────────────────────────────
     @property
@@ -100,7 +106,7 @@ class MarketManager:
         types: list[str] | None = None,
         *,
         category: str | None = None,
-        sort: str = "relevance",
+        sort: MarketSort = "relevance",
         limit: int = DEFAULT_LIMIT,
         offset: int = 0,
         locale: str | None = None,
@@ -122,10 +128,11 @@ class MarketManager:
         identity: str,
         *,
         locale: str | None = None,
+        user: Any = None,
     ) -> dict[str, Any]:
         """Full detail for drawer."""
         p = self.provider(type)
-        d = await p.detail(identity, locale=locale, db=self._db)
+        d = await p.detail(identity, locale=locale, db=self._db, user=user, server=self._server)
         return _detail_to_dict(d)
 
     # ── Install ──────────────────────────────────────────────────────────
@@ -136,6 +143,7 @@ class MarketManager:
         *,
         target: InstallTarget,
         user_id: int,
+        user: Any = None,
         **opts: Any,
     ) -> dict[str, Any]:
         """Install one capability.  Returns serialised receipt."""
@@ -145,6 +153,8 @@ class MarketManager:
             identity=identity,
             target=target,
             user_id=user_id,
+            user=user,
+            server=self._server,
             **opts,
         )
         # Invalidate search cache after install.
@@ -225,7 +235,15 @@ class MarketManager:
     async def categories(self, type: str) -> list[dict[str, str]]:
         """Return category facets for one market type."""
         p = self.provider(type)
-        return await p.categories()
+        facets = await p.categories()
+        return [
+            {
+                "slug": str(f.get("slug", "")),
+                "label": str(f.get("label", "")),
+                "count": str(f.get("count", "0")),
+            }
+            for f in facets
+        ]
 
 
 # ── Serialisers ─────────────────────────────────────────────────────────

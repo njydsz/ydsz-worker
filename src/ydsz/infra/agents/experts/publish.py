@@ -156,7 +156,7 @@ async def _write_workspace_snapshot(
         if content is None:
             continue
         target = dest.joinpath(*PurePosixPath(logical).parts)
-        await asyncio.to_thread(lambda t=target: t.parent.mkdir(parents=True, exist_ok=True))
+        await asyncio.to_thread(_mkdir_parents, target)
         await asyncio.to_thread(target.write_bytes, content)
         exported.append(logical)
 
@@ -273,6 +273,11 @@ def _logical_seed_path(path: str) -> str:
     if rel.startswith(prefix):
         return rel[len(prefix) :]
     return rel
+
+
+def _mkdir_parents(target: Path) -> None:
+    """Create *target*'s parent directories (run in a thread)."""
+    target.parent.mkdir(parents=True, exist_ok=True)
 
 
 def _is_seedable_path(path: str) -> bool:

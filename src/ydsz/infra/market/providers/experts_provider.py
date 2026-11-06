@@ -1,7 +1,8 @@
-"""Experts provider — wraps :mod:`ydsz.infra.agents.experts.skillhub_market`.
+"""Expert marketplace provider — SkillHub experts + local catalog.
 
-Bridges bundled expert templates + SkillHub Skillset marketplace + published
-experts into the uniform ``MarketProvider`` interface.
+``list_items``/``search`` read SkillHub over HTTP; ``detail`` enriches an entry
+with the cached catalog manifest; ``install`` materialises the expert template
+into the local catalog and creates a new agent from it.
 """
 
 from __future__ import annotations
@@ -9,6 +10,17 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from ydsz.infra.agents.experts.catalog import (
+    build_create_spec_from_expert,
+    resolve_expert_agent_name,
+)
+from ydsz.infra.agents.experts.skillhub_market import (
+    SkillHubSkillset,
+    browse_skillsets,
+    fetch_skillset,
+    install_skillset_template,
+)
+from ydsz.infra.market.constants import MarketItemType, MarketSort
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import (
     InstallReceipt,
@@ -20,15 +32,19 @@ from ydsz.infra.market.models import (
 )
 from ydsz.infra.market.providers.base import MarketProvider
 from ydsz.infra.market.providers.registry import register_provider
+from ydsz.infra.utils.locale import resolve_user_locale
 
 logger = logging.getLogger(__name__)
 
+_SKILLHUB_HOST = "https://skillhub.ydsz.com"
+
+_SORT_TO_RANKING = {"downloads": "downloads", "rating": "rating", "newest": "newest"}
+_MAX_PAGE_LIMIT = 50
+
 
 class ExpertsProvider(MarketProvider):
-    """Expert marketplace — bundled + SkillHub Skillset + published."""
-
     @property
-    def market_type(self) -> str:
+    def market_type(self) -> MarketItemType:
         return "expert"
 
     @property
@@ -36,293 +52,252 @@ class ExpertsProvider(MarketProvider):
         return {"zh": "专家", "en": "Experts"}
 
     @property
-    def default_sort(self) -> str:
+    def default_sort(self) -> MarketSort:
         return "downloads"
 
-    # ── Browse / search ───────────────────────────────────────────────────
+    @property
+    def supported_sorts(self) -> list[MarketSort]:
+        return ["downloads", "rating", "newest"]
+
+    # ── Browse / search ─────────────────────────────────────────────────
     async def list_items(
         self,
         *,
         category: str | None,
-        sort: str,
+        sort: MarketSort,
         limit: int,
         offset: int,
         locale: str | None,
+        **kw: Any,
     ) -> MarketListResult:
-        # Step 1: bundled experts.
-        bundled = self._list_bundled(locale=locale)
-
-        # Step 2: SkillHub Skillsets (with error tolerance).
-        try:
-            from ydsz.infra.agents.experts.skillhub_market import (
-                SkillHubMarketError,
-                browse_skillsets,
-            )
-
-            skillhub_items, _scenes = browse_skillsets(query="", scene=category or "")
-            skillhub_market = tuple(_skillhub_to_item(s, locale) for s in skillhub_items)
-        except SkillHubMarketError as exc:
-            logger.warning("SkillHub expert list failed: %s", exc)
-            skillhub_market = ()
-        except ImportError:
-            skillhub_market = ()
-
-        # Step 3: published experts from DB.
-        published = self._list_published(locale=locale)
-
-        all_items = bundled + skillhub_market + published
-        total = len(all_items)
-
-        # Pagination.
-        items = all_items[offset : offset + limit]
-        return MarketListResult(tuple(items), total, limit, offset, sort, category)
+        page_items, _scenes = await _browse("", scene=category or "")
+        total = len(page_items)
+        page = page_items[offset : offset + limit]
+        return MarketListResult(
+            tuple(_expert_item(i, locale) for i in page),
+            total,
+            limit,
+            offset,
+            sort,
+            category,
+        )
 
     async def search(
         self,
         query: str,
         *,
         category: str | None,
-        sort: str,
+        sort: MarketSort,
         limit: int,
         offset: int,
         locale: str | None,
+        **kw: Any,
     ) -> MarketListResult:
-        # Bundled experts — filter through catalog.py (sync, in-memory).
-        bundled = self._list_bundled(query=query, locale=locale)
+        page_items, _scenes = await _browse(query, scene=category or "")
+        total = len(page_items)
+        page = page_items[offset : offset + limit]
+        return MarketListResult(
+            tuple(_expert_item(i, locale) for i in page),
+            total,
+            limit,
+            offset,
+            sort,
+            category,
+        )
 
-        # SkillHub search.
+    # ── Detail ──────────────────────────────────────────────────────────
+    async def detail(
+        self,
+        identity: str,
+        *,
+        locale: str | None = None,
+        db: Any = None,
+        user: Any = None,
+        server: Any = None,
+        **kw: Any,
+    ) -> MarketDetail:
         try:
-            from ydsz.infra.agents.experts.skillhub_market import (
-                SkillHubMarketError,
-                browse_skillsets,
-            )
-
-            skillhub_items, _ = browse_skillsets(query=query, scene=category or "")
-            skillhub_market = tuple(_skillhub_to_item(s, locale) for s in skillhub_items)
-        except SkillHubMarketError:
-            skillhub_market = ()
-
-        published = self._list_published(query=query, locale=locale)
-
-        all_items = bundled + skillhub_market + published
-        items = all_items[offset : offset + limit]
-        return MarketListResult(tuple(items), len(all_items), limit, offset, sort, category)
-
-    async def detail(self, identity: str, *, locale: str | None = None, **kw: Any) -> MarketDetail:
-        # Detect identity prefix.
-        if identity.startswith("skillhub-skillset-"):
-            return self._detail_skillhub(identity, locale=locale)
-        return self._detail_bundled(identity, locale=locale)
-
-    def _detail_bundled(self, identity: str, *, locale: str | None) -> MarketDetail:
-        from ydsz.infra.agents.experts.catalog import default_library_root, discover_seed_paths
-
-        paths = discover_seed_paths(default_library_root())
-        match = next((p for p in paths if p.stem == identity or p.name == identity), None)
-        if match is None:
-            raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, f"expert not found: {identity}")
-
-        from ydsz.infra.agents.experts.catalog import (
-            build_create_spec_from_expert,
-            preview_paths_from_expert_dir,
-        )
-
-        spec = build_create_spec_from_expert(match)
-        files = preview_paths_from_expert_dir(match)
-
-        return MarketDetail(
-            market_id=f"expert:{identity}",
-            type="expert",
-            source="ILTIN",
-            identity=identity,
-            name=spec.name,
-            description=spec.description,
-            metadata={"files": [str(f) for f in files]},
-        )
-
-    def _detail_skillhub(self, identity: str, *, locale: str | None) -> MarketDetail:
-        from ydsz.infra.agents.experts.skillhub_market import (
-            SkillHubMarketError,
-            fetch_skillset,
-        )
-
-        slug = identity.removeprefix("skillhub-skillset-")
-        try:
-            skillset = fetch_skillset(slug)
-        except SkillHubMarketError as exc:
-            raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, str(exc)) from exc
-
-        item = _skillhub_to_item(skillset, locale)
+            entry = await _fetch_skillset(identity)
+        except Exception as exc:
+            raise MarketError(
+                MarketErrorCode.PROVIDER_UNAVAILABLE, f"SkillHub detail failed: {exc}"
+            ) from exc
+        item = _expert_item(entry, locale)
         meta = item.__dict__.copy()
         return MarketDetail(
             **meta,
-            readme=skillset.content if hasattr(skillset, "content") else None,
-            quick_prompts=tuple(
-                {"title": p.get("title", ""), "prompt": p.get("prompt", "")}
-                for p in (skillset.raw.get("quick_prompts", []) if hasattr(skillset, "raw") else [])
-            ),
+            readme=item.description,
+            changelog=None,
+            dependencies=entry.skill_slugs,
             metadata={
-                "scene": getattr(skillset, "scene", ""),
-                "sub_scene": getattr(skillset, "sub_scene", ""),
-                "skill_slugs": list(getattr(skillset, "skill_slugs", ())),
-                "skill_count": getattr(skillset, "skill_count", 0),
+                "category": entry.scene or "other",
+                "slug": entry.slug,
+                "skill_slugs": entry.skill_slugs,
             },
         )
 
-    # ── Install ──────────────────────────────────────────────────────────
+    # ── Install ─────────────────────────────────────────────────────────
     async def install(
         self,
         identity: str,
         *,
         target: InstallTarget,
-        user_id: int,
+        user: Any,
+        server: Any,
         **opts: Any,
     ) -> InstallReceipt:
-        # Expert install always creates a new agent.
-        if identity.startswith("skillhub-skillset-"):
-            return await self._install_skillhub(identity, target=target, user_id=user_id, **opts)
-        return await self._install_bundled(identity, target=target, user_id=user_id, **opts)
-
-    async def _install_bundled(
-        self,
-        identity: str,
-        *,
-        target: InstallTarget,
-        user_id: int,
-        **opts: Any,
-    ) -> InstallReceipt:
-        from ydsz.infra.agents.experts.catalog import (
-            build_create_spec_from_expert,
-            default_library_root,
-            discover_seed_paths,
+        """Install an expert template and create a new agent from it."""
+        if not user or server is None:
+            raise MarketError(
+                MarketErrorCode.INVALID_TARGET,
+                "expert install requires an authenticated user and a running server",
+            )
+        locale = resolve_user_locale(
+            user_repo=server.services.user_repo,
+            user_id=getattr(user, "id", 0),
         )
-
-        paths = discover_seed_paths(default_library_root())
-        match = next((p for p in paths if p.stem == identity), None)
-        if match is None:
-            raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, identity)
-        spec = build_create_spec_from_expert(match)
-
-        from ydsz.infra.agents.experts.market_creation import create_agent_from_expert_spec
-
-        agent_id = await create_agent_from_expert_spec(spec, owner_id=user_id)
-
-        return InstallReceipt(
-            market_item=MarketItem(
-                market_id=f"expert:{identity}",
-                type="expert",
-                source="ILTIN",
-                identity=identity,
-                name=spec.name,
-                installed=True,
-                installed_version="1.0.0",
-            ),
-            target=target,
-            installed_version="1.0.0",
-            metadata={"agent_id": agent_id},
+        item = await _materialize(identity, server)
+        catalog = server.expert_catalog
+        if catalog is None:
+            raise MarketError(
+                MarketErrorCode.PROVIDER_UNAVAILABLE, "expert catalog is not available"
+            )
+        catalog.refresh()
+        expert = catalog.get(item.expert_id)
+        if expert is None:
+            raise MarketError(
+                MarketErrorCode.ITEM_NOT_FOUND,
+                f"expert template {item.expert_id!r} was not cached",
+            )
+        spec = build_create_spec_from_expert(
+            expert_id=item.expert_id,
+            expert=expert,
+            user_id=getattr(user, "id", 0),
+            name=str(opts.get("name") or identity),
+            locale=locale,
         )
-
-    async def _install_skillhub(
-        self,
-        identity: str,
-        *,
-        target: InstallTarget,
-        user_id: int,
-        **opts: Any,
-    ) -> InstallReceipt:
-        slug = identity.removeprefix("skillhub-skillset-")
-        from ydsz.infra.agents.experts.market_creation import create_agent_from_skillhub_skillset
-
-        name = opts.get("name") or slug
-        description = opts.get("description") or ""
-        agent_id = await create_agent_from_skillhub_skillset(
-            slug,
-            user_id=user_id,
-            name=name,
-            description=description,
-        )
+        row = await server.app_runtime.agent_registry.create(spec)
         return InstallReceipt(
             market_item=MarketItem(
                 market_id=f"expert:{identity}",
                 type="expert",
                 source="skillhub",
                 identity=identity,
-                name=name,
+                name=spec.name,
+                description=spec.description or "",
                 installed=True,
                 installed_version="1.0.0",
+                source_url=f"{_SKILLHUB_HOST}/experts/{identity}",
             ),
             target=target,
             installed_version="1.0.0",
-            metadata={"agent_id": agent_id},
+            logs=(f"agent_id={row.agent_id}",),
         )
 
-    # ── Helpers ─────────────────────────────────────────────────────────
-    def _list_bundled(
-        self, *, query: str | None = None, locale: str | None = None
-    ) -> tuple[MarketItem, ...]:
+    # ── Config / host ──────────────────────────────────────────────────
+    def _host(self, locale: str | None) -> str:
+        return _SKILLHUB_HOST
+
+    # ── Category facets ─────────────────────────────────────────────────
+    async def categories(self, *, locale: str | None = None, **kw: Any) -> list[dict[str, str]]:
         try:
-            from ydsz.infra.agents.experts.catalog import (
-                build_create_spec_from_expert,
-                default_library_root,
-                discover_seed_paths,
-            )
-
-            paths = discover_seed_paths(default_library_root())
-        except ImportError:
-            return ()
-
-        items: list[MarketItem] = []
-        for p in paths:
-            spec = build_create_spec_from_expert(p)
-            if query and query.lower() not in f"{spec.name} {spec.description}".lower():
+            entries, _scenes = await _browse("")
+        except Exception:
+            return []
+        facets: list[dict[str, str]] = []
+        for entry in entries:
+            slug = entry.scene.strip()
+            if not slug:
                 continue
-            items.append(
-                MarketItem(
-                    market_id=f"expert:{spec.identity}",
-                    type="expert",
-                    source="ILTIN",
-                    identity=spec.identity,
-                    name=spec.name,
-                    description=spec.description,
-                    icon_url=getattr(spec, "icon_url", None),
-                    icon_name=getattr(spec, "icon_name", "bot"),
-                    color=getattr(spec, "color", None),
-                    author=MarketAuthor(name=getattr(spec, "author", "ILTIN")),
-                    installed=False,  # caller fills
-                )
-            )
-        return tuple(items)
+            existing = next((f for f in facets if f["slug"] == slug), None)
+            if existing is None:
+                facets.append({"slug": slug, "label": slug, "count": "1"})
+            else:
+                existing["count"] = str(int(existing["count"]) + 1)
+        return facets
 
-    def _list_published(
-        self, *, query: str | None = None, locale: str | None = None
-    ) -> tuple[MarketItem, ...]:
-        # Deferred — when published_experts table is queried by market manager.
-        return ()
+    async def installed_list(
+        self,
+        *,
+        user_id: int,
+        db: Any = None,
+        **kw: Any,
+    ) -> list[dict[str, Any]]:
+        return []
 
 
-# ── SkillHub → MarketItem 转换 ────────────────────────────────────────────
-def _skillhub_to_item(skillset: Any, locale: str | None = None) -> MarketItem:
-    """Convert a ``SkillHubSkillset`` dataclass to :class:`MarketItem`."""
-    slug = getattr(skillset, "slug", "")
-    raw_name = getattr(skillset, "display_name", "")
-    name = raw_name.get(locale or "zh", "") if isinstance(raw_name, dict) else (raw_name or slug)
-    raw_desc = getattr(skillset, "summary", "")
-    desc = raw_desc.get(locale or "zh", "") if isinstance(raw_desc, dict) else (raw_desc or "")
+# ── SkillHub helpers ──────────────────────────────────────────────────
+async def _browse(query: str, *, scene: str = "") -> tuple[list[SkillHubSkillset], list[str]]:
+    """Filtered skillsets plus every scene label SkillHub currently exposes."""
+    import asyncio
 
-    return MarketItem(
-        market_id=f"expert:{getattr(skillset, 'expert_id', slug)}",
-        type="expert",
-        source="skillhub",
-        identity=slug,
-        name=name,
-        description=desc,
-        icon_url=getattr(skillset, "icon_url", None),
-        icon_name="bot",
-        version="1.0.0",
-        author=MarketAuthor(name="ILTIN"),
-        category=getattr(skillset, "scene", "other"),
+    return await asyncio.to_thread(browse_skillsets, query, scene=scene)
+
+
+async def _fetch_skillset(slug: str) -> SkillHubSkillset:
+    import asyncio
+
+    return await asyncio.to_thread(fetch_skillset, slug)
+
+
+async def _materialize(identity: str, server: Any) -> Any:
+    """Download and cache the expert template; returns the SkillHub item."""
+    import asyncio
+
+    return await asyncio.to_thread(
+        install_skillset_template,
+        slug=identity,
+        cache_root=server.paths.expert_market_dir,
     )
 
 
-# ── Register ──────────────────────────────────────────────────────────────
+def _expert_item(entry: SkillHubSkillset, locale: str | None) -> MarketItem:
+    """Map a SkillHub skillset to MarketItem."""
+    expert_id = entry.expert_id
+    name = (
+        entry.display_name
+        if (locale or "zh") == "zh"
+        else (entry.display_name_en or entry.display_name)
+    )
+    desc = entry.summary if (locale or "zh") == "zh" else (entry.summary_en or entry.summary)
+    return MarketItem(
+        market_id=f"expert:{expert_id}",
+        type="expert",
+        source="skillhub",
+        identity=expert_id,
+        name=name or expert_id,
+        description=desc,
+        icon_url=entry.icon_url or None,
+        icon_name="user",
+        color=None,
+        version="1.0.0",
+        author=MarketAuthor(name="SkillHub"),
+        category=entry.scene or "other",
+        tags=(),
+        rating=0.0,
+        downloads=0,
+        installed=False,
+        installed_version=None,
+        has_update=False,
+        size_bytes=None,
+        source_url=f"{_SKILLHUB_HOST}/experts/{entry.slug}",
+        updated_at=None,
+    )
+
+
+def _pick_localized(value: Any, locale: str | None) -> str:
+    if isinstance(value, dict):
+        loc = (locale or "zh").lower()
+        for key in (loc, "zh", "en"):
+            if value.get(key):
+                return str(value[key])
+        return str(next(iter(value.values()))) if value else ""
+    return str(value or "")
+
+
+def _agent_name_for(item: Any, locale: str) -> str:
+    """Deterministic display name for a materialised expert."""
+    return resolve_expert_agent_name(item.expert, item.expert_id, locale=locale)
+
+
 register_provider("expert", ExpertsProvider)

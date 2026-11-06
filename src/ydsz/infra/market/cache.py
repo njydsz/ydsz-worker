@@ -16,11 +16,14 @@ logger = logging.getLogger(__name__)
 class SearchCache:
     """TTL cache for cross-type market search results.
 
-    Uses SQLite for persistence; in-process dict for hot reads.
+    Uses SQLite for persistence; in-process dict for hot reads. The pool is
+    supplied by the caller (``SharedServices`` is per-server, not a global
+    singleton), so the cache stays testable and worker-local.
     """
 
-    def __init__(self, ttl: int = DEFAULT_SEARCH_CACHE_TTL) -> None:
+    def __init__(self, ttl: int = DEFAULT_SEARCH_CACHE_TTL, db: Any = None) -> None:
         self._ttl = ttl
+        self._db = db
         self._hot: dict[str, dict[str, Any]] = {}
 
     @staticmethod
@@ -45,18 +48,11 @@ class SearchCache:
         # Hot cache first.
         entry = self._hot.get(key)
         if entry and entry["expires_at"] > time.time():
-            return entry["value"]
+            return dict(entry["value"])
         if entry:
             del self._hot[key]
 
-        # Database fallback (shared across workers).
-        try:
-            from ydsz.infra.db.services import SharedServices
-
-            db = SharedServices.instance().db if SharedServices.instance() else None
-        except Exception:
-            db = None
-
+        db = self._db
         if db is None:
             return None
 
@@ -73,7 +69,7 @@ class SearchCache:
             return None
 
         try:
-            payload = json.loads(rows[0]["results_json"])
+            payload: dict[str, Any] = json.loads(rows[0]["results_json"])
             payload["total"] = rows[0]["total"]
             payload["per_type"] = json.loads(rows[0]["per_type_json"] or "{}")
         except (json.JSONDecodeError, KeyError):
@@ -103,13 +99,7 @@ class SearchCache:
         }
 
         # DB persist.
-        try:
-            from ydsz.infra.db.services import SharedServices
-
-            db = SharedServices.instance().db if SharedServices.instance() else None
-        except Exception:
-            db = None
-
+        db = self._db
         if db is None:
             return
 
@@ -138,14 +128,13 @@ class SearchCache:
     async def invalidate(self) -> None:
         """Clear all cache entries (after install/uninstall)."""
         self._hot.clear()
+        db = self._db
+        if db is None:
+            return
         try:
-            from ydsz.infra.db.services import SharedServices
-
-            db = SharedServices.instance().db if SharedServices.instance() else None
-            if db is not None:
-                db.execute("DELETE FROM market_search_cache")
+            db.execute("DELETE FROM market_search_cache")
         except Exception:
-            pass
+            logger.debug("Search cache invalidate failed (non-fatal)", exc_info=True)
 
 
 def _now_str(timestamp: float | None = None) -> str:

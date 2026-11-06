@@ -25,6 +25,7 @@ from ydsz.infra.market.models import (
 
 if TYPE_CHECKING:
     from ydsz.infra.db.pool import DatabasePool
+    from ydsz.infra.users.identity import User
 
 
 class MarketProvider(ABC):
@@ -82,10 +83,14 @@ class MarketProvider(ABC):
         *,
         locale: str | None = None,
         db: DatabasePool | None = None,
+        user: User | None = None,
+        server: Any = None,
     ) -> MarketDetail:
         """Detail for the drawer. Default raises NotImplementedError.
 
-        Subclasses MUST override to provide rich drawer content.
+        Subclasses MUST override to provide rich drawer content. ``user`` and
+        ``server`` let a provider enrich the payload with install state and
+        runtime capabilities.
         """
         raise NotImplementedError(f"detail() not implemented for {self.market_type}")
 
@@ -96,10 +101,16 @@ class MarketProvider(ABC):
         identity: str,
         *,
         target: InstallTarget,
-        user_id: int,
+        user: User,
+        server: Any,
         **opts: Any,
     ) -> InstallReceipt:
-        """Install one capability to the given target."""
+        """Install one capability to the given target on behalf of *user*.
+
+        ``server`` is the running YdszServer (agent manager, repos, workspace
+        paths). Providers that copy files locally only need ``target`` + ``user``;
+        agent/expert creation and repo-backed installs require it.
+        """
 
     async def validate_target(self, target: InstallTarget) -> bool:
         """Pre-install hook — return False to reject."""

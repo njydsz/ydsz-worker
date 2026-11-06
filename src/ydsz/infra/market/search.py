@@ -8,7 +8,7 @@ import logging
 from typing import Any
 
 from ydsz.infra.market.cache import SearchCache
-from ydsz.infra.market.constants import DEFAULT_LIMIT
+from ydsz.infra.market.constants import DEFAULT_LIMIT, MarketSort
 from ydsz.infra.market.models import MarketItem, MarketListResult
 from ydsz.infra.market.providers import get_provider
 
@@ -27,7 +27,7 @@ class SearchService:
         types: list[str] | None = None,
         *,
         category: str | None = None,
-        sort: str = "relevance",
+        sort: MarketSort = "relevance",
         limit: int = DEFAULT_LIMIT,
         offset: int = 0,
         locale: str | None = None,

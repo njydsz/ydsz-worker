@@ -530,7 +530,7 @@ class Gateway:
         name = getattr(row, "name", None) if row is not None else None
         agent_name = str(name).strip() if isinstance(name, str) and name.strip() else agent_id
         effective_thread = thread_id or session.thread_id
-        payload = {
+        payload: dict[str, Any] = {
             "type": "dashboard_push",
             "agent_id": agent_id,
             "thread_id": effective_thread,

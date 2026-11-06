@@ -16,6 +16,20 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.docs': '产品文档',
     'nav.search': '搜索',
 
+    // ── 首页浮动目录 / 截图占位 ──
+    'home.toc.label': '页面目录',
+    'home.toc.overview': '概览',
+    'home.toc.channels': '通道能力',
+    'home.toc.experts': '专家角色',
+    'home.toc.quickstart': '快速开始',
+    'home.toc.why': '为什么选',
+    'home.toc.desktop_pet': '桌面伙伴',
+    'home.toc.faq': 'FAQ',
+    'home.toc.cta': '立即开始',
+    'home.screenshot.placeholder': '产品截图占位 — 请替换为真实截图',
+    'home.screenshot.hint': '截图为模拟效果，实际界面请参考 Dashboard',
+    'home.screenshot.replace_hint': '设置环境变量 VITE_HERO_SCREENSHOT 或传入 screenshotUrl 以显示真实截图',
+
     // ── Hero ──
     'hero.badge': 'v1.0 正式发布 · 多 Agent 专家架构',
     'hero.title1': '会思考，能干活',
@@ -188,6 +202,20 @@ export const translations: Record<Locale, Record<string, string>> = {
     'nav.changelog': 'Changelog',
     'nav.docs': 'Docs',
     'nav.search': 'Search',
+
+    // ── 首页浮动目录 / 截图占位 ──
+    'home.toc.label': 'On this page',
+    'home.toc.overview': 'Overview',
+    'home.toc.channels': 'Channels',
+    'home.toc.experts': 'Experts',
+    'home.toc.quickstart': 'Quick Start',
+    'home.toc.why': 'Why Us',
+    'home.toc.desktop_pet': 'Desktop Pet',
+    'home.toc.faq': 'FAQ',
+    'home.toc.cta': 'Get Started',
+    'home.screenshot.placeholder': 'Product screenshot placeholder — replace with a real screenshot',
+    'home.screenshot.hint': 'Mockup only — see the Dashboard for the real UI',
+    'home.screenshot.replace_hint': 'Set VITE_HERO_SCREENSHOT or pass screenshotUrl to show a real screenshot',
 
     // ── Hero ──
     'hero.badge': 'v1.0 Officially Released · Multi-Agent Expert Architecture',

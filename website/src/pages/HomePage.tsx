@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import SectionReveal from '../components/SectionReveal'
+import HomeToc from '../components/HomeToc'
 import { useLanguage } from '../context/LanguageContext'
 import DashboardMock from '../components/DashboardMock'
 import SectionDivider from '../components/SectionDivider'
@@ -8,7 +10,11 @@ import SectionDivider from '../components/SectionDivider'
 /* ═══════════════════════════════════════════════
    外部链接常量
    ═══════════════════════════════════════════════ */
-const GITHUB = 'https://gitee.com/njydsz/ydsz-worker'
+const GITHUB = 'https://github.com/ydsz-buddy/ydsz-worker'
+
+/** 真实截图 URL：优先构建期环境变量，其次调用方传入的 prop */
+const HERO_SCREENSHOT_URL: string | undefined =
+  import.meta.env.VITE_HERO_SCREENSHOT || undefined
 
 /* ───────────────────────────────────────────────
    SVG: 显示器 + 简笔小猫（Desktop Pet 区域）
@@ -238,13 +244,61 @@ function CopySuccessIcon() {
   )
 }
 
+/* ───────────────────────────────────────────────
+   真实产品截图占位 — 16:9，可替换
+   ─────────────────────────────────────────────── */
+function ScreenshotPlaceholder({ screenshotUrl }: { screenshotUrl?: string }) {
+  const { t } = useLanguage()
+  const src = screenshotUrl ?? HERO_SCREENSHOT_URL
+
+  return (
+    <div className="max-w-5xl mx-auto mt-10">
+      <div className="relative aspect-video rounded-2xl overflow-hidden group">
+        {src ? (
+          <img
+            src={src}
+            alt={t('home.screenshot.placeholder')}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-ink-800 border-2 border-dashed border-white/10 rounded-2xl transition-colors duration-300 group-hover:border-yuanbao-500/60">
+            <svg
+              className="w-10 h-10 text-white/20 group-hover:text-yuanbao-400/70 transition-colors duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V5.25a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v14.25A1.5 1.5 0 003.75 21z"
+              />
+            </svg>
+            <p className="text-sm text-white/40 group-hover:text-yuanbao-300/80 transition-colors duration-300">
+              {t('home.screenshot.placeholder')}
+            </p>
+            <p className="text-[11px] text-white/20">{t('home.screenshot.replace_hint')}</p>
+          </div>
+        )}
+      </div>
+      {/* 占位提示条 */}
+      <p className="text-center text-[11px] text-white/25 mt-2.5">{t('home.screenshot.hint')}</p>
+    </div>
+  )
+}
+
 /* ═══════════════════════════════════════════════
    Section 1: Hero
    ═══════════════════════════════════════════════ */
-function Hero() {
+function Hero({ screenshotUrl }: { screenshotUrl?: string }) {
   const { t } = useLanguage()
   return (
-    <section id="overview" className="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
+    <SectionReveal
+      id="overview"
+      index={0}
+      className="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden"
+    >
       {/* 背景装饰光晕 */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-yuanbao-500/[0.04] rounded-full blur-[160px] -z-10" />
       <div className="absolute top-20 -left-[300px] w-[600px] h-[600px] bg-yuanbao-600/[0.03] rounded-full blur-[120px] -z-10" />
@@ -301,7 +355,7 @@ function Hero() {
             </Reveal>
           </div>
 
-          {/* 右侧：产品区（吉祥物 w-32 + DashboardMock 放大） */}
+          {/* 右侧：产品区（吉祥物 + DashboardMock） */}
           <Reveal delay={200}>
             <div className="relative">
               {/* 产品区背后发光 */}
@@ -312,18 +366,18 @@ function Hero() {
 
               <div className="card-glass p-2 shadow-2xl shadow-yuanbao-500/[0.04]">
                 <div className="rounded-xl overflow-hidden bg-ink-800 border border-white/[0.04]">
-                  <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6">
-                    {/* 吉祥物 — 缩小到 w-32 */}
-                    <div className="flex-shrink-0 relative">
+                  <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 p-4 sm:p-6">
+                    {/* 吉祥物 — 缩小到 w-28，窄屏隐藏 */}
+                    <div className="flex-shrink-0 relative hidden sm:block">
                       <div className="absolute -inset-6 bg-yuanbao-500/10 rounded-full blur-[40px]" />
                       <img
                         src="/mascot-type.webp"
                         alt="Ydsz Worker 吉祥物"
-                        className="relative w-32 object-contain drop-shadow-2xl animate-float"
+                        className="relative w-28 object-contain drop-shadow-2xl animate-float"
                       />
                     </div>
 
-                    {/* Dashboard 模拟对话 — 放大 */}
+                    {/* Dashboard 模拟对话 */}
                     <div className="flex-1 w-full min-w-0">
                       <DashboardMock />
                     </div>
@@ -337,6 +391,9 @@ function Hero() {
           </Reveal>
         </div>
 
+        {/* 真实截图占位（可替换） */}
+        <ScreenshotPlaceholder screenshotUrl={screenshotUrl} />
+
         {/* 下方：截图画廊 */}
         <Reveal delay={400}>
           <div className="max-w-5xl mx-auto">
@@ -344,7 +401,7 @@ function Hero() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
@@ -364,7 +421,7 @@ const CHANNELS = [
 function ChannelTags() {
   const { t } = useLanguage()
   return (
-    <section className="py-14 border-y border-white/[0.04]">
+    <SectionReveal id="channels" index={1} className="py-14 border-y border-white/[0.04]">
       <div className="container-page">
         <Reveal>
           <p className="text-center text-white/30 text-sm font-medium mb-8 tracking-wide">
@@ -385,7 +442,7 @@ function ChannelTags() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
@@ -413,7 +470,7 @@ function ExpertRoles() {
   const [activeRole, setActiveRole] = useState(0)
 
   return (
-    <section className="py-24 lg:py-28 relative">
+    <SectionReveal id="experts" index={2} className="py-24 lg:py-28 relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-yuanbao-500/[0.02] rounded-full blur-[140px] -z-10" />
 
       <div className="container-page">
@@ -493,7 +550,7 @@ function ExpertRoles() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
@@ -505,14 +562,14 @@ const TABS = [
     id: 'quick',
     label: 'Windows (PowerShell)',
     icon: '⚡',
-    code: 'irm https://raw.githubusercontent.com/njydsz/ydsz-worker/main/scripts/install.ps1 | iex',
+    code: 'irm https://raw.githubusercontent.com/ydsz-buddy/ydsz-worker/main/scripts/install.ps1 | iex',
     lang: 'powershell',
   },
   {
     id: 'unix',
     label: 'macOS / Linux',
     icon: '💻',
-    code: 'curl -fsSL https://raw.githubusercontent.com/njydsz/ydsz-worker/main/scripts/install.sh | bash',
+    code: 'curl -fsSL https://raw.githubusercontent.com/ydsz-buddy/ydsz-worker/main/scripts/install.sh | bash',
     lang: 'bash',
   },
   {
@@ -565,7 +622,7 @@ function QuickStart() {
   }
 
   return (
-    <section id="quickstart" className="py-24 lg:py-28 relative">
+    <SectionReveal id="quickstart" index={3} className="py-24 lg:py-28 relative">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-yuanbao-500/[0.02] rounded-full blur-[120px] -z-10" />
 
       <div className="container-page">
@@ -691,7 +748,7 @@ function QuickStart() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
@@ -746,7 +803,7 @@ const STATS = [
 function WhyChoose() {
   const { t } = useLanguage()
   return (
-    <section id="why" className="py-24 lg:py-28 relative">
+    <SectionReveal id="why" index={4} className="py-24 lg:py-28 relative">
       <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-yuanbao-600/[0.02] rounded-full blur-[100px] -z-10" />
 
       <div className="container-page">
@@ -796,7 +853,7 @@ function WhyChoose() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
@@ -806,7 +863,7 @@ function WhyChoose() {
 function DesktopPet() {
   const { t } = useLanguage()
   return (
-    <section className="py-24 lg:py-28 relative overflow-hidden">
+    <SectionReveal id="desktop-pet" index={5} className="py-24 lg:py-28 relative overflow-hidden">
       <div className="container-page">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* 左侧描述 */}
@@ -851,7 +908,7 @@ function DesktopPet() {
           </Reveal>
         </div>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
@@ -874,7 +931,7 @@ function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-24 lg:py-28 relative overflow-hidden">
+    <SectionReveal id="faq" index={6} className="py-24 lg:py-28 relative overflow-hidden">
       {/* 吉祥物装饰 — 右上角探头，浮动动画 */}
       <div className="absolute top-8 right-4 sm:right-10 lg:right-20 -z-0 pointer-events-none select-none" aria-hidden="true">
         <img
@@ -937,7 +994,7 @@ function FAQ() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
@@ -947,7 +1004,7 @@ function FAQ() {
 function CTA() {
   const { t } = useLanguage()
   return (
-    <section className="py-24 lg:py-28">
+    <SectionReveal id="cta" index={7} className="py-24 lg:py-28">
       <div className="container-page">
         <Reveal>
           <div className="relative max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/[0.08]">
@@ -1012,17 +1069,23 @@ function CTA() {
           </div>
         </Reveal>
       </div>
-    </section>
+    </SectionReveal>
   )
 }
 
 /* ═══════════════════════════════════════════════
    HomePage — 组合所有 section（含 SectionDivider）
    ═══════════════════════════════════════════════ */
-export default function HomePage() {
+interface HomePageProps {
+  /** 真实产品截图 URL（可选，优先级高于 VITE_HERO_SCREENSHOT 环境变量） */
+  screenshotUrl?: string
+}
+
+export default function HomePage({ screenshotUrl }: HomePageProps) {
   return (
     <>
-      <Hero />
+      <HomeToc />
+      <Hero screenshotUrl={screenshotUrl} />
       <SectionDivider variant="dots" />
       <ChannelTags />
       <SectionDivider variant="line" />

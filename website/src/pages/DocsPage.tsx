@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useCallback, type RefObject } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import DashboardMock from '../components/DashboardMock'
-import TableOfContents from '../components/docs/TableOfContents'
+import ReadingProgressBar from '../components/docs/ReadingProgressBar'
 import SearchModal, { type SearchItem } from '../components/docs/SearchModal'
 import SyntaxCodeBlock from '../components/docs/SyntaxCodeBlock'
 import Callout from '../components/docs/Callout'
@@ -76,50 +76,6 @@ const SEARCH_ITEMS: SearchItem[] = NAV_SECTIONS.flatMap((s) =>
 )
 
 /* ─── 目录标题数据 ─── */
-const TOC_ITEMS = [
-  { id: 'intro-philosophy', text: '核心理念', level: 2 },
-  { id: 'intro-highlights', text: '六大亮点', level: 2 },
-  { id: 'quickstart-install', text: '安装', level: 2 },
-  { id: 'quickstart-first-launch', text: '首次启动', level: 2 },
-  { id: 'quickstart-steps', text: '四步上手流程', level: 2 },
-  { id: 'screenshots-dashboard', text: 'Dashboard 概览', level: 2 },
-  { id: 'screenshots-grid', text: '功能截图', level: 2 },
-  { id: 'screenshots-video', text: '视频教程', level: 2 },
-  { id: 'concepts-agent', text: 'Agent', level: 3 },
-  { id: 'concepts-session', text: 'Session（会话）', level: 3 },
-  { id: 'concepts-thread', text: 'Thread（话题）', level: 3 },
-  { id: 'concepts-expert', text: 'Expert（专家）', level: 3 },
-  { id: 'concepts-mcp', text: 'MCP', level: 3 },
-  { id: 'concepts-workspace', text: 'Workspace', level: 3 },
-
-  // ── 安装指南 ──
-  { id: 'desktop-download', text: '下载与安装', level: 3 },
-  { id: 'desktop-requirements', text: '系统要求', level: 3 },
-  { id: 'pip-install-venv', text: '虚拟环境', level: 3 },
-  { id: 'docker-run', text: 'Docker 运行', level: 3 },
-  { id: 'docker-compose', text: 'Docker Compose', level: 3 },
-  { id: 'fnos-app-center', text: '应用中心安装', level: 3 },
-
-  // ── 核心概念 ──
-  { id: 'experts-create', text: '创建专家', level: 3 },
-  { id: 'experts-soul', text: 'SOUL 配置', level: 3 },
-  { id: 'multi-agent-teams', text: 'AgentTeams', level: 3 },
-  { id: 'multi-agent-dag', text: 'DAG 编排', level: 3 },
-  { id: 'knowledge-rag-upload', text: '文档上传', level: 3 },
-  { id: 'knowledge-rag-search', text: '语义搜索', level: 3 },
-
-  // ── 连接器 ──
-  { id: 'connectors-overview-arch', text: '架构与原理', level: 3 },
-  { id: 'builtin-connectors-list', text: '连接器列表', level: 3 },
-  { id: 'custom-connectors-mcp', text: 'MCP 协议', level: 3 },
-
-  // ── API 参考 ──
-  { id: 'rest-api-endpoints', text: '核心端点', level: 3 },
-  { id: 'rest-api-auth', text: '认证方式', level: 3 },
-  { id: 'sse-events', text: '事件类型', level: 3 },
-  { id: 'sse-subscribe', text: '订阅方式', level: 3 },
-]
-
 /* ═══════════════════════════════════════════════
    工具组件
    ═══════════════════════════════════════════════ */
@@ -261,7 +217,8 @@ export default function DocsPage() {
   const isSectionCollapsed = (title: string) => collapsedSections.has(title)
 
   return (
-    <div className="h-screen bg-ink-900 pt-14 flex flex-col overflow-hidden">
+    <div className="h-full bg-ink-900 flex flex-col overflow-hidden relative">
+      <ReadingProgressBar scrollRef={contentRef} />
       {/* 搜索弹窗 */}
       <SearchModal
         isOpen={searchOpen}
@@ -1770,37 +1727,6 @@ eventSource.addEventListener('message_end', (e) => {
             </div>
           </article>
         </main>
-
-        {/* ── 右侧 TOC (P0-1) ── */}
-        <aside className="w-40 shrink-0 hidden md:block overflow-y-auto scrollbar-thin pr-4">
-          <div>
-            <TableOfContents items={TOC_ITEMS} scrollContainerRef={contentRef as RefObject<HTMLElement | null>} />
-
-            {/* 页内锚点 */}
-            <div className="mt-6 pt-4 border-t border-white/[0.05] space-y-1.5">
-              <a
-                href="https://github.com/ydsz-buddy/ydsz-worker"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-[12px] text-white/30 hover:text-yuanbao-400 transition-colors"
-              >
-                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                </svg>
-                在 GitHub 查看源码
-              </a>
-              <button
-                onClick={() => contentRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="flex items-center gap-1.5 text-[12px] text-white/30 hover:text-yuanbao-400 transition-colors"
-              >
-                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                </svg>
-                回到顶部
-              </button>
-            </div>
-          </div>
-        </aside>
       </div>
     </div>
   )

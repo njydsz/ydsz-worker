@@ -3,53 +3,6 @@ import { Link } from 'react-router-dom'
 import SectionDivider from '../components/SectionDivider'
 import { useLanguage } from '../context/LanguageContext'
 
-/* ── 贡献排行榜数据 ── */
-const INDIVIDUAL_LEADERBOARD = [
-  { rank: 1,  name: '陈浩',   avatar: 'CH', contributions: 147, specialties: ['代码', '文档'] },
-  { rank: 2,  name: '李伟',   avatar: 'LW', contributions: 135, specialties: ['插件', '生态'] },
-  { rank: 3,  name: '张跃',   avatar: 'ZY', contributions: 128, specialties: ['代码', '测试'] },
-  { rank: 4,  name: '王芳',   avatar: 'WF', contributions: 122, specialties: ['文档', '翻译'] },
-  { rank: 5,  name: '刘洋',   avatar: 'LY', contributions: 118, specialties: ['插件', '设计'] },
-  { rank: 6,  name: '赵敏',   avatar: 'ZM', contributions: 105, specialties: ['社区', '答疑'] },
-  { rank: 7,  name: '孙杰',   avatar: 'SJ', contributions: 98,  specialties: ['代码', '生态'] },
-  { rank: 8,  name: '周鑫',   avatar: 'ZX', contributions: 92,  specialties: ['插件', '文档'] },
-  { rank: 9,  name: '吴磊',   avatar: 'WL', contributions: 87,  specialties: ['连接器'] },
-  { rank: 10, name: '郑宇',   avatar: 'ZY', contributions: 80,  specialties: ['代码', '插件'] },
-  { rank: 11, name: '黄蕾',   avatar: 'HL', contributions: 73,  specialties: ['文档', '社区'] },
-  { rank: 12, name: '林峰',   avatar: 'LF', contributions: 68,  specialties: ['测试', '代码'] },
-  { rank: 13, name: '冯雪',   avatar: 'FX', contributions: 62,  specialties: ['设计', 'UI'] },
-  { rank: 14, name: '蒋勇',   avatar: 'JY', contributions: 58,  specialties: ['插件', '代码'] },
-  { rank: 15, name: '沈静',   avatar: 'SJ', contributions: 54,  specialties: ['翻译', '文档'] },
-  { rank: 16, name: '韩梅',   avatar: 'HM', contributions: 49,  specialties: ['社区', '答疑'] },
-  { rank: 17, name: '杨帆',   avatar: 'YF', contributions: 45,  specialties: ['技能', '插件'] },
-  { rank: 18, name: '许强',   avatar: 'XQ', contributions: 41,  specialties: ['代码', '修复'] },
-  { rank: 19, name: '朱红',   avatar: 'ZH', contributions: 38,  specialties: ['安全', '测试'] },
-  { rank: 20, name: '何冰',   avatar: 'HB', contributions: 35,  specialties: ['生态', '文档'] },
-]
-
-const COMPANY_LEADERBOARD = [
-  { rank: 1,  company: '蚂蚁集团',     logo: '🐜', contributions: 28, category: '核心代码' },
-  { rank: 2,  company: 'PingCAP',      logo: '🌊', contributions: 22, category: '数据库连接器' },
-  { rank: 3,  company: '飞书',         logo: '🐦', contributions: 18, category: 'IM 通道' },
-  { rank: 4,  company: '企业微信',     logo: '💼', contributions: 15, category: '企业集成' },
-  { rank: 5,  company: '钉钉',         logo: '📌', contributions: 12, category: 'IM 通道' },
-  { rank: 6,  company: '腾讯文档',     logo: '📄', contributions: 10, category: '连接器' },
-  { rank: 7,  company: '语雀',         logo: '🐦', contributions: 9,  category: '知识库插件' },
-  { rank: 8,  company: 'Notion',       logo: '📝', contributions: 8,  category: '文档集成' },
-  { rank: 9,  company: 'Obsidian',     logo: '💎', contributions: 7,  category: '编辑器集成' },
-  { rank: 10, company: 'Slack',        logo: '💬', contributions: 6,  category: 'IM 通道' },
-  { rank: 11, company: 'Discord',      logo: '🎮', contributions: 5,  category: 'IM 通道' },
-  { rank: 12, company: '华为云',       logo: '☁️', contributions: 5,  category: 'AI 模型' },
-  { rank: 13, company: 'Moonshot',     logo: '🌙', contributions: 4,  category: 'LLM 集成' },
-  { rank: 14, company: '智谱 AI',     logo: '🧠', contributions: 4,  category: 'LLM 集成' },
-  { rank: 15, company: 'MiniMax',      logo: '⚡', contributions: 4,  category: 'AI 模型' },
-  { rank: 16, company: 'DeepSeek',     logo: '🔍', contributions: 3,  category: 'LLM 集成' },
-  { rank: 17, company: 'OpenAI',       logo: '🤖', contributions: 3,  category: 'LLM 集成' },
-  { rank: 18, company: 'Anthropic',    logo: '🛡️', contributions: 3,  category: 'LLM 集成' },
-  { rank: 19, company: 'Ollama',       logo: '🦙', contributions: 3,  category: '本地模型' },
-  { rank: 20, company: 'Coze',         logo: '🪐', contributions: 2,  category: '竞品' },
-]
-
 const CONTRIBUTION_CATEGORIES = [
   {
     icon: '💻',
@@ -107,12 +60,25 @@ const FAQS = [
   { aKey: 'contrib.faq.q4', bKey: 'contrib.faq.a4' },
 ]
 
+function LeaderboardEmptyStateSvg() {
+  return (
+    <svg className="w-28 h-28 mx-auto mb-6 text-yuanbao-500/20" viewBox="0 0 112 112" fill="none">
+      <circle cx="56" cy="56" r="52" stroke="currentColor" strokeWidth="2" opacity="0.2" />
+      <circle cx="56" cy="56" r="44" fill="currentColor" opacity="0.04" />
+      {/* Podium */}
+      <rect x="28" y="64" width="16" height="24" rx="3" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+      <rect x="48" y="52" width="16" height="36" rx="3" stroke="currentColor" strokeWidth="2" opacity="0.4" />
+      <rect x="68" y="72" width="16" height="16" rx="3" stroke="currentColor" strokeWidth="2" opacity="0.25" />
+      <circle cx="56" cy="44" r="8" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+      <circle cx="36" cy="56" r="6" stroke="currentColor" strokeWidth="2" opacity="0.2" />
+      <circle cx="76" cy="64" r="5" stroke="currentColor" strokeWidth="2" opacity="0.15" />
+    </svg>
+  )
+}
+
 export default function ContributePage() {
   const { t } = useLanguage()
   const [openFaq, setOpenFaq] = useState<number | null>(null)
-  const [leaderboardTab, setLeaderboardTab] = useState<'individual' | 'company'>('individual')
-
-  const leaderboard = leaderboardTab === 'individual' ? INDIVIDUAL_LEADERBOARD : COMPANY_LEADERBOARD
 
   return (
     <div className="pt-24 pb-16 lg:pt-32 lg:pb-24">
@@ -145,92 +111,11 @@ export default function ContributePage() {
             <p className="text-white/50 mt-3">{t('contrib.lb.subtitle')}</p>
           </div>
 
-          {/* Tab switcher */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex gap-1 p-1 bg-white/[0.04] rounded-xl border border-white/[0.06]">
-              <button
-                onClick={() => setLeaderboardTab('individual')}
-                className={`px-5 py-2 text-sm rounded-lg transition-all ${
-                  leaderboardTab === 'individual'
-                    ? 'bg-yuanbao-500/10 text-yuanbao-400 border border-yuanbao-500/20'
-                    : 'text-white/50 hover:text-white/70'
-                }`}
-              >
-                👤 {t('contrib.lb.individual')}
-              </button>
-              <button
-                onClick={() => setLeaderboardTab('company')}
-                className={`px-5 py-2 text-sm rounded-lg transition-all ${
-                  leaderboardTab === 'company'
-                    ? 'bg-yuanbao-500/10 text-yuanbao-400 border border-yuanbao-500/20'
-                    : 'text-white/50 hover:text-white/70'
-                }`}
-              >
-                🏢 {t('contrib.lb.company')}
-              </button>
-            </div>
-          </div>
-
-          {/* Leaderboard cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 max-w-7xl mx-auto">
-            {leaderboard.map((entry) => (
-              <div
-                key={entry.rank}
-                className={`card-refined relative p-5 text-center group ${
-                  entry.rank <= 3 ? 'ring-1 ring-yuanbao-500/15' : ''
-                }`}
-              >
-                {/* Rank badge */}
-                <div className={`absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-lg ${
-                  entry.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-amber-500 text-ink-900' :
-                  entry.rank === 2 ? 'bg-gradient-to-br from-gray-200 to-gray-400 text-ink-900' :
-                  entry.rank === 3 ? 'bg-gradient-to-br from-amber-600 to-amber-800 text-white' :
-                  'bg-ink-700 text-white/60 border border-white/[0.08]'
-                }`}>
-                  {entry.rank}
-                </div>
-
-                {leaderboardTab === 'individual' ? (
-                  <>
-                    {/* Individual avatar */}
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-yuanbao-400/20 to-yuanbao-600/20 border border-yuanbao-500/20 flex items-center justify-center mx-auto mt-3 mb-3">
-                      <span className="text-yuanbao-400 font-bold text-lg">
-                        {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).avatar}
-                      </span>
-                    </div>
-                    <h3 className="text-white font-semibold text-sm mb-1">
-                      {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).name}
-                    </h3>
-                    <div className="text-2xl font-bold text-gradient my-2">
-                      {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).contributions}
-                    </div>
-                    <div className="text-xs text-white/40 mb-3">{t('contrib.lb.contributions')}</div>
-                    <div className="flex flex-wrap justify-center gap-1">
-                      {(entry as typeof INDIVIDUAL_LEADERBOARD[0]).specialties.map((s) => (
-                        <span key={s} className="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.06] text-xs text-white/40">{s}</span>
-                      ))}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Company logo */}
-                    <div className="text-3xl mb-2 mt-3">
-                      {(entry as typeof COMPANY_LEADERBOARD[0]).logo}
-                    </div>
-                    <h3 className="text-white font-semibold text-sm mb-1">
-                      {(entry as typeof COMPANY_LEADERBOARD[0]).company}
-                    </h3>
-                    <div className="text-2xl font-bold text-gradient my-2">
-                      {(entry as typeof COMPANY_LEADERBOARD[0]).contributions}
-                    </div>
-                    <div className="text-xs text-white/40 mb-3">{t('contrib.lb.contributions')}</div>
-                    <span className="inline-block px-2.5 py-1 rounded-full bg-yuanbao-500/10 border border-yuanbao-500/15 text-yuanbao-400 text-xs">
-                      {(entry as typeof COMPANY_LEADERBOARD[0]).category}
-                    </span>
-                  </>
-                )}
-              </div>
-            ))}
+          {/* Placeholder state */}
+          <div className="max-w-2xl mx-auto card-glass p-12 text-center">
+            <LeaderboardEmptyStateSvg />
+            <p className="text-base text-white/45 mb-1.5">贡献榜数据正在收集中，敬请期待</p>
+            <p className="text-[13px] text-white/30">我们将在 GitHub 贡献统计接入后展示个人与企业排行榜</p>
           </div>
         </section>
 
@@ -283,15 +168,15 @@ export default function ContributePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
             {STEPS.map((s, idx) => (
-              <div key={s.num} className="card-glow p-6 relative group">
-                <div className={`absolute -top-4 -left-2 w-10 h-10 rounded-full bg-yuanbao-500 text-ink-900 font-bold text-sm flex items-center justify-center shadow-lg shadow-yuanbao-500/30 ring-4 ring-ink-900`}>
+              <div key={s.num} className="card-glow p-6 pt-8 relative group">
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-yuanbao-500 text-ink-900 font-bold text-sm flex items-center justify-center shadow-lg shadow-yuanbao-500/30">
                   {s.num}
                 </div>
                 {idx < STEPS.length - 1 && (
-                  <div className="hidden lg:block absolute top-6 -right-3 w-6 border-t border-dashed border-white/[0.1]" />
+                  <div className="hidden lg:block absolute top-7 -right-3 w-6 border-t border-dashed border-white/[0.1]" />
                 )}
-                <h3 className="text-white font-semibold mt-3 mb-2">{t(s.titleKey)}</h3>
-                <p className="text-white/55 text-sm leading-relaxed">{t(s.descKey)}</p>
+                <h3 className="text-white font-semibold mt-2 mb-2 text-center">{t(s.titleKey)}</h3>
+                <p className="text-white/55 text-sm leading-relaxed text-center">{t(s.descKey)}</p>
               </div>
             ))}
           </div>

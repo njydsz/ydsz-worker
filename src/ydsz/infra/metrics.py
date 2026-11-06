@@ -73,10 +73,10 @@ class Metrics:
         total_key = f"{name}_total"
         count_key = f"{name}_count"
         with self._lock:
-            count = getattr(self, count_key)
+            count = int(getattr(self, count_key))
             if count == 0:
                 return 0.0
-            return getattr(self, total_key) / count
+            return float(getattr(self, total_key)) / count
 
     def inc(self, name: str, n: int = 1) -> None:
         with self._lock:

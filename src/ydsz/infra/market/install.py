@@ -36,6 +36,8 @@ class InstallService:
         identity: str,
         target: InstallTarget,
         user_id: int,
+        user: Any = None,
+        server: Any = None,
         **opts: Any,
     ) -> InstallReceipt:
         """Install one capability via its provider.
@@ -65,7 +67,8 @@ class InstallService:
             receipt = await provider.install(
                 identity,
                 target=target,
-                user_id=user_id,
+                user=user,
+                server=server,
                 **opts,
             )
 

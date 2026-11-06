@@ -218,10 +218,10 @@ function EmptyStateSvg() {
    ═══════════════════════════════════════════ */
 
 const DOWNLOAD_URLS: Record<string, string> = {
-  experts: 'https://gitee.com/njydsz/ydsz-worker/tree/main/infra/agents/experts/library',
-  skills: 'https://gitee.com/njydsz/ydsz-worker/tree/main/skills',
-  plugins: 'https://gitee.com/njydsz/ydsz-worker/tree/main/plugins',
-  connectors: 'https://gitee.com/njydsz/ydsz-worker/tree/main/connectors',
+  experts: 'https://github.com/ydsz-buddy/ydsz-worker/tree/main/infra/agents/experts/library',
+  skills: 'https://github.com/ydsz-buddy/ydsz-worker/tree/main/skills',
+  plugins: 'https://github.com/ydsz-buddy/ydsz-worker/tree/main/plugins',
+  connectors: 'https://github.com/ydsz-buddy/ydsz-worker/tree/main/connectors',
 }
 
 /* ═══════════════════════════════════════════
@@ -311,6 +311,16 @@ export default function MarketplacePage() {
           <p className="text-white/55 text-base max-w-xl mx-auto mt-3">
             {t('market.hero.subtitle')}
           </p>
+        </div>
+
+        {/* ═══ Notice bar ═══ */}
+        <div className="max-w-2xl mx-auto mb-8">
+          <div className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-yuanbao-500/[0.06] border border-yuanbao-500/15">
+            <svg className="w-4 h-4 text-yuanbao-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-[13px] text-yuanbao-400/80">以下内容为示例数据，实际市场数据正在接入中</span>
+          </div>
         </div>
 
         {/* ═══ Tab bar ═══ */}

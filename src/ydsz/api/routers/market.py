@@ -15,15 +15,24 @@ Routes::
 from __future__ import annotations
 
 import logging
-from typing import Any, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
 from fastapi import APIRouter, Depends, Query, Request
 
 from ydsz.api.deps import current_user, get_server, optional_user
-from ydsz.infra.market.constants import DEFAULT_LIMIT, MARKET_ITEM_TYPES, MAX_LIMIT
+from ydsz.infra.market.constants import (
+    DEFAULT_LIMIT,
+    MARKET_ITEM_TYPES,
+    MARKET_SORTS,
+    MAX_LIMIT,
+    MarketSort,
+)
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import InstallTarget
 from ydsz.infra.utils.locale import resolve_request_locale
+
+if TYPE_CHECKING:
+    from ydsz.infra.market.manager import MarketManager
 
 logger = logging.getLogger(__name__)
 
@@ -32,13 +41,13 @@ router = APIRouter()
 _MARKET_TYPE_CHOICES = frozenset(MARKET_ITEM_TYPES)
 
 
-def _manager(request: Request) -> Any:
+def _manager(request: Request) -> MarketManager:
     """Resolve MarketManager from server services."""
     server = get_server(request)
     db = getattr(server.services, "db", None)
     from ydsz.infra.market.manager import MarketManager
 
-    return MarketManager(db=db)
+    return MarketManager(db=db, server=server)
 
 
 # ── helpers ─────────────────────────────────────────────────────────────────
@@ -65,6 +74,20 @@ def _resolve_type(type: str) -> str:
 
 def _resolve_limit(limit: int) -> int:
     return max(1, min(MAX_LIMIT, limit))
+
+
+_MARKET_SORT_CHOICES = frozenset(MARKET_SORTS)
+
+
+def _resolve_sort(sort: str) -> MarketSort:
+    """Narrow the HTTP ``sort`` query value to a valid :class:`MarketSort`."""
+    key = sort.strip().lower()
+    if key not in _MARKET_SORT_CHOICES:
+        raise MarketError(
+            MarketErrorCode.VALIDATION_FAILED,
+            f"unsupported sort: {sort!r}",
+        )
+    return key
 
 
 def _resolve_user_id(user: Any) -> int:
@@ -96,7 +119,7 @@ async def market_search(
         q,
         type_filter,
         category=category,
-        sort=sort,
+        sort=_resolve_sort(sort),
         limit=_resolve_limit(limit),
         offset=offset,
         locale=locale,
@@ -126,7 +149,7 @@ async def market_list(
         result = await p.search(
             q,
             category=category,
-            sort=sort,
+            sort=_resolve_sort(sort),
             limit=_resolve_limit(limit),
             offset=offset,
             locale=locale,
@@ -146,7 +169,7 @@ async def market_list(
     return await mgr.browse(
         t,
         category=category,
-        sort=sort,
+        sort=_resolve_sort(sort),
         limit=_resolve_limit(limit),
         offset=offset,
         locale=locale,
@@ -165,7 +188,7 @@ async def market_detail(
     t = _resolve_type(type)
     locale = resolve_request_locale(request)
     mgr = _manager(request)
-    return await mgr.detail(t, identity, locale=locale)
+    return await mgr.detail(t, identity, locale=locale, user=user)
 
 
 # ── install ────────────────────────────────────────────────────────────────
@@ -189,7 +212,7 @@ async def market_install(
 
     # Resolve target.
     target = _parse_install_target(body, user_id)
-    return await mgr.install(t, identity, target=target, user_id=user_id, **body)
+    return await mgr.install(t, identity, target=target, user_id=user_id, user=user, **body)
 
 
 def _parse_install_target(body: dict[str, Any], user_id: int) -> InstallTarget:

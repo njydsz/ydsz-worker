@@ -1,15 +1,15 @@
-"""Plugins provider — wraps bundled plugins + PluginManager.
+"""Plugin marketplace provider — wraps the bundled plugin market.
 
-Reads the ``agents/plugins/bundled/`` directory and the installed plugin store.
-Supports install via copy-from-bundled or git-clone-from-URL.
+Reads :meth:`PluginManager.list_market` (in-tree catalog today) and installs
+via :meth:`PluginManager.install_from_market`.
 """
 
 from __future__ import annotations
 
 import logging
-import shutil
 from typing import Any
 
+from ydsz.infra.market.constants import MarketItemType, MarketSort
 from ydsz.infra.market.errors import MarketError, MarketErrorCode
 from ydsz.infra.market.models import (
     InstallReceipt,
@@ -26,10 +26,10 @@ logger = logging.getLogger(__name__)
 
 
 class PluginsProvider(MarketProvider):
-    """Plugin marketplace — bundled + git-installed."""
+    """Plugin marketplace — bundled market catalog."""
 
     @property
-    def market_type(self) -> str:
+    def market_type(self) -> MarketItemType:
         return "plugin"
 
     @property
@@ -37,176 +37,222 @@ class PluginsProvider(MarketProvider):
         return {"zh": "插件", "en": "Plugins"}
 
     @property
-    def default_sort(self) -> str:
+    def default_sort(self) -> MarketSort:
         return "relevance"
 
-    # ── Browse / search ───────────────────────────────────────────────────
+    @property
+    def supported_sorts(self) -> list[MarketSort]:
+        return ["relevance"]
+
+    # ── Browse / search ─────────────────────────────────────────────────
     async def list_items(
         self,
         *,
         category: str | None,
-        sort: str,
+        sort: MarketSort,
         limit: int,
         offset: int,
         locale: str | None,
+        **kw: Any,
     ) -> MarketListResult:
-        all_plugins = self._scan_bundled()
+        entries = _scan(kw.get("server"))
         if category:
-            all_plugins = [p for p in all_plugins if p.get("category") == category]
-        total = len(all_plugins)
-        page = all_plugins[offset : offset + limit]
-        items = tuple(_plugin_dict_to_item(d, locale) for d in page)
-        return MarketListResult(items, total, limit, offset, sort, category)
+            entries = [e for e in entries if str(e.get("group") or "") == category]
+        total = len(entries)
+        page = entries[offset : offset + limit]
+        return MarketListResult(
+            tuple(_plugin_item(e, locale) for e in page),
+            total,
+            limit,
+            offset,
+            sort,
+            category,
+        )
 
     async def search(
         self,
         query: str,
         *,
         category: str | None,
-        sort: str,
+        sort: MarketSort,
         limit: int,
         offset: int,
         locale: str | None,
+        **kw: Any,
     ) -> MarketListResult:
-        all_plugins = self._scan_bundled()
         q = query.strip().lower()
-        if q:
-            all_plugins = [
-                p
-                for p in all_plugins
-                if q in p.get("name", "").lower()
-                or q in p.get("description", "").lower()
-                or q in p.get("id", "").lower()
-                or q in p.get("group", "").lower()
-            ]
+        entries = [
+            e
+            for e in _scan(kw.get("server"))
+            if q in str(e.get("name") or "").lower()
+            or q in str(e.get("description") or "").lower()
+            or q in str(e.get("id") or "").lower()
+            or q in str(e.get("group") or "").lower()
+        ]
         if category:
-            all_plugins = [p for p in all_plugins if p.get("category") == category]
-        total = len(all_plugins)
-        page = all_plugins[offset : offset + limit]
-        items = tuple(_plugin_dict_to_item(d, locale) for d in page)
-        return MarketListResult(items, total, limit, offset, sort, category)
+            entries = [e for e in entries if str(e.get("group") or "") == category]
+        total = len(entries)
+        page = entries[offset : offset + limit]
+        return MarketListResult(
+            tuple(_plugin_item(e, locale) for e in page),
+            total,
+            limit,
+            offset,
+            sort,
+            category,
+        )
 
-    async def detail(self, identity: str, *, locale: str | None = None, **kw: Any) -> MarketDetail:
-        all_plugins = self._scan_bundled()
-        match = next((p for p in all_plugins if p["id"] == identity), None)
+    # ── Detail ──────────────────────────────────────────────────────────
+    async def detail(
+        self,
+        identity: str,
+        *,
+        locale: str | None = None,
+        db: Any = None,
+        user: Any = None,
+        server: Any = None,
+        **kw: Any,
+    ) -> MarketDetail:
+        match = next((e for e in _scan(server) if str(e.get("id")) == identity), None)
         if match is None:
             raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, f"plugin not found: {identity}")
-
-        item = _plugin_dict_to_item(match, locale)
+        item = _plugin_item(match, locale)
         meta = item.__dict__.copy()
         return MarketDetail(
             **meta,
-            readme=match.get("readme"),
-            changelog=match.get("changelog"),
-            dependencies=tuple(match.get("requires", ())),
+            readme=str(match.get("description") or ""),
+            changelog=None,
+            dependencies=tuple(match.get("requires") or ()),
             metadata={
                 "kind": match.get("kind"),
                 "group": match.get("group"),
-                "requires": match.get("requires", []),
-                "tools": match.get("tools", []),
-                "path": match.get("path"),
+                "requires": tuple(match.get("requires") or ()),
             },
         )
 
-    # ── Install ──────────────────────────────────────────────────────────
+    # ── Install ─────────────────────────────────────────────────────────
     async def install(
         self,
         identity: str,
         *,
         target: InstallTarget,
-        user_id: int,
+        user: Any,
+        server: Any,
         **opts: Any,
     ) -> InstallReceipt:
-        return await self._install_bundled(identity, target=target, user_id=user_id)
-
-    async def _install_bundled(
-        self,
-        identity: str,
-        *,
-        target: InstallTarget,
-        user_id: int,
-    ) -> InstallReceipt:
-        from ydsz.infra.agents.plugins.manager import bundled_plugin_dir
-
-        src = bundled_plugin_dir(identity)
-        if not src or not src.is_dir():
-            raise MarketError(MarketErrorCode.ITEM_NOT_FOUND, identity)
-
-        from ydsz.infra.utils.paths import PathLayout
-
-        layout = PathLayout()
-        dest = layout.plugins_dir / identity
-        if dest.exists():
+        if server is None:
             raise MarketError(
-                MarketErrorCode.INSTALL_CONFLICT,
-                f"plugin already installed at {dest}",
+                MarketErrorCode.INVALID_TARGET,
+                "plugin install requires a running server",
             )
-
-        shutil.copytree(src, dest)
-        logger.info("Plugin %s installed → %s", identity, dest)
-
+        manager = getattr(server, "plugin_manager", None)
+        if manager is None:
+            raise MarketError(
+                MarketErrorCode.PROVIDER_UNAVAILABLE, "plugin manager is not available"
+            )
+        try:
+            loaded = await _install(manager, identity)
+        except MarketError:
+            raise
+        except Exception as exc:
+            raise MarketError(
+                MarketErrorCode.INSTALL_FAILED, f"plugin install failed: {exc}"
+            ) from exc
+        manifest = getattr(loaded, "manifest", None)
+        plugin_id = str(getattr(manifest, "id", identity))
+        version = str(getattr(manifest, "version", "1.0.0"))
         return InstallReceipt(
             market_item=MarketItem(
-                market_id=f"plugin:{identity}",
+                market_id=f"plugin:{plugin_id}",
                 type="plugin",
                 source="ILTIN",
-                identity=identity,
-                name=identity,
+                identity=plugin_id,
+                name=str(getattr(manifest, "name", plugin_id)),
                 installed=True,
-                installed_version="1.0.0",
+                installed_version=version,
             ),
             target=target,
-            installed_version="1.0.0",
-            metadata={"path": str(dest)},
+            installed_version=version,
+            logs=(f"plugin_id={plugin_id}",),
         )
 
-    # ── Scan ──────────────────────────────────────────────────────────
-    def _scan_bundled(self) -> list[dict[str, Any]]:
-        """Scan bundled plugins directory. Cached at class level."""
-        try:
-            from ydsz.infra.agents.plugins.manager import bundled_plugins
+    # ── Category facets ─────────────────────────────────────────────────
+    async def categories(self, *, locale: str | None = None, **kw: Any) -> list[dict[str, str]]:
+        facets: list[dict[str, str]] = []
+        for entry in _scan(kw.get("server")):
+            slug = str(entry.get("group") or "")
+            if not slug:
+                continue
+            existing = next((f for f in facets if f["slug"] == slug), None)
+            if existing is None:
+                facets.append({"slug": slug, "label": slug, "count": "1"})
+            else:
+                existing["count"] = str(int(existing["count"]) + 1)
+        return facets
 
-            return list(bundled_plugins())
-        except ImportError:
-            return []
+    async def installed_list(
+        self,
+        *,
+        user_id: int,
+        db: Any = None,
+        **kw: Any,
+    ) -> list[dict[str, Any]]:
+        return []
 
 
-# ── Dict → MarketItem ────────────────────────────────────────────────────
-def _plugin_dict_to_item(d: dict[str, Any], locale: str | None = None) -> MarketItem:
-    raw_name = d.get("name", d.get("id", ""))
+def _scan(server: Any = None) -> list[dict[str, Any]]:
+    """Read the plugin market catalog from the running server, if available."""
+    manager = getattr(server, "plugin_manager", None) if server is not None else None
+    if manager is None:
+        return []
+    try:
+        return list(manager.list_market())
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("plugin market scan failed: %s", exc)
+        return []
+
+
+async def _install(manager: Any, plugin_id: str) -> Any:
+    import asyncio
+
+    return await asyncio.to_thread(manager.install_from_market, plugin_id)
+
+
+def _plugin_item(entry: dict[str, Any], locale: str | None) -> MarketItem:
+    raw_name = entry.get("name") or entry.get("id") or ""
     name = (
         raw_name.get(locale or "zh", "")
         if isinstance(raw_name, dict)
-        else (raw_name or d.get("id", ""))
+        else str(raw_name or entry.get("id") or "")
     )
-    raw_desc = d.get("description", "")
-    desc = raw_desc.get(locale or "zh", "") if isinstance(raw_desc, dict) else (raw_desc or "")
-
+    raw_desc = entry.get("description") or ""
+    desc = raw_desc.get(locale or "zh", "") if isinstance(raw_desc, dict) else str(raw_desc or "")
+    installed = bool(entry.get("installed"))
+    installed_version = entry.get("installed_version")
+    version = str(entry.get("version") or "1.0.0")
     return MarketItem(
-        market_id=f"plugin:{d['id']}",
+        market_id=f"plugin:{entry.get('id')}",
         type="plugin",
         source="ILTIN",
-        identity=d["id"],
+        identity=str(entry.get("id") or ""),
         name=name,
         description=desc,
-        icon_url=d.get("icon"),
+        icon_url=entry.get("icon") or None,
         icon_name="puzzle",
-        color=d.get("color"),
-        version=d.get("version", "1.0.0"),
-        author=MarketAuthor(name=d.get("author", "ILTIN")),
-        category=d.get("group", "other"),
-        tags=tuple(d.get("tags", ())),
-        installed=d.get("installed", False),
-        installed_version=d.get("installed_version"),
-        source_url=d.get("source_url"),
-        metadata={
-            "kind": d.get("kind"),
-            "group": d.get("group"),
-            "requires": d.get("requires", []),
-            "tools": d.get("tools", []),
-        },
+        color=None,
+        version=version,
+        author=MarketAuthor(name="ILTIN"),
+        category=str(entry.get("group") or "other"),
+        tags=(),
+        rating=0.0,
+        downloads=0,
+        installed=installed,
+        installed_version=str(installed_version) if installed_version else None,
+        has_update=bool(entry.get("update_available")),
+        size_bytes=None,
+        source_url=None,
+        updated_at=None,
     )
 
 
-# ── Register ──────────────────────────────────────────────────────────────
 register_provider("plugin", PluginsProvider)
